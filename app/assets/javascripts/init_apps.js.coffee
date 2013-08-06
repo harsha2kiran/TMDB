@@ -1,2 +1,2 @@
 $(document).ready ->
-  window.MoviesApp.initialize()
+  # window.MoviesApp.initialize()

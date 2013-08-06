@@ -1,5 +1,7 @@
 Movies::Application.routes.draw do
 
+  devise_for :users
+
   api_version(:module => "Api::V1", :path => "api/v1", :defaults => {:format => :json}) do
     resources :movies
   end
