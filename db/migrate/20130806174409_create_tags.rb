@@ -1,8 +1,9 @@
-class CreateTaggedPeople < ActiveRecord::Migration
+class CreateTags < ActiveRecord::Migration
   def change
-    create_table :tagged_people do |t|
+    create_table :tags do |t|
       t.integer :taggable_id
       t.string :taggable_type
+      t.integer :person_id
       t.boolean :approved
 
       t.timestamps

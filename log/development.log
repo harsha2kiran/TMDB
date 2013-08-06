@@ -3216,3 +3216,345 @@ LINE 6:             AND dep.refobjid = '"badges_users"'::regclass
 
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 19:34:06 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (0.1ms)
+Completed 200 OK in 11ms (Views: 10.8ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateListContents (20130806124434)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174129)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (53.6ms)[0m  [1mCREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806174129')
+  [1m[36m (20.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateListContents (20130806124434)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+PG::DuplicateTable: ERROR:  relation "tags" already exists
+: CREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateListContents (20130806124434)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+PG::DuplicateTable: ERROR:  relation "tags" already exists
+: CREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[35m (0.0ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateListContents (20130806124434)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (44.5ms)[0m  [1mCREATE TABLE "tags" ("id" serial primary key, "taggable_id" integer, "taggable_type" character varying(255), "person_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806174409')
+  [1m[36m (10.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePeople (20130806175116)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (74.3ms)[0m  [1mCREATE TABLE "people" ("id" serial primary key, "name" character varying(255), "biography" text, "birthday" timestamp, "day_of_death" timestamp, "place_of_birth" character varying(255), "homepage" character varying(255), "imdb_id" character varying(255), "approved" boolean, "locked" hstore, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806175116')
+  [1m[36m (11.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateListContents (20130806124434)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (91.5ms)[0m  [1mCREATE TABLE "person_social_apps" ("id" serial primary key, "person_id" integer, "social_app_id" integer, "profile_link" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806175650')
+  [1m[36m (19.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (65.3ms)[0m  [1mCREATE TABLE "list_items" ("id" serial primary key, "list_id" integer, "listable_id" integer, "listable_type" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806181052')
+  [1m[36m (15.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 

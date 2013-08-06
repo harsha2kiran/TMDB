@@ -1,6 +1,6 @@
-class CreateListContents < ActiveRecord::Migration
+class CreateListItems < ActiveRecord::Migration
   def change
-    create_table :list_contents do |t|
+    create_table :list_items do |t|
       t.integer :list_id
       t.integer :listable_id
       t.string :listable_type

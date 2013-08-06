@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  list_id: 1
+  listable_id: 1
+  listable_type: MyString
+  approved: false
+
+two:
+  list_id: 1
+  listable_id: 1
+  listable_type: MyString
+  approved: false

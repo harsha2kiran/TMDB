@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  taggable_id: 1
+  taggable_type: MyString
+  person_id: 1
+  approved: false
+
+two:
+  taggable_id: 1
+  taggable_type: MyString
+  person_id: 1
+  approved: false

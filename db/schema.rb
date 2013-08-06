@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806125534) do
+ActiveRecord::Schema.define(:version => 20130806181052) do
 
   create_table "alternative_names", :force => true do |t|
     t.integer  "person_id"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20130806125534) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "list_contents", :force => true do |t|
+  create_table "list_items", :force => true do |t|
     t.integer  "list_id"
     t.integer  "listable_id"
     t.string   "listable_type"
@@ -245,9 +245,10 @@ ActiveRecord::Schema.define(:version => 20130806125534) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tagged_people", :force => true do |t|
+  create_table "tags", :force => true do |t|
     t.integer  "taggable_id"
     t.string   "taggable_type"
+    t.integer  "person_id"
     t.boolean  "approved"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
