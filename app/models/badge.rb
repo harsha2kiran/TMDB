@@ -1,4 +1,5 @@
 class Badge < ActiveRecord::Base
   attr_accessible :badge, :min_points
-  has_and_belongs_to_many :users
+  has_many :user_badges
+  has_many :users, :through => :user_badges
 end

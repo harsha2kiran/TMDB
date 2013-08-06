@@ -3172,3 +3172,47 @@ Migrating to CreateReports (20130806125534)
   [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806125534')
   [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
   [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-06 18:16:56 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 556ms (Views: 555.7ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+DEPRECATION WARNING: You're trying to create an attribute `people_id'. Writing arbitrary attributes on a model is deprecated. Please just use `attr_writer` etc. (called from irb_binding at (irb):23)
+PG::UndefinedColumn: ERROR:  column crews.people_id does not exist
+LINE 1: SELECT "crews".* FROM "crews"  WHERE "crews"."people_id" = 1
+                                             ^
+: SELECT "crews".* FROM "crews"  WHERE "crews"."people_id" = 1
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+PG::UndefinedTable: ERROR:  relation "badges_users" does not exist
+LINE 6:             AND dep.refobjid = '"badges_users"'::regclass
+                                       ^
+:           SELECT DISTINCT(attr.attname)
+          FROM pg_attribute attr
+          INNER JOIN pg_depend dep ON attr.attrelid = dep.refobjid AND attr.attnum = dep.refobjsubid
+          INNER JOIN pg_constraint cons ON attr.attrelid = cons.conrelid AND attr.attnum = cons.conkey[1]
+          WHERE cons.contype = 'p'
+            AND dep.refobjid = '"badges_users"'::regclass
+
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
