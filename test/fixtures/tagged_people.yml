@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_id: 1
+  item_type: MyString
+  approved: false
+
+two:
+  item_id: 1
+  item_type: MyString
+  approved: false

@@ -2098,3 +2098,797 @@ ActionController::RoutingError (uninitialized constant Admin::DashboardControlle
 
 
   Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (211.4ms)[0m  [1mCREATE TABLE "movies" ("id" serial primary key, "title" character varying(255), "tagline" character varying(255), "overview" text, "content_score" integer, "approved" boolean, "locked" hstore, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806080832')
+  [1m[36m (19.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (124.3ms)[0m  [1mCREATE TABLE "movie_metadata" ("id" serial primary key, "movie_id" integer, "movie_type_id" integer, "budget" integer, "runtime" integer, "status_id" integer, "imdb_id" character varying(255), "homepage" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081116')
+  [1m[36m (23.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (78.2ms)[0m  [1mCREATE TABLE "revenue_countries" ("id" serial primary key, "country_id" integer, "movie_id" integer, "revenue" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081151')
+  [1m[36m (18.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (68.0ms)[0m  [1mCREATE TABLE "releases" ("id" serial primary key, "movie_id" integer, "primary" boolean, "country_id" integer, "release_date" timestamp, "certification" character varying(255), "confirmed" boolean, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081303')
+  [1m[36m (19.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (92.4ms)[0m  [1mCREATE TABLE "countries" ("id" serial primary key, "country" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081339')
+  [1m[36m (11.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (84.0ms)[0m  [1mCREATE TABLE "movie_languages" ("id" serial primary key, "movie_id" integer, "language_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081418')
+  [1m[36m (18.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (91.3ms)[0m  [1mCREATE TABLE "keywords" ("id" serial primary key, "keyword" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081537')
+  [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (101.7ms)[0m  [1mCREATE TABLE "movie_keywords" ("id" serial primary key, "keyword_id" integer, "movie_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081619')
+  [1m[36m (13.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (80.7ms)[0m  [1mCREATE TABLE "languages" ("id" serial primary key, "language" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081641')
+  [1m[36m (14.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (76.6ms)[0m  [1mCREATE TABLE "statuses" ("id" serial primary key, "status" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081731')
+  [1m[36m (19.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (84.2ms)[0m  [1mCREATE TABLE "alternative_titles" ("id" serial primary key, "movie_id" integer, "alternative_title" character varying(255), "language_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081917')
+  [1m[36m (19.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (89.2ms)[0m  [1mCREATE TABLE "genres" ("id" serial primary key, "genre" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806081951')
+  [1m[36m (26.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (91.7ms)[0m  [1mCREATE TABLE "movie_genres" ("id" serial primary key, "movie_id" integer, "genre_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082023')
+  [1m[36m (17.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (107.1ms)[0m  [1mCREATE TABLE "videos" ("id" serial primary key, "link" character varying(255), "item_id" integer, "item_type" character varying(255), "video_type" character varying(255), "quality" character varying(255), "link_active" boolean, "approved" boolean, "priority" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082108')
+  [1m[36m (18.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (142.5ms)[0m  [1mCREATE TABLE "images" ("id" serial primary key, "item_id" integer, "item_type" character varying(255), "title" character varying(255), "image_file" character varying(255), "image_type" character varying(255), "is_main_image" boolean, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082212')
+  [1m[36m (20.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (128.2ms)[0m  [1mCREATE TABLE "tagged_people" ("id" serial primary key, "item_id" integer, "item_type" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082245')
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (72.7ms)[0m  [1mCREATE TABLE "casts" ("id" serial primary key, "movie_id" integer, "person_id" integer, "character" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082319')
+  [1m[36m (19.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (74.7ms)[0m  [1mCREATE TABLE "crews" ("id" serial primary key, "movie_id" integer, "person_id" integer, "job" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082347')
+  [1m[36m (11.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (88.3ms)[0m  [1mCREATE TABLE "production_companies" ("id" serial primary key, "movie_id" integer, "company_id" integer, "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082429')
+  [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (44.3ms)[0m  [1mCREATE TABLE "companies" ("id" serial primary key, "company" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082449')
+  [1m[36m (14.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (102.0ms)[0m  [1mCREATE TABLE "people" ("id" serial primary key, "name" character varying(255), "biography" text, "birthday" timestamp, "day_of_death" timestamp, "place_of_birth" character varying(255), "homepage" character varying(255), "imdb_id" character varying(255), "approved" boolean, "locked" hstore, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082559')
+  [1m[36m (14.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (85.9ms)[0m  [1mCREATE TABLE "person_social_apps" ("id" serial primary key, "person_id" integer, "social_app_id" integer, "profile_link" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082655')
+  [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (108.6ms)[0m  [1mCREATE TABLE "social_apps" ("id" serial primary key, "social_app" character varying(255), "link" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082720')
+  [1m[36m (17.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (50.5ms)[0m  [1mCREATE TABLE "alternative_names" ("id" serial primary key, "person_id" integer, "alternative_name" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082748')
+  [1m[36m (13.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (133.8ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "biography" text, "email" character varying(255), "password" character varying(255), "user_type" character varying(255), "image_file" character varying(255), "confirmed_at" timestamp, "points" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082849')
+  [1m[36m (13.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (96.2ms)[0m  [1mCREATE TABLE "badges" ("id" serial primary key, "badge" character varying(255), "min_points" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082911')
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (75.3ms)[0m  [1mCREATE TABLE "user_badges" ("id" serial primary key, "user_id" integer, "badge_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082932')
+  [1m[36m (17.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (103.9ms)[0m  [1mCREATE TABLE "lists" ("id" serial primary key, "user_id" integer, "title" character varying(255), "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806082954')
+  [1m[36m (9.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateListContents (20130806083027)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (73.1ms)[0m  [1mCREATE TABLE "list_contents" ("id" serial primary key, "list_id" integer, "item_id" integer, "item_type" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806083027')
+  [1m[36m (15.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateListContents (20130806083027)
+Migrating to CreateFollows (20130806083123)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (71.8ms)[0m  [1mCREATE TABLE "follows" ("id" serial primary key, "user_id" integer, "item_id" integer, "item_type" character varying(255), "approved" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806083123')
+  [1m[36m (19.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateListContents (20130806083027)
+Migrating to CreateFollows (20130806083123)
+Migrating to CreateViews (20130806083153)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (88.5ms)[0m  [1mCREATE TABLE "views" ("id" serial primary key, "item_type" character varying(255), "item_id" integer, "views_count" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806083153')
+  [1m[36m (8.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateVideos (20130806082108)
+Migrating to CreateImages (20130806082212)
+Migrating to CreateTaggedPeople (20130806082245)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreatePeople (20130806082559)
+Migrating to CreatePersonSocialApps (20130806082655)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateListContents (20130806083027)
+Migrating to CreateFollows (20130806083123)
+Migrating to CreateViews (20130806083153)
+Migrating to CreateReports (20130806083216)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (70.4ms)[0m  [1mCREATE TABLE "reports" ("id" serial primary key, "item_type" character varying(255), "item_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130806083216')
+  [1m[36m (10.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 

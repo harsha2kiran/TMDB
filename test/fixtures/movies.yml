@@ -2,14 +2,16 @@
 
 one:
   title: MyString
-  tagline: MyText
+  tagline: MyString
   overview: MyText
   content_score: 1
   approved: false
+  locked: 
 
 two:
   title: MyString
-  tagline: MyText
+  tagline: MyString
   overview: MyText
   content_score: 1
   approved: false
+  locked: 

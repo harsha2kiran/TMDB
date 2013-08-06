@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  biography: MyText
+  birthday: 2013-08-06 10:25:59
+  day_of_death: 2013-08-06 10:25:59
+  place_of_birth: MyString
+  homepage: MyString
+  imdb_id: MyString
+  approved: false
+  locked: 
+
+two:
+  name: MyString
+  biography: MyText
+  birthday: 2013-08-06 10:25:59
+  day_of_death: 2013-08-06 10:25:59
+  place_of_birth: MyString
+  homepage: MyString
+  imdb_id: MyString
+  approved: false
+  locked: 

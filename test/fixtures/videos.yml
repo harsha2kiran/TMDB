@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  link: MyString
+  item_id: 1
+  item_type: MyString
+  video_type: MyString
+  quality: MyString
+  link_active: false
+  approved: false
+  priority: 1
+
+two:
+  link: MyString
+  item_id: 1
+  item_type: MyString
+  video_type: MyString
+  quality: MyString
+  link_active: false
+  approved: false
+  priority: 1

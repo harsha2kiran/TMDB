@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  movie_id: 1
+  primary: false
+  country_id: 1
+  release_date: 2013-08-06 10:13:03
+  certification: MyString
+  confirmed: false
+  approved: false
+
+two:
+  movie_id: 1
+  primary: false
+  country_id: 1
+  release_date: 2013-08-06 10:13:03
+  certification: MyString
+  confirmed: false
+  approved: false

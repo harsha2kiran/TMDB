@@ -76,3 +76,6 @@ group :development do
   gem 'mailcatcher'
   gem 'sextant'
 end
+
+gem 'activerecord-postgres-hstore'
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  country_id: 1
+  movie_id: 1
+  revenue: 1
+  approved: false
+
+two:
+  country_id: 1
+  movie_id: 1
+  revenue: 1
+  approved: false

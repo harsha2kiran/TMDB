@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  movie_id: 1
+  alternative_title: MyString
+  language_id: 1
+  approved: false
+
+two:
+  movie_id: 1
+  alternative_title: MyString
+  language_id: 1
+  approved: false
