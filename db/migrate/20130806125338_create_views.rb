@@ -1,8 +1,8 @@
 class CreateViews < ActiveRecord::Migration
   def change
     create_table :views do |t|
-      t.string :item_type
-      t.integer :item_id
+      t.string :viewable_type
+      t.integer :viewable_id
       t.integer :views_count
 
       t.timestamps

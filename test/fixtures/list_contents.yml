@@ -2,12 +2,12 @@
 
 one:
   list_id: 1
-  item_id: 1
-  item_type: MyString
+  listable_id: 1
+  listable_type: MyString
   approved: false
 
 two:
   list_id: 1
-  item_id: 1
-  item_type: MyString
+  listable_id: 1
+  listable_type: MyString
   approved: false

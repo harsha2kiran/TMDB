@@ -2,12 +2,12 @@
 
 one:
   user_id: 1
-  item_id: 1
-  item_type: MyString
+  followable_id: 1
+  followable_type: MyString
   approved: false
 
 two:
   user_id: 1
-  item_id: 1
-  item_type: MyString
+  followable_id: 1
+  followable_type: MyString
   approved: false

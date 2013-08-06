@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806083216) do
+ActiveRecord::Schema.define(:version => 20130806125534) do
 
   create_table "alternative_names", :force => true do |t|
     t.integer  "person_id"
@@ -70,11 +70,11 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
 
   create_table "follows", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "followable_id"
+    t.string   "followable_type"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "genres", :force => true do |t|
@@ -84,15 +84,15 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
   end
 
   create_table "images", :force => true do |t|
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.string   "title"
     t.string   "image_file"
     t.string   "image_type"
     t.boolean  "is_main_image"
     t.boolean  "approved"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "keywords", :force => true do |t|
@@ -109,11 +109,11 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
 
   create_table "list_contents", :force => true do |t|
     t.integer  "list_id"
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "listable_id"
+    t.string   "listable_type"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "lists", :force => true do |t|
@@ -216,11 +216,11 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
   end
 
   create_table "reports", :force => true do |t|
-    t.string   "item_type"
-    t.integer  "item_id"
+    t.string   "reportable_type"
+    t.integer  "reportable_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "revenue_countries", :force => true do |t|
@@ -246,11 +246,11 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
   end
 
   create_table "tagged_people", :force => true do |t|
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "user_badges", :force => true do |t|
@@ -276,23 +276,23 @@ ActiveRecord::Schema.define(:version => 20130806083216) do
 
   create_table "videos", :force => true do |t|
     t.string   "link"
-    t.integer  "item_id"
-    t.string   "item_type"
+    t.integer  "videable_id"
+    t.string   "videable_type"
     t.string   "video_type"
     t.string   "quality"
     t.boolean  "link_active"
     t.boolean  "approved"
     t.integer  "priority"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "views", :force => true do |t|
-    t.string   "item_type"
-    t.integer  "item_id"
+    t.string   "viewable_type"
+    t.integer  "viewable_id"
     t.integer  "views_count"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

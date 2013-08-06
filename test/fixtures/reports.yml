@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  item_type: MyString
-  item_id: 1
+  reportable_type: MyString
+  reportable_id: 1
   user_id: 1
 
 two:
-  item_type: MyString
-  item_id: 1
+  reportable_type: MyString
+  reportable_id: 1
   user_id: 1

@@ -2,8 +2,8 @@
 
 one:
   link: MyString
-  item_id: 1
-  item_type: MyString
+  videable_id: 1
+  videable_type: MyString
   video_type: MyString
   quality: MyString
   link_active: false
@@ -12,8 +12,8 @@ one:
 
 two:
   link: MyString
-  item_id: 1
-  item_type: MyString
+  videable_id: 1
+  videable_type: MyString
   video_type: MyString
   quality: MyString
   link_active: false

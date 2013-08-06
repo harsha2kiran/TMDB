@@ -1,8 +1,8 @@
 class CreateTaggedPeople < ActiveRecord::Migration
   def change
     create_table :tagged_people do |t|
-      t.integer :item_id
-      t.string :item_type
+      t.integer :taggable_id
+      t.string :taggable_type
       t.boolean :approved
 
       t.timestamps

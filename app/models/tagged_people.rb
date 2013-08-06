@@ -1,3 +1,4 @@
 class TaggedPeople < ActiveRecord::Base
-  attr_accessible :approved, :item_id, :item_type
+  attr_accessible :approved, :taggable_id, :taggable_type
+  belongs_to :taggable, polymorphic: true
 end

@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  item_id: 1
-  item_type: MyString
+  imageable_id: 1
+  imageable_type: MyString
   title: MyString
   image_file: MyString
   image_type: MyString
@@ -10,8 +10,8 @@ one:
   approved: false
 
 two:
-  item_id: 1
-  item_type: MyString
+  imageable_id: 1
+  imageable_type: MyString
   title: MyString
   image_file: MyString
   image_type: MyString
