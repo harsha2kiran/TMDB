@@ -5,7 +5,38 @@ Movies::Application.routes.draw do
   # mount Doorkeeper::Engine => '/oauth'
 
   api_version(:module => "Api::V1", :path => "api/v1", :defaults => {:format => :json}) do
+    resources :alternative_names
+    resources :alternative_titles
+    resources :badges
+    resources :casts
+    resources :crews
+    resources :companies
+    resources :countries
+    resources :follows
+    resources :genres
+    resources :images
+    resources :keywords
+    resources :languages
+    resources :list_items
+    resources :lists
+    resources :movie_genres
+    resources :movie_keywords
+    resources :movie_languages
+    resources :movie_metadatas
     resources :movies
+    resources :people
+    resources :person_social_apps
+    resources :production_companies
+    resources :releases
+    resources :reports
+    resources :revenue_countries
+    resources :social_apps
+    resources :statuses
+    resources :tags
+    resources :user_badges
+    resources :users
+    resources :videos
+    resources :views
   end
 
   # The priority is based upon order of creation:
