@@ -2,7 +2,7 @@ class Movie < ActiveRecord::Base
   attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title
   has_many :alternative_titles
   has_many :crews
-  has_many :cast
+  has_many :casts
   has_many :movie_genres
   has_many :movie_keywords
   has_many :movie_languages

@@ -4,7 +4,6 @@ class Image < ActiveRecord::Base
 
   has_many :tags, :as => :taggable
   has_many :list_items, :as => :listable
-  has_many :images, :as => :imageable
   has_many :videos, :as => :videable
   has_many :follows, :as => :followable
   has_many :views, :as => :viewable

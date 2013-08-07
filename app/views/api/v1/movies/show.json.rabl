@@ -1,4 +1,4 @@
-object @movies
+object @movie
 attributes :id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
 node(:alternative_titles) { |movie| movie.alternative_titles }
 node(:images) { |movie| movie.images }
