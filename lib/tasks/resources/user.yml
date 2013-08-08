@@ -1,0 +1,6 @@
+user1:
+  email: "admin@admin.com"
+  first_name: "Admin"
+  last_name: "Admin"
+  password: "admin@admin.com"
+  user_type: "admin"
