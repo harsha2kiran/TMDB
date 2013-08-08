@@ -8,6 +8,7 @@ class Movie < ActiveRecord::Base
   has_many :movie_languages
   has_many :movie_metadatas
   has_many :revenue_countries
+  has_many :releases
 
   has_many :tags, :as => :taggable
   has_many :list_items, :as => :listable

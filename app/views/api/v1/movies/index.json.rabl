@@ -5,6 +5,8 @@ node(:images) { |movie| movie.images }
 node(:videos) { |movie| movie.videos }
 node(:crews) { |movie| movie.crews }
 node(:casts) { |movie| movie.casts }
+node(:releases) { |movie| movie.releases }
+node(:statuses) { |movie| movie.statuses }
 node(:movie_genres) { |movie| movie.movie_genres }
 node(:movie_keywords) { |movie| movie.movie_keywords }
 node(:movie_languages) { |movie| movie.movie_languages }
