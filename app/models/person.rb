@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   has_many :casts
   has_many :person_social_apps
 
-  has_many :tags, :as => :taggable
+  has_many :tags
   has_many :list_items, :as => :listable
   has_many :images, :as => :imageable
   has_many :videos, :as => :videable
