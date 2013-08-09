@@ -33,10 +33,10 @@ Movies::Application.routes.draw do
     resources :social_apps
     resources :statuses
     resources :tags
-    resources :user_badges
-    resources :users
+    # resources :user_badges
+    # resources :users
     resources :videos
-    resources :views
+    # resources :views
   end
 
   # The priority is based upon order of creation:

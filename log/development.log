@@ -21712,3 +21712,1142 @@ WARNING: Can't verify CSRF token authenticity
   [1m[35mSQL (0.3ms)[0m  DELETE FROM "releases" WHERE "releases"."id" = $1  [["id", 3]]
   [1m[36m (34.1ms)[0m  [1mCOMMIT[0m
 Completed 204 No Content in 44ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:05:28 +0200
+Processing by Api::V1::ReportsController#create as JSON
+  Parameters: {"report"=>{"reportable_id"=>"31", "reportable_type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "reports" ("created_at", "reportable_id", "reportable_type", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", Fri, 09 Aug 2013 16:05:28 UTC +00:00], ["reportable_id", 31], ["reportable_type", "Movie"], ["updated_at", Fri, 09 Aug 2013 16:05:28 UTC +00:00], ["user_id", 11]]
+  [1m[35m (80.6ms)[0m  COMMIT
+Completed 201 Created in 101ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:06:21 +0200
+Processing by Api::V1::ReportsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mReport Load (0.4ms)[0m  SELECT "reports".* FROM "reports" 
+Completed 200 OK in 9ms (Views: 1.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:06:22 +0200
+Processing by Api::V1::ReportsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mReport Load (0.3ms)[0m  SELECT "reports".* FROM "reports" 
+Completed 200 OK in 8ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/api/v1/reports/1" for 127.0.0.1 at 2013-08-09 18:07:18 +0200
+Processing by Api::V1::ReportsController#destroy as JSON
+  Parameters: {"id"=>"1", "report"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mReport Load (0.5ms)[0m  SELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "reports" WHERE "reports"."id" = $1  [["id", 1]]
+  [1m[36m (20.2ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 34ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:07:56 +0200
+Processing by Api::V1::ReportsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mReport Load (0.4ms)[0m  [1mSELECT "reports".* FROM "reports" [0m
+Completed 200 OK in 12ms (Views: 1.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:10:00 +0200
+Processing by Api::V1::ReportsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mReport Load (0.2ms)[0m  [1mSELECT "reports".* FROM "reports" LIMIT 1[0m
+  [1m[35mReport Load (0.2ms)[0m  SELECT "reports".* FROM "reports" 
+  [1m[36mMovie Load (0.6ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  Rendered api/v1/reports/index.json.rabl (5.5ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/v1/reports" for 127.0.0.1 at 2013-08-09 18:10:37 +0200
+Processing by Api::V1::ReportsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mReport Load (0.3ms)[0m  [1mSELECT "reports".* FROM "reports" LIMIT 1[0m
+  [1m[35mReport Load (0.2ms)[0m  SELECT "reports".* FROM "reports" 
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  Rendered api/v1/reports/index.json.rabl (4.5ms)
+Completed 200 OK in 13ms (Views: 11.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/v1/reports/2" for 127.0.0.1 at 2013-08-09 18:10:41 +0200
+Processing by Api::V1::ReportsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mReport Load (0.1ms)[0m  [1mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  Rendered api/v1/reports/show.json.rabl (4.4ms)
+Completed 200 OK in 18ms (Views: 14.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/api/v1/revenue_countries" for 127.0.0.1 at 2013-08-09 18:11:58 +0200
+Processing by Api::V1::RevenueCountriesController#create as JSON
+  Parameters: {"revenue_countries"=>{"movie_id"=>"31", "country_id"=>"14"}, "revenue_country"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "revenue_countries" ("approved", "country_id", "created_at", "movie_id", "revenue", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["approved", false], ["country_id", nil], ["created_at", Fri, 09 Aug 2013 16:11:58 UTC +00:00], ["movie_id", nil], ["revenue", nil], ["updated_at", Fri, 09 Aug 2013 16:11:58 UTC +00:00]]
+  [1m[35m (38.8ms)[0m  COMMIT
+Completed 201 Created in 51ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:12:05 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mMovieGenre Load (0.1ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mMovieKeyword Load (0.2ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mMovieLanguage Load (0.6ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mRevenueCountry Load (0.1ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mRelease Load (0.1ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  Rendered api/v1/movies/index.json.rabl (15.9ms)
+Completed 200 OK in 25ms (Views: 20.1ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/api/v1/revenue_countries" for 127.0.0.1 at 2013-08-09 18:12:21 +0200
+Processing by Api::V1::RevenueCountriesController#create as JSON
+  Parameters: {"revenue_countries"=>{"revenue"=>"123", "movie_id"=>"31", "country_id"=>"14"}, "revenue_country"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "revenue_countries" ("approved", "country_id", "created_at", "movie_id", "revenue", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["approved", false], ["country_id", nil], ["created_at", Fri, 09 Aug 2013 16:12:21 UTC +00:00], ["movie_id", nil], ["revenue", nil], ["updated_at", Fri, 09 Aug 2013 16:12:21 UTC +00:00]]
+  [1m[35m (58.4ms)[0m  COMMIT
+Completed 201 Created in 69ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started PUT "/api/v1/revenue_countries/2" for 127.0.0.1 at 2013-08-09 18:13:33 +0200
+Processing by Api::V1::RevenueCountriesController#update as JSON
+  Parameters: {"revenue_countries"=>{"revenue"=>"111", "movie_id"=>"31", "country_id"=>"14"}, "id"=>"2", "revenue_country"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mRevenueCountry Load (0.3ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 204 No Content in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:13:35 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35mAlternativeTitle Load (0.3ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mMovieGenre Load (0.2ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mMovieKeyword Load (0.4ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mMovieLanguage Load (0.3ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mMovieMetadata Load (0.4ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mRevenueCountry Load (0.4ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mTag Load (0.4ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mRelease Load (0.2ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  Rendered api/v1/movies/index.json.rabl (22.3ms)
+Completed 200 OK in 35ms (Views: 28.4ms | ActiveRecord: 5.2ms)
+
+
+Started PUT "/api/v1/revenue_countries/2" for 127.0.0.1 at 2013-08-09 18:13:47 +0200
+Processing by Api::V1::RevenueCountriesController#update as JSON
+  Parameters: {"revenue_country"=>{"revenue"=>"111", "movie_id"=>"31", "country_id"=>"14"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mRevenueCountry Load (0.3ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  UPDATE "revenue_countries" SET "revenue" = 111, "country_id" = 14, "updated_at" = '2013-08-09 16:13:47.571623' WHERE "revenue_countries"."id" = 2
+  [1m[36m (34.1ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 47ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:13:48 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.3ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.1ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.1ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.6ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.1ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.1ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  Rendered api/v1/movies/index.json.rabl (54.9ms)
+Completed 200 OK in 63ms (Views: 58.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:13:49 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.1ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.3ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  Rendered api/v1/movies/index.json.rabl (16.0ms)
+Completed 200 OK in 25ms (Views: 20.3ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:13:49 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.3ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.3ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.3ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  Rendered api/v1/movies/index.json.rabl (17.2ms)
+Completed 200 OK in 26ms (Views: 20.5ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:13:50 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.3ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.3ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.2ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.1ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  Rendered api/v1/movies/index.json.rabl (15.3ms)
+Completed 200 OK in 25ms (Views: 19.4ms | ActiveRecord: 4.0ms)
+
+
+Started DELETE "/api/v1/revenue_countries/2" for 127.0.0.1 at 2013-08-09 18:14:49 +0200
+Processing by Api::V1::RevenueCountriesController#destroy as JSON
+  Parameters: {"id"=>"2", "revenue_country"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mRevenueCountry Load (0.2ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "revenue_countries" WHERE "revenue_countries"."id" = $1[0m  [["id", 2]]
+  [1m[35m (37.4ms)[0m  COMMIT
+Completed 204 No Content in 48ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/social_apps" for 127.0.0.1 at 2013-08-09 18:16:31 +0200
+Processing by Api::V1::SocialAppsController#create as JSON
+  Parameters: {"social_app"=>{"list"=>"http://facebook.com", "social_app"=>"facebook"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+Completed 500 Internal Server Error in 5ms
+
+ActiveModel::MassAssignmentSecurity::Error (Can't mass-assign protected attributes: list):
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:48:in `process_removed_attributes'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:20:in `debug_protected_attribute_removal'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:12:in `sanitize'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security.rb:230:in `sanitize_for_mass_assignment'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:75:in `assign_attributes'
+  activerecord (3.2.12) lib/active_record/base.rb:497:in `initialize'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `new'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `build_resource'
+  inherited_resources (1.3.1) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:458:in `_run__2301385168563190904__process_action__2452723303699882158__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__2836486203618269185__call__3659816395916078776__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.4ms)
+
+
+Started POST "/api/v1/social_apps" for 127.0.0.1 at 2013-08-09 18:16:56 +0200
+Processing by Api::V1::SocialAppsController#create as JSON
+  Parameters: {"social_app"=>{"link"=>"http://facebook.com", "social_app"=>"facebook"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "social_apps" ("created_at", "link", "social_app", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Fri, 09 Aug 2013 16:16:56 UTC +00:00], ["link", "http://facebook.com"], ["social_app", "facebook"], ["updated_at", Fri, 09 Aug 2013 16:16:56 UTC +00:00]]
+  [1m[36m (35.0ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 50ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/social_apps" for 127.0.0.1 at 2013-08-09 18:17:33 +0200
+Processing by Api::V1::SocialAppsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mSocialApp Load (0.5ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" [0m
+Completed 200 OK in 11ms (Views: 1.9ms | ActiveRecord: 0.5ms)
+
+
+Started PUT "/api/v1/social_apps/2" for 127.0.0.1 at 2013-08-09 18:17:47 +0200
+Processing by Api::V1::SocialAppsController#update as JSON
+  Parameters: {"social_app"=>{"link"=>"http://facebook.com", "social_app"=>"facebook update"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mUPDATE "social_apps" SET "social_app" = 'facebook update', "updated_at" = '2013-08-09 16:17:47.920170' WHERE "social_apps"."id" = 2[0m
+  [1m[35m (35.3ms)[0m  COMMIT
+Completed 204 No Content in 46ms (ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/v1/social_apps/2" for 127.0.0.1 at 2013-08-09 18:18:23 +0200
+Processing by Api::V1::SocialAppsController#destroy as JSON
+  Parameters: {"id"=>"2", "social_app"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "social_apps" WHERE "social_apps"."id" = $1  [["id", 2]]
+  [1m[36m (41.3ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 51ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/statuses" for 127.0.0.1 at 2013-08-09 18:19:29 +0200
+Processing by Api::V1::StatusesController#create as JSON
+  Parameters: {"status"=>{"status"=>"new status"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "statuses" ("created_at", "status", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", Fri, 09 Aug 2013 16:19:29 UTC +00:00], ["status", "new status"], ["updated_at", Fri, 09 Aug 2013 16:19:29 UTC +00:00]]
+  [1m[36m (31.6ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 50ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/statuses" for 127.0.0.1 at 2013-08-09 18:20:34 +0200
+Processing by Api::V1::StatusesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mStatus Load (0.3ms)[0m  [1mSELECT "statuses".* FROM "statuses" [0m
+Completed 200 OK in 9ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+
+
+Started PUT "/api/v1/statuses/2" for 127.0.0.1 at 2013-08-09 18:20:46 +0200
+Processing by Api::V1::StatusesController#update as JSON
+  Parameters: {"status"=>{"status"=>"upd status"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mStatus Load (0.3ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mUPDATE "statuses" SET "status" = 'upd status', "updated_at" = '2013-08-09 16:20:46.471859' WHERE "statuses"."id" = 2[0m
+  [1m[35m (10.5ms)[0m  COMMIT
+Completed 204 No Content in 23ms (ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/v1/statuses/2" for 127.0.0.1 at 2013-08-09 18:21:32 +0200
+Processing by Api::V1::StatusesController#destroy as JSON
+  Parameters: {"id"=>"2", "status"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mStatus Load (0.2ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "statuses" WHERE "statuses"."id" = $1  [["id", 2]]
+  [1m[36m (38.2ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 48ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/tags" for 127.0.0.1 at 2013-08-09 18:22:55 +0200
+Processing by Api::V1::TagsController#create as JSON
+  Parameters: {"tag"=>{"taggable_type"=>"Movie", "taggable_id"=>"31", "tag"=>"tag example 123"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+Completed 500 Internal Server Error in 3ms
+
+ActiveModel::MassAssignmentSecurity::Error (Can't mass-assign protected attributes: tag):
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:48:in `process_removed_attributes'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:20:in `debug_protected_attribute_removal'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security/sanitizer.rb:12:in `sanitize'
+  activemodel (3.2.12) lib/active_model/mass_assignment_security.rb:230:in `sanitize_for_mass_assignment'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:75:in `assign_attributes'
+  activerecord (3.2.12) lib/active_record/base.rb:497:in `initialize'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `new'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `build_resource'
+  inherited_resources (1.3.1) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:458:in `_run__766937507972919271__process_action__2452723303699882158__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__2836486203618269185__call__3659816395916078776__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started POST "/api/v1/tags" for 127.0.0.1 at 2013-08-09 18:23:21 +0200
+Processing by Api::V1::TagsController#create as JSON
+  Parameters: {"tag"=>{"taggable_type"=>"Movie", "taggable_id"=>"31", "person_id"=>"1"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "tags" ("approved", "created_at", "person_id", "taggable_id", "taggable_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["approved", false], ["created_at", Fri, 09 Aug 2013 16:23:21 UTC +00:00], ["person_id", 1], ["taggable_id", 31], ["taggable_type", "Movie"], ["updated_at", Fri, 09 Aug 2013 16:23:21 UTC +00:00]]
+  [1m[35m (37.2ms)[0m  COMMIT
+Completed 201 Created in 48ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/person_social_apps" for 127.0.0.1 at 2013-08-09 18:23:25 +0200
+Processing by Api::V1::PersonSocialAppsController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" 
+Completed 200 OK in 19ms (Views: 8.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-09 18:23:29 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (35.6ms)
+Completed 200 OK in 47ms (Views: 38.0ms | ActiveRecord: 6.9ms)
+
+
+Started DELETE "/api/v1/tags/2" for 127.0.0.1 at 2013-08-09 18:24:20 +0200
+Processing by Api::V1::TagsController#destroy as JSON
+  Parameters: {"id"=>"2", "tag"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 2]]
+  [1m[35m (33.2ms)[0m  COMMIT
+Completed 204 No Content in 45ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-09 18:29:26 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1[0m
+  Rendered application/index.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 49ms (Views: 44.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:28 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (40.0ms)
+Completed 200 OK in 74ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:32 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'email@email.com' LIMIT 1
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 93ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:35 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'email@email.com' LIMIT 1[0m
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 90ms (Views: 18.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:36 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'email@email.com' LIMIT 1
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 97ms (Views: 20.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:46 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'email@email.com' LIMIT 1[0m
+Completed 401 Unauthorized in 5ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 112ms (Views: 19.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:29:48 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'email@email.com' LIMIT 1
+Completed 401 Unauthorized in 2ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"email@email.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 91ms (Views: 17.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:30:00 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4=", "user"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "users" SET "remember_created_at" = '2013-08-09 16:30:00.921848', "updated_at" = '2013-08-09 16:30:00.922945' WHERE "users"."id" = 11[0m
+  [1m[35m (35.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = '2013-08-09 16:30:00.961010', "current_sign_in_at" = '2013-08-09 16:30:00.961010', "last_sign_in_ip" = '127.0.0.1', "current_sign_in_ip" = '127.0.0.1', "sign_in_count" = 1, "updated_at" = '2013-08-09 16:30:00.961908' WHERE "users"."id" = 11
+  [1m[36m (8.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 156ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-09 18:30:01 +0200
+Processing by ApplicationController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  Rendered application/index.html.haml within layouts/application (0.6ms)
+Completed 200 OK in 12ms (Views: 10.6ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-08-09 18:30:08 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"MH0XuiGjlD/+G+hcg6UZNr3dgNntA/fk5mVV/WIOUD4="}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "users" SET "remember_created_at" = NULL, "updated_at" = '2013-08-09 16:30:08.982192' WHERE "users"."id" = 11[0m
+  [1m[35m (13.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 57ms (ActiveRecord: 13.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-09 18:30:09 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (1.1ms)
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:30:10 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 22ms (Views: 20.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2013-08-09 18:30:47 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/registrations/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:31:25 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/shared/_links.erb (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views/devise/sessions/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 23ms (Views: 22.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-08-09 18:31:32 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IAm0KSuOVOKYEsu9NJdb0qxur7ZQ923l3hoeLAruCao=", "user"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@admin.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "users" SET "current_sign_in_at" = '2013-08-09 16:31:32.494187', "sign_in_count" = 2, "updated_at" = '2013-08-09 16:31:32.495142' WHERE "users"."id" = 11[0m
+  [1m[35m (18.6ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 105ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-09 18:31:32 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  Rendered application/index.html.haml within layouts/application (0.6ms)
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-08-09 18:31:53 +0200
+Processing by Devise::SessionsController#destroy as JSON
+  Parameters: {"session"=>{}}
+WARNING: Can't verify CSRF token authenticity
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:37:10 +0200
+Processing by Api::V1::MoviesController#create as JSON
+  Parameters: {"movie"=>{"content_score"=>"10", "title"=>"title", "overview"=>"overview", "tagline"=>"tagline123"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "movies" ("approved", "content_score", "created_at", "locked", "overview", "tagline", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["approved", false], ["content_score", 10], ["created_at", Fri, 09 Aug 2013 16:37:10 UTC +00:00], ["locked", nil], ["overview", "overview"], ["tagline", "tagline123"], ["title", "title"], ["updated_at", Fri, 09 Aug 2013 16:37:10 UTC +00:00]]
+  [1m[36m (34.0ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 78ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:37:16 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.2ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.1ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mAlternativeTitle Load (0.1ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 32
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 32 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 32 AND "videos"."videable_type" = 'Movie'
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 32[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 32
+  [1m[36mMovieGenre Load (0.2ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 32[0m
+  [1m[35mMovieKeyword Load (0.2ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 32
+  [1m[36mMovieLanguage Load (0.2ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 32[0m
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 32
+  [1m[36mRevenueCountry Load (0.2ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 32[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 32 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 32 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 32 AND "views"."viewable_type" = 'Movie'
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 32[0m
+  [1m[35mRelease Load (0.2ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 32
+  Rendered api/v1/movies/index.json.rabl (162.3ms)
+Completed 200 OK in 172ms (Views: 132.5ms | ActiveRecord: 37.8ms)
+
+
+Started PUT "/api/v1/movies/32" for 127.0.0.1 at 2013-08-09 18:37:56 +0200
+Processing by Api::V1::MoviesController#update as JSON
+  Parameters: {"movie"=>{"content_score"=>"5", "title"=>"123title", "overview"=>"123overview", "tagline"=>"123tagline123"}, "id"=>"32"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", "32"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE "movies" SET "content_score" = 5, "title" = '123title', "overview" = '123overview', "tagline" = '123tagline123', "updated_at" = '2013-08-09 16:37:56.821402' WHERE "movies"."id" = 32
+  [1m[36m (10.6ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 25ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-09 18:38:04 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mMovieLanguage Load (0.1ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 32
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 32 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 32 AND "videos"."videable_type" = 'Movie'
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 32[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 32
+  [1m[36mMovieGenre Load (0.1ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 32[0m
+  [1m[35mMovieKeyword Load (0.2ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 32
+  [1m[36mMovieLanguage Load (0.1ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 32[0m
+  [1m[35mMovieMetadata Load (0.1ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 32
+  [1m[36mRevenueCountry Load (0.1ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 32[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 32 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 32 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 32 AND "views"."viewable_type" = 'Movie'
+  [1m[36mProductionCompany Load (0.1ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 32[0m
+  [1m[35mRelease Load (0.1ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 32
+  Rendered api/v1/movies/index.json.rabl (24.5ms)
+Completed 200 OK in 35ms (Views: 27.1ms | ActiveRecord: 6.0ms)
+
+
+Started DELETE "/api/v1/movies/32" for 127.0.0.1 at 2013-08-09 18:38:41 +0200
+Processing by Api::V1::MoviesController#destroy as JSON
+  Parameters: {"id"=>"32", "movie"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", "32"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "movies" WHERE "movies"."id" = $1  [["id", 32]]
+  [1m[36m (40.4ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 50ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-09 18:41:22 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"image_file"=>"FILE UPLOADER", "is_main_image"=>"true", "imageable_type"=>"Movie", "imageable_id"=>"31", "title"=>"new image"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "images" ("approved", "created_at", "image_file", "image_type", "imageable_id", "imageable_type", "is_main_image", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["approved", false], ["created_at", Fri, 09 Aug 2013 16:41:22 UTC +00:00], ["image_file", "FILE UPLOADER"], ["image_type", nil], ["imageable_id", 31], ["imageable_type", "Movie"], ["is_main_image", true], ["title", "new image"], ["updated_at", Fri, 09 Aug 2013 16:41:22 UTC +00:00]]
+  [1m[36m (13.4ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 34ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/images" for 127.0.0.1 at 2013-08-09 18:41:48 +0200
+Processing by Api::V1::ImagesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" LIMIT 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" 
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 1 AND "tags"."taggable_type" = 'Image'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 1 AND "videos"."videable_type" = 'Image'
+  [1m[36mFollow Load (0.4ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Image'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Image'
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 2 AND "tags"."taggable_type" = 'Image'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 2 AND "videos"."videable_type" = 'Image'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 2 AND "follows"."followable_type" = 'Image'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 2 AND "views"."viewable_type" = 'Image'
+  Rendered api/v1/images/index.json.rabl (25.0ms)
+Completed 200 OK in 36ms (Views: 30.6ms | ActiveRecord: 2.9ms)
+
+
+Started PUT "/api/v1/images/2" for 127.0.0.1 at 2013-08-09 18:42:02 +0200
+Processing by Api::V1::ImagesController#update as JSON
+  Parameters: {"image"=>{"image_file"=>"FILE UPLOADER", "is_main_image"=>"true", "imageable_type"=>"Movie", "imageable_id"=>"31", "title"=>"update image"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  UPDATE "images" SET "title" = 'update image', "updated_at" = '2013-08-09 16:42:02.926360' WHERE "images"."id" = 2
+  [1m[36m (34.0ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 45ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/images" for 127.0.0.1 at 2013-08-09 18:42:32 +0200
+Processing by Api::V1::ImagesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" LIMIT 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" 
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 1 AND "tags"."taggable_type" = 'Image'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 1 AND "videos"."videable_type" = 'Image'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Image'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Image'
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 2 AND "tags"."taggable_type" = 'Image'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 2 AND "videos"."videable_type" = 'Image'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 2 AND "follows"."followable_type" = 'Image'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 2 AND "views"."viewable_type" = 'Image'
+  Rendered api/v1/images/index.json.rabl (9.6ms)
+Completed 200 OK in 18ms (Views: 14.3ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/api/v1/images/2" for 127.0.0.1 at 2013-08-09 18:43:16 +0200
+Processing by Api::V1::ImagesController#destroy as JSON
+  Parameters: {"id"=>"2", "image"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "images" WHERE "images"."id" = $1  [["id", 2]]
+  [1m[36m (56.4ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 66ms (ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/videos" for 127.0.0.1 at 2013-08-09 18:45:12 +0200
+Processing by Api::V1::VideosController#create as JSON
+  Parameters: {"video"=>{"link"=>"http://link.com", "videable_id"=>"31", "videable_type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "videos" ("approved", "created_at", "link", "link_active", "priority", "quality", "updated_at", "videable_id", "videable_type", "video_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["approved", false], ["created_at", Fri, 09 Aug 2013 16:45:12 UTC +00:00], ["link", "http://link.com"], ["link_active", nil], ["priority", nil], ["quality", nil], ["updated_at", Fri, 09 Aug 2013 16:45:12 UTC +00:00], ["videable_id", 31], ["videable_type", "Movie"], ["video_type", nil]]
+  [1m[36m (37.6ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 50ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/videos" for 127.0.0.1 at 2013-08-09 18:46:01 +0200
+Processing by Api::V1::VideosController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mVideo Load (0.3ms)[0m  [1mSELECT "videos".* FROM "videos" LIMIT 1[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" 
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 1 AND "tags"."taggable_type" = 'Video'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Video'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Video'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Video'
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 2 AND "tags"."taggable_type" = 'Video'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 2 AND "images"."imageable_type" = 'Video'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 2 AND "follows"."followable_type" = 'Video'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 2 AND "views"."viewable_type" = 'Video'
+  Rendered api/v1/videos/index.json.rabl (13.5ms)
+Completed 200 OK in 24ms (Views: 19.2ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/api/v1/videos/2" for 127.0.0.1 at 2013-08-09 18:46:28 +0200
+Processing by Api::V1::VideosController#update as JSON
+  Parameters: {"video"=>{"link"=>"http://link.com", "videable_id"=>"1", "videable_type"=>"Person"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mVideo Load (0.3ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  UPDATE "videos" SET "videable_id" = 1, "videable_type" = 'Person', "updated_at" = '2013-08-09 16:46:28.998334' WHERE "videos"."id" = 2
+  [1m[36m (83.8ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 95ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/videos" for 127.0.0.1 at 2013-08-09 18:46:37 +0200
+Processing by Api::V1::VideosController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mVideo Load (0.3ms)[0m  [1mSELECT "videos".* FROM "videos" LIMIT 1[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" 
+  [1m[36mTag Load (0.4ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 1 AND "tags"."taggable_type" = 'Video'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Video'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Video'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Video'
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 2 AND "tags"."taggable_type" = 'Video'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 2 AND "images"."imageable_type" = 'Video'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 2 AND "follows"."followable_type" = 'Video'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 2 AND "views"."viewable_type" = 'Video'
+  Rendered api/v1/videos/index.json.rabl (9.7ms)
+Completed 200 OK in 19ms (Views: 14.9ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/api/v1/videos/2" for 127.0.0.1 at 2013-08-09 18:47:16 +0200
+Processing by Api::V1::VideosController#destroy as JSON
+  Parameters: {"id"=>"2", "video"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "videos" WHERE "videos"."id" = $1  [["id", 2]]
+  [1m[36m (33.2ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 44ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-09 18:47:38 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.5ms)[0m  [1mSELECT "people".* FROM "people" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (49.4ms)
+Completed 200 OK in 62ms (Views: 50.2ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-09 18:47:39 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (10.4ms)
+Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/api/v1/people" for 127.0.0.1 at 2013-08-09 18:49:20 +0200
+Processing by Api::V1::PeopleController#create as JSON
+  Parameters: {"person"=>{"name"=>"name", "biography"=>"biography"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Fri, 09 Aug 2013 16:49:20 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Fri, 09 Aug 2013 16:49:20 UTC +00:00]]
+  [1m[36m (38.9ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 51ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-09 18:49:26 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.6ms)[0m  [1mSELECT "people".* FROM "people" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 2[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 2
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 2[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 2
+  [1m[36mTag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 2[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 2 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 2 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 2 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (16.6ms)
+Completed 200 OK in 26ms (Views: 20.1ms | ActiveRecord: 4.4ms)
+
+
+Started PUT "/api/v1/people/2" for 127.0.0.1 at 2013-08-09 18:49:46 +0200
+Processing by Api::V1::PeopleController#update as JSON
+  Parameters: {"person"=>{"name"=>"name", "biography"=>"biography"}, "id"=>"2"}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 204 No Content in 10ms (ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/v1/people/2" for 127.0.0.1 at 2013-08-09 18:50:12 +0200
+Processing by Api::V1::PeopleController#destroy as JSON
+  Parameters: {"id"=>"2", "person"=>{}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "2"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "people" WHERE "people"."id" = $1  [["id", 2]]
+  [1m[36m (30.5ms)[0m  [1mCOMMIT[0m
+Completed 204 No Content in 41ms (ActiveRecord: 0.0ms)
