@@ -6,7 +6,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
     respond_to do |format|
       #TODO remove next line
       current_user = User.first
-      list = current_user.lists.find params[:list_id]
+      list = current_user.lists.find params[:list_item][:list_id]
       if list.list_items.create(params[:list_item])
         format.json { render json: true }
       else
@@ -19,9 +19,9 @@ class Api::V1::ListItemsController < Api::V1::BaseController
     respond_to do |format|
       #TODO remove next line
       current_user = User.first
-      list = current_user.lists.find params[:list_id]
+      list = current_user.lists.find params[:list_item][:list_id]
       list_item = list.list_items.find params[:id]
-      if list_item.update_attributes(params[:list_item])
+      if list_item.update_attributes(paramS[:list_item])
         format.json { respond_with list_item }
       else
         format.json { render :json => "Error updating list item.", :status => :unprocessable_entity }
@@ -33,7 +33,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
     respond_to do |format|
       #TODO remove next line
       current_user = User.first
-      list = current_user.lists.find params[:list_id]
+      list = current_user.lists.find params[:list_item][:list_id]
       list_item = list.list_items.find params[:id]
       if list_item.destroy
         format.json { respond_with list_item }
