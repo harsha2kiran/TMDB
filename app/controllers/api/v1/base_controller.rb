@@ -6,6 +6,7 @@ class Api::V1::BaseController < ApplicationController
   # before_filter :check_if_authenticated
   before_filter :set_params_user_id
   before_filter :set_approved_false
+  before_filter :check_if_destroy
 
   private
 
@@ -50,6 +51,17 @@ class Api::V1::BaseController < ApplicationController
     #TODO uncomment last part of next row
     if params[:action] == "create" && @attribute_names.include?("approved") # && current_user.user_type != "admin"
       params["#{@controller.singularize.to_sym}"][:approved] = false
+    end
+  end
+
+  def check_if_destroy
+    current_user = User.first
+    if params[:action] == "destroy"
+      if current_user.user_type == "admin"
+      else
+        redirect_to root_path, alert: "You must have admin privileges to remove record."
+      end
+    else
     end
   end
 
