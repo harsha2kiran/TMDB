@@ -2,7 +2,7 @@ Movies::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  # devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
 
@@ -46,6 +46,11 @@ Movies::Application.routes.draw do
     # resources :views
     resources :users, :only => [:show] do
       put "toggle_active" => "users#toggle_active"
+    end
+    resources :approvals do
+      collection do
+        post "mark" => "approvals#mark"
+      end
     end
   end
 

@@ -37923,3 +37923,1037 @@ Processing by Api::V1::PeopleController#index as JSON
   [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
   Rendered api/v1/people/index.json.rabl (23.4ms)
 Completed 200 OK in 35ms (Views: 28.2ms | ActiveRecord: 4.1ms)
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/approves/approve" for 127.0.0.1 at 2013-08-12 19:25:14 +0200
+Processing by Api::V1::ApprovesController#approve as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approfe"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant Approfe):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started POST "/api/v1/approves/approve" for 127.0.0.1 at 2013-08-12 19:26:44 +0200
+Processing by Api::V1::ApprovesController#approve as JSON
+  Parameters: {"approve"=>{"id"=>"14", "type"=>"Movie"}, "approfe"=>{"approve"=>{"id"=>"14", "type"=>"Movie"}}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant Approfe):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.5ms)
+
+
+Started POST "/api/v1/approves/approve" for 127.0.0.1 at 2013-08-12 19:26:54 +0200
+Processing by Api::V1::ApprovesController#approve as JSON
+  Parameters: {"approve"=>{"id"=>"14", "type"=>"Movie"}, "approfe"=>{"approve"=>{"id"=>"14", "type"=>"Movie"}}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant Approfe):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.4ms)
+
+
+Started POST "/api/v1/approves/approve" for 127.0.0.1 at 2013-08-12 19:28:25 +0200
+Processing by Api::V1::ApprovesController#approve as JSON
+  Parameters: {"approve"=>{"id"=>"14", "type"=>"Movie"}, "approfe"=>{"approve"=>{"id"=>"14", "type"=>"Movie"}}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1ms
+
+RuntimeError (approves):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:30:43 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1ms
+
+RuntimeError (approvals):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.7ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:31:03 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant Approval):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.6ms)
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:31:24 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant Approval):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:32:29 +0200
+
+ActionController::RoutingError (No route matches [POST] "/api/v1/approvals/mark"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:33:00 +0200
+
+ActionController::RoutingError (No route matches [POST] "/api/v1/approvals/mark"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:33:16 +0200
+
+ActionController::RoutingError (No route matches [POST] "/api/v1/approvals/mark"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:34:04 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant Approval):
+  app/controllers/api/v1/base_controller.rb:15:in `set_controller_name'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.4ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:34:44 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+Completed 500 Internal Server Error in 1ms
+
+NoMethodError (undefined method `user_type' for nil:NilClass):
+  app/controllers/api/v1/approvals_controller.rb:4:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:35:37 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+Completed 500 Internal Server Error in 28ms
+
+ActionView::MissingTemplate (Missing template api/v1/approvals/mark, application/mark with {:locale=>[:en], :formats=>[:json], :handlers=>[:erb, :builder, :coffee, :arb, :haml, :rabl]}. Searched in:
+  * "/home/vlatko/apps/movies/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/sextant-0.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/activeadmin-0.5.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/kaminari-0.14.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/doorkeeper-0.4.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_security_extension-0.7.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_invitable-1.1.0/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/html5-rails-0.0.6/app/views"
+):
+  actionpack (3.2.12) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.12) lib/action_view/lookup_context.rb:109:in `find'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.12) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /usr/local/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:425:in `_run__2518056390673573153__process_action__817974671503233042__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__687641338478843330__call__3551446170267397103__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.4ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:35:51 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  Rendered text template (0.0ms)
+Completed 200 OK in 25ms (Views: 1.4ms | ActiveRecord: 2.7ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:36:06 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"14", "type"=>"Movie", "approval"=>{"id"=>"14", "type"=>"Movie"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+Completed 500 Internal Server Error in 26ms
+
+RuntimeError (--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+id: '14'
+type: Movie
+format: :json
+action: mark
+controller: api/v1/approvals
+approval: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  id: '14'
+  type: Movie
+):
+  app/controllers/api/v1/approvals_controller.rb:5:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.3ms)
+
+
+Started GET "/api/v1/people/?moderate=true" for 127.0.0.1 at 2013-08-12 19:37:10 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.7ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.8ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.5ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.4ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.6ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.5ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (175.1ms)
+Completed 200 OK in 224ms (Views: 158.4ms | ActiveRecord: 30.5ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:37:33 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"false", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"false"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+Completed 500 Internal Server Error in 3ms
+
+RuntimeError (--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+id: '1'
+type: Person
+mark: 'false'
+format: :json
+action: mark
+controller: api/v1/approvals
+approval: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  id: '1'
+  type: Person
+  mark: 'false'
+):
+  app/controllers/api/v1/approvals_controller.rb:5:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:37:47 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"false", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"false"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  UPDATE "people" SET "approved" = 'f', "updated_at" = '2013-08-12 17:37:47.742930' WHERE "people"."id" = 1
+  [1m[36m (18.9ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 78ms (Views: 0.7ms | ActiveRecord: 24.2ms)
+
+
+Started GET "/api/v1/people/?moderate=true" for 127.0.0.1 at 2013-08-12 19:37:49 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.1ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (146.6ms)
+Completed 200 OK in 157ms (Views: 134.0ms | ActiveRecord: 20.3ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:38:28 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mUPDATE "people" SET "approved" = 't', "updated_at" = '2013-08-12 17:38:28.073856' WHERE "people"."id" = 1[0m
+  [1m[35m (14.3ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 19ms (Views: 0.5ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/api/v1/people/?moderate=true" for 127.0.0.1 at 2013-08-12 19:38:33 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (22.5ms)
+Completed 200 OK in 35ms (Views: 27.8ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:40:16 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 500 Internal Server Error in 60ms
+
+RuntimeError (In order to use respond_with, first you need to declare the formats your controller responds to in the class level):
+  app/controllers/api/v1/approvals_controller.rb:14:in `block (2 levels) in mark'
+  app/controllers/api/v1/approvals_controller.rb:4:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.9ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:40:36 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 500 Internal Server Error in 65ms
+
+NoMethodError (undefined method `model_name' for TrueClass:Class):
+  app/controllers/api/v1/approvals_controller.rb:16:in `block (2 levels) in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.3ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:41:00 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 500 Internal Server Error in 63ms
+
+NoMethodError (undefined method `model_name' for TrueClass:Class):
+  app/controllers/api/v1/approvals_controller.rb:16:in `block (2 levels) in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.1ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:41:27 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 500 Internal Server Error in 118ms
+
+NoMethodError (undefined method `person_url' for #<Api::V1::ApprovalsController:0x007f78ec1eb038>):
+  app/controllers/api/v1/approvals_controller.rb:16:in `block (2 levels) in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.4ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:41:43 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 500 Internal Server Error in 62ms
+
+ArgumentError (Nil location provided. Can't build URI.):
+  app/controllers/api/v1/approvals_controller.rb:16:in `block (2 levels) in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.5ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:42:02 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 59ms (Views: 0.4ms | ActiveRecord: 5.1ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:42:13 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"false", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"false"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  UPDATE "people" SET "approved" = 'f', "updated_at" = '2013-08-12 17:42:13.662008' WHERE "people"."id" = 1
+  [1m[36m (20.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 26ms (Views: 0.5ms | ActiveRecord: 21.1ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:42:20 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"Person", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "people" SET "approved" = 't', "updated_at" = '2013-08-12 17:42:20.871219' WHERE "people"."id" = 1[0m
+  [1m[35m (17.1ms)[0m  COMMIT
+Completed 200 OK in 22ms (Views: 0.7ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/api/v1/people/?moderate=true" for 127.0.0.1 at 2013-08-12 19:42:24 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.1ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.4ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (149.7ms)
+Completed 200 OK in 161ms (Views: 134.7ms | ActiveRecord: 23.2ms)
+
+
+Started GET "/api/v1/alternative_titles" for 127.0.0.1 at 2013-08-12 19:43:35 +0200
+Processing by Api::V1::AlternativeTitlesController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeTitle Load (0.4ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" LIMIT 1[0m
+  [1m[35mAlternativeTitle Load (0.3ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" 
+  [1m[36mLanguage Load (0.4ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered api/v1/alternative_titles/index.json.rabl (26.3ms)
+Completed 200 OK in 40ms (Views: 30.7ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/api/v1/alternative_titles" for 127.0.0.1 at 2013-08-12 19:43:36 +0200
+Processing by Api::V1::AlternativeTitlesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeTitle Load (0.3ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" LIMIT 1[0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" 
+  [1m[36mLanguage Load (0.3ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered api/v1/alternative_titles/index.json.rabl (5.3ms)
+Completed 200 OK in 15ms (Views: 11.8ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:43:52 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"9", "type"=>"AlternativeTitle", "mark"=>"true", "approval"=>{"id"=>"9", "type"=>"AlternativeTitle", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mAlternativeTitle Load (0.5ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."id" = $1 LIMIT 1  [["id", "9"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  UPDATE "alternative_titles" SET "approved" = 't', "updated_at" = '2013-08-12 17:43:52.566553' WHERE "alternative_titles"."id" = 9
+  [1m[36m (9.8ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/api/v1/alternative_titles" for 127.0.0.1 at 2013-08-12 19:43:53 +0200
+Processing by Api::V1::AlternativeTitlesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mAlternativeTitle Load (0.4ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" LIMIT 1
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" [0m
+  [1m[35mLanguage Load (0.2ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/v1/alternative_titles/index.json.rabl (4.5ms)
+Completed 200 OK in 15ms (Views: 12.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/v1/movie_genres" for 127.0.0.1 at 2013-08-12 19:44:03 +0200
+Processing by Api::V1::MovieGenresController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovieGenre Load (0.5ms)[0m  SELECT "movie_genres".* FROM "movie_genres" LIMIT 1
+  [1m[36mMovieGenre Load (0.3ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" [0m
+  [1m[35mGenre Load (0.4ms)[0m  SELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered api/v1/movie_genres/index.json.rabl (18.6ms)
+Completed 500 Internal Server Error in 32ms
+
+ActiveRecord::RecordNotFound (Couldn't find Genre with id=1):
+  app/views/api/v1/movie_genres/index.json.rabl:2:in `_app_views_api_v__movie_genres_index_json_rabl___4515977674831402341_70078694254600'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.4ms)
+
+
+Started GET "/api/v1/movie_metadatas/1" for 127.0.0.1 at 2013-08-12 19:44:07 +0200
+Processing by Api::V1::MovieMetadatasController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovieMetadata Load (0.6ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+Completed 200 OK in 23ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movie_metadatas/1" for 127.0.0.1 at 2013-08-12 19:44:09 +0200
+Processing by Api::V1::MovieMetadatasController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovieMetadata Load (0.3ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."id" = $1 LIMIT 1  [["id", "1"]]
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:44:20 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"MovieMetadata", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"MovieMetadata", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant MovieMetadatum):
+  app/controllers/api/v1/approvals_controller.rb:13:in `block in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.2ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:44:37 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"1", "type"=>"MovieMetadatas", "mark"=>"true", "approval"=>{"id"=>"1", "type"=>"MovieMetadatas", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "movie_metadata" SET "approved" = 't', "updated_at" = '2013-08-12 17:44:37.452269' WHERE "movie_metadata"."id" = 1[0m
+  [1m[35m (10.5ms)[0m  COMMIT
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/api/v1/alternative_names" for 127.0.0.1 at 2013-08-12 19:44:59 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (3.7ms)
+Completed 200 OK in 16ms (Views: 12.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/v1/alternative_names" for 127.0.0.1 at 2013-08-12 19:45:00 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (3.1ms)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/v1/alternative_names?moderate=true" for 127.0.0.1 at 2013-08-12 19:45:08 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (3.1ms)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/v1/alternative_names?moderate=true" for 127.0.0.1 at 2013-08-12 19:45:23 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.1ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (2.2ms)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/v1/alternative_names?moderate=true" for 127.0.0.1 at 2013-08-12 19:45:23 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (2.4ms)
+Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/v1/alternative_names?moderate=true" for 127.0.0.1 at 2013-08-12 19:45:23 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (2.5ms)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/v1/alternative_names?moderate=true" for 127.0.0.1 at 2013-08-12 19:45:34 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (3.4ms)
+Completed 500 Internal Server Error in 13ms
+
+ActiveRecord::RecordNotFound (Couldn't find Person without an ID):
+  app/views/api/v1/alternative_names/index.json.rabl:2:in `_app_views_api_v__alternative_names_index_json_rabl___4043263972701096358_70078677297760'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.2ms)
+
+
+Started GET "/api/v1/alternative_names" for 127.0.0.1 at 2013-08-12 19:45:39 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  Rendered api/v1/alternative_names/index.json.rabl (3.1ms)
+Completed 500 Internal Server Error in 14ms
+
+ActiveRecord::RecordNotFound (Couldn't find Person without an ID):
+  app/views/api/v1/alternative_names/index.json.rabl:2:in `_app_views_api_v__alternative_names_index_json_rabl___4043263972701096358_70078677297760'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/api/v1/alternative_names" for 127.0.0.1 at 2013-08-12 19:46:08 +0200
+Processing by Api::V1::AlternativeNamesController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mAlternativeName Load (0.5ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" 
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered api/v1/alternative_names/index.json.rabl (5.9ms)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:46:29 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"3", "type"=>"AlternativeName", "mark"=>"true", "approval"=>{"id"=>"3", "type"=>"AlternativeName", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mAlternativeName Load (0.4ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."id" = $1 LIMIT 1  [["id", "3"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  UPDATE "alternative_names" SET "approved" = 't', "updated_at" = '2013-08-12 17:46:29.381781' WHERE "alternative_names"."id" = 3
+  [1m[36m (14.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 21ms (Views: 0.5ms | ActiveRecord: 15.7ms)
+
+
+Started GET "/api/v1/crews" for 127.0.0.1 at 2013-08-12 19:46:35 +0200
+Processing by Api::V1::CrewsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" LIMIT 1
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" [0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 321]]
+  Rendered api/v1/crews/index.json.rabl (4.9ms)
+Completed 500 Internal Server Error in 16ms
+
+ActiveRecord::RecordNotFound (Couldn't find Person with id=321):
+  app/views/api/v1/crews/index.json.rabl:2:in `_app_views_api_v__crews_index_json_rabl___4311121994171661051_70078693402420'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+
+
+Started GET "/api/v1/crews" for 127.0.0.1 at 2013-08-12 19:47:02 +0200
+Processing by Api::V1::CrewsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" LIMIT 1[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" 
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  Rendered api/v1/crews/index.json.rabl (4.7ms)
+Completed 200 OK in 15ms (Views: 12.0ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-12 19:47:17 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"id"=>"3", "type"=>"Crew", "mark"=>"true", "approval"=>{"id"=>"3", "type"=>"Crew", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mCrew Load (0.4ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."id" = $1 LIMIT 1  [["id", "3"]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  UPDATE "crews" SET "approved" = 't', "updated_at" = '2013-08-12 17:47:17.121708' WHERE "crews"."id" = 3
+  [1m[36m (17.0ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 23ms (Views: 0.6ms | ActiveRecord: 17.9ms)
+
+
+Started GET "/api/v1/crews" for 127.0.0.1 at 2013-08-12 19:47:18 +0200
+Processing by Api::V1::CrewsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" LIMIT 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" [0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  Rendered api/v1/crews/index.json.rabl (4.9ms)
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 1.4ms)
