@@ -33086,3 +33086,545 @@ Processing by Api::V1::FollowsController#filter as JSON
   [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."user_id" = 11 AND "follows"."followable_type" = 'Video'[0m
   Rendered api/v1/follows/index.json.rabl (0.4ms)
 Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 0.8ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+
+
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:06:47 +0200
+
+ActionController::RoutingError (uninitialized constant Image::ImageUploader):
+  app/models/image.rb:12:in `<class:Image>'
+  app/models/image.rb:1:in `<top (required)>'
+  app/controllers/api/v1/images_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:08:46 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"name"=>"test", "filedata"=>#<ActionDispatch::Http::UploadedFile:0x007fb1714e89d0 @original_filename="1.mp4", @content_type="application/octet-stream", @headers="Content-Disposition: form-data; name=\"filedata\"; filename=\"1.mp4\"\r\nContent-Type: application/octet-stream\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-27508-5n3xru>>}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+Completed 500 Internal Server Error in 27ms
+
+NoMethodError (undefined method `[]=' for nil:NilClass):
+  app/controllers/api/v1/base_controller.rb:53:in `set_approved_false'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:10:00 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"{image"=>nil}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `[]=' for nil:NilClass):
+  app/controllers/api/v1/base_controller.rb:53:in `set_approved_false'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:11:06 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"{image"=>nil}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+---------------
+image
+---------------
+Completed 500 Internal Server Error in 49ms
+
+NoMethodError (undefined method `[]=' for nil:NilClass):
+  app/controllers/api/v1/base_controller.rb:56:in `set_approved_false'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:12:29 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+
+
+MultiJson::LoadError (795: unexpected token at '{"image" : { "image_file" : @/home/vlatko/1.mp4 } }'):
+  json (1.8.0) lib/json/common.rb:155:in `parse'
+  json (1.8.0) lib/json/common.rb:155:in `parse'
+  multi_json (1.7.8) lib/multi_json/adapters/json_common.rb:16:in `load'
+  multi_json (1.7.8) lib/multi_json/adapter.rb:19:in `load'
+  multi_json (1.7.8) lib/multi_json.rb:118:in `load'
+  activesupport (3.2.12) lib/active_support/json/decoding.rb:15:in `decode'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:47:in `parse_formatted_parameters'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__2610808826871329114__call__1396859693243950478__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.9ms)
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:13:11 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"image_file"=>"/home/vlatko/1.mp4"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+Completed 500 Internal Server Error in 36ms
+
+CarrierWave::FormNotMultipart (You tried to assign a String or a Pathname to an uploader, for security reasons, this is not allowed.
+
+ If this is a file upload, please check that your upload form is multipart encoded.):
+  carrierwave (0.9.0) lib/carrierwave/uploader/cache.rb:120:in `cache!'
+  carrierwave (0.9.0) lib/carrierwave/mount.rb:327:in `cache'
+  carrierwave (0.9.0) lib/carrierwave/mount.rb:179:in `image_file='
+  carrierwave (0.9.0) lib/carrierwave/orm/activerecord.rb:38:in `image_file='
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:85:in `block in assign_attributes'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:78:in `each'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:78:in `assign_attributes'
+  activerecord (3.2.12) lib/active_record/base.rb:497:in `initialize'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `new'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `build_resource'
+  inherited_resources (1.3.1) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:458:in `_run__2902114932147475077__process_action__401137510417923118__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__316198398463380554__call__1770626195585294987__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:20:05 +0200
+Processing by ApplicationController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  Rendered application/index.html.haml within layouts/application (2.1ms)
+Completed 200 OK in 81ms (Views: 44.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:20:17 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+Completed 500 Internal Server Error in 35ms
+
+RuntimeError (development):
+  app/controllers/application_controller.rb:6:in `index'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.1ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:28:01 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  Rendered application/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 71ms (Views: 42.8ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:28:14 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image_file"=>#<ActionDispatch::Http::UploadedFile:0x007ff41788d070 @original_filename="table.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image_file\"; filename=\"table.jpg\"\r\nContent-Type: image/jpeg\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-28378-1qe9a0n>>}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+Completed 500 Internal Server Error in 9ms
+
+NoMethodError (undefined method `[]=' for nil:NilClass):
+  app/controllers/api/v1/base_controller.rb:53:in `set_approved_false'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:28:26 +0200
+Processing by ApplicationController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  Rendered application/index.html.haml within layouts/application (3.2ms)
+Completed 200 OK in 15ms (Views: 13.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:28:50 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"user"=>{"image_file"=>#<ActionDispatch::Http::UploadedFile:0x007ff416c1e028 @original_filename="test.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"user[image_file]\"; filename=\"test.png\"\r\nContent-Type: image/png\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-28378-gazl2s>>}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+Completed 500 Internal Server Error in 4ms
+
+NoMethodError (undefined method `[]=' for nil:NilClass):
+  app/controllers/api/v1/base_controller.rb:53:in `set_approved_false'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:29:33 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  Rendered application/index.html.haml within layouts/application (2.8ms)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:29:34 +0200
+Processing by ApplicationController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  Rendered application/index.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:29:38 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"image_file"=>#<ActionDispatch::Http::UploadedFile:0x007ff414baa468 @original_filename="Screenshot from 2013-07-01 16:46:08.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"image[image_file]\"; filename=\"Screenshot from 2013-07-01 16:46:08.png\"\r\nContent-Type: image/png\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-28378-1autgbz>>, "title"=>"vasdasdasda"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+Completed 500 Internal Server Error in 31ms
+
+NoMethodError (undefined method `scale' for #<ImageUploader::Uploader70343172245740:0x007ff414b2f538>):
+  carrierwave (0.9.0) lib/carrierwave/uploader/processing.rb:85:in `block in process!'
+  carrierwave (0.9.0) lib/carrierwave/uploader/processing.rb:81:in `each'
+  carrierwave (0.9.0) lib/carrierwave/uploader/processing.rb:81:in `process!'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `block in with_callbacks'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `each'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `with_callbacks'
+  carrierwave (0.9.0) lib/carrierwave/uploader/cache.rb:122:in `cache!'
+  carrierwave (0.9.0) lib/carrierwave/uploader/versions.rb:273:in `block in cache_versions!'
+  carrierwave (0.9.0) lib/carrierwave/uploader/versions.rb:258:in `each'
+  carrierwave (0.9.0) lib/carrierwave/uploader/versions.rb:258:in `cache_versions!'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `block in with_callbacks'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `each'
+  carrierwave (0.9.0) lib/carrierwave/uploader/callbacks.rb:18:in `with_callbacks'
+  carrierwave (0.9.0) lib/carrierwave/uploader/cache.rb:122:in `cache!'
+  carrierwave (0.9.0) lib/carrierwave/mount.rb:327:in `cache'
+  carrierwave (0.9.0) lib/carrierwave/mount.rb:179:in `image_file='
+  carrierwave (0.9.0) lib/carrierwave/orm/activerecord.rb:38:in `image_file='
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:85:in `block in assign_attributes'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:78:in `each'
+  activerecord (3.2.12) lib/active_record/attribute_assignment.rb:78:in `assign_attributes'
+  activerecord (3.2.12) lib/active_record/base.rb:497:in `initialize'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `new'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:52:in `build_resource'
+  inherited_resources (1.3.1) lib/inherited_resources/actions.rb:31:in `create'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:458:in `_run__3240195779812625951__process_action__1322028491985182151__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__3252225105148082292__call__2305121414713409411__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:31:15 +0200
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  Rendered application/index.html.haml within layouts/application (3.1ms)
+Completed 200 OK in 79ms (Views: 47.9ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:31:20 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"image_file"=>#<ActionDispatch::Http::UploadedFile:0x007f0e7eff6390 @original_filename="headphones_by_andreewallin-d5qblxo.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[image_file]\"; filename=\"headphones_by_andreewallin-d5qblxo.jpg\"\r\nContent-Type: image/jpeg\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-28834-1qsh4lu>>, "title"=>"vasdasdasda"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.6ms)[0m  [1mINSERT INTO "images" ("approved", "created_at", "image_file", "image_type", "imageable_id", "imageable_type", "is_main_image", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["approved", false], ["created_at", Mon, 12 Aug 2013 15:31:21 UTC +00:00], ["image_file", "headphones_by_andreewallin-d5qblxo.jpg"], ["image_type", nil], ["imageable_id", nil], ["imageable_type", nil], ["is_main_image", nil], ["title", "vasdasdasda"], ["updated_at", Mon, 12 Aug 2013 15:31:21 UTC +00:00]]
+  [1m[35m (20.2ms)[0m  COMMIT
+Completed 201 Created in 299ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:32:21 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (1.3ms)
+Completed 200 OK in 25ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:32:40 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"title"=>"vasdasdasda"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "images" ("approved", "created_at", "image_file", "image_type", "imageable_id", "imageable_type", "is_main_image", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["approved", false], ["created_at", Mon, 12 Aug 2013 15:32:40 UTC +00:00], ["image_file", nil], ["image_type", nil], ["imageable_id", nil], ["imageable_type", nil], ["is_main_image", nil], ["title", "vasdasdasda"], ["updated_at", Mon, 12 Aug 2013 15:32:40 UTC +00:00]]
+  [1m[35m (7.3ms)[0m  COMMIT
+Completed 201 Created in 55ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:32:43 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (1.6ms)
+Completed 200 OK in 13ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-12 17:32:44 +0200
+Processing by ApplicationController#index as HTML
+  Rendered application/index.html.haml within layouts/application (1.0ms)
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/images" for 127.0.0.1 at 2013-08-12 17:32:49 +0200
+Processing by Api::V1::ImagesController#create as JSON
+  Parameters: {"image"=>{"image_file"=>#<ActionDispatch::Http::UploadedFile:0x007f0e7ef4e320 @original_filename="Screenshot from 2013-05-14 11:38:55.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"image[image_file]\"; filename=\"Screenshot from 2013-05-14 11:38:55.png\"\r\nContent-Type: image/png\r\n", @tempfile=#<Tempfile:/tmp/RackMultipart20130812-28834-1n49xxs>>, "title"=>"vasdasdasda"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "images" ("approved", "created_at", "image_file", "image_type", "imageable_id", "imageable_type", "is_main_image", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["approved", false], ["created_at", Mon, 12 Aug 2013 15:32:49 UTC +00:00], ["image_file", "Screenshot_from_2013-05-14_11_38_55.png"], ["image_type", nil], ["imageable_id", nil], ["imageable_type", nil], ["is_main_image", nil], ["title", "vasdasdasda"], ["updated_at", Mon, 12 Aug 2013 15:32:49 UTC +00:00]]
+  [1m[35m (17.0ms)[0m  COMMIT
+Completed 201 Created in 355ms (Views: 0.7ms | ActiveRecord: 0.0ms)

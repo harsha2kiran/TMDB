@@ -9,4 +9,6 @@ class Image < ActiveRecord::Base
   has_many :views, :as => :viewable
   has_many :reports, :as => :reportable
 
+  mount_uploader :image_file, ImageUploader
+
 end

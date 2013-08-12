@@ -44,4 +44,5 @@ group :development do
   gem 'sextant'
 end
 gem 'activerecord-postgres-hstore'
-
+gem "rmagick"
+gem "carrierwave"
