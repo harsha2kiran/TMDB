@@ -1,11 +1,10 @@
 object @movies
 attributes :id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
 
-node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles) }
-
 node(:images) { |movie| movie.images }
 node(:videos) { |movie| movie.videos }
 
+node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles) }
 node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews) }
 node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts) }
 node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres) }

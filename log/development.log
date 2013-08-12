@@ -29457,3 +29457,1306 @@ Processing by Api::V1::MoviesController#index as JSON
   [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
   Rendered api/v1/movies/index.json.rabl (45.0ms)
 Completed 200 OK in 56ms (Views: 47.0ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:01:01 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.1ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (37.0ms)
+Completed 200 OK in 49ms (Views: 38.8ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:01:02 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.4ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (10.9ms)
+Completed 200 OK in 20ms (Views: 16.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/v1/movie_metadatas/" for 127.0.0.1 at 2013-08-12 12:01:25 +0200
+Processing by Api::V1::MovieMetadatasController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovieMetadata Load (0.3ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" LIMIT 1
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" [0m
+  [1m[35mStatus Load (0.3ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered api/v1/movie_metadatas/index.json.rabl (4.6ms)
+Completed 200 OK in 17ms (Views: 11.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/v1/movie_metadatas/1" for 127.0.0.1 at 2013-08-12 12:01:29 +0200
+Processing by Api::V1::MovieMetadatasController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovieMetadata Load (0.4ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+Completed 200 OK in 14ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:01:36 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (11.3ms)
+Completed 200 OK in 21ms (Views: 17.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:01:37 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (12.4ms)
+Completed 200 OK in 22ms (Views: 17.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-12 12:06:18 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" IN (31)[0m
+  [1m[35mLanguage Load (0.3ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieGenre Load (0.3ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mGenre Load (0.2ms)[0m  [1mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieKeyword Load (0.2ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mKeyword Load (0.2ms)[0m  [1mSELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieLanguage Load (0.2ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieMetadata Load (0.4ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mStatus Load (0.3ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mRevenueCountry Load (0.3ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mCountry Load (0.1ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mRelease Load (0.3ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.3ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mFollow Load (0.4ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  Rendered api/v1/movies/index.json.rabl (43.8ms)
+Completed 200 OK in 55ms (Views: 46.1ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-12 12:07:08 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" IN (31)
+  [1m[36mLanguage Load (0.3ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mPerson Load (0.5ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieGenre Load (0.2ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mGenre Load (0.2ms)[0m  SELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mKeyword Load (0.2ms)[0m  SELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieLanguage Load (0.2ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mStatus Load (0.2ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mRevenueCountry Load (0.2ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mCompany Load (0.1ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mRelease Load (0.2ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/index.json.rabl (38.7ms)
+Completed 200 OK in 49ms (Views: 41.1ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-12 12:07:09 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.2ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" IN (31)[0m
+  [1m[35mLanguage Load (0.4ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.5ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieGenre Load (0.3ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mGenre Load (0.2ms)[0m  [1mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieKeyword Load (0.2ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mKeyword Load (0.2ms)[0m  [1mSELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieLanguage Load (0.2ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieMetadata Load (0.3ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mStatus Load (0.1ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mFollow Load (0.4ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  Rendered api/v1/movies/index.json.rabl (37.9ms)
+Completed 200 OK in 49ms (Views: 40.1ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/api/v1/movies/31" for 127.0.0.1 at 2013-08-12 12:07:12 +0200
+Processing by Api::V1::MoviesController#show as JSON
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", "31"]]
+  [1m[35mAlternativeTitle Load (0.3ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31
+  [1m[36mLanguage Load (0.2ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieGenre Load (0.2ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mGenre Load (0.2ms)[0m  SELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mKeyword Load (0.1ms)[0m  SELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieLanguage Load (0.2ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mStatus Load (0.2ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mRevenueCountry Load (0.2ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mCountry Load (0.1ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mProductionCompany Load (0.1ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mRelease Load (0.2ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/show.json.rabl (36.1ms)
+Completed 200 OK in 48ms (Views: 40.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/api/v1/movies/31" for 127.0.0.1 at 2013-08-12 12:07:13 +0200
+Processing by Api::V1::MoviesController#show as JSON
+  Parameters: {"id"=>"31"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", "31"]]
+  [1m[36mAlternativeTitle Load (0.3ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31[0m
+  [1m[35mLanguage Load (0.2ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mGenre Load (0.2ms)[0m  [1mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieKeyword Load (0.3ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mKeyword Load (0.3ms)[0m  [1mSELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieLanguage Load (0.3ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mStatus Load (0.2ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mRevenueCountry Load (0.2ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mCountry Load (0.1ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mRelease Load (0.2ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.2ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  Rendered api/v1/movies/show.json.rabl (37.5ms)
+Completed 200 OK in 47ms (Views: 38.9ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/v1/movies/31" for 127.0.0.1 at 2013-08-12 12:09:59 +0200
+Processing by Api::V1::MoviesController#show as JSON
+  Parameters: {"id"=>"31"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", "31"]]
+  [1m[35mAlternativeTitle Load (0.3ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31
+  [1m[36mLanguage Load (0.2ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieGenre Load (0.3ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mGenre Load (0.2ms)[0m  SELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mKeyword Load (0.2ms)[0m  SELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieLanguage Load (0.2ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieMetadata Load (0.2ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mStatus Load (0.2ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mRevenueCountry Load (0.2ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mRelease Load (0.2ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/show.json.rabl (38.7ms)
+Completed 200 OK in 48ms (Views: 40.6ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:10:02 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.6ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  Rendered api/v1/people/index.json.rabl (9.0ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (Missing partial api/v1/alternative_names/index with {:locale=>[:en], :formats=>[:json], :handlers=>[:erb, :builder, :coffee, :arb, :haml, :rabl]}. Searched in:
+  * "/home/vlatko/apps/movies/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/sextant-0.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/activeadmin-0.5.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/kaminari-0.14.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/doorkeeper-0.4.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_security_extension-0.7.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_invitable-1.1.0/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/html5-rails-0.0.6/app/views"
+):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |movie| partial("api/v1/alternative_names/index", :object => movie.alternative_names) }
+    5: node(:crews) { |movie| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/index.json.rabl:2:in `_app_views_api_v__people_index_json_rabl___707393957472859898_70322861952420'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.9ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:10:12 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  Rendered api/v1/people/index.json.rabl (6.8ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (Missing partial api/v1/alternative_names/index with {:locale=>[:en], :formats=>[:json], :handlers=>[:erb, :builder, :coffee, :arb, :haml, :rabl]}. Searched in:
+  * "/home/vlatko/apps/movies/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/sextant-0.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/activeadmin-0.5.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/kaminari-0.14.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/doorkeeper-0.4.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_security_extension-0.7.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_invitable-1.1.0/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/html5-rails-0.0.6/app/views"
+):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |movie| partial("api/v1/alternative_names/index", :object => movie.alternative_names) }
+    5: node(:crews) { |movie| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/index.json.rabl:2:in `_app_views_api_v__people_index_json_rabl___707393957472859898_70322861010720'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.2ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:10:13 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  Rendered api/v1/people/index.json.rabl (6.4ms)
+Completed 500 Internal Server Error in 15ms
+
+ActionView::Template::Error (Missing partial api/v1/alternative_names/index with {:locale=>[:en], :formats=>[:json], :handlers=>[:erb, :builder, :coffee, :arb, :haml, :rabl]}. Searched in:
+  * "/home/vlatko/apps/movies/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/sextant-0.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/activeadmin-0.5.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/kaminari-0.14.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/doorkeeper-0.4.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_security_extension-0.7.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_invitable-1.1.0/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/html5-rails-0.0.6/app/views"
+):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |movie| partial("api/v1/alternative_names/index", :object => movie.alternative_names) }
+    5: node(:crews) { |movie| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/index.json.rabl:2:in `_app_views_api_v__people_index_json_rabl___707393957472859898_70322861010720'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.1ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:10:13 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  Rendered api/v1/people/index.json.rabl (6.5ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (Missing partial api/v1/alternative_names/index with {:locale=>[:en], :formats=>[:json], :handlers=>[:erb, :builder, :coffee, :arb, :haml, :rabl]}. Searched in:
+  * "/home/vlatko/apps/movies/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/sextant-0.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/activeadmin-0.5.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/kaminari-0.14.1/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/doorkeeper-0.4.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_security_extension-0.7.2/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise_invitable-1.1.0/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/devise-2.2.3/app/views"
+  * "/usr/local/lib/ruby/gems/2.0.0/gems/html5-rails-0.0.6/app/views"
+):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |movie| partial("api/v1/alternative_names/index", :object => movie.alternative_names) }
+    5: node(:crews) { |movie| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/index.json.rabl:2:in `_app_views_api_v__people_index_json_rabl___707393957472859898_70322861010720'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.5ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:11:13 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.4ms)[0m  SELECT "people".* FROM "people" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  Rendered api/v1/people/index.json.rabl (144.3ms)
+Completed 500 Internal Server Error in 157ms
+
+ActionView::Template::Error (undefined local variable or method `person' for #<Rabl::Engine:0x007feaa6203008>):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |movie| partial("api/v1/alternative_names/index", :object => movie.alternative_names) }
+    5: node(:crews) { |movie| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/index.json.rabl:2:in `_app_views_api_v__people_index_json_rabl___707393957472859898_70322893181320'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.5ms)
+
+
+Started GET "/api/v1/people/" for 127.0.0.1 at 2013-08-12 12:11:42 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mCrew Load (0.4ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.6ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (38.5ms)
+Completed 200 OK in 47ms (Views: 38.5ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:12:46 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (2.2ms)
+Completed 500 Internal Server Error in 20ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322887183200'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+
+
+Started GET "/api/v1/people" for 127.0.0.1 at 2013-08-12 12:12:52 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.1ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (22.2ms)
+Completed 200 OK in 32ms (Views: 26.6ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:12:58 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.5ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322887183200'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.3ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:12:59 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.1ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322887183200'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.7ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:27 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.3ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.6ms)
+
+
+Started GET "/api/v1/people" for 127.0.0.1 at 2013-08-12 12:13:39 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (26.0ms)
+Completed 200 OK in 36ms (Views: 30.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:43 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.0ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:43 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.0ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:44 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (0.9ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.7ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:44 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.1ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.9ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:44 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.1ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `alternative_names' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322870829300'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:13:57 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (21.4ms)
+Completed 200 OK in 31ms (Views: 25.4ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:14:42 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.5ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/show.json.rabl (30.9ms)
+Completed 200 OK in 40ms (Views: 34.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:14:58 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.3ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `crews' for nil:NilClass):
+    1: object @people
+    2: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    3: 
+    4: node(:alternative_names) { @person.alternative_names }
+    5: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322863647160'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.7ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:15:06 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.4ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (22.7ms)
+Completed 200 OK in 32ms (Views: 26.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:15:41 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/show.json.rabl (23.4ms)
+Completed 200 OK in 33ms (Views: 27.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:16:11 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered api/v1/people/show.json.rabl (1.7ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (undefined method `crews' for nil:NilClass):
+    1: attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+    2: 
+    3: node(:alternative_names) { @person.alternative_names }
+    4: node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews) }
+    5: node(:casts) { |person| partial("api/v1/casts/index", :object => person.casts) }
+  app/views/api/v1/people/show.json.rabl:2:in `_app_views_api_v__people_show_json_rabl__1766392400329224418_70322861173020'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:16:20 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.4ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (20.7ms)
+Completed 200 OK in 34ms (Views: 27.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:17:06 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (23.3ms)
+Completed 200 OK in 33ms (Views: 27.4ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:17:30 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.5ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.4ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (27.8ms)
+Completed 200 OK in 40ms (Views: 33.2ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:35 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (22.0ms)
+Completed 200 OK in 35ms (Views: 28.8ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:36 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.4ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (22.0ms)
+Completed 200 OK in 32ms (Views: 26.7ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:36 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.1ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (20.0ms)
+Completed 200 OK in 29ms (Views: 24.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:41 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.5ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (21.9ms)
+Completed 200 OK in 32ms (Views: 26.8ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:41 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (21.0ms)
+Completed 200 OK in 30ms (Views: 24.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:42 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (23.7ms)
+Completed 200 OK in 33ms (Views: 27.6ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:42 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.5ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (22.6ms)
+Completed 200 OK in 32ms (Views: 26.5ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:42 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.4ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.3ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (24.8ms)
+Completed 200 OK in 34ms (Views: 28.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/v1/people/1" for 127.0.0.1 at 2013-08-12 12:18:59 +0200
+Processing by Api::V1::PeopleController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mImage Load (0.4ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/show.json.rabl (22.2ms)
+Completed 200 OK in 32ms (Views: 26.4ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-12 12:19:27 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" IN (31)
+  [1m[36mLanguage Load (0.3ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mMovieGenre Load (0.2ms)[0m  [1mSELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31[0m
+  [1m[35mGenre Load (0.3ms)[0m  SELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieKeyword Load (0.2ms)[0m  [1mSELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31[0m
+  [1m[35mKeyword Load (0.2ms)[0m  SELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mMovieLanguage Load (0.3ms)[0m  [1mSELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovieMetadata Load (0.3ms)[0m  [1mSELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31[0m
+  [1m[35mStatus Load (0.3ms)[0m  SELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mRevenueCountry Load (0.3ms)[0m  [1mSELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31[0m
+  [1m[35mCountry Load (0.2ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mProductionCompany Load (0.2ms)[0m  SELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mRelease Load (0.3ms)[0m  SELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'
+  [1m[36mVideo Load (0.3ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/index.json.rabl (45.1ms)
+Completed 200 OK in 57ms (Views: 47.9ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/api/v1/movies" for 127.0.0.1 at 2013-08-12 12:19:28 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36mAlternativeTitle Load (0.3ms)[0m  [1mSELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" IN (31)[0m
+  [1m[35mLanguage Load (0.3ms)[0m  SELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mMovieGenre Load (0.2ms)[0m  SELECT "movie_genres".* FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31
+  [1m[36mGenre Load (0.2ms)[0m  [1mSELECT "genres".* FROM "genres" WHERE "genres"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieKeyword Load (0.3ms)[0m  SELECT "movie_keywords".* FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31
+  [1m[36mKeyword Load (0.2ms)[0m  [1mSELECT "keywords".* FROM "keywords" WHERE "keywords"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mMovieLanguage Load (0.2ms)[0m  SELECT "movie_languages".* FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovieMetadata Load (0.3ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31
+  [1m[36mStatus Load (0.2ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mRevenueCountry Load (0.3ms)[0m  SELECT "revenue_countries".* FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31
+  [1m[36mCountry Load (0.2ms)[0m  [1mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mProductionCompany Load (0.2ms)[0m  [1mSELECT "production_companies".* FROM "production_companies" WHERE "production_companies"."movie_id" = 31[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT "companies".* FROM "companies" WHERE "companies"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mRelease Load (0.3ms)[0m  [1mSELECT "releases".* FROM "releases" WHERE "releases"."movie_id" = 31[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie'[0m
+  [1m[35mVideo Load (0.3ms)[0m  SELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
+  Rendered api/v1/movies/index.json.rabl (39.1ms)
+Completed 200 OK in 50ms (Views: 41.1ms | ActiveRecord: 6.2ms)
