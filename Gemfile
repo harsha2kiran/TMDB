@@ -13,7 +13,7 @@ group :assets do
   gem 'haml_coffee_assets'
   gem 'turbo-sprockets-rails3'
 end
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 gem 'jquery-ui-rails'
 gem 'jquery-timepicker-rails'
 gem 'haml-rails'
@@ -46,3 +46,4 @@ end
 gem 'activerecord-postgres-hstore'
 gem "rmagick"
 gem "carrierwave"
+gem 'activeadmin'

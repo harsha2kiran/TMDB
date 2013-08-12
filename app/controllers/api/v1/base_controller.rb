@@ -6,7 +6,7 @@ class Api::V1::BaseController < ApplicationController
   # before_filter :check_if_authenticated
   before_filter :set_params_user_id
   before_filter :set_approved_false
-  # before_filter :check_if_destroy
+  before_filter :check_if_destroy
 
   private
 
