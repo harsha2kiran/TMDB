@@ -12,7 +12,11 @@ Movies::Application.routes.draw do
     resources :crews
     resources :companies
     resources :countries
-    resources :follows
+    resources :follows do
+      collection do
+        get "filter" => "follows#filter"
+      end
+    end
     resources :genres
     resources :images
     resources :keywords
@@ -34,9 +38,11 @@ Movies::Application.routes.draw do
     resources :statuses
     resources :tags
     # resources :user_badges
-    # resources :users
     resources :videos
     # resources :views
+    resources :users, :only => [:show] do
+      put "toggle_active" => "users#toggle_active"
+    end
   end
 
   # The priority is based upon order of creation:

@@ -40,4 +40,11 @@ class Api::V1::FollowsController < Api::V1::BaseController
     end
   end
 
+  def filter
+    #TODO remove next line
+    current_user = User.find 11
+    @follows = current_user.follows.where(followable_type: params[:filter]).all
+    render 'index'
+  end
+
 end

@@ -13,4 +13,21 @@ class User < ActiveRecord::Base
   has_many :follows
   has_many :badges, :through => :user_badges
 
+  after_create :activate
+
+  def active_for_authentication?
+    super && self.active == true
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
+  end
+
+  protected
+
+  def activate
+    self.active = true
+    self.save
+  end
+
 end
