@@ -6,7 +6,7 @@ Movies::Application.routes.draw do
 
   devise_for :users
 
-  # mount Doorkeeper::Engine => '/oauth'
+  mount Doorkeeper::Engine => '/oauth'
 
   api_version(:module => "Api::V1", :path => "api/v1", :defaults => {:format => :json}) do
     resources :alternative_names

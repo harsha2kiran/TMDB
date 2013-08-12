@@ -2,19 +2,32 @@ Doorkeeper.configure do
   # This block will be called to check whether the
   # resource owner is authenticated or not
   resource_owner_authenticator do |routes|
-    # raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
     # Put your resource owner authentication logic here.
     # If you want to use named routes from your app you need
     # to call them on routes object eg.
     # routes.new_user_session_path
-    # e.g. User.find_by_id(session[:user_id]) || redirect_to(routes.new_user_session_url)
-    current_user || redirect_to(routes.new_user_session_url)
+    current_user || redirect_to("/")
+  end
+
+  resource_owner_authenticator do
+    current_user || warden.authenticate!(:scope => :user)
+  end
+
+  admin_authenticator do |routes|
+    if current_user && current_user.user_type == "admin"
+      current_user
+    else
+      redirect_to("/")
+      # warden.authenticate!(:scope => :user)
+    end
+    # Admin.find_by_id(session[:admin_id]) || redirect_to(routes.new_admin_session_url)
   end
 
   resource_owner_from_credentials do |routes|
     u = User.find_for_database_authentication(:email => params[:username])
     u if u && u.valid_password?(params[:password])
   end
+
 
   # If you want to restrict the access to the web interface for
   # adding oauth authorized applications you need to declare the
