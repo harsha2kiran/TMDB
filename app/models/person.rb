@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id
+  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id, :original_id
 
   has_many :alternative_names
   has_many :crews
@@ -13,4 +13,16 @@ class Person < ActiveRecord::Base
   has_many :follows, :as => :followable
   has_many :views, :as => :viewable
   has_many :reports, :as => :reportable
+
+  after_create :check_original_id
+
+  private
+
+  def check_original_id
+    unless self.original_id
+      self.original_id = self.id
+      self.save
+    end
+  end
+
 end

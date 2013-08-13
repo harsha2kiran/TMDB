@@ -1,5 +1,5 @@
 object @movies
-attributes :id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
+attributes :id, :original_id, :user_id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
 
 if @all
   node(:images) { |movie| movie.images }

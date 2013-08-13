@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title, :user_id
+  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title, :user_id, :original_id
   has_many :alternative_titles
   has_many :crews
   has_many :casts
@@ -18,5 +18,16 @@ class Movie < ActiveRecord::Base
   has_many :follows, :as => :followable
   has_many :views, :as => :viewable
   has_many :reports, :as => :reportable
+
+  after_create :check_original_id
+
+  private
+
+  def check_original_id
+    unless self.original_id
+      self.original_id = self.id
+      self.save
+    end
+  end
 
 end
