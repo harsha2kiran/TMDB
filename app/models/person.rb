@@ -16,6 +16,8 @@ class Person < ActiveRecord::Base
 
   after_create :check_original_id
 
+  serialize :locked, ActiveRecord::Coders::Hstore
+
   private
 
   def check_original_id

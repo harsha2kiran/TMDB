@@ -52,6 +52,12 @@ Movies::Application.routes.draw do
         post "mark" => "approvals#mark"
       end
     end
+    resources :locks do
+      collection do
+        post "mark" => "locks#mark"
+        post "unmark" => "locks#unmark"
+      end
+    end
   end
 
   # The priority is based upon order of creation:
