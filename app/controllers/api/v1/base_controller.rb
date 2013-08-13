@@ -60,20 +60,24 @@ class Api::V1::BaseController < ApplicationController
   def check_if_destroy
     # TODO remove next line
     current_user = User.first
-    unless params[:action] == "destroy"
-      unless current_user.user_type == "admin"
+    if params[:action] == "destroy"
+      if current_user.user_type == "admin"
         redirect_to root_path, alert: "You must have admin privileges to remove record."
+      else
       end
+    else
     end
   end
 
   def check_if_update
     # TODO remove next line
     current_user = User.first
-    unless params[:action] == "update"
-      unless ["admin", "moderator"].include?(current_user.user_type)
+    if params[:action] == "update"
+      if ["admin", "moderator"].include?(current_user.user_type)
         redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
+      else
       end
+    else
     end
   end
 

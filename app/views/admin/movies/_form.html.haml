@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, @movie] do |f|
+  = f.inputs "Movie Settings" do
+    = f.input :approved
+    = f.input :content_score
+    = f.input :overview
+    = f.input :tagline
+    = f.input :title
+    = f.input :user_id
+    = f.submit "Update"

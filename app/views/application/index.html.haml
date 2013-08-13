@@ -1,9 +1,11 @@
 application index
 
 %p.notice
-  = notice
+  - unless notice.blank?
+    = notice
 %p.alert
-  = alert
+  - unless alert.blank?
+    = alert
 
 #user_nav
   - if user_signed_in?

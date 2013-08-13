@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :badges, :through => :user_badges
 
   after_create :activate
+  before_create :set_user_type
 
   def active_for_authentication?
     super && self.active == true
@@ -28,6 +29,10 @@ class User < ActiveRecord::Base
   def activate
     self.active = true
     self.save
+  end
+
+  def set_user_type
+    self.user_type = "user"
   end
 
 end
