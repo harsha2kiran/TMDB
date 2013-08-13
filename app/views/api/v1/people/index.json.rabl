@@ -1,5 +1,5 @@
 object @people
-attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at
+attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :created_at, :updated_at, :user_id
 if @all
 
   node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names) }

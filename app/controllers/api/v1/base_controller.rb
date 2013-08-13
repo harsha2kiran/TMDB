@@ -27,9 +27,11 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def set_params_user_id
-    if params[:action] == "create"
+    if ["create", "update"].include?(params[:action])
       # add user_id value from current_user or redirect to login.
       # check if current model has attribute user_id, if not, skip it
+      # TODO remove next line
+      current_user = User.where(user_type: "admin").first
       if current_user && @attribute_names.include?("user_id")
         params["#{@controller.singularize.to_sym}"][:user_id] = current_user.id
       else

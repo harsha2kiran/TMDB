@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812153624) do
+ActiveRecord::Schema.define(:version => 20130813103741) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "user_id"
   end
 
   create_table "alternative_titles", :force => true do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
   end
 
   create_table "badges", :force => true do |t|
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "companies", :force => true do |t|
@@ -99,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -142,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "user_id"
   end
 
   create_table "keywords", :force => true do |t|
@@ -179,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "movie_keywords", :force => true do |t|
@@ -187,6 +193,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "movie_languages", :force => true do |t|
@@ -195,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
   create_table "movie_metadata", :force => true do |t|
@@ -208,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "movies", :force => true do |t|
@@ -219,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.hstore   "locked"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "oauth_access_grants", :force => true do |t|
@@ -272,6 +282,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.hstore   "locked"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "user_id"
   end
 
   create_table "person_social_apps", :force => true do |t|
@@ -281,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "production_companies", :force => true do |t|
@@ -289,6 +301,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "releases", :force => true do |t|
@@ -301,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -318,6 +332,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "social_apps", :force => true do |t|
@@ -340,6 +355,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.boolean  "approved"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "user_badges", :force => true do |t|
@@ -398,6 +414,7 @@ ActiveRecord::Schema.define(:version => 20130812153624) do
     t.integer  "views_count"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
 end

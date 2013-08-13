@@ -1,5 +1,5 @@
 class AlternativeTitle < ActiveRecord::Base
-  attr_accessible :alternative_title, :approved, :language_id, :movie_id
+  attr_accessible :alternative_title, :approved, :language_id, :movie_id, :user_id
 
   belongs_to :movie
   belongs_to :language

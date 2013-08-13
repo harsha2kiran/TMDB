@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title
+  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title, :user_id
   has_many :alternative_titles
   has_many :crews
   has_many :casts

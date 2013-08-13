@@ -42223,3 +42223,1517 @@ Processing by Api::V1::MoviesController#index as JSON
   [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'
   Rendered api/v1/movies/index.json.rabl (56.8ms)
 Completed 200 OK in 68ms (Views: 55.6ms | ActiveRecord: 9.6ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+Migrating to AddDeviseToUsers (20130806195217)
+Migrating to CreateDoorkeeperTables (20130806201618)
+Migrating to CreateDelayedJobs (20130809182004)
+Migrating to AddActiveToUsers (20130812140548)
+Migrating to DeviseCreateAdminUsers (20130812153620)
+Migrating to CreateAdminNotes (20130812153623)
+Migrating to MoveAdminNotesToComments (20130812153624)
+Migrating to AddUserIdToTables (20130813101349)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "alternative_names" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "alternative_titles" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "casts" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "crews" ADD COLUMN "user_id" boolean
+  [1m[36m (23.3ms)[0m  [1mALTER TABLE "images" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "movies" ADD COLUMN "user_id" boolean
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "movie_genres" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "movie_keywords" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "movie_languages" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "movie_metadatas" ADD COLUMN "user_id" boolean
+PG::UndefinedTable: ERROR:  relation "movie_metadatas" does not exist
+: ALTER TABLE "movie_metadatas" ADD COLUMN "user_id" boolean
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+Migrating to AddDeviseToUsers (20130806195217)
+Migrating to CreateDoorkeeperTables (20130806201618)
+Migrating to CreateDelayedJobs (20130809182004)
+Migrating to AddActiveToUsers (20130812140548)
+Migrating to DeviseCreateAdminUsers (20130812153620)
+Migrating to CreateAdminNotes (20130812153623)
+Migrating to MoveAdminNotesToComments (20130812153624)
+Migrating to AddUserIdToTables (20130813101349)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "movie_metadata" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "people" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "person_social_apps" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "production_companies" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "releases" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "revenue_countries" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "tags" ADD COLUMN "user_id" boolean[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "views" ADD COLUMN "user_id" boolean
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130813101349')[0m
+  [1m[35m (10.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+
+
+Started GET "/api/v1/movies?moderate=true" for 127.0.0.1 at 2013-08-13 12:28:57 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" 
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 40 AND "alternative_titles"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 40 AND "crews"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 40 AND "casts"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 40 AND "movie_genres"."approved" = 't'
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 40 AND "movie_keywords"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 40 AND "movie_languages"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 40 AND "movie_metadata"."approved" = 't'[0m
+  Rendered api/v1/movies/index.json.rabl (89.0ms)
+Completed 500 Internal Server Error in 132ms
+
+ActionView::Template::Error (/home/vlatko/apps/movies/app/models/revenue_country.rb:3: syntax error, unexpected end-of-input, expecting keyword_end):
+    1: object @movies
+    2: attributes :id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
+    3: 
+    4: if @all
+    5:   node(:images) { |movie| movie.images }
+  app/views/api/v1/movies/index.json.rabl:2:in `_app_views_api_v__movies_index_json_rabl__499791241168730722_70107110052960'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (7.6ms)
+
+
+Started GET "/api/v1/movies?moderate=true" for 127.0.0.1 at 2013-08-13 12:29:51 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 40 AND "alternative_titles"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 40 AND "crews"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 40 AND "casts"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 40 AND "movie_genres"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 40 AND "movie_keywords"."approved" = 't'
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 40 AND "movie_languages"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 40 AND "movie_metadata"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 40 AND "revenue_countries"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 40 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 40 AND "production_companies"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 40 AND "releases"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'[0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'
+  [1m[36mLanguage Load (0.1ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'[0m
+  [1m[35mPerson Load (0.7ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31 AND "movie_genres"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31 AND "movie_keywords"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31 AND "movie_languages"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'[0m
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'
+  [1m[36mStatus Load (0.1ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31 AND "revenue_countries"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 31 AND "production_companies"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 31 AND "releases"."approved" = 't'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 40 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.1ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 40 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 40 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 40 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/index.json.rabl (267.9ms)
+Completed 200 OK in 311ms (Views: 233.3ms | ActiveRecord: 45.3ms)
+
+
+Started GET "/api/v1/movies?moderate=true" for 127.0.0.1 at 2013-08-13 12:31:39 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 40 AND "alternative_titles"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 40 AND "crews"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 40 AND "casts"."approved" = 't'
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 40 AND "movie_genres"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 40 AND "movie_keywords"."approved" = 't'
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 40 AND "movie_languages"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 40 AND "movie_metadata"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 40 AND "revenue_countries"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 40 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 40 AND "production_companies"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 40 AND "releases"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'[0m
+  [1m[35mAlternativeTitle Load (0.3ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'
+  [1m[36mLanguage Load (0.1ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31 AND "movie_genres"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31 AND "movie_keywords"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31 AND "movie_languages"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'[0m
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'
+  [1m[36mStatus Load (0.2ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31 AND "revenue_countries"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 31 AND "production_companies"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 31 AND "releases"."approved" = 't'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 40 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.4ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 40 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 40 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 40 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.4ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/index.json.rabl (334.7ms)
+Completed 200 OK in 376ms (Views: 296.5ms | ActiveRecord: 48.8ms)
+
+
+Started POST "/api/v1/people" for 127.0.0.1 at 2013-08-13 12:32:02 +0200
+Processing by Api::V1::PeopleController#create as JSON
+  Parameters: {"person"=>{"name"=>"234name", "biography"=>"biography"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:32:02 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "234name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:32:02 UTC +00:00], ["user_id", false]]
+  [1m[36m (17.6ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 32ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/movies?moderate=true" for 127.0.0.1 at 2013-08-13 12:32:04 +0200
+Processing by Api::V1::MoviesController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" [0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 40 AND "alternative_titles"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 40 AND "crews"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 40 AND "casts"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 40 AND "movie_genres"."approved" = 't'[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 40 AND "movie_keywords"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 40 AND "movie_languages"."approved" = 't'[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 40 AND "movie_metadata"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 40 AND "revenue_countries"."approved" = 't'[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 40 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 40 AND "production_companies"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 40 AND "releases"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'[0m
+  [1m[35mAlternativeTitle Load (0.2ms)[0m  SELECT "alternative_titles".* FROM "alternative_titles" WHERE "alternative_titles"."movie_id" = 31 AND "alternative_titles"."approved" = 't'
+  [1m[36mLanguage Load (0.2ms)[0m  [1mSELECT "languages".* FROM "languages" WHERE "languages"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."movie_id" = 31 AND "crews"."approved" = 't'[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."movie_id" = 31 AND "casts"."approved" = 't'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_genres" WHERE "movie_genres"."movie_id" = 31 AND "movie_genres"."approved" = 't'
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "movie_keywords" WHERE "movie_keywords"."movie_id" = 31 AND "movie_keywords"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "movie_languages" WHERE "movie_languages"."movie_id" = 31 AND "movie_languages"."approved" = 't'
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'[0m
+  [1m[35mMovieMetadata Load (0.2ms)[0m  SELECT "movie_metadata".* FROM "movie_metadata" WHERE "movie_metadata"."movie_id" = 31 AND "movie_metadata"."approved" = 't'
+  [1m[36mStatus Load (0.2ms)[0m  [1mSELECT "statuses".* FROM "statuses" WHERE "statuses"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "revenue_countries" WHERE "revenue_countries"."movie_id" = 31 AND "revenue_countries"."approved" = 't'
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "tags" WHERE "tags"."taggable_id" = 31 AND "tags"."taggable_type" = 'Movie' AND "tags"."approved" = 't'[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "production_companies" WHERE "production_companies"."movie_id" = 31 AND "production_companies"."approved" = 't'
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "releases" WHERE "releases"."movie_id" = 31 AND "releases"."approved" = 't'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 40 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.2ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 40 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 40 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 40 AND "views"."viewable_type" = 'Movie'[0m
+  [1m[35mImage Load (0.1ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 31 AND "images"."imageable_type" = 'Movie' AND "images"."approved" = 't'
+  [1m[36mVideo Load (0.1ms)[0m  [1mSELECT "videos".* FROM "videos" WHERE "videos"."videable_id" = 31 AND "videos"."videable_type" = 'Movie' AND "videos"."approved" = 't'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 31 AND "follows"."followable_type" = 'Movie'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 31 AND "views"."viewable_type" = 'Movie'[0m
+  Rendered api/v1/movies/index.json.rabl (61.8ms)
+Completed 200 OK in 73ms (Views: 60.8ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:32:08 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.4ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 10[0m
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 10
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 10[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 10
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 10[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 10 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 10 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 10 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (102.4ms)
+Completed 200 OK in 114ms (Views: 96.8ms | ActiveRecord: 13.9ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to AddUserIdToTables (20130813101349)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "views" DROP "user_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "tags" DROP "user_id"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "revenue_countries" DROP "user_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "releases" DROP "user_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "production_companies" DROP "user_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "person_social_apps" DROP "user_id"[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "people" DROP "user_id"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "movie_metadata" DROP "user_id"[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "movie_languages" DROP "user_id"
+PG::UndefinedColumn: ERROR:  column "user_id" of relation "movie_languages" does not exist
+: ALTER TABLE "movie_languages" DROP "user_id"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to AddUserIdToTables (20130813101349)
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "movie_keywords" DROP "user_id"
+PG::UndefinedColumn: ERROR:  column "user_id" of relation "movie_keywords" does not exist
+: ALTER TABLE "movie_keywords" DROP "user_id"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to AddUserIdToTables (20130813101349)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "movie_genres" DROP "user_id"
+PG::UndefinedColumn: ERROR:  column "user_id" of relation "movie_genres" does not exist
+: ALTER TABLE "movie_genres" DROP "user_id"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateMovies (20130806080832)
+Migrating to CreateMovieMetadata (20130806081116)
+Migrating to CreateRevenueCountries (20130806081151)
+Migrating to CreateReleases (20130806081303)
+Migrating to CreateCountries (20130806081339)
+Migrating to CreateMovieLanguages (20130806081418)
+Migrating to CreateKeywords (20130806081537)
+Migrating to CreateMovieKeywords (20130806081619)
+Migrating to CreateLanguages (20130806081641)
+Migrating to CreateStatuses (20130806081731)
+Migrating to CreateAlternativeTitles (20130806081917)
+Migrating to CreateGenres (20130806081951)
+Migrating to CreateMovieGenres (20130806082023)
+Migrating to CreateCasts (20130806082319)
+Migrating to CreateCrews (20130806082347)
+Migrating to CreateProductionCompanies (20130806082429)
+Migrating to CreateCompanies (20130806082449)
+Migrating to CreateSocialApps (20130806082720)
+Migrating to CreateAlternativeNames (20130806082748)
+Migrating to CreateUsers (20130806082849)
+Migrating to CreateBadges (20130806082911)
+Migrating to CreateUserBadges (20130806082932)
+Migrating to CreateLists (20130806082954)
+Migrating to CreateImages (20130806123020)
+Migrating to CreateVideos (20130806123410)
+Migrating to CreateFollows (20130806125044)
+Migrating to CreateViews (20130806125338)
+Migrating to CreateReports (20130806125534)
+Migrating to CreateTags (20130806174409)
+Migrating to CreatePeople (20130806175116)
+Migrating to CreatePersonSocialApps (20130806175650)
+Migrating to CreateListItems (20130806181052)
+Migrating to AddDeviseToUsers (20130806195217)
+Migrating to CreateDoorkeeperTables (20130806201618)
+Migrating to CreateDelayedJobs (20130809182004)
+Migrating to AddActiveToUsers (20130812140548)
+Migrating to DeviseCreateAdminUsers (20130812153620)
+Migrating to CreateAdminNotes (20130812153623)
+Migrating to MoveAdminNotesToComments (20130812153624)
+Migrating to AddUserIdToTables (20130813103741)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "alternative_names" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "alternative_titles" ADD COLUMN "user_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "casts" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "crews" ADD COLUMN "user_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "images" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "movies" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "movie_genres" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "movie_keywords" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "movie_languages" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "movie_metadata" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "people" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "person_social_apps" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "production_companies" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "releases" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "revenue_countries" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "tags" ADD COLUMN "user_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "views" ADD COLUMN "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130813103741')
+  [1m[36m (21.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:38:13 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.7ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.6ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.6ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 10
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 10[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 10
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 10[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 10
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.3ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 10 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 10 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 10 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (237.5ms)
+Completed 200 OK in 285ms (Views: 219.3ms | ActiveRecord: 30.1ms)
+
+
+Started POST "/api/v1/people" for 127.0.0.1 at 2013-08-13 12:40:20 +0200
+Processing by Api::V1::PeopleController#create as JSON
+  Parameters: {"person"=>{"name"=>"234name", "biography"=>"biography"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:40:20 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "234name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:40:20 UTC +00:00], ["user_id", 11]]
+PG::InvalidTextRepresentation: ERROR:  invalid input syntax for type boolean: "11"
+: INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 7ms
+
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for type boolean: "11"
+: INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"):
+  activerecord (3.2.12) lib/active_record/connection_adapters/postgresql_adapter.rb:1166:in `get_last_result'
+  activerecord (3.2.12) lib/active_record/connection_adapters/postgresql_adapter.rb:1166:in `exec_cache'
+  activerecord (3.2.12) lib/active_record/connection_adapters/postgresql_adapter.rb:663:in `block in exec_query'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract_adapter.rb:280:in `block in log'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract_adapter.rb:275:in `log'
+  activerecord (3.2.12) lib/active_record/connection_adapters/postgresql_adapter.rb:661:in `exec_query'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/database_statements.rb:63:in `exec_insert'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/database_statements.rb:90:in `insert'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/query_cache.rb:14:in `insert'
+  activerecord (3.2.12) lib/active_record/relation.rb:66:in `insert'
+  activerecord (3.2.12) lib/active_record/persistence.rb:367:in `create'
+  activerecord (3.2.12) lib/active_record/timestamp.rb:58:in `create'
+  activerecord (3.2.12) lib/active_record/callbacks.rb:268:in `block in create'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:403:in `_run__1080796314662117872__create__4200245618082373273__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_create_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  activerecord (3.2.12) lib/active_record/callbacks.rb:268:in `create'
+  activerecord (3.2.12) lib/active_record/persistence.rb:348:in `create_or_update'
+  activerecord (3.2.12) lib/active_record/callbacks.rb:264:in `block in create_or_update'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:414:in `_run__1080796314662117872__save__4200245618082373273__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_save_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  activerecord (3.2.12) lib/active_record/callbacks.rb:264:in `create_or_update'
+  activerecord (3.2.12) lib/active_record/persistence.rb:84:in `save'
+  activerecord (3.2.12) lib/active_record/validations.rb:50:in `save'
+  activerecord (3.2.12) lib/active_record/attribute_methods/dirty.rb:22:in `save'
+  activerecord (3.2.12) lib/active_record/transactions.rb:259:in `block (2 levels) in save'
+  activerecord (3.2.12) lib/active_record/transactions.rb:313:in `block in with_transaction_returning_status'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/database_statements.rb:192:in `transaction'
+  activerecord (3.2.12) lib/active_record/transactions.rb:208:in `transaction'
+  activerecord (3.2.12) lib/active_record/transactions.rb:311:in `with_transaction_returning_status'
+  activerecord (3.2.12) lib/active_record/transactions.rb:259:in `block in save'
+  activerecord (3.2.12) lib/active_record/transactions.rb:270:in `rollback_active_record_state!'
+  activerecord (3.2.12) lib/active_record/transactions.rb:258:in `save'
+  inherited_resources (1.3.1) lib/inherited_resources/base_helpers.rb:66:in `create_resource'
+  inherited_resources (1.3.1) lib/inherited_resources/actions.rb:33:in `create'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:469:in `_run__2284190970579950889__process_action__3446695765929660427__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/app_request_handler.rb:11:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.2.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  versionist (0.3.1) lib/versionist/middleware.rb:36:in `_call'
+  versionist (0.3.1) lib/versionist/middleware.rb:17:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:35:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__424872964917060213__call__4200245618082373273__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.5) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.5) lib/rack/server.rb:268:in `start'
+  railties (3.2.12) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.12) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.12) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.12) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.5ms)
+Connecting to database specified by database.yml
+
+
+Started POST "/api/v1/people" for 127.0.0.1 at 2013-08-13 12:41:05 +0200
+Processing by Api::V1::PeopleController#create as JSON
+  Parameters: {"person"=>{"name"=>"234name", "biography"=>"biography"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (3.8ms)[0m  [1mINSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:41:05 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "234name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:41:05 UTC +00:00], ["user_id", 11]]
+  [1m[35m (10.5ms)[0m  COMMIT
+Completed 201 Created in 65ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:51:55 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.5ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.4ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.4ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.4ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 10
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 10[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 10
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 10[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 10
+  [1m[36mAlternativeName Load (0.1ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 11[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 11
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 11[0m
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 11
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 11[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 10 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 10 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 10 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 11 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 11 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 11 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (195.8ms)
+Completed 200 OK in 243ms (Views: 176.9ms | ActiveRecord: 30.5ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:52:15 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["approved", false], ["biography", "updated_biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:52:15 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "updated name"], ["place_of_birth", "updated place"], ["updated_at", Tue, 13 Aug 2013 10:52:15 UTC +00:00], ["user_id", nil]]
+  [1m[35m (19.8ms)[0m  COMMIT
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "9"]]
+Completed 500 Internal Server Error in 28ms
+
+NoMethodError (undefined method `user_id' for #<Hash:0x007f59f4f6d7b8>):
+  app/controllers/api/v1/approvals_controller.rb:27:in `block in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.2ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:53:02 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.1ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.4ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 10[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 10
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 10[0m
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 10
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 10[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 11
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 11[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 11
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 11[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 11
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 12[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 12
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 12[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 12
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 12[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 10 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 10 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 10 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 11 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 11 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 11 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 12 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 12 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 12 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (189.8ms)
+Completed 200 OK in 238ms (Views: 168.4ms | ActiveRecord: 34.6ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:53:14 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["approved", false], ["biography", "updated_biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:53:14 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "updated name"], ["place_of_birth", "updated place"], ["updated_at", Tue, 13 Aug 2013 10:53:14 UTC +00:00], ["user_id", nil]]
+  [1m[36m (15.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "9"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE "people" SET "name" = 'name', "biography" = 'biography', "place_of_birth" = NULL, "updated_at" = '2013-08-13 10:53:14.917395' WHERE "people"."id" = 1
+  [1m[36m (5.9ms)[0m  [1mCOMMIT[0m
+Completed 500 Internal Server Error in 37ms
+
+NameError (undefined local variable or method `user_id' for #<Api::V1::ApprovalsController:0x007f59f5da8b98>):
+  app/controllers/api/v1/approvals_controller.rb:28:in `block in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.5ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:53:44 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 10[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 10
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 10[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 10
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 10[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 11
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 11[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 11
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 11[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 11
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 12[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 12
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 12[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 12
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 12[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 13
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 13[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 13
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 13[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 13
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 10 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 10 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 10 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 11 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 11 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 11 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 12 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 12 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 12 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 13 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 13 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 13 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (194.4ms)
+Completed 200 OK in 243ms (Views: 172.6ms | ActiveRecord: 34.6ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:54:24 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.4ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.4ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 13
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 13[0m
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 13
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 13[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 13
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 13 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 13 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 13 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (41.0ms)
+Completed 200 OK in 51ms (Views: 41.7ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:54:33 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.4ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.5ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.7ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.4ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.3ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (42.2ms)
+Completed 200 OK in 55ms (Views: 45.1ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:54:43 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:54:43 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:54:43 UTC +00:00], ["user_id", nil]]
+  [1m[36m (12.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mPerson Load (0.3ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "9"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 404 Not Found in 23ms
+
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  app/controllers/api/v1/approvals_controller.rb:28:in `block in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.0ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:54:53 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.3ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 14
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 14[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 14
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 14[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 14
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.1ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 14 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.1ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 14 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 14 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (37.7ms)
+Completed 200 OK in 48ms (Views: 39.4ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:55:10 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.1ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 14[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 14
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 14[0m
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 14
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 14[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.3ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 14 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 14 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 14 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (39.2ms)
+Completed 200 OK in 50ms (Views: 41.0ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:56:07 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.1ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.1ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.1ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (32.9ms)
+Completed 200 OK in 43ms (Views: 36.8ms | ActiveRecord: 4.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:56:46 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9
+  [1m[36mCrew Load (0.3ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9[0m
+  [1m[35mCast Load (0.3ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (36.2ms)
+Completed 200 OK in 47ms (Views: 38.6ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:57:19 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.1ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.6ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 9[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 9
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 9[0m
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 9
+  [1m[36mTag Load (0.3ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 9[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 9 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 9 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 9 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (34.5ms)
+Completed 200 OK in 45ms (Views: 37.3ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:57:30 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"9", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:57:30 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:57:30 UTC +00:00], ["user_id", 14]]
+  [1m[35m (14.4ms)[0m  COMMIT
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "9"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mUPDATE "people" SET "user_id" = 11, "updated_at" = '2013-08-13 10:57:30.176230' WHERE "people"."id" = 1[0m
+  [1m[35m (8.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "users" SET "points" = 10, "updated_at" = '2013-08-13 10:57:30.188562' WHERE "users"."id" = 11[0m
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36mBadge Load (0.5ms)[0m  [1mSELECT "badges".* FROM "badges" INNER JOIN "user_badges" ON "badges"."id" = "user_badges"."badge_id" WHERE "user_badges"."user_id" = 11[0m
+  [1m[35mBadge Load (0.3ms)[0m  SELECT "badges".* FROM "badges" WHERE (min_points < 10 )
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "people" WHERE "people"."id" = $1  [["id", 9]]
+  [1m[36m (8.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 76ms (Views: 0.6ms | ActiveRecord: 44.2ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:58:49 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"10", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"10", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (14.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:58:50 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:58:50 UTC +00:00], ["user_id", 11]]
+  [1m[35m (11.3ms)[0m  COMMIT
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "10"]]
+Completed 404 Not Found in 87ms
+
+ActiveRecord::RecordNotFound (Couldn't find Person with id=10):
+  app/controllers/api/v1/approvals_controller.rb:20:in `block in mark'
+  app/controllers/api/v1/approvals_controller.rb:6:in `mark'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.2ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:58:59 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.1ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 15
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 15[0m
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 15
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 15[0m
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 15
+  [1m[36mAlternativeName Load (0.2ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.3ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 16[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 16
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 16[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 16
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 16[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 15 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 15 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 15 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.3ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 16 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 16 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 16 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (179.2ms)
+Completed 200 OK in 190ms (Views: 160.3ms | ActiveRecord: 26.9ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:59:22 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.1ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.6ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 15[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 15
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 15[0m
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 15
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 15[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.1ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.1ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 15 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 15 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 15 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (31.4ms)
+Completed 200 OK in 42ms (Views: 35.1ms | ActiveRecord: 4.4ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 12:59:45 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"15", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"15", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 10:59:45 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 10:59:45 UTC +00:00], ["user_id", 11]]
+  [1m[35m (6.9ms)[0m  COMMIT
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", "15"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "people" SET "user_id" = 14, "updated_at" = '2013-08-13 10:59:46.009285' WHERE "people"."id" = 1[0m
+  [1m[35m (7.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 14]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mUPDATE "users" SET "points" = 10, "updated_at" = '2013-08-13 10:59:46.021671' WHERE "users"."id" = 14[0m
+  [1m[35m (6.0ms)[0m  COMMIT
+  [1m[36mBadge Load (0.2ms)[0m  [1mSELECT "badges".* FROM "badges" INNER JOIN "user_badges" ON "badges"."id" = "user_badges"."badge_id" WHERE "user_badges"."user_id" = 14[0m
+  [1m[35mBadge Load (0.2ms)[0m  SELECT "badges".* FROM "badges" WHERE (min_points < 10 OR min_points = 10)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "user_badges" ("badge_id", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["badge_id", 2], ["created_at", Tue, 13 Aug 2013 10:59:46 UTC +00:00], ["updated_at", Tue, 13 Aug 2013 10:59:46 UTC +00:00], ["user_id", 14]]
+  [1m[36m (3.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "people" WHERE "people"."id" = $1[0m  [["id", 15]]
+  [1m[35m (9.2ms)[0m  COMMIT
+Completed 200 OK in 79ms (Views: 0.6ms | ActiveRecord: 41.0ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 12:59:47 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 17[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 17
+  [1m[36mCast Load (0.1ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 17[0m
+  [1m[35mPersonSocialApp Load (0.1ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 17
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 17[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.3ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.2ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 17 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 17 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 17 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.4ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.3ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (33.0ms)
+Completed 200 OK in 45ms (Views: 36.9ms | ActiveRecord: 5.1ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 13:01:02 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1
+  [1m[36mPerson Load (0.3ms)[0m  [1mSELECT "people".* FROM "people" [0m
+  [1m[35mAlternativeName Load (0.3ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 17
+  [1m[36mCrew Load (0.1ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 17[0m
+  [1m[35mCast Load (0.1ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 17
+  [1m[36mPersonSocialApp Load (0.1ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 17[0m
+  [1m[35mTag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 17
+  [1m[36mAlternativeName Load (0.1ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mMovie Load (0.2ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCast Load (0.3ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mPersonSocialApp Load (0.3ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1
+  [1m[36mSocialApp Load (0.2ms)[0m  [1mSELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 17 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 17 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 17 AND "views"."viewable_type" = 'Person'[0m
+  [1m[35mImage Load (0.3ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'
+  Rendered api/v1/people/index.json.rabl (31.5ms)
+Completed 200 OK in 42ms (Views: 34.7ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/api/v1/approvals/mark" for 127.0.0.1 at 2013-08-13 13:01:06 +0200
+Processing by Api::V1::ApprovalsController#mark as JSON
+  Parameters: {"original_id"=>"1", "approved_id"=>"17", "type"=>"Person", "mark"=>"true", "approval"=>{"original_id"=>"1", "approved_id"=>"17", "type"=>"Person", "mark"=>"true"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."user_type" = 'admin' LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "people" ("approved", "biography", "birthday", "created_at", "day_of_death", "homepage", "imdb_id", "locked", "name", "place_of_birth", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["approved", false], ["biography", "biography"], ["birthday", nil], ["created_at", Tue, 13 Aug 2013 11:01:06 UTC +00:00], ["day_of_death", nil], ["homepage", nil], ["imdb_id", nil], ["locked", nil], ["name", "name"], ["place_of_birth", nil], ["updated_at", Tue, 13 Aug 2013 11:01:06 UTC +00:00], ["user_id", 14]]
+  [1m[36m (16.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", "17"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  UPDATE "people" SET "user_id" = 11, "updated_at" = '2013-08-13 11:01:06.849146' WHERE "people"."id" = 1
+  [1m[36m (7.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  UPDATE "users" SET "points" = 10, "updated_at" = '2013-08-13 11:01:06.860123' WHERE "users"."id" = 11
+  [1m[36m (7.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mBadge Load (0.5ms)[0m  SELECT "badges".* FROM "badges" INNER JOIN "user_badges" ON "badges"."id" = "user_badges"."badge_id" WHERE "user_badges"."user_id" = 11
+  [1m[36mBadge Load (0.3ms)[0m  [1mSELECT "badges".* FROM "badges" WHERE (min_points < 10 OR min_points = 10)[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "people" WHERE "people"."id" = $1[0m  [["id", 17]]
+  [1m[35m (7.5ms)[0m  COMMIT
+Completed 200 OK in 55ms (Views: 0.6ms | ActiveRecord: 42.2ms)
+
+
+Started GET "/api/v1/people?moderate=true" for 127.0.0.1 at 2013-08-13 13:01:08 +0200
+Processing by Api::V1::PeopleController#index as JSON
+  Parameters: {"moderate"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 11 LIMIT 1[0m
+  [1m[35mPerson Load (0.2ms)[0m  SELECT "people".* FROM "people" 
+  [1m[36mAlternativeName Load (0.3ms)[0m  [1mSELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 18[0m
+  [1m[35mCrew Load (0.2ms)[0m  SELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 18
+  [1m[36mCast Load (0.2ms)[0m  [1mSELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 18[0m
+  [1m[35mPersonSocialApp Load (0.2ms)[0m  SELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 18
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 18[0m
+  [1m[35mAlternativeName Load (0.2ms)[0m  SELECT "alternative_names".* FROM "alternative_names" WHERE "alternative_names"."person_id" = 1
+  [1m[36mPerson Load (0.2ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCrew Load (0.2ms)[0m  [1mSELECT "crews".* FROM "crews" WHERE "crews"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1[0m  [["id", 31]]
+  [1m[35mCast Load (0.2ms)[0m  SELECT "casts".* FROM "casts" WHERE "casts"."person_id" = 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mPersonSocialApp Load (0.2ms)[0m  [1mSELECT "person_social_apps".* FROM "person_social_apps" WHERE "person_social_apps"."person_id" = 1[0m
+  [1m[35mSocialApp Load (0.1ms)[0m  SELECT "social_apps".* FROM "social_apps" WHERE "social_apps"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."person_id" = 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."id" = $1 LIMIT 1  [["id", 31]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "people".* FROM "people" WHERE "people"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mImage Load (0.2ms)[0m  SELECT "images".* FROM "images" WHERE "images"."imageable_id" = 18 AND "images"."imageable_type" = 'Person'
+  [1m[36mFollow Load (0.2ms)[0m  [1mSELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 18 AND "follows"."followable_type" = 'Person'[0m
+  [1m[35mView Load (0.2ms)[0m  SELECT "views".* FROM "views" WHERE "views"."viewable_id" = 18 AND "views"."viewable_type" = 'Person'
+  [1m[36mImage Load (0.2ms)[0m  [1mSELECT "images".* FROM "images" WHERE "images"."imageable_id" = 1 AND "images"."imageable_type" = 'Person'[0m
+  [1m[35mFollow Load (0.2ms)[0m  SELECT "follows".* FROM "follows" WHERE "follows"."followable_id" = 1 AND "follows"."followable_type" = 'Person'
+  [1m[36mView Load (0.2ms)[0m  [1mSELECT "views".* FROM "views" WHERE "views"."viewable_id" = 1 AND "views"."viewable_type" = 'Person'[0m
+  Rendered api/v1/people/index.json.rabl (31.0ms)
+Completed 200 OK in 42ms (Views: 34.0ms | ActiveRecord: 5.2ms)

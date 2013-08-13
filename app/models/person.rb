@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth
+  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id
 
   has_many :alternative_names
   has_many :crews
