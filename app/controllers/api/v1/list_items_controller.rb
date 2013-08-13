@@ -21,7 +21,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
       current_user = User.first
       list = current_user.lists.find params[:list_item][:list_id]
       list_item = list.list_items.find params[:id]
-      if list_item.update_attributes(paramS[:list_item])
+      if list_item.update_attributes(params[:list_item])
         format.json { respond_with list_item }
       else
         format.json { render :json => "Error updating list item.", :status => :unprocessable_entity }
