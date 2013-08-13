@@ -7,6 +7,7 @@ class Api::V1::BaseController < ApplicationController
   before_filter :set_params_user_id
   before_filter :set_approved_false
   before_filter :check_if_destroy
+  before_filter :check_if_update
 
   private
 
@@ -57,13 +58,22 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def check_if_destroy
+    # TODO remove next line
     current_user = User.first
-    if params[:action] == "destroy"
-      if current_user.user_type == "admin"
-      else
+    unless params[:action] == "destroy"
+      unless current_user.user_type == "admin"
         redirect_to root_path, alert: "You must have admin privileges to remove record."
       end
-    else
+    end
+  end
+
+  def check_if_update
+    # TODO remove next line
+    current_user = User.first
+    unless params[:action] == "update"
+      unless ["admin", "moderator"].include?(current_user.user_type)
+        redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
+      end
     end
   end
 
