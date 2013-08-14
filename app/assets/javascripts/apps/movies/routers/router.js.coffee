@@ -1,12 +1,14 @@
 class MoviesApp.Router extends Backbone.Router
 
   routes:
-    "" : "index"
+    "movies/" : "index"
+    "movies/:id" : "show"
 
   initialize: ->
     console.log "MoviesApp router initialized"
 
-  index: ->
-    console.log "router index"
-    @search_form = new MoviesApp.SearchForm()
-    $("body").html @search_form.render().el
+  index:
+    console.log "movies router index"
+
+  show: (id) ->
+    console.log "movies router show #{id}"

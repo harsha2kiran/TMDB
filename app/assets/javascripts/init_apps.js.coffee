@@ -1,2 +1,4 @@
+window.root_path = "http://localhost:3000/"
 $(document).ready ->
-  # window.MoviesApp.initialize()
+  window.DashboardApp.initialize()
+  window.MoviesApp.initialize()

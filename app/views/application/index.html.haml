@@ -1,20 +1,36 @@
-application index
-
-%p.notice
-  - unless notice.blank?
+- unless notice.blank?
+  %p.notice
     = notice
-%p.alert
-  - unless alert.blank?
+- unless alert.blank?
+  %p.alert
     = alert
 
-#user_nav
-  - if user_signed_in?
-    Signed in as #{current_user.email}. Not you?
-    \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
-  - else
-    = link_to "Sign up", new_user_registration_path
-    or
-    \#{link_to "Sign in", new_user_session_path}
+.top-menu
+  .menu-item
+    %a{ href: "#" }
+      Home
+  .menu-item
+    %a{ href: "#movies" }
+      Movies
+  .menu-item
+    %a{ href: "#people" }
+      People
+  #user_nav
+    - if user_signed_in?
+      Signed in as #{current_user.email}. Not you?
+      \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
+    - else
+      = link_to "Sign up", new_user_registration_path
+      or
+      \#{link_to "Sign in", new_user_session_path}
+
+.main
+  .logo
+    %img{ src: "http://placehold.it/350x150", alt: "logo" }
+
+  .content.js-content
+    main content
+
 
 
 

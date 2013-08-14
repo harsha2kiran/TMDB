@@ -1,0 +1,3 @@
+%label
+  Search
+%input{ type: "text", class: "js-dashboard-search" }
