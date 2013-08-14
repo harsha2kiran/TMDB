@@ -1,3 +1,3 @@
 %label
   Search
-%input{ type: "text", class: "js-dashboard-search" }
+%input{ type: "text", class: "js-dashboard-search", placeholder: "Search movies and people" }

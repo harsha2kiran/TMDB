@@ -1,0 +1,15 @@
+.name
+  %span= "Name: "
+  = @person.name
+.biography
+  %span= "Biography: "
+  = @person.biographt
+.birthday
+  %span= "Birthday: "
+  = @person.birthday
+.homepage
+  %span= "Homepage: "
+  = @person.homepage
+.place-of-birth
+  %span= "Place of birth: "
+  = @person.place_of_birth

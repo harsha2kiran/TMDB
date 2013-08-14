@@ -28,7 +28,7 @@ class Movie < ActiveRecord::Base
     using: {tsearch: {dictionary: "english", prefix: true}}
 
   def self.search(term)
-    movies = Movie.movie_search(term)
+    movies = Movie.where(approved: true).movie_search(term)
     movies = movies.uniq
   end
 

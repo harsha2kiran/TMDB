@@ -22,9 +22,23 @@
 //= require backbone-mediator
 //= require underscore.string.min
 //= require_tree ./templates/
+
+//= require apps/people/people_app
+//= require_tree ./apps/people/models/
+//= require_tree ./apps/people/collections/
+//= require_tree ./apps/people/views/
+//= require_tree ./apps/people/routers/
+
+//= require apps/dashboard/dashboard_app
+//= require_tree ./apps/dashboard/models/
+//= require_tree ./apps/dashboard/collections/
+//= require_tree ./apps/dashboard/views/
+//= require_tree ./apps/dashboard/routers/
+
 //= require apps/movies/movies_app
 //= require_tree ./apps/movies/models/
 //= require_tree ./apps/movies/collections/
 //= require_tree ./apps/movies/views/
 //= require_tree ./apps/movies/routers/
+
 //= require_tree .

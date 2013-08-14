@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
     using: {tsearch: {dictionary: "english", prefix: true}}
 
   def self.search(term)
-    people = Person.person_search(term)
+    people = Person.where(approved: true).person_search(term)
     people = people.uniq
   end
 

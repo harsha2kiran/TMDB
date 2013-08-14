@@ -1,0 +1,12 @@
+.title
+  %span= "Title: "
+  = @movie.title
+.tagline
+  %span= "Tagline: "
+  = @movie.tagline
+.overview
+  %span= "Overview"
+  = @movie.overview
+.content-score
+  %span= "Content Score: "
+  = @movie.content_score
