@@ -18,6 +18,15 @@ class Person < ActiveRecord::Base
 
   serialize :locked, ActiveRecord::Coders::Hstore
 
+  include PgSearch
+  pg_search_scope :person_search, :against => [:name, :biography],
+    using: {tsearch: {dictionary: "english", prefix: true}}
+
+  def self.search(term)
+    people = Person.person_search(term)
+    people = people.uniq
+  end
+
   private
 
   def check_original_id

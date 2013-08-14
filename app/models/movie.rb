@@ -23,6 +23,15 @@ class Movie < ActiveRecord::Base
 
   serialize :locked, ActiveRecord::Coders::Hstore
 
+  include PgSearch
+  pg_search_scope :movie_search, :against => [:title, :tagline, :overview],
+    using: {tsearch: {dictionary: "english", prefix: true}}
+
+  def self.search(term)
+    movies = Movie.movie_search(term)
+    movies = movies.uniq
+  end
+
   private
 
   def check_original_id

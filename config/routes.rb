@@ -52,6 +52,7 @@ Movies::Application.routes.draw do
         post "mark" => "approvals#mark"
       end
     end
+    get '/search' => 'search#search', :as => :search
     resources :locks do
       collection do
         post "mark" => "locks#mark"
