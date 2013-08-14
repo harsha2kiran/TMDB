@@ -30,8 +30,6 @@
 //= require_tree ./apps/people/routers/
 
 //= require apps/dashboard/dashboard_app
-//= require_tree ./apps/dashboard/models/
-//= require_tree ./apps/dashboard/collections/
 //= require_tree ./apps/dashboard/views/
 //= require_tree ./apps/dashboard/routers/
 
