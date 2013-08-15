@@ -1,0 +1,10 @@
+%ul#mycarousel.jcarousel-skin-tango
+  - @gallery.each (item) ->
+    - if item.get("image")
+      %li.dashboard-gallery-item
+        %a{ href: "#movies/#{item.get('id')}" }
+          %img{ src: item.get("image").image_file.small.url, width: 150 }
+
+- if current_user.user_type == "admin"
+  %a.js-edit-popular.link{ href: "#dashboard/edit_popular" }
+    Edit Popular

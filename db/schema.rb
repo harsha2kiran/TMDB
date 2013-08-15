@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813152237) do
+ActiveRecord::Schema.define(:version => 20130815101902) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -230,6 +230,7 @@ ActiveRecord::Schema.define(:version => 20130813152237) do
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
     t.integer  "original_id"
+    t.integer  "popular"
   end
 
   create_table "oauth_access_grants", :force => true do |t|

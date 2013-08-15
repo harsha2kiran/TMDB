@@ -31,7 +31,12 @@ Movies::Application.routes.draw do
     resources :movie_keywords
     resources :movie_languages
     resources :movie_metadatas
-    resources :movies
+    resources :movies do
+      collection do
+        get "get_popular" => "movies#get_popular"
+        get "edit_popular" => "movies#edit_popular"
+      end
+    end
     resources :people
     resources :person_social_apps
     resources :production_companies
@@ -46,6 +51,9 @@ Movies::Application.routes.draw do
     # resources :views
     resources :users, :only => [:show] do
       put "toggle_active" => "users#toggle_active"
+      collection do
+        get "get_current_user" => "users#get_current_user"
+      end
     end
     resources :approvals do
       collection do

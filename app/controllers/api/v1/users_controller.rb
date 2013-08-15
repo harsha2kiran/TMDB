@@ -19,6 +19,11 @@ class Api::V1::UsersController < Api::V1::BaseController
     @user = User.where(active: 1).find(params[:id])
   end
 
+  def get_current_user
+    @user = current_user
+    render 'show'
+  end
+
   def toggle_active
     respond_to do |format|
       #TODO remove this line
