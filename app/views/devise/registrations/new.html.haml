@@ -1,0 +1,12 @@
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-signin" }) do |f|
+  %h2.form-signin-heading Sign up
+  = devise_error_messages!
+  %div
+    = f.email_field :email, :autofocus => true, class: "input-block-level", placeholder: "Email"
+  %div
+    = f.password_field :password, class: "input-block-level", placeholder: "Password"
+  %div
+    = f.password_field :password_confirmation, class: "input-block-level", placeholder: "Confirm password"
+  %div= f.submit "Sign up", class: "btn btn-large btn-primary"
+.form-signin
+  = render "devise/shared/links"

@@ -6,15 +6,6 @@
     = alert
 
 .top-menu
-  .menu-item
-    %a{ href: "#" }
-      Home
-  .menu-item
-    %a{ href: "#movies" }
-      Movies
-  .menu-item
-    %a{ href: "#people" }
-      People
   #user_nav
     - if user_signed_in?
       Signed in as #{current_user.email}. Not you?
@@ -33,6 +24,8 @@
 
 .popup-container
   .popup
+
+
 
 -# %form{ method: "post", action: "/api/v1/images", enctype: "multipart/form-data" }
 -#   %input{ type: "file", name: "image[image_file]" }

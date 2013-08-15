@@ -23,7 +23,7 @@ class DashboardApp.Router extends Backbone.Router
 
   edit_popular: ->
     console.log "edit pop"
-    if current_user.user_type == "admin"
+    if current_user && current_user.user_type == "admin"
       self = @
       gallery = new DashboardApp.GalleryCollection()
       gallery.url = "/api/v1/movies/edit_popular"

@@ -20,7 +20,11 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def get_current_user
-    @user = current_user
+    if current_user
+      @user = current_user
+    else
+      @user = []
+    end
     render 'show'
   end
 

@@ -15,6 +15,7 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require hamlcoffee
+//= require ../../../vendor/assets/javascripts/bootstrap
 //= require ejs
 //= require underscore
 //= require jcarousel.min

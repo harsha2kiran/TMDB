@@ -10,5 +10,13 @@
  *
  *= require_self
  *= require_tree .
- *= require_tree ../../../vendor
+ *= require ../../../vendor/assets/stylesheets/jcarousel.css
+ *= require ../../../vendor/assets/stylesheets/bootstrap.css
+ *= require ../../../vendor/assets/stylesheets/bootstrap-responsive.css
  */
+
+body{
+  padding-top: 60px;
+  background-color: #F5F5F5 !important;
+  padding-bottom: 60px;
+}

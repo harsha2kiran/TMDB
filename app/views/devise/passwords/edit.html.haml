@@ -1,0 +1,11 @@
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, class: "form-signin" }) do |f|
+  %h2 Change password
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  %div
+    = f.password_field :password, :autofocus => true, class: "input-block-level", placeholder: "Password"
+  %div
+    = f.password_field :password_confirmation, class: "input-block-level", placeholder: "Confirm password"
+  %div= f.submit "Change password", class: "btn btn-large btn-primary"
+.form-signin
+  = render "devise/shared/links"

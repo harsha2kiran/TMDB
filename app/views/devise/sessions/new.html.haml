@@ -1,0 +1,14 @@
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-signin" }) do |f|
+  %h2.form-signin-heading Sign in
+  = devise_error_messages!
+  %div
+    = f.email_field :email, :autofocus => true, class: "input-block-level", placeholder: "Email"
+  %div
+    = f.password_field :password, class: "input-block-level", placeholder: "Password"
+  - if devise_mapping.rememberable?
+    %label.checkbox
+      = f.check_box :remember_me
+      = "Remember me"
+  %div= f.submit "Sign in", class: "btn btn-large btn-primary"
+.form-signin
+  = render "devise/shared/links"

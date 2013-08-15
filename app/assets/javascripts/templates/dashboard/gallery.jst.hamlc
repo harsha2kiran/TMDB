@@ -5,6 +5,6 @@
         %a{ href: "#movies/#{item.get('id')}" }
           %img{ src: item.get("image").image_file.small.url, width: 150 }
 
-- if current_user.user_type == "admin"
+- if current_user && current_user.user_type == "admin"
   %a.js-edit-popular.link{ href: "#dashboard/edit_popular" }
     Edit Popular

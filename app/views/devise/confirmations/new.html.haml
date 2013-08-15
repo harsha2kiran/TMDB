@@ -1,0 +1,8 @@
+= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, class: "form-signin" }) do |f|
+  %h2 Resend mail
+  = devise_error_messages!
+  %div
+    = f.email_field :email, :autofocus => true, class: "input-block-level", placeholder: "Email"
+  %div= f.submit "Resend confirmation instructions", class: "btn btn-large btn-primary"
+.form-signin
+  = render "devise/shared/links"

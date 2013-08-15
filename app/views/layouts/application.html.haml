@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %title Movies
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  %body{:id => body_id}
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand{:href => "/"} Movies
+          .nav-collapse.collapse
+            %ul.nav
+              %li.active
+                %a{:href => "/#"} Home
+              %li
+                %a{:href => "/#movies"} Movies
+              %li
+                %a{:href => "/#people"} People
+              - if user_signed_in?
+                %li.login-info
+                  Signed in as #{current_user.email}. Not you?
+                %li
+                  \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
+              - else
+                %li
+                  = link_to "Sign up", new_user_registration_path
+                %li.login-info
+                  or
+                %li
+                  \#{link_to "Sign in", new_user_session_path}
+    = yield
