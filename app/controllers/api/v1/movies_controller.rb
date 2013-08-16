@@ -7,20 +7,20 @@ class Api::V1::MoviesController < Api::V1::BaseController
   def index
     if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
       @movies = Movie.all
-      @all = false
+      @all = true
     else
       @movies = Movie.where(approved: true)
-      @all = true
+      @all = false
     end
   end
 
   def show
     if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
       @movie = Movie.find params[:id]
-      @all = false
+      @all = true
     else
       @movie = Movie.where(approved: true).find(params[:id])
-      @all = true
+      @all = false
     end
   end
 

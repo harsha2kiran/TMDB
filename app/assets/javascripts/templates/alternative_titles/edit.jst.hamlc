@@ -1,0 +1,17 @@
+.alternative-titles.span12.box
+  %p
+    Alternative Titles
+  - $.each @alternative_titles, (i, title) ->
+    .span12
+      .span3
+        = title.alternative_title
+      .span3
+        = title.language.language
+      .span2
+        %input.js-alternative-title-remove{ type: "button", value: "Remove", data: { id: title.id } }
+  .span12
+    %p
+      Add new alternative title
+    %input.js-new-alternative-title{ type: "text", placeholder: "Title" }
+    %input.js-new-alternative-title-language{ type: "text", placeholder: "Language" }
+    %input.js-new-alternative-title-save{ type: "button", value: "Save" }

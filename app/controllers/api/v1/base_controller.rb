@@ -47,8 +47,13 @@ class Api::V1::BaseController < ApplicationController
 
   def set_approved_false
     # add approved = false value to record on create if column exist
-    if params[:action] == "create" && @attribute_names.include?("approved") && current_user.user_type != "admin"
-      params["#{@controller.singularize.to_sym}"][:approved] = false
+    if params[:action] == "create"
+      #TODO uncomment last part of next line
+      if @attribute_names.include?("approved") # && current_user.user_type != "admin"
+        params["#{@controller.singularize.to_sym}"][:approved] = false
+      else
+        params["#{@controller.singularize.to_sym}"][:approved] = true
+      end
     end
   end
 

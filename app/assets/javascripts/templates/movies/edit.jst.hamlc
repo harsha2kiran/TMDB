@@ -29,24 +29,6 @@
   %p.span12
     %input.js-update{ type: "button", value: "Update" }
 
-.alternative-titles.span12.box
-  %p
-    Alternative Titles
-  - $.each @movie.alternative_titles, (i, title) ->
-    .span3
-      = title.alternative_title
-    .span3
-      = title.language.language
-    .span2
-      %input.js-alternative-title-remove{ type: "button", value: "Remove" }
-  .span12
-    %p
-      Add new alternative title
-    %input.js-new-alternative-title{ type: "text", placeholder: "Title" }
-    %input.js-new-alternative-title-language{ type: "text", placeholder: "Language" }
-    %input.js-new-alternative-title-save{ type: "button", value: "Save" }
-
-
 .movie-metadatas.span12.box
   %p
     Metadata

@@ -22,5 +22,5 @@ class DashboardApp.SearchForm extends Backbone.View
           app = "movies"
         else if ui.item.type == "Person"
           app = "people"
-        window.location = root_path + "#" + app + "/" + ui.item.id
+        window.location = root_path + "/#" + app + "/" + ui.item.id
     this

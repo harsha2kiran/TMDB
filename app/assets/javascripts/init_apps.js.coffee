@@ -1,4 +1,5 @@
-window.root_path = "http://localhost:3000/"
+window.root_path = "http://localhost:3000"
+window.api_version = "/api/v1/"
 $(document).ready ->
   $.ajax "/api/v1/users/get_current_user",
     success: (data) ->
