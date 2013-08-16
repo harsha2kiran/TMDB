@@ -10,7 +10,7 @@ if @all
   node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts) }
   node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres) }
   node(:movie_keywords) { |movie| partial("api/v1/movie_keywords/index", :object => movie.movie_keywords) }
-  node(:movie_language) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages) }
+  node(:movie_languages) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages) }
   node(:movie_metadatas) { |movie| partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas) }
   node(:revenue_countries) { |movie| partial("api/v1/revenue_countries/index", :object => movie.revenue_countries) }
   node(:tags) { |movie| partial("api/v1/tags/index", :object => movie.tags ) }
@@ -27,7 +27,7 @@ else
   node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts.where(approved: true)) }
   node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres.where(approved: true)) }
   node(:movie_keywords) { |movie| partial("api/v1/movie_keywords/index", :object => movie.movie_keywords.where(approved: true)) }
-  node(:movie_language) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages.where(approved: true)) }
+  node(:movie_languages) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages.where(approved: true)) }
   node(:movie_metadatas) { |movie| partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.where(approved: true)) }
   node(:revenue_countries) { |movie| partial("api/v1/revenue_countries/index", :object => movie.revenue_countries.where(approved: true)) }
   node(:tags) { |movie| partial("api/v1/tags/index", :object => movie.tags.where(approved: true) ) }

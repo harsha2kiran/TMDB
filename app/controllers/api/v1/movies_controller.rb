@@ -5,7 +5,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   respond_to :json
 
   def index
-    if ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
       @movies = Movie.all
       @all = false
     else
@@ -15,7 +15,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def show
-    if ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
       @movie = Movie.find params[:id]
       @all = false
     else
@@ -25,7 +25,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def edit_popular
-    if current_user.user_type == "admin"
+    if current_user && current_user.user_type == "admin"
       @movies = Movie.select("id, title, popular").where(approved: true).includes(:images).order("popular DESC")
     else
       @movies = []

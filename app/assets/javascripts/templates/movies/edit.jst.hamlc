@@ -1,0 +1,242 @@
+- window.movie = @movie
+
+%a{ href: "#/movies/#{@movie.id}", class: "span12" }
+  Show
+
+- $.each @movie.images, (i, image) ->
+  - if image.is_main_image == true
+    .span4
+      %img{ src: image.image_file.small.url }
+      = image.title
+
+.movie.span12.box
+  %h2.title.span12
+    %p
+      Title
+    %input.js-title{ type: "text", value: @movie.title, placeholder: "Title" }
+  %h3.tagline.lead.span12
+    %p
+      Tagline
+    %input.js-tagline{ type: "text", value: @movie.tagline, placeholder: "Tagline" }
+  %p.overview.span12
+    %p
+      Overview
+    %input.js-overview{ type: "text", value: @movie.overview, placeholder: "Overview" }
+  %p.content-score.span12
+    %p
+      Content Score
+    %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score" }
+  %p.span12
+    %input.js-update{ type: "button", value: "Update" }
+
+.alternative-titles.span12.box
+  %p
+    Alternative Titles
+  - $.each @movie.alternative_titles, (i, title) ->
+    .span3
+      = title.alternative_title
+    .span3
+      = title.language.language
+    .span2
+      %input.js-alternative-title-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new alternative title
+    %input.js-new-alternative-title{ type: "text", placeholder: "Title" }
+    %input.js-new-alternative-title-language{ type: "text", placeholder: "Language" }
+    %input.js-new-alternative-title-save{ type: "button", value: "Save" }
+
+
+.movie-metadatas.span12.box
+  %p
+    Metadata
+  - if @movie.movie_metadatas.length > 0
+    - metadata = @movie.movie_metadatas[0]
+  - else
+    - metadata = { budget: "", homepage: "", imdb_id: "", runtime: "", status: "" }
+  .span5
+    Budget
+  .span5
+    %input.js-metadata-budget{ type: "text", value: metadata.budget, placeholder: "Budget" }
+  .span5
+    Homepage
+  .span5
+    %input.js-metadata-homepage{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
+  .span5
+    IMDB id
+  .span5
+    %input.js-metadata-imdb-id{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+  .span5
+    Runtime
+  .span5
+    %input.js-metadata-runtime{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
+  .span5
+    Status
+  .span5
+    %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+  .span5
+    %input.js-metadata-update{ type: "button", value: "Update metadata" }
+
+.crews.span12.box
+  %p
+    Crew
+  - $.each @movie.crews, (i, crew) ->
+    .span4
+      = crew.job
+    .span4
+      = crew.person.name
+    .span2
+      %input.js-crew-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new crew member
+    %input.js-new-crew{ type: "text", placeholder: "Search people" }
+
+.casts.span12.box
+  %p
+    Cast
+  - $.each @movie.casts, (i, cast) ->
+    .span4
+      = cast.character
+    .span4
+      = cast.person.name
+  .span12
+    %p
+      Add new cast member
+    %input.js-new-cast{ type: "text", placeholder: "Search people" }
+
+.images.span12.box
+  %p
+    Images
+  - $.each @movie.images, (i, image) ->
+    .span4
+      %img{ src: image.image_file.small.url }
+      = image.title
+  .span12
+    new image form
+
+.videos.span12.box
+  %p
+    Videos
+    - $.each @movie.videos, (i, video) ->
+      .span12
+        .span2
+          %video{ width: 100, height: 100, controls: "" }
+            %source{ src: video.link, type: "video/mp4" }
+          = video.title
+  .span12
+    new video form
+
+.movie-genres.span12.box
+  %p
+    Genres
+  - $.each @movie.movie_genres, (i, genre) ->
+    .span12
+      .span2
+        = genre.genre.genre
+      .span2
+        %input.js-genre-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new genre
+    %input.js-new-genre{ type: "text", placeholder: "Search genres" }
+
+.movie-keywords.span12.box
+  %p
+    Keywords
+  - $.each @movie.movie_keywords, (i, keyword) ->
+    .span12
+      .span2
+        = keyword.keyword.keyword
+      .span2
+        %input.js-keyword-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new keyword
+    %input.js-new-keyword{ type: "text", placeholder: "Search keywords" }
+
+.movie-languages.span12.box
+  %p
+    Languages
+  - $.each @movie.movie_languages, (i, language) ->
+    .span12
+      .span2
+        = language.language.language
+      .span2
+        %input.js-language-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new language
+    %input.js-new-language{ type: "text", placeholder: "Search languages" }
+
+.revenue-countries.span12.box
+  %p
+    Revenue countries
+  - $.each @movie.revenue_countries, (i, country) ->
+    .span12
+      .span2
+        = country.country.country
+      .span2
+        %input.js-revenue-country-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new revenue country
+    %input.js-new-revenue-country{ type: "text", placeholder: "Search countries" }
+
+.production-companies.span12.box
+  %p
+    Production companies
+  - $.each @movie.production_companies, (i, company) ->
+    .span12
+      .span2
+        = company.company.company
+      .span2
+        %input.js-production-company-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new production company
+    %input.js-new-production-company{ type: "text", placeholder: "Search companies" }
+
+.tags.span12.box
+  %p
+    Tagged people
+  - $.each @movie.tags, (i, tag) ->
+    .span12
+      .span2
+        = tag.person.name
+      .span2
+        %input.js-tag-remove{ type: "button", value: "Remove" }
+  .span12
+    %p
+      Add new tagged person
+    %input.js-new-tag{ type: "text", placeholder: "Search people" }
+
+.releases.span12.box
+  - if @movie.releases.lenght > 0
+    - release = @movie.releases[0]
+  - else
+    - release = { release_date: "", country: "", confirmed: "", certification: "", primary: ""}
+  %p
+    Releases
+  %p
+    Release date
+  .span12
+    %input.js-release-release-date{ type: "text", value: release.release_date, placeholder: "Release date" }
+  %p
+    Country
+  .span12
+    %input.js-release-country{ type: "text", value: release.country.country, placeholder: "Country" }
+  %p
+    Confirmed
+  .span12
+    %input.js-release-confirmed{ type: "text", value: release.confirmed, placeholder: "Confirmed" }
+  %p
+    Certification
+  .span12
+    %input.js-release-certification{ type: "text", value: release.certification, placeholder: "Certification" }
+  %p
+    Primary
+  .span12
+    %input.js-release-primary{ type: "text", value: release.primary, placeholder: "Primary" }
+  %p.span12
+    %input.js-update{ type: "button", value: "Update" }

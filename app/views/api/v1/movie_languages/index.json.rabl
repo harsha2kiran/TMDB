@@ -1,5 +1,5 @@
-object @movie_language
+object @movie_languages
 attributes :id, :approved, :language_id, :movie_id, :created_at, :updated_at
-node(:keyword){ |movie_language|
+node(:language){ |movie_language|
   Language.find movie_language.language_id
 }

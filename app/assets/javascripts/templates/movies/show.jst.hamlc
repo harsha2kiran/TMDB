@@ -1,12 +1,169 @@
-.title
-  %span= "Title: "
-  = @movie.title
-.tagline
-  %span= "Tagline: "
-  = @movie.tagline
-.overview
-  %span= "Overview"
-  = @movie.overview
-.content-score
-  %span= "Content Score: "
-  = @movie.content_score
+- window.movie = @movie
+
+%a{ href: "#/movies/#{@movie.id}/edit", class: "span12" }
+  Edit
+
+- $.each @movie.images, (i, image) ->
+  - if image.is_main_image == true
+    .span4
+      %img{ src: image.image_file.small.url }
+      = image.title
+
+.movie.span12.box
+  %h2.title.span12
+    = @movie.title
+  %h3.tagline.lead.span12
+    = @movie.tagline
+  %p.overview.span12
+    %span= "Overview"
+    = @movie.overview
+  %p.content-score.span12
+    %span= "Content Score: "
+    = @movie.content_score
+
+- if @movie.alternative_titles.length > 0
+  .alternative-titles.span12.box
+    %p
+      Alternative Titles
+    - $.each @movie.alternative_titles, (i, title) ->
+      .span4
+        = title.alternative_title
+      .span4
+        = title.language.language
+
+- if @movie.movie_metadatas
+  .movie-metadatas.span12.box
+    %p
+      Metadata
+    - $.each @movie.movie_metadatas, (i, metadata) ->
+      .span5
+        Budget
+      .span5
+        = metadata.budget
+      .span5
+        Homepage
+      .span5
+        = metadata.homepage
+      .span5
+        IMDB id
+      .span5
+        = metadata.imdb_id
+      .span5
+        Runtime
+      .span5
+        = metadata.runtime
+      .span5
+        Status
+      .span5
+        = metadata.status.status
+
+- if @movie.crews.length > 0
+  .crews.span12.box
+    %p
+      Crew
+    - $.each @movie.crews, (i, crew) ->
+      .span4
+        = crew.job
+      .span4
+        = crew.person.name
+
+- if @movie.casts.length > 0
+  .casts.span12.box
+    %p
+      Cast
+    - $.each @movie.casts, (i, cast) ->
+      .span4
+        = cast.character
+      .span4
+        = cast.person.name
+
+- if @movie.images.length > 0
+  .images.span12.box
+    - $.each @movie.images, (i, image) ->
+      - if image.is_main_image == false
+        .span4
+          %img{ src: image.image_file.small.url }
+          = image.title
+
+- if @movie.videos.length > 0
+  .videos.span12.box
+    - $.each @movie.videos, (i, video) ->
+      .span2
+        %video{ width: 100, height: 100, controls: "" }
+          %source{ src: video.link, type: "video/mp4" }
+        = video.title
+
+- if @movie.movie_genres
+  .movie-genres.span12.box
+    %p
+      Genres
+    - $.each @movie.movie_genres, (i, genre) ->
+      .span2
+        = genre.genre.genre
+
+- if @movie.movie_keywords
+  .movie-keywords.span12.box
+    %p
+      Keywords
+    - $.each @movie.movie_keywords, (i, keyword) ->
+      .span2
+        = keyword.keyword.keyword
+
+- if @movie.movie_languages
+  .movie-languages.span12.box
+    %p
+      Languages
+    - $.each @movie.movie_languages, (i, language) ->
+      .span2
+        = language.language.language
+
+- if @movie.revenue_countries
+  .revenue-countries.span12.box
+    %p
+      Revenue countries
+    - $.each @movie.revenue_countries, (i, country) ->
+      .span2
+        = country.country.country
+
+- if @movie.production_companies
+  .production-companies.span12.box
+    %p
+      Production companies
+    - $.each @movie.production_companies, (i, company) ->
+      .span2
+        = company.company.company
+
+- if @movie.tags
+  .tags.span12.box
+    %p
+      Tagged people
+    - $.each @movie.tags, (i, tag) ->
+      .span2
+        = tag.person.name
+
+- if @movie.releases
+  .releases.span12.box
+    %p
+      Releases
+    - $.each @movie.releases, (i, release) ->
+      %p
+        Release date
+      .span12
+        = release.release_date
+      %p
+        Country
+      .span12
+        = release.country.country
+      %p
+        Confirmed
+      .span12
+        = release.confirmed
+      %p
+        Certification
+      .span12
+        = release.certification
+      %p
+        Primary
+      .span12
+        = release.primary
+
