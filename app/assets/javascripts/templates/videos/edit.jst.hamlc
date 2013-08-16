@@ -1,0 +1,24 @@
+.videos.span12.box
+  %p
+    Videos
+  - $.each @videos, (i, video) ->
+    .span12.video
+      .span2
+        %video{ width: 100, height: 100, controls: "" }
+          %source{ src: video.link, type: "video/mp4" }
+      .span2
+        = video.priority
+      .span2
+        = video.quality
+      .span2
+        = video.video_type
+      .span2
+        %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
+  .span12
+    %p
+      Add new video
+    %input.js-new-video-link{ type: "text", placeholder: "Link" }
+    %input.js-new-video-priority{ type: "text", placeholder: "Priority" }
+    %input.js-new-video-quality{ type: "text", placeholder: "Quality" }
+    %input.js-new-video-type{ type: "text", placeholder: "Video type" }
+    %input.js-new-video-save{ type: "button", value: "Save" }

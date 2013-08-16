@@ -12,6 +12,18 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
     edit_metadata = $(@el)
     movie_metadatas = @options.movie_metadatas
     edit_metadata.html @template(movie_metadatas: movie_metadatas)
+
+    self = @
+    $(@el).find(".js-metadata-status").autocomplete
+      source: api_version + "statuses/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-metadata-status-id").val(ui.item.id)
+
     this
 
   update: (e) ->
@@ -20,7 +32,7 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
     homepage = $container.find(".js-metadata-homepage").val()
     imdb_id = $container.find(".js-metadata-imdb-id").val()
     runtime = $container.find(".js-metadata-runtime").val()
-    status = $container.find(".js-metadata-status").val()
+    status = $container.find(".js-metadata-status-id").val()
     movie_metadata = new MoviesApp.MovieMetadata()
     movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status } }),
       success: ->

@@ -21,7 +21,11 @@ Movies::Application.routes.draw do
         get "filter" => "follows#filter"
       end
     end
-    resources :genres
+    resources :genres do
+      collection do
+        get "search" => "genres#search"
+      end
+    end
     resources :images
     resources :keywords
     resources :languages
@@ -37,14 +41,22 @@ Movies::Application.routes.draw do
         get "edit_popular" => "movies#edit_popular"
       end
     end
-    resources :people
+    resources :people do
+      collection do
+        get "search" => "people#search"
+      end
+    end
     resources :person_social_apps
     resources :production_companies
     resources :releases
     resources :reports
     resources :revenue_countries
     resources :social_apps
-    resources :statuses
+    resources :statuses do
+      collection do
+        get "search" => "statuses#search"
+      end
+    end
     resources :tags
     # resources :user_badges
     resources :videos

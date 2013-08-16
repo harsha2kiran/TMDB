@@ -1,0 +1,26 @@
+.images.span12.box
+  %p
+    Images
+  - $.each @images, (i, image) ->
+    .span12.image
+      .span2
+        %img{ src: image.image_file.small.url, width: 100 }
+      .span2
+        = image.title
+      .span2
+        - if image.is_main_image
+          = "Main image"
+      .span2
+        %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
+  .span12
+    %p
+      Add new image
+    %form{ action: api_version + "images/", class: "js-new-image-form", method: "post" }
+      %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
+      %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+      %select.js-new-image-main{ name: "image[is_main_image]" }
+        %option{ value: "1" }= "Yes"
+        %option{ value: "0" }= "No"
+      %input.js-new-image-update{ type: "button", value: "Save" }
+    .span12.js-upload-status
+

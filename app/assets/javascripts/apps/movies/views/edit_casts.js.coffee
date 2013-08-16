@@ -13,12 +13,24 @@ class MoviesApp.EditCasts extends Backbone.View
     edit = $(@el)
     casts = @options.casts
     edit.html @template(casts: casts)
+
+    self = @
+    $(@el).find(".js-new-cast-person").autocomplete
+      source: api_version + "people/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-cast-person-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     self = @
     character = $(@el).find(".js-new-cast-character").val()
-    person_id = $(@el).find(".js-new-cast-person").val()
+    person_id = $(@el).find(".js-new-cast-person-id").val()
     cast = new MoviesApp.Cast()
     cast.save ({ cast: { character: character, person_id: person_id, movie_id: movie_id } }),
       success: ->

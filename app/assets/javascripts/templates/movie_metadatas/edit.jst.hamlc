@@ -25,5 +25,6 @@
     Status
   .span5
     %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+    %input.js-metadata-status-id{ type: "hidden", value: metadata.status.id }
   .span5
     %input.js-metadata-update{ type: "button", value: "Update metadata" }

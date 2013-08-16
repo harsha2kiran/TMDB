@@ -13,11 +13,23 @@ class MoviesApp.EditMovieGenres extends Backbone.View
     edit = $(@el)
     movie_genres = @options.movie_genres
     edit.html @template(movie_genres: movie_genres)
+
+    self = @
+    $(@el).find(".js-new-genre").autocomplete
+      source: api_version + "genres/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-genre-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     self = @
-    genre_id = $(@el).find(".js-new-genre").val()
+    genre_id = $(@el).find(".js-new-genre-id").val()
     movie_genre = new MoviesApp.MovieGenre()
     movie_genre.save ({ movie_genre: { genre_id: genre_id, movie_id: movie_id } }),
       success: ->

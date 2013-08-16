@@ -12,7 +12,6 @@ class MoviesApp.EditReleases extends Backbone.View
   render: ->
     edit_release = $(@el)
     releases = @options.releases
-    console.log releases
     edit_release.html @template(releases: releases)
     this
 

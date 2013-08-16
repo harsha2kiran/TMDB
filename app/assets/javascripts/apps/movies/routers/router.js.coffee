@@ -27,10 +27,16 @@ class MoviesApp.Router extends Backbone.Router
         movie = movie.get("movie")
 
         @edit_view = new MoviesApp.Edit(movie: movie)
-        $(".js-content").append @edit_view.render().el
+        $(".js-content").html @edit_view.render().el
 
         @edit_movie_metadata_view = new MoviesApp.EditMovieMetadatas(movie_metadatas: movie.movie_metadatas)
         $(".js-content").append @edit_movie_metadata_view.render().el
+
+        @edit_videos_view = new MoviesApp.EditVideos(videos: movie.videos)
+        $(".js-content").append @edit_videos_view.render().el
+
+        @edit_images_view = new MoviesApp.EditImages(images: movie.images)
+        $(".js-content").append @edit_images_view.render().el
 
         @edit_movie_genres_view = new MoviesApp.EditMovieGenres(movie_genres: movie.movie_genres)
         $(".js-content").append @edit_movie_genres_view.render().el

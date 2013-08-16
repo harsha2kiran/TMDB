@@ -12,4 +12,5 @@
     %p
       Add new genre
     %input.js-new-genre{ type: "text", placeholder: "Search genre" }
+    %input.js-new-genre-id{ type: "hidden" }
     %input.js-new-genre-save{ type: "button", value: "Save" }
