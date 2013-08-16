@@ -1,0 +1,36 @@
+.releases.span12.box
+  %p
+    Release
+  - $.each @releases, (i, release) ->
+    .span12.release
+      %p
+        Release date
+      .span12
+        = release.release_date
+      %p
+        Country
+      .span12
+        = release.country.country
+      %p
+        Confirmed
+      .span12
+        = release.confirmed
+      %p
+        Certification
+      .span12
+        = release.certification
+      %p
+        Primary
+      .span12
+        = release.primary
+      .span12
+        %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
+  .span12
+    %p
+      Add new release
+    %input.js-new-release-release-date{ type: "text", placeholder: "Release date" }
+    %input.js-new-release-country{ type: "text", placeholder: "Search country" }
+    %input.js-new-release-confirmed{ type: "text", placeholder: "Confirmed" }
+    %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
+    %input.js-new-release-primary{ type: "text", placeholder: "Primary?" }
+    %input.js-new-release-save{ type: "button", value: "Save" }

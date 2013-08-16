@@ -34,4 +34,4 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Alternative title removed..").show().fadeOut(10000)
+        $(".notifications").html("Alternative title removed.").show().fadeOut(10000)

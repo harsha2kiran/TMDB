@@ -1,0 +1,15 @@
+.movie-keywords.span12.box
+  %p
+    Keywords
+  - if @movie_keywords
+    - $.each @movie_keywords, (i, keyword) ->
+      .span12
+        .span4
+          = keyword.keyword.keyword
+        .span2
+          %input.js-keyword-remove{ type: "button", value: "Remove", data: { id: keyword.id } }
+  .span12
+    %p
+      Add new keyword
+    %input.js-new-keyword{ type: "text", placeholder: "Search keyword" }
+    %input.js-new-keyword-save{ type: "button", value: "Save" }

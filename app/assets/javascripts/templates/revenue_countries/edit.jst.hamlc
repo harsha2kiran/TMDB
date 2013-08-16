@@ -1,0 +1,15 @@
+.revenue-countries.span12.box
+  %p
+    Revenue countries
+  - if @revenue_countries
+    - $.each @revenue_countries, (i, country) ->
+      .span12
+        .span4
+          = country.country.country
+        .span2
+          %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
+  .span12
+    %p
+      Add new revenue country
+    %input.js-new-revenue-country{ type: "text", placeholder: "Search country" }
+    %input.js-new-revenue-country-save{ type: "button", value: "Save" }

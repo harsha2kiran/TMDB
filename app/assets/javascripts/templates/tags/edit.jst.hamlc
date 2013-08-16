@@ -1,0 +1,14 @@
+.tags.span12.box
+  %p
+    tag
+  - $.each @tags, (i, tag) ->
+    .span12
+      .span4
+        = tag.person.name
+      .span2
+        %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
+  .span12
+    %p
+      Add new tag member
+    %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
+    %input.js-new-tag-save{ type: "button", value: "Save" }

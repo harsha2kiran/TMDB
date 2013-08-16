@@ -1,0 +1,17 @@
+.crews.span12.box
+  %p
+    Crew
+  - $.each @crews, (i, crew) ->
+    .span12
+      .span4
+        = crew.job
+      .span4
+        = crew.person.name
+      .span2
+        %input.js-crew-remove{ type: "button", value: "Remove", data: { id: crew.id } }
+  .span12
+    %p
+      Add new crew member
+    %input.js-new-crew-job{ type: "text", placeholder: "Job" }
+    %input.js-new-crew-person{ type: "text", placeholder: "Search people" }
+    %input.js-new-crew-save{ type: "button", value: "Save" }

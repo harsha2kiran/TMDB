@@ -1,0 +1,15 @@
+.production-companies.span12.box
+  %p
+    Production companies
+  - if @production_companies
+    - $.each @production_companies, (i, company) ->
+      .span12
+        .span4
+          = company.company.company
+        .span2
+          %input.js-production-company-remove{ type: "button", value: "Remove", data: { id: company.id } }
+  .span12
+    %p
+      Add new production company
+    %input.js-new-production-company{ type: "text", placeholder: "Search company" }
+    %input.js-new-production-company-save{ type: "button", value: "Save" }

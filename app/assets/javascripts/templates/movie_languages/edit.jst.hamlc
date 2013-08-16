@@ -1,0 +1,15 @@
+.movie-languages.span12.box
+  %p
+    Languages
+  - if @movie_languages
+    - $.each @movie_languages, (i, language) ->
+      .span12
+        .span4
+          = language.language.language
+        .span2
+          %input.js-language-remove{ type: "button", value: "Remove", data: { id: language.id } }
+  .span12
+    %p
+      Add new language
+    %input.js-new-language{ type: "text", placeholder: "Search language" }
+    %input.js-new-language-save{ type: "button", value: "Save" }

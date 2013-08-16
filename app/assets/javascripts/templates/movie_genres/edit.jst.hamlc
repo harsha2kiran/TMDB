@@ -1,0 +1,15 @@
+.movie-genres.span12.box
+  %p
+    Genres
+  - if @movie_genres
+    - $.each @movie_genres, (i, genre) ->
+      .span12
+        .span4
+          = genre.genre.genre
+        .span2
+          %input.js-genre-remove{ type: "button", value: "Remove", data: { id: genre.id } }
+  .span12
+    %p
+      Add new genre
+    %input.js-new-genre{ type: "text", placeholder: "Search genre" }
+    %input.js-new-genre-save{ type: "button", value: "Save" }

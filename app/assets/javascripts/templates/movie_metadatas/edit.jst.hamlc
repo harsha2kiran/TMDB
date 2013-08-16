@@ -1,0 +1,29 @@
+.movie-metadatas.span12.box
+  %p
+    Metadata
+  - if @movie_metadatas.length > 0
+    - metadata = @movie_metadatas[0]
+  - else
+    - metadata = { budget: "", homepage: "", imdb_id: "", runtime: "", status: "" }
+  .span5
+    Budget
+  .span5
+    %input.js-metadata-budget{ type: "text", value: metadata.budget, placeholder: "Budget" }
+  .span5
+    Homepage
+  .span5
+    %input.js-metadata-homepage{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
+  .span5
+    IMDB id
+  .span5
+    %input.js-metadata-imdb-id{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+  .span5
+    Runtime
+  .span5
+    %input.js-metadata-runtime{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
+  .span5
+    Status
+  .span5
+    %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+  .span5
+    %input.js-metadata-update{ type: "button", value: "Update metadata" }
