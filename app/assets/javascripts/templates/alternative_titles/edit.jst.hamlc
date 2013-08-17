@@ -14,4 +14,5 @@
       Add new alternative title
     %input.js-new-alternative-title{ type: "text", placeholder: "Title" }
     %input.js-new-alternative-title-language{ type: "text", placeholder: "Language" }
+    %input.js-new-alternative-title-language-id{ type: "hidden" }
     %input.js-new-alternative-title-save{ type: "button", value: "Save" }

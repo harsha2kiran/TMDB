@@ -6,10 +6,14 @@
       .span12
         .span4
           = country.country.country
+        .span4
+          = country.revenue
         .span2
           %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
   .span12
     %p
       Add new revenue country
     %input.js-new-revenue-country{ type: "text", placeholder: "Search country" }
+    %input.js-new-revenue-country-id{ type: "hidden" }
+    %input.js-new-revenue{ type: "text", placeholder: "Revenue" }
     %input.js-new-revenue-country-save{ type: "button", value: "Save" }

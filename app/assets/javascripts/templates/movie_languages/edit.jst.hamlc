@@ -12,4 +12,5 @@
     %p
       Add new language
     %input.js-new-language{ type: "text", placeholder: "Search language" }
+    %input.js-new-language-id{ type: "hidden" }
     %input.js-new-language-save{ type: "button", value: "Save" }

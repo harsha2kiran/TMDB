@@ -13,16 +13,30 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
     edit = $(@el)
     revenue_countries = @options.revenue_countries
     edit.html @template(revenue_countries: revenue_countries)
+
+    self = @
+    $(@el).find(".js-new-revenue-country").autocomplete
+      source: api_version + "countries/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-revenue-country-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     self = @
-    country_id = $(@el).find(".js-new-revenue-country").val()
+    country_id = $(@el).find(".js-new-revenue-country-id").val()
+    revenue = $(@el).find(".js-new-revenue").val()
     revenue_country = new MoviesApp.RevenueCountry()
-    revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id } }),
+    revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue } }),
       success: ->
         $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(10000)
         $(self.el).find(".js-new-revenue-country").val("")
+        $(self.el).find(".js-new-revenue").val("")
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

@@ -13,11 +13,23 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
     edit = $(@el)
     movie_languages = @options.movie_languages
     edit.html @template(movie_languages: movie_languages)
+
+    self = @
+    $(@el).find(".js-new-language").autocomplete
+      source: api_version + "languages/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-language-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     self = @
-    language_id = $(@el).find(".js-new-language").val()
+    language_id = $(@el).find(".js-new-language-id").val()
     movie_language = new MoviesApp.MovieLanguage()
     movie_language.save ({ movie_language: { language_id: language_id, movie_id: movie_id } }),
       success: ->

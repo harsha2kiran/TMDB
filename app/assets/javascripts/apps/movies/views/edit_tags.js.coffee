@@ -13,12 +13,24 @@ class MoviesApp.EditTags extends Backbone.View
     edit = $(@el)
     tags = @options.tags
     edit.html @template(tags: tags)
+
+    self = @
+    $(@el).find(".js-new-tag-person").autocomplete
+      source: api_version + "people/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-tag-person-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     console.log "create"
     self = @
-    person_id = $(@el).find(".js-new-tag-person").val()
+    person_id = $(@el).find(".js-new-tag-person-id").val()
     tag = new MoviesApp.Tag()
     tag.save ({ tag: { person_id: person_id, taggable_id: movie_id, taggable_type: "Movie" } }),
       success: ->

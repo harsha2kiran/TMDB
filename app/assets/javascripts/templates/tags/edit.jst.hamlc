@@ -11,4 +11,5 @@
     %p
       Add new tag member
     %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
+    %input.js-new-tag-person-id{ type: "hidden" }
     %input.js-new-tag-save{ type: "button", value: "Save" }

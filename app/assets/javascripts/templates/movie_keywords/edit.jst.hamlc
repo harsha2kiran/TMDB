@@ -12,4 +12,5 @@
     %p
       Add new keyword
     %input.js-new-keyword{ type: "text", placeholder: "Search keyword" }
+    %input.js-new-keyword-id{ type: "hidden" }
     %input.js-new-keyword-save{ type: "button", value: "Save" }

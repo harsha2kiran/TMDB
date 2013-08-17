@@ -12,4 +12,5 @@
     %p
       Add new production company
     %input.js-new-production-company{ type: "text", placeholder: "Search company" }
+    %input.js-new-production-company-id{ type: "hidden" }
     %input.js-new-production-company-save{ type: "button", value: "Save" }

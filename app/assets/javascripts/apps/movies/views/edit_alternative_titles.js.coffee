@@ -13,13 +13,25 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
     edit = $(@el)
     alternative_titles = @options.alternative_titles
     edit.html @template(alternative_titles: alternative_titles)
+
+    self = @
+    $(@el).find(".js-new-alternative-title-language").autocomplete
+      source: api_version + "languages/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-alternative-title-language-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     console.log "create"
     self = @
     title = $(@el).find(".js-new-alternative-title").val()
-    language_id = $(@el).find(".js-new-alternative-title-language").val()
+    language_id = $(@el).find(".js-new-alternative-title-language-id").val()
     alternative_title = new MoviesApp.AlternativeTitle()
     alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id } }),
       success: ->

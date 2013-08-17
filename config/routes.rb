@@ -14,8 +14,17 @@ Movies::Application.routes.draw do
     resources :badges
     resources :casts
     resources :crews
-    resources :companies
-    resources :countries
+    resources :companies do
+      collection do
+        get "search" => "companies#search"
+      end
+    end
+
+    resources :countries do
+      collection do
+        get "search" => "countries#search"
+      end
+    end
     resources :follows do
       collection do
         get "filter" => "follows#filter"
@@ -27,8 +36,16 @@ Movies::Application.routes.draw do
       end
     end
     resources :images
-    resources :keywords
-    resources :languages
+    resources :keywords do
+      collection do
+        get "search" => "keywords#search"
+      end
+    end
+    resources :languages do
+      collection do
+        get "search" => "languages#search"
+      end
+    end
     resources :list_items
     resources :lists
     resources :movie_genres

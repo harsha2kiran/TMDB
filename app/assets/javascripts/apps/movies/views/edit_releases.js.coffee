@@ -13,15 +13,30 @@ class MoviesApp.EditReleases extends Backbone.View
     edit_release = $(@el)
     releases = @options.releases
     edit_release.html @template(releases: releases)
+    $(@el).find(".js-new-release-release-date").datepicker(
+      dateFormat: "yy-mm-dd"
+    )
+
+    self = @
+    $(@el).find(".js-new-release-country").autocomplete
+      source: api_version + "countries/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-release-country-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     $container = $(e.target).parents(".releases")
     release_date = $container.find(".js-new-release-release-date").val()
-    country_id = $container.find(".js-new-release-country").val()
-    confirmed = $container.find(".js-new-release-confirmed").val()
+    country_id = $container.find(".js-new-release-country-id").val()
+    confirmed = $container.find(".js-new-release-confirmed :selected").val()
     certification = $container.find(".js-new-release-certification").val()
-    primary = $container.find(".js-new-release-primary").val()
+    primary = $container.find(".js-new-release-primary :selected").val()
     release = new MoviesApp.Release()
     release.save ({ release: { movie_id: movie_id, release_date: release_date, country_id: country_id, confirmed: confirmed, certification: certification, primary: primary } }),
       success: ->

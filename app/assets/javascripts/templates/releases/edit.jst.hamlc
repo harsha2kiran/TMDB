@@ -30,7 +30,14 @@
       Add new release
     %input.js-new-release-release-date{ type: "text", placeholder: "Release date" }
     %input.js-new-release-country{ type: "text", placeholder: "Search country" }
-    %input.js-new-release-confirmed{ type: "text", placeholder: "Confirmed" }
+    %input.js-new-release-country-id{ type: "hidden" }
+    %select.js-new-release-confirmed
+      %option{ value: 0 }= "Confirmed?"
+      %option{ value: "true" }= "Yes"
+      %option{ value: "false" }= "No"
     %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
-    %input.js-new-release-primary{ type: "text", placeholder: "Primary?" }
+    %select.js-new-release-primary
+      %option{ value: 0 }= "Primary?"
+      %option{ value: "true" }= "Yes"
+      %option{ value: "false" }= "No"
     %input.js-new-release-save{ type: "button", value: "Save" }

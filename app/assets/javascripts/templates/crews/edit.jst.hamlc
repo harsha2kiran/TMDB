@@ -14,4 +14,5 @@
       Add new crew member
     %input.js-new-crew-job{ type: "text", placeholder: "Job" }
     %input.js-new-crew-person{ type: "text", placeholder: "Search people" }
+    %input.js-new-crew-person-id{ type: "hidden" }
     %input.js-new-crew-save{ type: "button", value: "Save" }

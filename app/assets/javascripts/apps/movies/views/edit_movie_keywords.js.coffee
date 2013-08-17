@@ -13,11 +13,25 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
     edit = $(@el)
     movie_keywords = @options.movie_keywords
     edit.html @template(movie_keywords: movie_keywords)
+
+    self = @
+    $(@el).find(".js-new-keyword").autocomplete
+      source: api_version + "keywords/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-keyword-id").val(ui.item.id)
+        console.log $(self.el).find(".js-new-keyword-id").val()
+
+
     this
 
   create: (e) ->
     self = @
-    keyword_id = $(@el).find(".js-new-keyword").val()
+    keyword_id = $(@el).find(".js-new-keyword-id").val()
     movie_keyword = new MoviesApp.MovieKeyword()
     movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id } }),
       success: ->

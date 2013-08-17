@@ -13,13 +13,25 @@ class MoviesApp.EditCrews extends Backbone.View
     edit = $(@el)
     crews = @options.crews
     edit.html @template(crews: crews)
+
+    self = @
+    $(@el).find(".js-new-crew-person").autocomplete
+      source: api_version + "people/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-crew-person-id").val(ui.item.id)
+
     this
 
   create: (e) ->
     console.log "create"
     self = @
     job = $(@el).find(".js-new-crew-job").val()
-    person_id = $(@el).find(".js-new-crew-person").val()
+    person_id = $(@el).find(".js-new-crew-person-id").val()
     crew = new MoviesApp.Crew()
     crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id } }),
       success: ->
