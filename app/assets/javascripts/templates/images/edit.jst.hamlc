@@ -19,6 +19,7 @@
       %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
       %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
       %select.js-new-image-main{ name: "image[is_main_image]" }
+        %option{ value: "" }= "Main image?"
         %option{ value: "1" }= "Yes"
         %option{ value: "0" }= "No"
       %input.js-new-image-update{ type: "button", value: "Save" }

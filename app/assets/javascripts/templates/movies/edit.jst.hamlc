@@ -1,7 +1,10 @@
 - window.movie = @movie
 
-%a{ href: "#/movies/#{@movie.id}", class: "span12" }
-  Show
+.span12
+  %a.span2{ href: "#/movies/#{@movie.id}"}
+    Show
+  %a.span2{ href: "#/movies" }
+    Index
 
 .movie.span12.box
   %h2.title.span12

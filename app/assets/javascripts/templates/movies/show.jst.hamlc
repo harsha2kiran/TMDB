@@ -1,7 +1,10 @@
 - window.movie = @movie
 
-%a{ href: "#/movies/#{@movie.id}/edit", class: "span12" }
-  Edit
+.span12
+  %a.span2{ href: "#/movies/#{@movie.id}/edit" }
+    Edit
+  %a.span2{ href: "#/movies" }
+    Index
 
 - $.each @movie.images, (i, image) ->
   - if image.is_main_image == true

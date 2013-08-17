@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, @cast] do |f|
+  = f.inputs "Cast Settings" do
+
+    = f.input :approved
+    = f.input :character
+    = f.input :person
+    = f.input :movie
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+    = f.submit "Update"

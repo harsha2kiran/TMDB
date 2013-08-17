@@ -49,3 +49,4 @@ gem "carrierwave"
 gem 'activeadmin'
 
 gem "erb2haml"
+gem 'country-select'

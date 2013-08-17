@@ -1,6 +1,8 @@
 class MoviesApp.Router extends Backbone.Router
 
   routes:
+    "movies" : "index"
+    "movies/new" : "new"
     "movies/:id" : "show"
     "movies/:id/edit" : "edit"
 
@@ -67,4 +69,23 @@ class MoviesApp.Router extends Backbone.Router
 
         @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
         $(".js-content").append @edit_revenue_countries_view.render().el
+
+  new: ->
+    console.log "add new movie"
+    try
+      delete window.movie_id
+    catch e
+      window.movie_id = undefined
+    @new_view = new MoviesApp.New()
+    $(".js-content").html @new_view.render().el
+
+  index: ->
+    console.log "movies index"
+    movies = new MoviesApp.Movies()
+    movies.fetch
+      success: ->
+        window.movvv = movies
+        @index_view = new MoviesApp.Index(movies: movies)
+        $(".js-content").html @index_view.render().el
+
 

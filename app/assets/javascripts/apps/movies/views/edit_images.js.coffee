@@ -1,6 +1,6 @@
 class MoviesApp.EditImages extends Backbone.View
   template: JST['templates/images/edit']
-  className: "row-fluid"
+  className: "row-fluid edit-images"
 
   initialize: ->
     _.bindAll this, "render"
@@ -45,7 +45,6 @@ class MoviesApp.EditImages extends Backbone.View
     image.save ({ id: @image_id, image: { id: @image_id, title: title, is_main_image: is_main_image, imageable_id: movie_id, imageable_type: "Movie" } }),
       success: ->
         $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-image-main").val("")
         $(self.el).find(".js-new-image-title").val("")
 
   destroy: (e) ->

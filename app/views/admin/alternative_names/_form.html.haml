@@ -1,0 +1,7 @@
+= semantic_form_for [:admin, @alternative_name] do |f|
+  = f.inputs "Alternative name settings" do
+    = f.input :approved
+    = f.input :alternative_name
+    = f.input :person
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+    = f.submit "Update"

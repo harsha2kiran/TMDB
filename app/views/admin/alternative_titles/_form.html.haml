@@ -1,0 +1,7 @@
+= semantic_form_for [:admin, @alternative_title] do |f|
+  = f.inputs "Alternative title settings" do
+    = f.input :approved
+    = f.input :alternative_title
+    = f.input :language, :label => "Language", :as => :select, :collection => Language.all.map{|u| [u.language, u.id]}
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+    = f.submit "Update"

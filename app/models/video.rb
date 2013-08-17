@@ -9,4 +9,6 @@ class Video < ActiveRecord::Base
   has_many :views, :as => :viewable
   has_many :reports, :as => :reportable
 
+  belongs_to :user
+
 end

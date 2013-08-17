@@ -1,0 +1,11 @@
+= semantic_form_for [:admin, @release] do |f|
+  = f.inputs "Release settings" do
+    = f.input :approved
+    = f.input :certification
+    = f.input :confirmed
+    = f.input :movie
+    = f.input :country, :label => "Country", :as => :select, :collection => Country.all.map{|u| [u.country, u.id]}
+    = f.input :primary
+    = f.input :release_date
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+    = f.submit "Update"

@@ -3,13 +3,14 @@ class AlternativeTitle < ActiveRecord::Base
 
   belongs_to :movie
   belongs_to :language
+  belongs_to :user
 
-  def language
-    self.language
-  end
+  # def language
+  #   self.language
+  # end
 
-  def language=(id)
-    Language.find self.language_id
-  end
+  # def language=(id)
+  #   Language.find self.language_id
+  # end
 
 end

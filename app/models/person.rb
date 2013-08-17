@@ -14,6 +14,8 @@ class Person < ActiveRecord::Base
   has_many :views, :as => :viewable
   has_many :reports, :as => :reportable
 
+  belongs_to :user
+
   after_create :check_original_id
 
   serialize :locked, ActiveRecord::Coders::Hstore

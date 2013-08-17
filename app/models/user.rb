@@ -11,6 +11,21 @@ class User < ActiveRecord::Base
   has_many :user_badges
   has_many :lists
   has_many :follows
+  has_many :images
+  has_many :movies
+  has_many :videos
+  has_many :people
+  has_many :casts
+  has_many :crews
+  has_many :movie_genres
+  has_many :movie_keywords
+  has_many :movie_languages
+  has_many :movie_metadatas
+  has_many :production_companies
+  has_many :releases
+  has_many :alternative_names
+  has_many :person_social_apps
+  has_many :alternative_titles
   has_many :badges, :through => :user_badges
 
   after_create :activate

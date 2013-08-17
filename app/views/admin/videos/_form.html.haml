@@ -1,0 +1,14 @@
+= semantic_form_for [:admin, @video] do |f|
+  = f.inputs "Video Settings" do
+
+    = f.input :approved
+    = f.input :link
+    = f.input :link_active
+    = f.input :priority
+    = f.input :quality
+    = f.input :videable_id
+    = f.input :videable_type
+    = f.input :video_type
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+
+    = f.submit "Update"
