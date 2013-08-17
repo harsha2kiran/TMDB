@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :movie_metadatas
   has_many :production_companies
   has_many :releases
+  has_many :tags
   has_many :alternative_names
   has_many :person_social_apps
   has_many :alternative_titles

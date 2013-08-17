@@ -1,0 +1,5 @@
+= semantic_form_for [:admin, @user_badge] do |f|
+  = f.inputs "User badge settings" do
+    = f.input :badge, :label => "Badge", :as => :select, :collection => Badge.all.map{|u| [u.badge, u.id]}
+    = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+    = f.submit "Update"
