@@ -32,12 +32,20 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
     self = @
     title = $(@el).find(".js-new-alternative-title").val()
     language_id = $(@el).find(".js-new-alternative-title-language-id").val()
-    alternative_title = new MoviesApp.AlternativeTitle()
-    alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Alternative title added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-alternative-title").val("")
-        $(self.el).find(".js-new-alternative-title-language").val("")
+    if title != "" && language_id != ""
+      alternative_title = new MoviesApp.AlternativeTitle()
+      alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Alternative title added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-alternative-title").val("").removeClass("error")
+          $(self.el).find(".js-new-alternative-title-language").val("").removeClass("error")
+          $(self.el).find(".js-new-alternative-title-language-id").val("")
+    else
+      $(@el).find("input").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

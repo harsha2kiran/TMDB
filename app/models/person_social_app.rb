@@ -3,4 +3,7 @@ class PersonSocialApp < ActiveRecord::Base
   belongs_to :social_app
   belongs_to :person
   belongs_to :user
+
+  validates_presence_of :person_id, :profile_link, :social_app_id, :user_id
+
 end

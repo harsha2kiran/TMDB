@@ -34,7 +34,7 @@
       .span4
         = title.language.language
 
-- if @movie.movie_metadatas
+- if @movie.movie_metadatas.length > 0
   .movie-metadatas.span12.box
     %p
       Metadata
@@ -46,7 +46,8 @@
       .span5
         Homepage
       .span5
-        = metadata.homepage
+        %a{ href: metadata.homepage, target: "_blank" }
+          = metadata.homepage
       .span5
         IMDB id
       .span5
@@ -91,11 +92,11 @@
 - if @movie.videos.length > 0
   .videos.span12.box
     - $.each @movie.videos, (i, video) ->
-      .span2
-        %video{ width: 100, height: 100, controls: "" }
-          %source{ src: video.link, type: "video/mp4" }
+      .span4
+        %a{ href: video.link }
+          = video.video_type + " " + video.quality
 
-- if @movie.movie_genres
+- if @movie.movie_genres.length > 0
   .movie-genres.span12.box
     %p
       Genres
@@ -103,7 +104,7 @@
       .span2
         = genre.genre.genre
 
-- if @movie.movie_keywords
+- if @movie.movie_keywords.length > 0
   .movie-keywords.span12.box
     %p
       Keywords
@@ -111,7 +112,7 @@
       .span2
         = keyword.keyword.keyword
 
-- if @movie.movie_languages
+- if @movie.movie_languages.length > 0
   .movie-languages.span12.box
     %p
       Languages
@@ -119,7 +120,7 @@
       .span2
         = language.language.language
 
-- if @movie.revenue_countries
+- if @movie.revenue_countries.length > 0
   .revenue-countries.span12.box
     %p
       Revenue countries
@@ -127,7 +128,7 @@
       .span2
         = country.country.country
 
-- if @movie.production_companies
+- if @movie.production_companies.length > 0
   .production-companies.span12.box
     %p
       Production companies
@@ -135,7 +136,7 @@
       .span2
         = company.company.company
 
-- if @movie.tags
+- if @movie.tags.length > 0
   .tags.span12.box
     %p
       Tagged people
@@ -143,7 +144,7 @@
       .span2
         = tag.person.name
 
-- if @movie.releases
+- if @movie.releases.length > 0
   .releases.span12.box
     %p
       Releases

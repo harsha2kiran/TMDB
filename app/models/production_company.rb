@@ -3,4 +3,7 @@ class ProductionCompany < ActiveRecord::Base
   belongs_to :company
   belongs_to :user
   belongs_to :movie
+
+  validates_presence_of :company_id, :movie_id, :user_id
+
 end

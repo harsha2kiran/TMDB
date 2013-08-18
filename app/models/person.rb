@@ -29,6 +29,8 @@ class Person < ActiveRecord::Base
     people = people.uniq
   end
 
+  validates_presence_of :name, :user_id
+
   private
 
   def check_original_id

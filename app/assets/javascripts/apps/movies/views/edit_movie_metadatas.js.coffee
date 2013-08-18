@@ -33,8 +33,13 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
     imdb_id = $container.find(".js-metadata-imdb-id").val()
     runtime = $container.find(".js-metadata-runtime").val()
     status = $container.find(".js-metadata-status-id").val()
-    movie_metadata = new MoviesApp.MovieMetadata()
-    movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status } }),
-      success: ->
-        $(".notifications").html("Successfully updated movie metadata. Changes will be active after moderation.").show().fadeOut(10000)
+    if status != ""
+      movie_metadata = new MoviesApp.MovieMetadata()
+      movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status } }),
+        success: ->
+          $(".notifications").html("Successfully updated movie metadata. Changes will be active after moderation.").show().fadeOut(10000)
+          $container.find(".js-metadata-status").removeClass("error")
+    else
+      $container.find(".js-metadata-status").addClass("error")
+
 

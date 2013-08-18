@@ -31,10 +31,14 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
     self = @
     company_id = $(@el).find(".js-new-production-company-id").val()
     production_company = new MoviesApp.ProductionCompany()
-    production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-production-company").val("")
+    if company_id != ""
+      production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-production-company").val("").removeClass("error")
+          $(self.el).find(".js-new-production-company-id").val("")
+    else
+      $(self.el).find(".js-new-production-company").addClass("error").focus()
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

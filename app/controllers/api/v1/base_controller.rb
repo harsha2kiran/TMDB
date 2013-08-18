@@ -59,7 +59,7 @@ class Api::V1::BaseController < ApplicationController
 
   def check_if_destroy
     if params[:action] == "destroy"
-      if current_user.user_type == "admin"
+      if current_user && current_user.user_type == "admin"
       else
         redirect_to root_path, alert: "You must have admin privileges to remove record."
       end

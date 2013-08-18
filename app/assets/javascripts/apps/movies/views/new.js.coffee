@@ -19,8 +19,13 @@ class MoviesApp.New extends Backbone.View
     tagline = $container.find(".js-tagline").val()
     overview = $container.find(".js-overview").val()
     content_score = $container.find(".js-content-score").val()
-    movie = new MoviesApp.Movie()
-    movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score } }),
-      success: ->
-        $(".notifications").html("Successfully added new movie. It will be active after moderation.").show().fadeOut(10000)
+    if title != ""
+      movie = new MoviesApp.Movie()
+      movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score } }),
+        success: ->
+          $(".notifications").html("Successfully added new movie. It will be active after moderation.").show().fadeOut(10000)
+          $container.find(".js-title").removeClass("error")
+    else
+      $container.find(".js-title").addClass("error")
+
 

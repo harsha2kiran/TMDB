@@ -31,12 +31,20 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
     self = @
     country_id = $(@el).find(".js-new-revenue-country-id").val()
     revenue = $(@el).find(".js-new-revenue").val()
-    revenue_country = new MoviesApp.RevenueCountry()
-    revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue } }),
-      success: ->
-        $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-revenue-country").val("")
-        $(self.el).find(".js-new-revenue").val("")
+    if country_id != "" && revenue != ""
+      revenue_country = new MoviesApp.RevenueCountry()
+      revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue } }),
+        success: ->
+          $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-revenue-country").val("").removeClass("error")
+          $(self.el).find(".js-new-revenue-country-id").val("")
+          $(self.el).find(".js-new-revenue").val("").removeClass("error")
+    else
+      $(@el).find("input").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

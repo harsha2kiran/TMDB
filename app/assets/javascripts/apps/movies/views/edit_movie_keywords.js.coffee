@@ -32,11 +32,15 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
   create: (e) ->
     self = @
     keyword_id = $(@el).find(".js-new-keyword-id").val()
-    movie_keyword = new MoviesApp.MovieKeyword()
-    movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-keyword").val("")
+    if keyword_id != ""
+      movie_keyword = new MoviesApp.MovieKeyword()
+      movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-keyword").val("").removeClass "error"
+          $(self.el).find(".js-new-keyword-id").val("")
+    else
+      $(@el).find(".js-new-keyword").addClass("error").focus()
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

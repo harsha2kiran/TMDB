@@ -7,21 +7,17 @@
     Index
 
 .movie.span12.box
-  %h2.title.span12
-    %p
-      Title
+  %p.title.span12
+    Title
     %input.js-title{ type: "text", value: @movie.title, placeholder: "Title" }
-  %h3.tagline.lead.span12
-    %p
-      Tagline
+  %p.tagline.span12
+    Tagline
     %input.js-tagline{ type: "text", value: @movie.tagline, placeholder: "Tagline" }
   %p.overview.span12
-    %p
-      Overview
+    Overview
     %input.js-overview{ type: "text", value: @movie.overview, placeholder: "Overview" }
   %p.content-score.span12
-    %p
-      Content Score
+    Content Score
     %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score" }
   %p.span12
     %input.js-update{ type: "button", value: "Update" }

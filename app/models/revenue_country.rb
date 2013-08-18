@@ -3,4 +3,7 @@ class RevenueCountry < ActiveRecord::Base
   belongs_to :country
   belongs_to :movie
   belongs_to :user
+
+  validates_presence_of :country_id, :revenue, :movie_id, :user_id
+
 end

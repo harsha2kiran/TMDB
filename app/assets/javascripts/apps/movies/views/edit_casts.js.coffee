@@ -31,12 +31,20 @@ class MoviesApp.EditCasts extends Backbone.View
     self = @
     character = $(@el).find(".js-new-cast-character").val()
     person_id = $(@el).find(".js-new-cast-person-id").val()
-    cast = new MoviesApp.Cast()
-    cast.save ({ cast: { character: character, person_id: person_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Cast member added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-cast-character").val("")
-        $(self.el).find(".js-new-cast-person").val("")
+    if character != "" && person_id != ""
+      cast = new MoviesApp.Cast()
+      cast.save ({ cast: { character: character, person_id: person_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Cast member added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-cast-character").val("").removeClass("error")
+          $(self.el).find(".js-new-cast-person").val("").removeClass("error")
+          $(self.el).find(".js-new-cast-person-id").val("")
+    else
+      $(@el).find("input").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

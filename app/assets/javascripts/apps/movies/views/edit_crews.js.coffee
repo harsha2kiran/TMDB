@@ -32,12 +32,20 @@ class MoviesApp.EditCrews extends Backbone.View
     self = @
     job = $(@el).find(".js-new-crew-job").val()
     person_id = $(@el).find(".js-new-crew-person-id").val()
-    crew = new MoviesApp.Crew()
-    crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-crew-job").val("")
-        $(self.el).find(".js-new-crew-person").val("")
+    if job != "" && person_id != ""
+      crew = new MoviesApp.Crew()
+      crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-crew-job").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-person").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-person-id").val("")
+    else
+      $(@el).find("input").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

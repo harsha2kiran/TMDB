@@ -31,11 +31,16 @@ class MoviesApp.EditTags extends Backbone.View
     console.log "create"
     self = @
     person_id = $(@el).find(".js-new-tag-person-id").val()
-    tag = new MoviesApp.Tag()
-    tag.save ({ tag: { person_id: person_id, taggable_id: movie_id, taggable_type: "Movie" } }),
-      success: ->
-        $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-tag-person").val("")
+    if person_id != ""
+      tag = new MoviesApp.Tag()
+      tag.save ({ tag: { person_id: person_id, taggable_id: movie_id, taggable_type: "Movie" } }),
+        success: ->
+          $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-tag-person").val("").removeClass("error")
+          $(self.el).find(".js-new-tag-person-id").val("")
+    else
+      $(self.el).find(".js-new-tag-person").addClass("error")
+
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

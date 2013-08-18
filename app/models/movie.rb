@@ -34,6 +34,8 @@ class Movie < ActiveRecord::Base
     movies = movies.uniq
   end
 
+  validates_presence_of :title, :user_id
+
   private
 
   def check_original_id

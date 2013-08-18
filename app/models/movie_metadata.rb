@@ -3,4 +3,7 @@ class MovieMetadata < ActiveRecord::Base
   belongs_to :movie
   belongs_to :status
   belongs_to :user
+
+  validates_presence_of :status_id, :user_id
+
 end

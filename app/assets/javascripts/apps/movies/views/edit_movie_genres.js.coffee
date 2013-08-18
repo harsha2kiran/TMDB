@@ -30,11 +30,16 @@ class MoviesApp.EditMovieGenres extends Backbone.View
   create: (e) ->
     self = @
     genre_id = $(@el).find(".js-new-genre-id").val()
-    movie_genre = new MoviesApp.MovieGenre()
-    movie_genre.save ({ movie_genre: { genre_id: genre_id, movie_id: movie_id } }),
-      success: ->
-        $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(10000)
-        $(self.el).find(".js-new-genre").val("")
+    if genre_id
+      movie_genre = new MoviesApp.MovieGenre()
+      movie_genre.save ({ movie_genre: { genre_id: genre_id, movie_id: movie_id } }),
+        success: ->
+          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(10000)
+          $(self.el).find(".js-new-genre").val("").removeClass "error"
+          $(self.el).find(".js-new-genre-id").val("")
+    else
+      $(@el).find(".js-new-genre").addClass("error")
+
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

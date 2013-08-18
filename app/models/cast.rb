@@ -3,4 +3,7 @@ class Cast < ActiveRecord::Base
   belongs_to :movie
   belongs_to :person
   belongs_to :user
+
+  validates_presence_of :character, :movie_id, :person_id, :user_id
+
 end

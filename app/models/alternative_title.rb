@@ -5,12 +5,6 @@ class AlternativeTitle < ActiveRecord::Base
   belongs_to :language
   belongs_to :user
 
-  # def language
-  #   self.language
-  # end
-
-  # def language=(id)
-  #   Language.find self.language_id
-  # end
+  validates_presence_of :alternative_title, :language_id, :movie_id, :user_id
 
 end

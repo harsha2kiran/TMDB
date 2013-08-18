@@ -3,4 +3,7 @@ class Crew < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user
   belongs_to :person
+
+  validates_presence_of :job, :movie_id, :person_id, :user_id
+
 end
