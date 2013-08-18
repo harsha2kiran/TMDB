@@ -84,7 +84,6 @@ class MoviesApp.Router extends Backbone.Router
     movies = new MoviesApp.Movies()
     movies.fetch
       success: ->
-        window.movvv = movies
         @index_view = new MoviesApp.Index(movies: movies)
         $(".js-content").html @index_view.render().el
 

@@ -15,14 +15,17 @@
 .movie.span12.box
   %h2.title.span12
     = @movie.title
-  %h3.tagline.lead.span12
-    = @movie.tagline
-  %p.overview.span12
-    %span= "Overview"
-    = @movie.overview
-  %p.content-score.span12
-    %span= "Content Score: "
-    = @movie.content_score
+  - if @movie.tagline != ""
+    %h3.tagline.lead.span12
+      = @movie.tagline
+  - if @movie.overview != ""
+    %p.overview.span12
+      %span= "Overview"
+      = @movie.overview
+  - if @movie.content_score
+    %p.content-score.span12
+      %span= "Content Score: "
+      = @movie.content_score
 
 - if @movie.alternative_titles.length > 0
   .alternative-titles.span12.box
@@ -80,7 +83,6 @@
         = cast.character
       .span4
         = cast.person.name
-
 - if @movie.images.length > 0
   .images.span12.box
     - $.each @movie.images, (i, image) ->

@@ -5,7 +5,7 @@ if @all
   node(:images) { |movie| movie.images }
   node(:videos) { |movie| movie.videos }
 
-  node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles) }
+  node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles ) }
   node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews) }
   node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts) }
   node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres) }
@@ -19,20 +19,20 @@ if @all
 
 else
 
-  node(:images) { |movie| movie.images.where(approved: true) }
-  node(:videos) { |movie| movie.videos.where(approved: true) }
+  node(:images) { |movie| movie.images.select {|s| s.approved == true } }
+  node(:videos) { |movie| movie.videos.select {|s| s.approved == true } }
 
-  node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles.where(approved: true)) }
-  node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews.where(approved: true)) }
-  node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts.where(approved: true)) }
-  node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres.where(approved: true)) }
-  node(:movie_keywords) { |movie| partial("api/v1/movie_keywords/index", :object => movie.movie_keywords.where(approved: true)) }
-  node(:movie_languages) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages.where(approved: true)) }
-  node(:movie_metadatas) { |movie| partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.where(approved: true)) }
-  node(:revenue_countries) { |movie| partial("api/v1/revenue_countries/index", :object => movie.revenue_countries.where(approved: true)) }
-  node(:tags) { |movie| partial("api/v1/tags/index", :object => movie.tags.where(approved: true) ) }
-  node(:production_companies) { |movie| partial("api/v1/production_companies/index", :object => movie.production_companies.where(approved: true) ) }
-  node(:releases) { |movie| partial("api/v1/releases/index", :object => movie.releases.where(approved: true) ) }
+  node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles.select {|s| s.approved == true } ) }
+  node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews.select {|s| s.approved == true }) }
+  node(:casts) { |movie| partial("api/v1/casts/index", :object => movie.casts.select {|s| s.approved == true }) }
+  node(:movie_genres) { |movie| partial("api/v1/movie_genres/index", :object => movie.movie_genres.select {|s| s.approved == true }) }
+  node(:movie_keywords) { |movie| partial("api/v1/movie_keywords/index", :object => movie.movie_keywords.select {|s| s.approved == true }) }
+  node(:movie_languages) { |movie| partial("api/v1/movie_languages/index", :object => movie.movie_languages.select {|s| s.approved == true }) }
+  node(:movie_metadatas) { |movie| partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.select {|s| s.approved == true }) }
+  node(:revenue_countries) { |movie| partial("api/v1/revenue_countries/index", :object => movie.revenue_countries.select {|s| s.approved == true }) }
+  node(:tags) { |movie| partial("api/v1/tags/index", :object => movie.tags.select {|s| s.approved == true } ) }
+  node(:production_companies) { |movie| partial("api/v1/production_companies/index", :object => movie.production_companies.select {|s| s.approved == true } ) }
+  node(:releases) { |movie| partial("api/v1/releases/index", :object => movie.releases.select {|s| s.approved == true } ) }
 
 end
 
