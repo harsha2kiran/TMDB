@@ -1,6 +1,6 @@
 .tags.span12.box
   %p
-    tag
+    Tag
   - $.each @tags, (i, tag) ->
     .span12
       .span4
