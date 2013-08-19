@@ -5,14 +5,22 @@
     .span12
       .span4
         = crew.job
-      .span4
-        = crew.person.name
+      - if window.movie_id
+        .span4
+          = crew.person.name
+      - else if window.person_id
+        .span4
+          = crew.movie.title
       .span2
         %input.js-crew-remove{ type: "button", value: "Remove", data: { id: crew.id } }
   .span12
     %p
       Add new crew member
     %input.js-new-crew-job{ type: "text", placeholder: "Job" }
-    %input.js-new-crew-person{ type: "text", placeholder: "Search people" }
-    %input.js-new-crew-person-id{ type: "hidden" }
+    - if window.movie_id
+      %input.js-new-crew-person{ type: "text", placeholder: "Search people" }
+      %input.js-new-crew-person-id{ type: "hidden" }
+    - else if window.person_id
+      %input.js-new-crew-movie{ type: "text", placeholder: "Search movies" }
+      %input.js-new-crew-movie-id{ type: "hidden" }
     %input.js-new-crew-save{ type: "button", value: "Save" }

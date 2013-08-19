@@ -1,0 +1,14 @@
+.alternative-names.span12.box
+  %p
+    Alternative Names
+  - $.each @alternative_names, (i, name) ->
+    .span12
+      .span3
+        = name.alternative_name
+      .span2
+        %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
+  .span12
+    %p
+      Add new alternative name
+    %input.js-new-alternative-name{ type: "text", placeholder: "Alternative name" }
+    %input.js-new-alternative-name-save{ type: "button", value: "Save" }

@@ -44,7 +44,13 @@ class MoviesApp.EditImages extends Backbone.View
     if title != ""
       if is_main_image != ""
         image = new MoviesApp.Image()
-        image.save ({ id: @image_id, image: { id: @image_id, title: title, is_main_image: is_main_image, imageable_id: movie_id, imageable_type: "Movie" } }),
+        if window.movie_id
+          imageable_id = window.movie_id
+          imageable_type = "Movie"
+        else if window.person_id
+          imageable_id = window.person_id
+          imageable_type = "Person"
+        image.save ({ id: @image_id, image: { id: @image_id, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type } }),
           success: ->
             $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(10000)
             $(self.el).find(".js-new-image-title").val("")

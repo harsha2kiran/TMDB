@@ -4,5 +4,5 @@ node(:person){ |cast|
   @people.select {|s| cast.person_id == s.id }[0]
 }
 node(:movie){ |cast|
-  Movie.find cast.movie_id
+  @movies.select {|s| cast.movie_id == s.id }[0]
 }

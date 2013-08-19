@@ -10,6 +10,7 @@ if @all
   node(:images) { |person| person.images }
   node(:follows) { |person| person.follows }
   node(:views) { |person| person.views }
+  node(:videos) { |movie| movie.videos }
 else
 
   node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names.where(approved: true)) }
@@ -18,6 +19,7 @@ else
   node(:person_social_apps) { |person| partial("api/v1/person_social_apps/index", :object => person.person_social_apps.where(approved: true)) }
   node(:tags) { |person| partial("api/v1/tags/index", :object => person.tags.where(approved: true) ) }
   node(:images) { |person| person.images.where(approved: true) }
+  node(:videos) { |movie| movie.videos.where(approved: true) }
   node(:follows) { |person| person.follows }
   node(:views) { |person| person.views }
 end

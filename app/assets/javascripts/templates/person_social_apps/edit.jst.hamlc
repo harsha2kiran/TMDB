@@ -1,0 +1,19 @@
+.person-social-apps.span12.box
+  %p
+    Social Apps
+  - $.each @person_social_apps, (i, social_app) ->
+    .span12
+      .span4
+        = social_app.social_app.social_app
+      .span4
+        %a{ href: social_app.profile_link, target: "_blank" }
+          = social_app.profile_link
+      .span2
+        %input.js-person-social-app-remove{ type: "button", value: "Remove", data: { id: social_app.id } }
+  .span12
+    %p
+      Add new social app profile
+    %input.js-new-person-social-apps-app{ type: "text", placeholder: "Social app" }
+    %input.js-new-person-social-apps-id{ type: "hidden" }
+    %input.js-new-person-social-apps-link{ type: "text", placeholder: "Link" }
+    %input.js-new-person-social-app-save{ type: "button", value: "Save" }

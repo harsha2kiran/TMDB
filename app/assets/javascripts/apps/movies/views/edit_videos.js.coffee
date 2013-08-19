@@ -23,8 +23,14 @@ class MoviesApp.EditVideos extends Backbone.View
     quality = $(@el).find(".js-new-video-quality").val()
     priority = $(@el).find(".js-new-video-priority").val()
     if link != "" && video_type != "" && quality != ""
+      if window.movie_id
+        videable_id = window.movie_id
+        videable_type = "Movie"
+      else if window.person_id
+        videable_id = window.person_id
+        videable_type = "Person"
       video = new MoviesApp.Video()
-      video.save ({ video: { link: link, video_type: video_type, quality: quality, priority: priority, videable_type: "Movie", videable_id: movie_id } }),
+      video.save ({ video: { link: link, video_type: video_type, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id } }),
         success: ->
           $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(10000)
           $(self.el).find(".js-new-video-link").val("").removeClass("error")

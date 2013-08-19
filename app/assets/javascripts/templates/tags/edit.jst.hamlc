@@ -4,12 +4,19 @@
   - $.each @tags, (i, tag) ->
     .span12
       .span4
-        = tag.person.name
+        - if window.movie_id
+          = tag.person.name
+        - else if window.person_id
+          = tag.movie.title
       .span2
         %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
   .span12
     %p
       Add new tag member
-    %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
-    %input.js-new-tag-person-id{ type: "hidden" }
+    - if window.movie_id
+      %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
+      %input.js-new-tag-person-id{ type: "hidden" }
+    - else if window.person_id
+      %input.js-new-tag-movie{ type: "text", placeholder: "Search movies" }
+      %input.js-new-tag-movie-id{ type: "hidden" }
     %input.js-new-tag-save{ type: "button", value: "Save" }

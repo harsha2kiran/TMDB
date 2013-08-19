@@ -12,6 +12,10 @@ class MoviesApp.Router extends Backbone.Router
   show: (id) ->
     console.log "movies router show #{id}"
     window.movie_id = id
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
@@ -22,6 +26,10 @@ class MoviesApp.Router extends Backbone.Router
   edit: (id) ->
     console.log "movies router edit #{id}"
     window.movie_id = id
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
@@ -73,6 +81,10 @@ class MoviesApp.Router extends Backbone.Router
   new: ->
     console.log "add new movie"
     try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
+    try
       delete window.movie_id
     catch e
       window.movie_id = undefined
@@ -81,6 +93,14 @@ class MoviesApp.Router extends Backbone.Router
 
   index: ->
     console.log "movies index"
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
+    try
+      delete window.movie_id
+    catch e
+      window.movie_id = undefined
     movies = new MoviesApp.Movies()
     movies.fetch
       success: ->

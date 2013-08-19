@@ -23,10 +23,12 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def show
     if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
-      @movie = Movie.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases).find(params[:id])
+      @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+      @movie = @movies.find_by_id(params[:id])
       @all = true
     else
-      @movie = Movie.where(approved: true).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases).find(params[:id])
+      @movies = Movie.where(approved: true).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+      @movie = @movies.find_by_id(params[:id])
       @all = false
     end
     load_additional_values(@movie, "show")
@@ -46,6 +48,15 @@ class Api::V1::MoviesController < Api::V1::BaseController
     render 'popular'
   end
 
+  def search
+    movies = Movie.where("lower(title) LIKE ? AND approved = TRUE", "%" + params[:term].downcase + "%")
+    results = []
+    movies.each do |movie|
+      results << { label: movie.title, value: movie.title, id: movie.id }
+    end
+    render json: results
+  end
+
   private
 
   def load_additional_values(items, action)
@@ -60,6 +71,8 @@ class Api::V1::MoviesController < Api::V1::BaseController
     end
     items.each do |m|
       person_ids << m.casts.map(&:person_id)
+      person_ids << m.crews.map(&:person_id)
+      person_ids << m.tags.map(&:person_id)
       language_ids << m.alternative_titles.map(&:language_id)
       genre_ids << m.movie_genres.map(&:genre_id)
       keyword_ids << m.movie_keywords.map(&:keyword_id)

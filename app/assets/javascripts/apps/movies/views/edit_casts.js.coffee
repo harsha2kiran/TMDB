@@ -25,13 +25,27 @@ class MoviesApp.EditCasts extends Backbone.View
       select: (event, ui) ->
         $(self.el).find(".js-new-cast-person-id").val(ui.item.id)
 
+    $(@el).find(".js-new-cast-movie").autocomplete
+      source: api_version + "movies/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(self.el).find(".js-new-cast-movie-id").val(ui.item.id)
     this
 
   create: (e) ->
     self = @
     character = $(@el).find(".js-new-cast-character").val()
-    person_id = $(@el).find(".js-new-cast-person-id").val()
-    if character != "" && person_id != ""
+    if window.movie_id
+      person_id = $(@el).find(".js-new-cast-person-id").val()
+      movie_id = window.movie_id
+    else if window.person_id
+      person_id = window.person_id
+      movie_id = $(@el).find(".js-new-cast-movie-id").val()
+    if character != "" && person_id != "" && movie_id != ""
       cast = new MoviesApp.Cast()
       cast.save ({ cast: { character: character, person_id: person_id, movie_id: movie_id } }),
         success: ->
@@ -39,6 +53,8 @@ class MoviesApp.EditCasts extends Backbone.View
           $(self.el).find(".js-new-cast-character").val("").removeClass("error")
           $(self.el).find(".js-new-cast-person").val("").removeClass("error")
           $(self.el).find(".js-new-cast-person-id").val("")
+          $(self.el).find(".js-new-cast-movie").val("").removeClass("error")
+          $(self.el).find(".js-new-cast-movie-id").val("")
     else
       $(@el).find("input").each (i, input) ->
         if $(input).val() == ""

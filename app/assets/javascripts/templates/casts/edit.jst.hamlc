@@ -5,14 +5,22 @@
     .span12
       .span4
         = cast.character
-      .span4
-        = cast.person.name
+      - if window.movie_id
+        .span4
+          = cast.person.name
+      - else if window.person_id
+        .span4
+          = cast.movie.title
       .span2
         %input.js-cast-remove{ type: "button", value: "Remove", data: { id: cast.id } }
   .span12
     %p
       Add new cast member
     %input.js-new-cast-character{ type: "text", placeholder: "Character" }
-    %input.js-new-cast-person{ type: "text", placeholder: "Search people" }
-    %input.js-new-cast-person-id{ type: "hidden" }
+    - if window.movie_id
+      %input.js-new-cast-person{ type: "text", placeholder: "Search people" }
+      %input.js-new-cast-person-id{ type: "hidden" }
+    - else if window.person_id
+      %input.js-new-cast-movie{ type: "text", placeholder: "Search movies" }
+      %input.js-new-cast-movie-id{ type: "hidden" }
     %input.js-new-cast-save{ type: "button", value: "Save" }

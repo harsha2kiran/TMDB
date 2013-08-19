@@ -1,0 +1,34 @@
+- window.person = @person
+
+.span12
+  %a.span2{ href: "#/people/#{@person.id}"}
+    Show
+  %a.span2{ href: "#/people" }
+    Index
+
+.person.span12.box
+  %p.name.span12
+    Name
+    %input.js-name{ type: "text", value: @person.name, placeholder: "Name" }
+  %p.biography.span12
+    Biography
+    %textarea.js-biography{ type: "text", placeholder: "Biography" }
+      = @person.biography
+  %p.homepage.span12
+    Homepage
+    %input.js-homepage{ type: "text", value: @person.homepage, placeholder: "Homepage" }
+  %p.birthday.span12
+    Birthday
+    %input.js-birthday{ type: "text", value: @person.birthday, placeholder: "Birthday" }
+  %p.place-of-birth.span12
+    Place of birth
+    %input.js-place-of-birth{ type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
+  %p.day-of-death.span12
+    Day of death
+    %input.js-day-of-death{ type: "text", value: @person.day_of_death, placeholder: "Day of death" }
+  %p.imdb-id.span12
+    IMDB ID
+    %input.js-imdb-id{ type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
+  %p.span12
+    %input.js-update{ type: "button", value: "Update" }
+

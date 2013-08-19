@@ -56,6 +56,7 @@ Movies::Application.routes.draw do
       collection do
         get "get_popular" => "movies#get_popular"
         get "edit_popular" => "movies#edit_popular"
+        get "search" => "movies#search"
       end
     end
     resources :people do
@@ -68,7 +69,12 @@ Movies::Application.routes.draw do
     resources :releases
     resources :reports
     resources :revenue_countries
-    resources :social_apps
+    resources :social_apps do
+      collection do
+        get "search" => "social_apps#search"
+      end
+    end
+
     resources :statuses do
       collection do
         get "search" => "statuses#search"

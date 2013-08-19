@@ -1,0 +1,19 @@
+.index-people
+  - @people.each (person) ->
+    - person = person.get("person")
+    %a{ href: "#people/#{person.id}" }
+      .span3.person
+        .image
+          - person.images = eval(person.images)
+          - if person.images.length > 0
+            - main_exist = false
+            - $.each person.images, (i, image) ->
+              - if image.is_main_image == true
+                - main_exist = true
+                %img{ src: image.image_file.small.url, width: 100 }
+            - unless main_exist
+              %img{ src: "", alt: "no image"}
+          - else
+            %img{ src: "", alt: "no image"}
+        .title
+          = person.name
