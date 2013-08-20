@@ -4,6 +4,32 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   respond_to :json
 
+
+  def version
+
+    respond_to do |format|
+      versions_list = ["1.2", "1.3", "1.4"]
+      ios_versions_list = ["4", "5", "6"]
+
+      version_number = params[:version_number]
+      ios_version = params[:ios_version]
+
+      message = "version not found"
+      message_type = "alert"
+      flag = false
+
+      if versions_list.include?(version_number)
+        message = "version found"
+        message_type = "web"
+        flag = true
+      end
+
+      format.json { render :json => { message: message, message_type: message_type, flag: flag } }
+
+    end
+  end
+
+
   def index
     if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
       all_items = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])

@@ -1,6 +1,8 @@
 class MoviesApp.Router extends Backbone.Router
 
   routes:
+    "genres" : "genres_index"
+    "genres/:id" : "genres_show"
     "movies" : "index"
     "movies/new" : "new"
     "movies/:id" : "show"
@@ -106,5 +108,49 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @index_view = new MoviesApp.Index(movies: movies)
         $(".js-content").html @index_view.render().el
+
+  genres_index: ->
+    console.log "genres index"
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
+    try
+      delete window.movie_id
+    catch e
+      window.movie_id = undefined
+    genres = new MoviesApp.Genres()
+    genres.fetch
+      success: ->
+        @index_view = new MoviesApp.GenresIndex(genres: genres)
+        $(".js-content").html @index_view.render().el
+
+  genres_show: (id) ->
+    console.log "genres show #{id}"
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
+    try
+      delete window.movie_id
+    catch e
+      window.movie_id = undefined
+    genre = new MoviesApp.Genre()
+    genre.url = "/api/v1/genres/#{id}"
+    genre.fetch
+      success: ->
+        @show_view = new MoviesApp.GenresShow(genre: genre)
+        $(".js-content").html @show_view.render().el
+
+
+
+
+
+
+
+
+
+
+
 
 
