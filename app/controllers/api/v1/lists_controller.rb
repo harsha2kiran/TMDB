@@ -3,15 +3,11 @@ class Api::V1::ListsController < Api::V1::BaseController
   inherit_resources
 
   def index
-    #TODO remove next line
-    current_user = User.first
-    @lists = current_user.lists.all
+    @lists = List.find(:all, :include => [:list_items, :user])
   end
 
   def show
-    #TODO remove next line
-    current_user = User.first
-    @list = current_user.lists.find params[:id]
+    @list = List.find_by_id(params[:id], :include => [:list_items, :user])
   end
 
   def update

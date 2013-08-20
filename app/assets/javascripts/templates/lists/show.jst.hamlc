@@ -1,0 +1,23 @@
+- list = @list
+.span12
+  = "'#{list.title}', #{list.description} from #{list.user}"
+  .span12
+    - if list.list_items
+      - $.each list.list_items, (i, item) ->
+        - if item.list_item.images && item.list_item.images.length > 0
+          - last_listable_id = item.list_item.listable_id
+          - last_listable_type = item.list_item.listable_type
+          - url_item = switch
+            - when last_listable_type == "Movie" then "movies"
+            - when last_listable_type == "Image" then "images"
+            - when last_listable_type == "Video" then "videos"
+            - when last_listable_type == "Person" then "people"
+          .span4
+            %a{ href: "##{url_item}/#{last_listable_id}" }
+              .span12
+                - $.each item.list_item.images, (i, image) ->
+                  - if image.is_main_image
+                    %img{ src: image.image_file.small.url, alt: "no image" }
+              .span12
+                = item.list_item.listable_item.title
+
