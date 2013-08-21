@@ -9,7 +9,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       params[:user][:user_type] = "user"
     end
     if params[:action] == "update"
-      if current_user.user_type != "admin"
+      if current_api_user.user_type != "admin"
         params[:user][:user_type] = "user"
       end
     end
@@ -20,8 +20,8 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def get_current_user
-    if current_user
-      @user = current_user
+    if current_api_user
+      @user = current_api_user
     else
       @user = []
     end
@@ -30,11 +30,9 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def toggle_active
     respond_to do |format|
-      #TODO remove this line
-      current_user = User.find params[:user_id]
-      current_user.active = params[:user][:toggle_active]
-      if current_user.save
-        format.json { respond_with current_user.active }
+      current_api_user.active = params[:user][:toggle_active]
+      if current_api_user.save
+        format.json { respond_with current_api_user.active }
       else
         format.json { render :json => "Error updating user.", :status => :unprocessable_entity }
       end

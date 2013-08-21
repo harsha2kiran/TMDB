@@ -4,9 +4,7 @@ class Api::V1::ApprovalsController < ApplicationController
 
   def mark
     respond_to do |format|
-      #TODO remove next line
-      current_user = User.where(user_type: "admin").first
-      if ["admin", "moderator"].include?(current_user.user_type)
+      if ["admin", "moderator"].include?(current_api_user.user_type)
         type = params[:type]
         mark = params[:mark]
         if ["Movie", "Person"].include?(type)

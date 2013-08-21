@@ -2,12 +2,10 @@ class Api::V1::LocksController < ApplicationController
 
   def mark
     respond_to do |format|
-      #TODO remove next line
-      current_user = User.where(user_type: "admin").first
       id = params[:id]
       type = params[:type]
       field = params[:field]
-      if current_user.user_type == "admin" && ["Movie", "Person"].include?(type)
+      if current_api_user.user_type == "admin" && ["Movie", "Person"].include?(type)
         item = type.classify.constantize.find id
         if item.locked == {}
           item.locked["locked"] = "[]"
@@ -34,12 +32,10 @@ class Api::V1::LocksController < ApplicationController
 
   def unmark
     respond_to do |format|
-      #TODO remove next line
-      current_user = User.where(user_type: "admin").first
       id = params[:id]
       type = params[:type]
       field = params[:field]
-      if current_user.user_type == "admin" && ["Movie", "Person"].include?(type)
+      if current_api_user.user_type == "admin" && ["Movie", "Person"].include?(type)
         item = type.classify.constantize.find id
         if item.locked == {}
           item.locked["locked"] = "[]"

@@ -31,7 +31,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
 
   def index
-    if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       all_items = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
       @items_count = all_items.count
       @movies = all_items.page(params[:page]).order('title ASC')
@@ -48,7 +48,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def show
-    if current_user && ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
       @movie = @movies.find_by_id(params[:id])
       @all = true
@@ -61,7 +61,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def edit_popular
-    if current_user && current_user.user_type == "admin"
+    if current_api_user && current_api_user.user_type == "admin"
       @movies = Movie.select("id, title, popular").where(approved: true).includes(:images).order("popular DESC")
     else
       @movies = []

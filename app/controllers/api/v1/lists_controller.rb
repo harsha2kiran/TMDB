@@ -12,9 +12,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def update
     respond_to do |format|
-      #TODO remove next line
-      current_user = User.first
-      list = current_user.lists.find params[:id]
+      list = current_api_user.lists.find params[:id]
       if list.update_attributes(params[:list])
         format.json { respond_with list }
       else
@@ -25,9 +23,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      #TODO remove next line
-      current_user = User.first
-      list = current_user.lists.find params[:id]
+      list = current_api_user.lists.find params[:id]
       if list.destroy
         format.json { respond_with list }
       else
@@ -37,7 +33,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def search_my_lists
-    lists = List.where("lower(title) LIKE ? AND user_id = ?", "%" + params[:term].downcase + "%", current_user.id)
+    lists = List.where("lower(title) LIKE ? AND user_id = ?", "%" + params[:term].downcase + "%", current_api_user.id)
     results = []
     lists.each do |list|
       results << { label: list.title, value: list.title, id: list.id }

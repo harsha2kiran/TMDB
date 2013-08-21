@@ -9,8 +9,9 @@
 - $.each @movie.images, (i, image) ->
   - if image.is_main_image == true
     .span4
-      %img{ src: image.image_file.small.url }
-      = image.title
+      %a.slimbox{ href: image.image_file.url, title: image.title }
+        %img{ src: image.image_file.small.url }
+        = image.title
 
 .movie.span12.box
   %h2.title.span12
@@ -88,8 +89,9 @@
     - $.each @movie.images, (i, image) ->
       - if image.is_main_image == false
         .span4
-          %img{ src: image.image_file.small.url }
-          = image.title
+          %a.slimbox{ href: image.image_file.url, title: image.title }
+            %img{ src: image.image_file.small.url }
+            = image.title
 
 - if @movie.videos.length > 0
   .videos.span12.box

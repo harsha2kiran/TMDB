@@ -6,28 +6,30 @@ class Api::V1::GenresController < Api::V1::BaseController
     @genres = Genre.all
     @genres.each do |genre|
       genre.movies = []
+      movies = []
       movie_ids = genre.movie_genres.where(approved: true).limit(3).uniq.map(&:movie_id)
       unless movie_ids == []
-        movie_ids.each do |id|
-          genre.movies << Movie.find(id, :include => [:images])
-        end
+        # movie_ids.each do |id|
+          movies << Movie.find(movie_ids, :include => [:images])
+        # end
       else
-        genre.movies = []
+        movies = []
       end
+      genre.movies = movies.flatten
     end
   end
 
   def show
     @genre = Genre.find params[:id]
     @genre.movies = []
+    movies = []
     movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
     unless movie_ids == []
-      movie_ids.each do |id|
-        @genre.movies << Movie.find(id, :include => [:images])
-      end
+       movies << Movie.find(movie_ids, :include => [:images])
     else
-      @genre.movies = []
+      movies = []
     end
+    @genre.movies = movies.flatten
   end
 
   def search

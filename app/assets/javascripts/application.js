@@ -23,6 +23,7 @@
 //= require backbone-ui-min
 //= require backbone-mediator
 //= require underscore.string.min
+//= require ../../../vendor/assets/javascripts/slimbox2
 //= require_tree ./templates/
 
 //= require apps/people/people_app

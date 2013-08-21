@@ -25,6 +25,7 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @show_view = new MoviesApp.Show(movie: movie)
         $(".js-content").html @show_view.render().el
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   edit: (id) ->
     console.log "movies router edit #{id}"

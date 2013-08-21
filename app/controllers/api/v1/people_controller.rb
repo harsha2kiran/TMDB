@@ -3,8 +3,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   inherit_resources
 
   def index
-    # current_user = User.where(user_type: "admin").first
-    if ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @people = Person.all
       @all = true
     else
@@ -17,8 +16,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def show
-    # current_user = User.where(user_type: "admin").first
-    if ["admin", "moderator"].include?(current_user.user_type) && params[:moderate]
+    if ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @people = Person.all
       @person = @people.find_by_id params[:id]
       @all = true
@@ -45,14 +43,18 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def load_additional_values(items, action)
     movie_ids = []
+    social_app_ids = []
     if action == "show"
       items = [items]
     end
     items.each do |m|
       movie_ids << m.casts.map(&:movie_id)
       movie_ids << m.crews.map(&:movie_id)
+      social_app_ids << m.person_social_apps.map(&:social_app_id)
     end
     movie_ids = movie_ids.flatten
-    @movies = movie_ids.count > 0 ? Movie.find(movie_ids) : []
+    social_app_ids = social_app_ids.flatten
+    @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
+    @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
   end
 end

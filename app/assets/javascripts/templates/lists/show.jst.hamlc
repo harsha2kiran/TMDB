@@ -2,7 +2,7 @@
 .span12
   = "'#{list.title}', #{list.description} from #{list.user}"
 
-  -if list.user_id == current_user.id
+  -if current_user && list.user_id == current_user.id
     .span12
       %p.span12
         Add movies
@@ -30,7 +30,7 @@
                     %img{ src: image.image_file.small.url, alt: "no image" }
               .span12
                 = item.list_item.listable_item.title
-            -if list.user_id == current_user.id
+            -if current_user && list.user_id == current_user.id
               .span.js-remove
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove

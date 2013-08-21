@@ -9,6 +9,16 @@ class Api::V1::BaseController < ApplicationController
   before_filter :check_if_destroy
   before_filter :check_if_update
 
+  doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) }
+
+  def current_api_user
+    if doorkeeper_token
+      @current_api_user ||= User.find(doorkeeper_token.resource_owner_id)
+    else
+      current_user
+    end
+  end
+
   private
 
   def set_controller_name
@@ -31,16 +41,16 @@ class Api::V1::BaseController < ApplicationController
     if ["create", "update"].include?(params[:action])
       # add user_id value from current_user or redirect to login.
       # check if current model has attribute user_id, if not, skip it
-      if current_user && @attribute_names.include?("user_id")
-        params["#{@controller.singularize.to_sym}"][:user_id] = current_user.id
+      if current_api_user && @attribute_names.include?("user_id")
+        params["#{@controller.singularize.to_sym}"][:user_id] = current_api_user.id
       else
         # comment this
-        if @attribute_names.include?("user_id")
-          params["#{@controller.singularize.to_sym}"][:user_id] = User.first.id
-        end
+        # if @attribute_names.include?("user_id")
+        #   params["#{@controller.singularize.to_sym}"][:user_id] = User.first.id
+        # end
         # comment end
         #uncomment authenticate_user!
-        # authenticate_user!
+        authenticate_user!
       end
     end
   end
@@ -48,18 +58,21 @@ class Api::V1::BaseController < ApplicationController
   def set_approved_false
     # add approved = false value to record on create if column exist
     if params[:action] == "create"
-      #TODO uncomment last part of next line
-      if @attribute_names.include?("approved") # && current_user.user_type != "admin"
-        params["#{@controller.singularize.to_sym}"][:approved] = false
-      else
-        # params["#{@controller.singularize.to_sym}"][:approved] = true
+      if @attribute_names.include?("approved")
+        if current_api_user.user_type == "admin"
+          unless params["#{@controller.singularize.to_sym}"][:approved]
+            params["#{@controller.singularize.to_sym}"][:approved] = false
+          end
+        else
+          params["#{@controller.singularize.to_sym}"][:approved] = false
+        end
       end
     end
   end
 
   def check_if_destroy
     if params[:action] == "destroy"
-      if current_user && current_user.user_type == "admin"
+      if current_api_user && current_api_user.user_type == "admin"
       else
         redirect_to root_path, alert: "You must have admin privileges to remove record."
       end
@@ -69,7 +82,7 @@ class Api::V1::BaseController < ApplicationController
 
   def check_if_update
     if params[:action] == "update"
-      if ["admin", "moderator"].include?(current_user.user_type)
+      if ["admin", "moderator"].include?(current_api_user.user_type)
       else
         redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
       end
