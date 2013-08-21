@@ -35,4 +35,14 @@ class Api::V1::ListsController < Api::V1::BaseController
       end
     end
   end
+
+  def search_my_lists
+    lists = List.where("lower(title) LIKE ? AND user_id = ?", "%" + params[:term].downcase + "%", current_user.id)
+    results = []
+    lists.each do |list|
+      results << { label: list.title, value: list.title, id: list.id }
+    end
+    render json: results
+  end
+
 end

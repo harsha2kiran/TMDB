@@ -47,7 +47,11 @@ Movies::Application.routes.draw do
       end
     end
     resources :list_items
-    resources :lists
+    resources :lists do
+      collection do
+        get "search_my_lists" => "lists#search_my_lists"
+      end
+    end
     resources :movie_genres
     resources :movie_keywords
     resources :movie_languages

@@ -43,6 +43,9 @@ class MoviesApp.Router extends Backbone.Router
         @edit_view = new MoviesApp.Edit(movie: movie)
         $(".js-content").html @edit_view.render().el
 
+        @add_to_list_view = new MoviesApp.AddToList()
+        $(".js-content").append @add_to_list_view.render().el
+
         @edit_movie_metadata_view = new MoviesApp.EditMovieMetadatas(movie_metadatas: movie.movie_metadatas)
         $(".js-content").append @edit_movie_metadata_view.render().el
 
@@ -170,6 +173,7 @@ class MoviesApp.Router extends Backbone.Router
       delete window.movie_id
     catch e
       window.movie_id = undefined
+    window.list_id = id
     list = new MoviesApp.List()
     list.url = "/api/v1/lists/#{id}"
     list.fetch

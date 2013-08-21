@@ -52,7 +52,7 @@ class Api::V1::BaseController < ApplicationController
       if @attribute_names.include?("approved") # && current_user.user_type != "admin"
         params["#{@controller.singularize.to_sym}"][:approved] = false
       else
-        params["#{@controller.singularize.to_sym}"][:approved] = true
+        # params["#{@controller.singularize.to_sym}"][:approved] = true
       end
     end
   end

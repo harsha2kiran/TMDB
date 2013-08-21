@@ -1,0 +1,7 @@
+.lists.span12.box
+  %p.span12
+    Add to list
+  .span12
+    %input.js-list{ type: "text", placeholder: "Search list" }
+    %input.js-list-id{ type: "hidden" }
+    %input.js-create{ type: "button", value: "Save" }
