@@ -1,0 +1,13 @@
+%a{ href: "#/lists", class: "span12" }
+  Index lists
+
+.list.span12.box
+  %p.span12
+    Title
+    %input.js-title{ type: "text", placeholder: "Title" }
+  %p.description.span12
+    Description
+    %input.js-description{ type: "text", placeholder: "Description" }
+  %p.span12
+    %input.js-create{ type: "button", value: "Save" }
+

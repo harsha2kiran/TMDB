@@ -1,6 +1,16 @@
 - list = @list
 .span12
   = "'#{list.title}', #{list.description} from #{list.user}"
+
+  -if list.user_id == current_user.id
+    .span12
+      %p.span12
+        Add movies
+      .span12
+        %input.js-movie{ type: "text", placeholder: "Search movies" }
+        %input.js-movie-id{ type: "hidden" }
+        %input.js-create{ type: "button", value: "Add to list" }
+
   .span12
     - if list.list_items
       - $.each list.list_items, (i, item) ->
@@ -20,7 +30,8 @@
                     %img{ src: image.image_file.small.url, alt: "no image" }
               .span12
                 = item.list_item.listable_item.title
-            .span.js-remove
-              %input{ type: "hidden", value: item.list_item.id }
-              Remove
+            -if list.user_id == current_user.id
+              .span.js-remove
+                %input{ type: "hidden", value: item.list_item.id }
+                Remove
 

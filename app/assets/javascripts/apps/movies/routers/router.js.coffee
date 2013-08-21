@@ -2,6 +2,7 @@ class MoviesApp.Router extends Backbone.Router
 
   routes:
     "lists" : "lists_index"
+    "lists/new" : "list_new"
     "lists/:id" : "lists_show"
     "genres" : "genres_index"
     "genres/:id" : "genres_show"
@@ -11,15 +12,13 @@ class MoviesApp.Router extends Backbone.Router
     "movies/:id/edit" : "edit"
 
   initialize: ->
+    @clear_values()
     console.log "MoviesApp router initialized"
 
   show: (id) ->
     console.log "movies router show #{id}"
+    @clear_values()
     window.movie_id = id
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
@@ -29,11 +28,8 @@ class MoviesApp.Router extends Backbone.Router
 
   edit: (id) ->
     console.log "movies router edit #{id}"
+    @clear_values()
     window.movie_id = id
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
@@ -87,27 +83,13 @@ class MoviesApp.Router extends Backbone.Router
 
   new: ->
     console.log "add new movie"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     @new_view = new MoviesApp.New()
     $(".js-content").html @new_view.render().el
 
   index: ->
     console.log "movies index"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     movies = new MoviesApp.Movies()
     movies.fetch
       success: ->
@@ -116,14 +98,7 @@ class MoviesApp.Router extends Backbone.Router
 
   genres_index: ->
     console.log "genres index"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     genres = new MoviesApp.Genres()
     genres.fetch
       success: ->
@@ -132,14 +107,7 @@ class MoviesApp.Router extends Backbone.Router
 
   genres_show: (id) ->
     console.log "genres show #{id}"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     genre = new MoviesApp.Genre()
     genre.url = "/api/v1/genres/#{id}"
     genre.fetch
@@ -149,14 +117,7 @@ class MoviesApp.Router extends Backbone.Router
 
   lists_index: ->
     console.log "lists index"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     lists = new MoviesApp.Lists()
     lists.fetch
       success: ->
@@ -165,14 +126,7 @@ class MoviesApp.Router extends Backbone.Router
 
   lists_show: (id) ->
     console.log "list show #{id}"
-    try
-      delete window.person_id
-    catch e
-      window.person_id = undefined
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     window.list_id = id
     list = new MoviesApp.List()
     list.url = "/api/v1/lists/#{id}"
@@ -181,9 +135,25 @@ class MoviesApp.Router extends Backbone.Router
         @show_view = new MoviesApp.ListsShow(list: list)
         $(".js-content").html @show_view.render().el
 
+  list_new: ->
+    @clear_values()
+    console.log "add new movie"
+    @new_list_view = new MoviesApp.ListsNew()
+    $(".js-content").html @new_list_view.render().el
 
-
-
+  clear_values: ->
+    try
+      delete window.person_id
+    catch e
+      window.person_id = undefined
+    try
+      delete window.movie_id
+    catch e
+      window.movie_id = undefined
+    try
+      delete window.list_id
+    catch e
+      window.list_id = undefined
 
 
 

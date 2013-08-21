@@ -34,6 +34,8 @@
                 %a{:href => "#movies/new"} Add movie
               %li
                 %a{:href => "#people/new"} Add person
+              %li
+                %a{:href => "#lists/new"} Add list
               - if user_signed_in?
                 %li.login-info
                   Signed in as #{current_user.email}. Not you?

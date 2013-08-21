@@ -22,4 +22,8 @@
                       %img{ src: image.image_file.small.url, alt: "no image" }
     .span9
       %a{ href: "#lists/#{list.id}" }
-        = "'#{list.title}', #{list.description} from #{list.user}"
+        - if list.user
+          = "'#{list.title}', #{list.description} from #{list.user}"
+        - else
+          = "'#{list.title}', #{list.description}"
+
