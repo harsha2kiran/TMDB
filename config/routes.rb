@@ -87,7 +87,13 @@ Movies::Application.routes.draw do
     end
     resources :tags
     # resources :user_badges
-    resources :videos
+
+    resources :videos do
+      collection do
+        get "validate_links" => "videos#validate_links"
+      end
+    end
+
     # resources :views
     resources :users, :only => [:show] do
       put "toggle_active" => "users#toggle_active"

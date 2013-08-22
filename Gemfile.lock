@@ -183,6 +183,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.9)
     multipart-post (1.1.5)
+    nokogiri (1.5.10)
     oauth2 (0.8.0)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -322,6 +323,7 @@ DEPENDENCIES
   kaminari
   mailcatcher
   meta_request (= 0.2.0)
+  nokogiri
   oauth2
   pg
   pg_search
