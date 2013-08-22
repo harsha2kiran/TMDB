@@ -6,8 +6,9 @@
       .span12
         .span4
           = keyword.keyword.keyword
-        .span2
-          %input.js-keyword-remove{ type: "button", value: "Remove", data: { id: keyword.id } }
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-keyword-remove{ type: "button", value: "Remove", data: { id: keyword.id } }
   .span12
     %p
       Add new keyword

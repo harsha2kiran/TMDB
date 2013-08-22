@@ -11,8 +11,9 @@
       - else if window.person_id
         .span4
           = cast.movie.title
-      .span2
-        %input.js-cast-remove{ type: "button", value: "Remove", data: { id: cast.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-cast-remove{ type: "button", value: "Remove", data: { id: cast.id } }
   .span12
     %p
       Add new cast member

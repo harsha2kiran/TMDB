@@ -12,8 +12,9 @@
         = video.quality
       .span2
         = video.video_type
-      .span2
-        %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
   .span12
     %p
       Add new video

@@ -23,8 +23,9 @@
         Primary
       .span12
         = release.primary
-      .span12
-        %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span12
+          %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
   .span12
     %p
       Add new release

@@ -8,8 +8,9 @@
       .span4
         %a{ href: social_app.profile_link, target: "_blank" }
           = social_app.profile_link
-      .span2
-        %input.js-person-social-app-remove{ type: "button", value: "Remove", data: { id: social_app.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-person-social-app-remove{ type: "button", value: "Remove", data: { id: social_app.id } }
   .span12
     %p
       Add new social app profile

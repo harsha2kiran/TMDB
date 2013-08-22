@@ -5,8 +5,9 @@
     .span12
       .span3
         = name.alternative_name
-      .span2
-        %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
   .span12
     %p
       Add new alternative name

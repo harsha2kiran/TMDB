@@ -6,8 +6,9 @@
       .span12
         .span4
           = genre.genre.genre
-        .span2
-          %input.js-genre-remove{ type: "button", value: "Remove", data: { id: genre.id } }
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-genre-remove{ type: "button", value: "Remove", data: { id: genre.id } }
   .span12
     %p
       Add new genre

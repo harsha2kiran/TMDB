@@ -10,8 +10,9 @@
       .span2
         - if image.is_main_image
           = "Main image"
-      .span2
-        %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
   .span12
     %p
       Add new image

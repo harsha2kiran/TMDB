@@ -6,8 +6,9 @@
       .span12
         .span4
           = language.language.language
-        .span2
-          %input.js-language-remove{ type: "button", value: "Remove", data: { id: language.id } }
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-language-remove{ type: "button", value: "Remove", data: { id: language.id } }
   .span12
     %p
       Add new language

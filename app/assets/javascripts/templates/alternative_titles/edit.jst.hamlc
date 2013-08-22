@@ -7,8 +7,9 @@
         = title.alternative_title
       .span3
         = title.language.language
-      .span2
-        %input.js-alternative-title-remove{ type: "button", value: "Remove", data: { id: title.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-alternative-title-remove{ type: "button", value: "Remove", data: { id: title.id } }
   .span12
     %p
       Add new alternative title

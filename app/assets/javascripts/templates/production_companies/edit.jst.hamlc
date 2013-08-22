@@ -6,8 +6,9 @@
       .span12
         .span4
           = company.company.company
-        .span2
-          %input.js-production-company-remove{ type: "button", value: "Remove", data: { id: company.id } }
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-production-company-remove{ type: "button", value: "Remove", data: { id: company.id } }
   .span12
     %p
       Add new production company

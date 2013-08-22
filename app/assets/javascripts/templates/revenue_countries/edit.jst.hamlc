@@ -8,8 +8,9 @@
           = country.country.country
         .span4
           = country.revenue
-        .span2
-          %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
   .span12
     %p
       Add new revenue country

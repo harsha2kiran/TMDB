@@ -45,7 +45,7 @@
 - if @person.alternative_names.length > 0
   .alternative-titles.span12.box
     %p
-      Alternative Titles
+      Alternative names
     - $.each @person.alternative_names, (i, name) ->
       .span4
         = name.alternative_name

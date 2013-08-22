@@ -8,8 +8,9 @@
           = tag.person.name
         - else if window.person_id
           = tag.movie.title
-      .span2
-        %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
   .span12
     %p
       Add new tag member

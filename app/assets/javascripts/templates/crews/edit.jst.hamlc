@@ -11,8 +11,9 @@
       - else if window.person_id
         .span4
           = crew.movie.title
-      .span2
-        %input.js-crew-remove{ type: "button", value: "Remove", data: { id: crew.id } }
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-crew-remove{ type: "button", value: "Remove", data: { id: crew.id } }
   .span12
     %p
       Add new crew member
