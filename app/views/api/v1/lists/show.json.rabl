@@ -4,7 +4,9 @@ attributes :id,:description, :title, :user_id, :created_at, :updated_at
 child :list_items do
   attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at
   node(:images){ |item|
-    item.listable_type.classify.constantize.where(id: item.listable_id, approved: true).first.images
+    if item.listable_type != "Image"
+      item.listable_type.classify.constantize.where(id: item.listable_id, approved: true).first.images
+    end
   }
   node(:listable_item){ |item|
     item.listable_type.classify.constantize.where(id: item.listable_id, approved: true).first

@@ -82,6 +82,8 @@ class MoviesApp.Router extends Backbone.Router
         @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
         $(".js-content").append @edit_revenue_countries_view.render().el
 
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+
   new: ->
     console.log "add new movie"
     @clear_values()
@@ -135,6 +137,7 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @show_view = new MoviesApp.ListsShow(list: list)
         $(".js-content").html @show_view.render().el
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   list_new: ->
     @clear_values()

@@ -1,6 +1,6 @@
 class MoviesApp.ListsShow extends Backbone.View
   template: JST['templates/lists/show']
-  className: "row-fluid"
+  className: "row-fluid show-lists"
 
   initialize: ->
     _.bindAll this, "render"
@@ -15,7 +15,7 @@ class MoviesApp.ListsShow extends Backbone.View
     show.html @template(list: list)
 
     $(@el).find(".js-item").autocomplete
-      source: api_version + "search"
+      source: api_version + "search?for_list=true"
       minLength: 2
       messages:
         noResults: ''

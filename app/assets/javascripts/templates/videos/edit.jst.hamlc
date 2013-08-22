@@ -4,6 +4,8 @@
   - $.each @videos, (i, video) ->
     .span12.video
       .span2
+        = video.title
+      .span2
         %a{ href: video.link, target: "_blank" }
           = video.link
       .span2
@@ -18,6 +20,7 @@
   .span12
     %p
       Add new video
+    %input.js-new-video-title{ type: "text", placeholder: "Title" }
     %input.js-new-video-link{ type: "text", placeholder: "Link" }
     %input.js-new-video-priority{ type: "text", placeholder: "Priority" }
     %input.js-new-video-quality{ type: "text", placeholder: "Quality" }

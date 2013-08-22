@@ -12,4 +12,13 @@ class Image < ActiveRecord::Base
 
   mount_uploader :image_file, ImageUploader
 
+  include PgSearch
+  pg_search_scope :image_search, :against => [:title],
+    using: {tsearch: {dictionary: "english", prefix: true}}
+
+  def self.search(term)
+    images = Image.where(approved: true).image_search(term)
+    images = images.uniq
+  end
+
 end

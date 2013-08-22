@@ -22,6 +22,7 @@ class PeopleApp.Router extends Backbone.Router
       success: ->
         @show_view = new PeopleApp.Show(person: person)
         $(".js-content").html @show_view.render().el
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   index: ->
     console.log "people index"
@@ -67,6 +68,8 @@ class PeopleApp.Router extends Backbone.Router
 
         @edit_tags_view = new MoviesApp.EditTags(tags: person.tags)
         $(".js-content").append @edit_tags_view.render().el
+
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   new: ->
     console.log "add new person"
