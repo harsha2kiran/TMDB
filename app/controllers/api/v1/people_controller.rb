@@ -3,7 +3,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   inherit_resources
 
   def index
-    if ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @people = Person.all
       @all = true
     else
@@ -16,7 +16,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def show
-    if ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @people = Person.all
       @person = @people.find_by_id params[:id]
       @all = true
@@ -57,4 +57,5 @@ class Api::V1::PeopleController < Api::V1::BaseController
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
   end
+
 end
