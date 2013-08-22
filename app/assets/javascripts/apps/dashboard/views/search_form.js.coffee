@@ -11,7 +11,7 @@ class DashboardApp.SearchForm extends Backbone.View
     $search = $(@el).find(".js-dashboard-search")
 
     $search.autocomplete
-      source: "http://localhost:3000/api/v1/search"
+      source: api_version + "search"
       minLength: 2
       messages:
         noResults: ''

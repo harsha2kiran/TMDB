@@ -7,8 +7,9 @@
       %p.span12
         Add movies
       .span12
-        %input.js-movie{ type: "text", placeholder: "Search movies" }
-        %input.js-movie-id{ type: "hidden" }
+        %input.js-item{ type: "text", placeholder: "Search movies" }
+        %input.js-item-id{ type: "hidden" }
+        %input.js-item-type{ type: "hidden" }
         %input.js-create{ type: "button", value: "Add to list" }
 
   .span12
@@ -29,7 +30,10 @@
                   - if image.is_main_image
                     %img{ src: image.image_file.small.url, alt: "no image" }
               .span12
-                = item.list_item.listable_item.title
+                - if item.list_item.listable_item.title
+                  = item.list_item.listable_item.title
+                - else
+                  = item.list_item.listable_item.name
             -if current_user && list.user_id == current_user.id
               .span.js-remove
                 %input{ type: "hidden", value: item.list_item.id }

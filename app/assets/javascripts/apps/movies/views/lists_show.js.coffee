@@ -13,29 +13,33 @@ class MoviesApp.ListsShow extends Backbone.View
     show = $(@el)
     list = @options.list.get("list")
     show.html @template(list: list)
-    $(@el).find(".js-movie").autocomplete
-      source: api_version + "movies/search"
+
+    $(@el).find(".js-item").autocomplete
+      source: api_version + "search"
       minLength: 2
       messages:
         noResults: ''
         results: ->
           ''
       select: (event, ui) ->
-        $(show).find(".js-movie-id").val(ui.item.id)
+        $(show).find(".js-item-type").val(ui.item.type)
+        $(show).find(".js-item-id").val(ui.item.id)
+        # window.location = root_path + "/#" + app + "/" + ui.item.id
     this
 
   create: ->
     self = @
-    item_id = $(@el).find(".js-movie-id").val()
-    if item_id
+    item_id = $(@el).find(".js-item-id").val()
+    item_type = $(@el).find(".js-item-type").val()
+    if item_id != "" && item_type != ""
       listable_id = item_id
-      listable_type = "Movie"
+      listable_type = item_type
       list_item = new MoviesApp.ListItem()
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
-          $(self.el).find(".js-movie").val("").removeClass "error"
-          $(self.el).find(".js-movie-id").val("")
+          $(self.el).find(".js-item").val("").removeClass "error"
+          $(self.el).find(".js-item-id").val("")
           list = new MoviesApp.List()
           list.url = "/api/v1/lists/#{window.list_id}"
           list.fetch
@@ -43,7 +47,7 @@ class MoviesApp.ListsShow extends Backbone.View
               @show_view = new MoviesApp.ListsShow(list: list)
               $(".js-content").html @show_view.render().el
     else
-      $(@el).find(".js-movie").addClass("error")
+      $(@el).find(".js-item").addClass("error")
 
   destroy: (e) ->
     if $(e.target).hasClass("js-remove")

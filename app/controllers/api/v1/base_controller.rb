@@ -74,7 +74,10 @@ class Api::V1::BaseController < ApplicationController
     if params[:action] == "destroy"
       if current_api_user && current_api_user.user_type == "admin"
       else
-        redirect_to root_path, alert: "You must have admin privileges to remove record."
+        if current_api_user && @controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i)
+        else
+          redirect_to root_path, alert: "You must have admin privileges to remove record."
+        end
       end
     else
     end
