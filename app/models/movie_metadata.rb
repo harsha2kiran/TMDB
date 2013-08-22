@@ -5,5 +5,6 @@ class MovieMetadata < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :status_id, :user_id
+  validates :homepage, url: true
 
 end

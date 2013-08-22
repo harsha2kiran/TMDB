@@ -12,6 +12,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :link, :user_id, :priority, :quality, :videable_id, :videable_type, :video_type, :title
+  validates :link, url: true
 
   include PgSearch
   pg_search_scope :video_search, :against => [:title],
