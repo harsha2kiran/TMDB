@@ -14,6 +14,18 @@
         %img{ src: image.image_file.small.url }
         = image.title
 
+- if current_user
+  - following = false
+  - $.each @movie.follows, (i, follow) ->
+    - if parseInt(follow.followable_id) == parseInt(window.movie_id) && follow.followable_type == "Movie"
+      - following = true
+  - unless following
+    .follow.span12.box
+      Follow
+  - else
+    .following.span12.box
+      Already following
+
 .movie.span12.box
   %h2.title.span12
     = @movie.title

@@ -23,8 +23,8 @@ class Api::V1::FollowsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      follow = current_api_user.follows.find params[:id]
-      if follow.destroy
+      follow = current_api_user.follows.where(followable_id: params[:followable_id], followable_type: params[:followable_type])
+      if follow.destroy_all
         format.json { respond_with follow }
       else
         format.json { render :json => "Error removing follow.", :status => :unprocessable_entity }
