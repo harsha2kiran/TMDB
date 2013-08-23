@@ -1,0 +1,18 @@
+- @follows.each (follow) ->
+  - follow = follow.get("follow")
+  .span12.follow
+    - if follow.followed_content
+      - followed_content = follow.followed_content
+      .follow-title.span3
+        - if follow.followable_type == "Movie"
+          - path = "movies"
+        - else
+          - path = "people"
+        %a{ href: "##{path}/#{follow.followable_id}" }
+          - if followed_content.title
+            = followed_content.title
+          - else
+            = followed_content.name
+      .unfollow.span2{ data: { id: follow.id } }
+        Unfollow
+

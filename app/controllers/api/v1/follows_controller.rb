@@ -4,6 +4,19 @@ class Api::V1::FollowsController < Api::V1::BaseController
 
   def index
     @follows = current_api_user.follows.all
+    movie_ids = []
+    person_ids = []
+    @follows.each do |m|
+      if m.followable_type == "Movie"
+        movie_ids << m.followable_id
+      else
+        person_ids << m.followable_id
+      end
+    end
+    movie_ids = movie_ids.flatten
+    person_ids = person_ids.flatten
+    @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
+    @people = person_ids.count > 0 ? Person.find_all_by_id(person_ids) : []
   end
 
   def show
@@ -23,7 +36,11 @@ class Api::V1::FollowsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      follow = current_api_user.follows.where(followable_id: params[:followable_id], followable_type: params[:followable_type])
+      if params[:followable_id] && params[:followable_type]
+        follow = current_api_user.follows.where(followable_id: params[:followable_id], followable_type: params[:followable_type])
+      else
+        follow = current_api_user.follows.where(id: params[:id])
+      end
       if follow.destroy_all
         format.json { respond_with follow }
       else

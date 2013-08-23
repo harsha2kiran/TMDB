@@ -10,6 +10,7 @@ class MoviesApp.Router extends Backbone.Router
     "movies/new" : "new"
     "movies/:id" : "show"
     "movies/:id/edit" : "edit"
+    "following" : "following"
 
   initialize: ->
     @clear_values()
@@ -167,6 +168,13 @@ class MoviesApp.Router extends Backbone.Router
       delete window.list_id
     catch e
       window.list_id = undefined
+
+  following: ->
+    follows = new MoviesApp.Follows()
+    follows.fetch
+      success: ->
+        @index_view = new MoviesApp.FollowsIndex(follows: follows)
+        $(".js-content").html @index_view.render().el
 
 
 

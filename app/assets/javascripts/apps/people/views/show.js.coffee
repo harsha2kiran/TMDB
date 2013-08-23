@@ -26,8 +26,8 @@ class PeopleApp.Show extends Backbone.View
 
   unfollow: (e) ->
     $self = $(e.target)
-    type = "Movie"
-    id = window.movie_id
+    type = "Person"
+    id = window.person_id
     $.ajax api_version + "follows/test",
       method: "DELETE"
       data:
