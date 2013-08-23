@@ -43,6 +43,14 @@
       %span= "IMDB ID: "
       = @person.imdb_id
 
+  .views.span12
+    %span= "Views: "
+      - if @person.views.length > 0
+        - $.each @person.views, (i, view) ->
+          = view.views_count + 1
+      - else
+        1
+
 - if @person.alternative_names.length > 0
   .alternative-titles.span12.box
     %p

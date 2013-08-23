@@ -7,14 +7,12 @@ class PeopleApp.Router extends Backbone.Router
     "people/:id/edit" : "edit"
 
   initialize: ->
+    @clear_values()
     console.log "PeopleApp router initialized"
 
   show: (id) ->
     console.log "people router show #{id}"
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     window.person_id = id
     person = new PeopleApp.Person()
     person.url = "/api/v1/people/#{id}"
@@ -22,6 +20,14 @@ class PeopleApp.Router extends Backbone.Router
       success: ->
         @show_view = new PeopleApp.Show(person: person)
         $(".js-content").html @show_view.render().el
+
+        type = "Person"
+        id = window.person_id
+        view = new MoviesApp.View()
+        view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          success: ->
+            console.log view
+
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   index: ->
@@ -33,10 +39,7 @@ class PeopleApp.Router extends Backbone.Router
         $(".js-content").html @index_view.render().el
 
   edit: (id) ->
-    try
-      delete window.movie_id
-    catch e
-      window.movie_id = undefined
+    @clear_values()
     console.log "people router edit #{id}"
     window.person_id = id
     person = new PeopleApp.Person()
@@ -73,6 +76,11 @@ class PeopleApp.Router extends Backbone.Router
 
   new: ->
     console.log "add new person"
+    @clear_values()
+    @new_view = new PeopleApp.New()
+    $(".js-content").html @new_view.render().el
+
+  clear_values: ->
     try
       delete window.person_id
     catch e
@@ -81,5 +89,7 @@ class PeopleApp.Router extends Backbone.Router
       delete window.movie_id
     catch e
       window.movie_id = undefined
-    @new_view = new PeopleApp.New()
-    $(".js-content").html @new_view.render().el
+    try
+      delete window.list_id
+    catch e
+      window.list_id = undefined

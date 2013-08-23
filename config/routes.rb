@@ -94,7 +94,8 @@ Movies::Application.routes.draw do
       end
     end
 
-    # resources :views
+    resources :views, only: [:create]
+
     resources :users, :only => [:show] do
       put "toggle_active" => "users#toggle_active"
       collection do

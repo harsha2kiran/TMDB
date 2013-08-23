@@ -29,6 +29,14 @@
       %span= "Content Score: "
       = @movie.content_score
 
+  %p.views.span12
+    %span= "Views: "
+      - if @movie.views.length > 0
+        - $.each @movie.views, (i, view) ->
+          = view.views_count + 1
+      - else
+        1
+
 - if @movie.alternative_titles.length > 0
   .alternative-titles.span12.box
     %p
