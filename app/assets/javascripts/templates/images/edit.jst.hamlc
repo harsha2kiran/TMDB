@@ -9,6 +9,8 @@
       .span2
         = image.title
       .span2
+        = image.priority
+      .span2
         - if image.is_main_image
           = "Main image"
       - if current_user && current_user.user_type == "admin"
@@ -24,6 +26,7 @@
         %option{ value: "" }= "Main image?"
         %option{ value: "1" }= "Yes"
         %option{ value: "0" }= "No"
+      %input.js-new-image-priority{ type: "text", name: "image[priority]", placeholder: "Priority", value: "0.0" }
       %input.js-new-image-update{ type: "button", value: "Save" }
     .span12.js-upload-status
 

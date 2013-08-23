@@ -63,7 +63,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def edit_popular
     if current_api_user && current_api_user.user_type == "admin"
-      @movies = Movie.select("id, title, popular").where(approved: true).includes(:images).order("popular DESC")
+      @movies = Movie.select("id, title, popular").where(approved: true).includes(:images).order("popular ASC")
     else
       @movies = []
     end
@@ -71,7 +71,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def get_popular
-    @movies = Movie.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular DESC")
+    @movies = Movie.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
     render 'popular'
   end
 

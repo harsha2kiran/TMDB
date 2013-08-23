@@ -41,6 +41,7 @@ class MoviesApp.EditImages extends Backbone.View
     self = @
     is_main_image = $(@el).find(".js-new-image-main").val()
     title = $(@el).find(".js-new-image-title").val()
+    priority = $(@el).find(".js-new-image-pririty").val()
     if title != ""
       if is_main_image != ""
         image = new MoviesApp.Image()
@@ -50,12 +51,12 @@ class MoviesApp.EditImages extends Backbone.View
         else if window.person_id
           imageable_id = window.person_id
           imageable_type = "Person"
-        image.save ({ id: @image_id, image: { id: @image_id, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type } }),
+        image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type } }),
           success: ->
             $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(10000)
             $(self.el).find(".js-new-image-title").val("")
             $(@el).find(".js-new-image-main").removeClass("error")
-            $(@el).find(".js-new-image-title").removeClass("error")
+            $(@el).find(".js-new-image-title").removeClass("error").val("")
       else
         $(@el).find(".js-new-image-main").addClass("error").focus()
         $(@el).find(".js-new-image-title").removeClass("error")

@@ -2,8 +2,8 @@ object @movie
 attributes :id, :original_id, :user_id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
 
 if @all
-  node(:images) { |movie| movie.images }
-  node(:videos) { |movie| movie.videos }
+  node(:images) { |movie| movie.images.order("priority ASC") }
+  node(:videos) { |movie| movie.videos.order("priority ASC") }
 
   node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles ) }
   node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews) }
@@ -19,8 +19,8 @@ if @all
 
 else
 
-  node(:images) { |movie| movie.images.select {|s| s.approved == true } }
-  node(:videos) { |movie| movie.videos.select {|s| (s.approved == true && s.link_active == true) } }
+  node(:images) { |movie| movie.images.order("priority ASC").select {|s| s.approved == true } }
+  node(:videos) { |movie| movie.videos.order("priority ASC").select {|s| (s.approved == true && s.link_active == true) } }
 
   node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles.select {|s| s.approved == true } ) }
   node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews.select {|s| s.approved == true }) }

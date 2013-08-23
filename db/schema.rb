@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822113537) do
+ActiveRecord::Schema.define(:version => 20130823122410) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -144,9 +144,10 @@ ActiveRecord::Schema.define(:version => 20130822113537) do
     t.string   "image_type"
     t.boolean  "is_main_image"
     t.boolean  "approved"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "user_id"
+    t.decimal  "priority",       :precision => 8, :scale => 2
   end
 
   create_table "keywords", :force => true do |t|
@@ -225,11 +226,11 @@ ActiveRecord::Schema.define(:version => 20130822113537) do
     t.integer  "content_score"
     t.boolean  "approved"
     t.hstore   "locked"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.integer  "user_id"
     t.integer  "original_id"
-    t.integer  "popular"
+    t.decimal  "popular",       :precision => 8, :scale => 2
   end
 
   create_table "oauth_access_grants", :force => true do |t|
@@ -405,9 +406,9 @@ ActiveRecord::Schema.define(:version => 20130822113537) do
     t.string   "quality"
     t.boolean  "link_active"
     t.boolean  "approved"
-    t.integer  "priority"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.decimal  "priority",      :precision => 8, :scale => 2
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.integer  "user_id"
     t.string   "title"
   end
