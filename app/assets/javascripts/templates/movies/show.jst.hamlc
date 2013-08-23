@@ -118,8 +118,19 @@
   .videos.span12.box
     - $.each @movie.videos, (i, video) ->
       .span4
-        %a{ href: video.link }
-          = video.video_type + " " + video.quality
+        %a{ href: video.link, target: "_blank" }
+          .span12
+            %img{ src: video.thumbnail, alt: "no image" }
+          .span12
+            = video.title
+        .span12
+          = "Quality: " + video.quality
+        .span12
+          = "Duration: " + video.duration
+        .span12
+          = "Category: " + video.category
+        .span12
+          = "Description: " + video.description
 
 - if @movie.movie_genres.length > 0
   .movie-genres.span12.box
