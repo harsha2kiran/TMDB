@@ -52,3 +52,5 @@ gem "erb2haml"
 gem 'country-select'
 gem 'kaminari'
 gem "nokogiri"
+gem "youtube_it"
+

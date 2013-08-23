@@ -91,6 +91,7 @@ Movies::Application.routes.draw do
     resources :videos do
       collection do
         get "validate_links" => "videos#validate_links"
+        post "check" => "videos#check"
       end
     end
 
