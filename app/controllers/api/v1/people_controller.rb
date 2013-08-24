@@ -15,7 +15,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @all = false
     end
 
-    @people = @people.order("people.approved DESC, people.updated_at DESC")
+    @people = @people.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
 
     filter_results
 
@@ -25,7 +25,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def show
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @people = Person.all
+      @people = Person.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
       @person = @people.find_by_id params[:id]
       @all = true
     else
@@ -34,6 +34,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
       else
         @people = Person.where(approved: true)
       end
+      @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
       @person = @people.find_by_id params[:id]
       @all = false
     end

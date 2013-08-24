@@ -17,7 +17,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
         all_items = Movie.where("approved = TRUE")
       end
 
-      all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+      all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
 
       @items_count = all_items.count
       @movies = all_items
@@ -33,7 +33,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def show
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+      @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas])
       @movie = @movies.find_by_id(params[:id])
       @all = true
     else
@@ -42,7 +42,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       else
         @movies = Movie.where(approved: true)
       end
-      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
       @movie = @movies.find_by_id(params[:id])
       @all = false
     end
@@ -107,18 +107,19 @@ class Api::V1::MoviesController < Api::V1::BaseController
       country_ids << m.releases.map(&:country_id)
       company_ids << m.production_companies.map(&:company_id)
     end
-    person_ids = person_ids.flatten
-    genre_ids = genre_ids.flatten
-    language_ids = language_ids.flatten
-    keyword_ids = keyword_ids.flatten
-    country_ids = country_ids.flatten
-    company_ids = company_ids.flatten
+    person_ids = person_ids.flatten.uniq
+    genre_ids = genre_ids.flatten.uniq
+    language_ids = language_ids.flatten.uniq
+    keyword_ids = keyword_ids.flatten.uniq
+    country_ids = country_ids.flatten.uniq
+    company_ids = company_ids.flatten.uniq
     @languages = language_ids.count > 0 ? Language.find_all_by_id(language_ids) : []
     @people = person_ids.count > 0 ? Person.find_all_by_id(person_ids) : []
     @genres = genre_ids.count > 0 ? Genre.find_all_by_id(genre_ids) : []
     @keywords = keyword_ids.count > 0 ? Keyword.find_all_by_id(keyword_ids) : []
     @countries = country_ids.count > 0 ? Country.find_all_by_id(country_ids) : []
     @companies = company_ids.count > 0 ? Company.find_all_by_id(company_ids) : []
+    @statuses = Status.all
   end
 
 end

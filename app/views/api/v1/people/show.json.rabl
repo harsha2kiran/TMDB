@@ -8,18 +8,19 @@ if @all
   node(:person_social_apps) { |person| partial("api/v1/person_social_apps/index", :object => person.person_social_apps) }
   node(:tags) { |person| partial("api/v1/tags/index", :object => person.tags ) }
   node(:images) { |person| person.images }
-  node(:follows) { |person| person.follows }
-  node(:views) { |person| person.views }
   node(:videos) { |movie| movie.videos }
+
 else
 
-  node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names.where(approved: true)) }
-  node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews.where(approved: true)) }
-  node(:casts) { |person| partial("api/v1/casts/index", :object => person.casts.where(approved: true)) }
-  node(:person_social_apps) { |person| partial("api/v1/person_social_apps/index", :object => person.person_social_apps.where(approved: true)) }
-  node(:tags) { |person| partial("api/v1/tags/index", :object => person.tags.where(approved: true) ) }
-  node(:images) { |person| person.images.where(approved: true) }
-  node(:videos) { |movie| movie.videos.where(approved: true) }
-  node(:follows) { |person| person.follows }
-  node(:views) { |person| person.views }
+  node(:alternative_names) { |person| partial("api/v1/alternative_names/index", :object => person.alternative_names.select {|s| s.approved == true }) }
+  node(:crews) { |person| partial("api/v1/crews/index", :object => person.crews.select {|s| s.approved == true }) }
+  node(:casts) { |person| partial("api/v1/casts/index", :object => person.casts.select {|s| s.approved == true }) }
+  node(:person_social_apps) { |person| partial("api/v1/person_social_apps/index", :object => person.person_social_apps.select {|s| s.approved == true }) }
+  node(:tags) { |person| partial("api/v1/tags/index", :object => person.tags.select {|s| s.approved == true }) }
+  node(:images) { |person| person.images.select {|s| s.approved == true } }
+  node(:videos) { |person| person.videos.select {|s| s.approved == true } }
+
 end
+
+node(:follows) { |person| person.follows }
+node(:views) { |person| person.views }
