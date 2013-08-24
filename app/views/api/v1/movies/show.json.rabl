@@ -19,8 +19,8 @@ if @all
 
 else
 
-  node(:images) { |movie| movie.images.order("priority ASC").select {|s| s.approved == true } }
-  node(:videos) { |movie| movie.videos.order("priority ASC").select {|s| (s.approved == true && s.link_active == true) } }
+  node(:images) { |movie| movie.images.order("images.priority ASC").select {|s| s.approved == true } }
+  node(:videos) { |movie| movie.videos.order("videos.priority ASC").select {|s| (s.approved == true && s.link_active == true) } }
 
   node(:alternative_titles) { |movie| partial("api/v1/alternative_titles/index", :object => movie.alternative_titles.select {|s| s.approved == true } ) }
   node(:crews) { |movie| partial("api/v1/crews/index", :object => movie.crews.select {|s| s.approved == true }) }

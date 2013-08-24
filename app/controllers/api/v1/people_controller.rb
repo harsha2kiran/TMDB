@@ -7,9 +7,17 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @people = Person.all
       @all = true
     else
-      @people = Person.where(approved: true)
+      if current_api_user
+        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+      else
+        @people = Person.where(approved: true)
+      end
       @all = false
     end
+
+    @people = @people.order("people.approved DESC, people.updated_at DESC")
+
+    filter_results
 
     load_additional_values(@people, "index")
 
@@ -21,8 +29,12 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @person = @people.find_by_id params[:id]
       @all = true
     else
-      @people = Person.where(approved: true)
-      @person = @people.find_by_id(params[:id])
+      if current_api_user
+        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user)
+      else
+        @people = Person.where(approved: true)
+      end
+      @person = @people.find_by_id params[:id]
       @all = false
     end
 
@@ -40,6 +52,18 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   private
+
+  def filter_results
+    original_ids = []
+    @people.each_with_index do |person, i|
+      if original_ids.include?(person.original_id)
+        @people[i] = ""
+      else
+        original_ids << person.original_id
+      end
+    end
+    @people.reject! { |c| c == "" }
+  end
 
   def load_additional_values(items, action)
     movie_ids = []

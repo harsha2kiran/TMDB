@@ -58,7 +58,6 @@ Movies::Application.routes.draw do
     resources :movie_metadatas
     resources :movies do
       collection do
-        post "version" => "movies#version"
         get "get_popular" => "movies#get_popular"
         get "edit_popular" => "movies#edit_popular"
         get "search" => "movies#search"

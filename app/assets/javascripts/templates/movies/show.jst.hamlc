@@ -7,12 +7,13 @@
   %a.span2{ href: "#/movies" }
     Index
 
-- $.each @movie.images, (i, image) ->
-  - if image.is_main_image == true
-    .span4
-      %a.slimbox{ href: image.image_file.url, title: image.title }
-        %img{ src: image.image_file.small.url }
-        = image.title
+.span12
+  - $.each @movie.images, (i, image) ->
+    - if image.is_main_image == true
+      .span4
+        %a.slimbox{ href: image.image_file.url, title: image.title }
+          %img{ src: image.image_file.small.url }
+          = image.title
 
 - if current_user
   - following = false

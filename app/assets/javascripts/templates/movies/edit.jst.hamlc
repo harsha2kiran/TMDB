@@ -1,7 +1,7 @@
 - window.movie = @movie
 
 .span12
-  %a.span2{ href: "#/movies/#{@movie.id}"}
+  %a.span2.show-movie{ href: "#/movies/#{@movie.id}"}
     Show
   %a.span2{ href: "#/movies" }
     Index
@@ -20,5 +20,7 @@
     Content Score
     %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score" }
   %p.span12
+    %input.js-original-id{ type: "hidden", value: @movie.original_id }
+    %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
     %input.js-update{ type: "button", value: "Update" }
 

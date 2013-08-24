@@ -41,7 +41,7 @@ class MoviesApp.EditImages extends Backbone.View
     self = @
     is_main_image = $(@el).find(".js-new-image-main").val()
     title = $(@el).find(".js-new-image-title").val()
-    priority = $(@el).find(".js-new-image-pririty").val()
+    priority = $(@el).find(".js-new-image-priority").val()
     if title != ""
       if is_main_image != ""
         image = new MoviesApp.Image()

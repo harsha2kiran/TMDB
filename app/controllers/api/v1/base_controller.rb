@@ -2,12 +2,12 @@ class Api::V1::BaseController < ApplicationController
 
   respond_to :json, :js
 
-  before_filter :set_controller_name
+  before_filter :set_controller_name, :except => :mark
   # before_filter :check_if_authenticated
-  before_filter :set_params_user_id
-  before_filter :set_approved_false
-  before_filter :check_if_destroy
-  before_filter :check_if_update
+  before_filter :set_params_user_id, :except => :mark
+  before_filter :set_approved_false, :except => :mark
+  before_filter :check_if_destroy, :except => :mark
+  before_filter :check_if_update, :except => :mark
 
   doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) }
 

@@ -4,32 +4,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   respond_to :json
 
-
-  def version
-
-    respond_to do |format|
-      versions_list = ["1.2", "1.3", "1.4"]
-      ios_versions_list = ["4", "5", "6"]
-
-      version_number = params[:version_number]
-      ios_version = params[:ios_version]
-
-      message = "version not found"
-      message_type = "alert"
-      flag = false
-
-      if versions_list.include?(version_number)
-        message = "version found"
-        message_type = "web"
-        flag = true
-      end
-
-      format.json { render :json => { message: message, message_type: message_type, flag: flag } }
-
-    end
-  end
-
-
   def index
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       all_items = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
@@ -37,9 +11,19 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @movies = all_items.page(params[:page]).order('title ASC')
       @all = true
     else
-      all_items = Movie.where(approved: true).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+      if current_api_user
+        all_items = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+      else
+        all_items = Movie.where("approved = TRUE")
+      end
+
+      all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+
       @items_count = all_items.count
-      @movies = all_items.page(params[:page]).order(:title).page(params[:page])
+      @movies = all_items
+
+      filter_results
+
       @all = false
     end
 
@@ -53,12 +37,16 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @movie = @movies.find_by_id(params[:id])
       @all = true
     else
-      @movies = Movie.where(approved: true).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
+      if current_api_user
+        @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+      else
+        @movies = Movie.where(approved: true)
+      end
+      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases)
       @movie = @movies.find_by_id(params[:id])
       @all = false
     end
     load_additional_values(@movie, "show")
-
   end
 
   def edit_popular
@@ -85,6 +73,18 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   private
+
+  def filter_results
+    original_ids = []
+    @movies.each_with_index do |movie, i|
+      if original_ids.include?(movie.original_id)
+        @movies[i] = ""
+      else
+        original_ids << movie.original_id
+      end
+    end
+    @movies.reject! { |c| c == "" }
+  end
 
   def load_additional_values(items, action)
     person_ids = []
@@ -113,12 +113,12 @@ class Api::V1::MoviesController < Api::V1::BaseController
     keyword_ids = keyword_ids.flatten
     country_ids = country_ids.flatten
     company_ids = company_ids.flatten
-    @languages = language_ids.count > 0 ? Language.find(language_ids) : []
-    @people = person_ids.count > 0 ? Person.find(person_ids) : []
-    @genres = genre_ids.count > 0 ? Genre.find(genre_ids) : []
-    @keywords = keyword_ids.count > 0 ? Keyword.find(keyword_ids) : []
-    @countries = country_ids.count > 0 ? Country.find(country_ids) : []
-    @companies = company_ids.count > 0 ? Company.find(company_ids) : []
+    @languages = language_ids.count > 0 ? Language.find_all_by_id(language_ids) : []
+    @people = person_ids.count > 0 ? Person.find_all_by_id(person_ids) : []
+    @genres = genre_ids.count > 0 ? Genre.find_all_by_id(genre_ids) : []
+    @keywords = keyword_ids.count > 0 ? Keyword.find_all_by_id(keyword_ids) : []
+    @countries = country_ids.count > 0 ? Country.find_all_by_id(country_ids) : []
+    @companies = company_ids.count > 0 ? Company.find_all_by_id(company_ids) : []
   end
 
 end
