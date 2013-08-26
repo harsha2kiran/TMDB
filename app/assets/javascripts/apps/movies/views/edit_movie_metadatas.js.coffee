@@ -11,8 +11,8 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
   render: ->
     edit_metadata = $(@el)
     movie_metadatas = @options.movie_metadatas
-    edit_metadata.html @template(movie_metadatas: movie_metadatas)
-
+    locked = window.locked
+    edit_metadata.html @template(movie_metadatas: movie_metadatas, locked: locked)
     self = @
     $(@el).find(".js-metadata-status").autocomplete
       source: api_version + "statuses/search"

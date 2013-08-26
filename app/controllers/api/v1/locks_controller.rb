@@ -1,9 +1,9 @@
-class Api::V1::LocksController < ApplicationController
+class Api::V1::LocksController < Api::V1::BaseController
 
   def mark
     respond_to do |format|
-      id = params[:id]
-      type = params[:type]
+      id = params[:item_id]
+      type = params[:item_type]
       field = params[:field]
       if current_api_user.user_type == "admin" && ["Movie", "Person"].include?(type)
         item = type.classify.constantize.find id
@@ -32,8 +32,8 @@ class Api::V1::LocksController < ApplicationController
 
   def unmark
     respond_to do |format|
-      id = params[:id]
-      type = params[:type]
+      id = params[:item_id]
+      type = params[:item_type]
       field = params[:field]
       if current_api_user.user_type == "admin" && ["Movie", "Person"].include?(type)
         item = type.classify.constantize.find id

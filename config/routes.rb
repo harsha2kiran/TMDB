@@ -108,7 +108,7 @@ Movies::Application.routes.draw do
       end
     end
     get '/search' => 'search#search', :as => :search
-    resources :locks do
+    resources :locks, only: [:show] do
       collection do
         post "mark" => "locks#mark"
         post "unmark" => "locks#unmark"

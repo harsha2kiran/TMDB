@@ -11,7 +11,12 @@ class MoviesApp.Edit extends Backbone.View
   render: ->
     edit = $(@el)
     movie = @options.movie
-    edit.html @template(movie: movie)
+    locked = movie.locked
+    if locked.locked
+      window.locked = eval(locked.locked)
+    else
+      window.locked = []
+    edit.html @template(movie: movie, locked: window.locked)
     this
 
   update: (e) ->

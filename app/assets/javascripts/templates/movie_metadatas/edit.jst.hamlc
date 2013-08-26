@@ -8,23 +8,58 @@
   .span5
     Budget
   .span5
-    %input.js-metadata-budget{ type: "text", value: metadata.budget, placeholder: "Budget" }
+    - if $.inArray("budget", @locked) > -1
+      %input.js-metadata-budget{ readonly: "readonly", type: "text", value: metadata.budget, placeholder: "Budget" }
+      %span.lock{ data: { controller: "movies", field: "budget", action: "unmark" } }
+        Unlock
+    - else
+      %input.js-metadata-budget{ type: "text", value: metadata.budget, placeholder: "Budget" }
+      %span.lock{ data: { controller: "movies", field: "budget", action: "mark" } }
+        Lock
   .span5
     Homepage
   .span5
-    %input.js-metadata-homepage{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
+    - if $.inArray("homepage", @locked) > -1
+      %input.js-metadata-homepage{ readonly: "readonly", type: "text", value: metadata.homepage, placeholder: "Homepage" }
+      %span.lock{ data: { controller: "movies", field: "homepage", action: "unmark" } }
+        Unlock
+    - else
+      %input.js-metadata-homepage{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
+      %span.lock{ data: { controller: "movies", field: "homepage", action: "mark" } }
+        Lock
   .span5
     IMDB id
   .span5
-    %input.js-metadata-imdb-id{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+    - if $.inArray("imdb_id", @locked) > -1
+      %input.js-metadata-imdb-id{ readonly: "readonly", type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+      %span.lock{ data: { controller: "movies", field: "imdb_id", action: "unmark" } }
+        Unlock
+    - else
+      %input.js-metadata-imdb-id{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+      %span.lock{ data: { controller: "movies", field: "imdb_id", action: "mark" } }
+        Lock
   .span5
     Runtime
   .span5
-    %input.js-metadata-runtime{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
+    - if $.inArray("runtime", @locked) > -1
+      %input.js-metadata-runtime{ readonly: "readonly", type: "text", value: metadata.runtime, placeholder: "Runtime" }
+      %span.lock{ data: { controller: "movies", field: "runtime", action: "unmark" } }
+        Unlock
+    - else
+      %input.js-metadata-runtime{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
+      %span.lock{ data: { controller: "movies", field: "runtime", action: "mark" } }
+        Lock
   .span5
     Status
   .span5
-    %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+    - if $.inArray("status", @locked) > -1
+      %input.js-metadata-status{ readonly: "readonly", type: "text", value: metadata.status.status, placeholder: "Status" }
+      %span.lock{ data: { controller: "movies", field: "status", action: "unmark" } }
+        Unlock
+    - else
+      %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+      %span.lock{ data: { controller: "movies", field: "status", action: "mark" } }
+        Lock
     %input.js-metadata-status-id{ type: "hidden", value: metadata.status.id }
   .span5
     %input.js-metadata-update{ type: "button", value: "Update metadata" }
