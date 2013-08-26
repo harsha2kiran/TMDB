@@ -11,7 +11,12 @@ class PeopleApp.Edit extends Backbone.View
   render: ->
     edit = $(@el)
     person = @options.person
-    edit.html @template(person: person)
+    locked = person.locked
+    if locked.locked
+      window.locked = eval(locked.locked)
+    else
+      window.locked = []
+    edit.html @template(person: person, locked: window.locked)
     $(@el).find(".js-birthday, .js-day-of-death").datepicker(
       dateFormat: "yy-mm-dd"
     )
