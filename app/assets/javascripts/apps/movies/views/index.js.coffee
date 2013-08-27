@@ -8,6 +8,9 @@ class MoviesApp.Index extends Backbone.View
   render: ->
     index = $(@el)
     movies = @options.movies
-    index.html @template(movies: movies)
+    admin = false
+    if @options.admin
+      admin = true
+    index.html @template(movies: movies, admin: admin)
     this
 

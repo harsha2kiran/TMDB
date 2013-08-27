@@ -58,4 +58,12 @@
     - if user_signed_in?
       %a{ href: "#following" }
         My follows
+      - if current_user.user_type == "admin"
+        |
+        %a{ href: "#admin/movies" }
+          Manage movies
+        |
+        %a{ href: "#admin/people" }
+          Manage people
+
     = yield

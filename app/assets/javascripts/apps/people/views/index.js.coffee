@@ -8,6 +8,9 @@ class PeopleApp.Index extends Backbone.View
   render: ->
     index = $(@el)
     people = @options.people
-    index.html @template(people: people)
+    admin = false
+    if @options.admin
+      admin = true
+    index.html @template(people: people, admin: admin)
     this
 

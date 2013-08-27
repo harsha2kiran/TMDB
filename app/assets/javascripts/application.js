@@ -26,6 +26,9 @@
 //= require ../../../vendor/assets/javascripts/slimbox2
 //= require_tree ./templates/
 
+//= require apps/admin/admin_app
+//= require_tree ./apps/admin/routers/
+
 //= require apps/people/people_app
 //= require_tree ./apps/people/models/
 //= require_tree ./apps/people/collections/

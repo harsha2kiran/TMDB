@@ -6,4 +6,5 @@ $(document).ready ->
       window.current_user = data.user
       window.DashboardApp.initialize()
       window.PeopleApp.initialize()
+      window.AdminApp.initialize()
       window.MoviesApp.initialize()

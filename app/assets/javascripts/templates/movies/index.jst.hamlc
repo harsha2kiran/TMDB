@@ -1,7 +1,12 @@
 .index-movies
+  - admin = @admin
   - @movies.each (movie) ->
     - movie = movie.get("movie")
-    %a{ href: "#movies/#{movie.id}" }
+    - if admin == true
+      - link = "#admin/movies/#{movie.id}"
+    - else
+      - link = "#movies/#{movie.id}"
+    %a{ href: link }
       .span3.movie
         .image
           - movie.images = eval(movie.images)

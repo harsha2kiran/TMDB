@@ -1,7 +1,12 @@
 .index-people
+  - admin = @admin
   - @people.each (person) ->
     - person = person.get("person")
-    %a{ href: "#people/#{person.id}" }
+    - if admin == true
+      - link = "#admin/people/#{person.id}"
+    - else
+      - link = "#people/#{person.id}"
+    %a{ href: link }
       .span3.person
         .image
           - person.images = eval(person.images)
