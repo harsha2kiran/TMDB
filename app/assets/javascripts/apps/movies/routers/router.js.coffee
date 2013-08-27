@@ -1,6 +1,10 @@
 class MoviesApp.Router extends Backbone.Router
 
   routes:
+    "galleries" : "galleries_index"
+    "galleries/new" : "galleries_new"
+    "channels" : "channels_index"
+    "channels/new" : "channels_new"
     "lists" : "lists_index"
     "lists/new" : "list_new"
     "lists/:id" : "lists_show"
@@ -15,6 +19,38 @@ class MoviesApp.Router extends Backbone.Router
   initialize: ->
     @clear_values()
     console.log "MoviesApp router initialized"
+
+  galleries_index: ->
+    console.log "galleries index"
+    @clear_values()
+    lists = new MoviesApp.Lists()
+    lists.url = api_version + "lists/galleries"
+    lists.fetch
+      success: ->
+        @index_view = new MoviesApp.ListsIndex(lists: lists)
+        $(".js-content").html @index_view.render().el
+
+  galleries_new: ->
+    @clear_values()
+    console.log "add new gallery"
+    @new_list_view = new MoviesApp.ListsNew(list_type: "gallery")
+    $(".js-content").html @new_list_view.render().el
+
+  channels_index: ->
+    console.log "channels index"
+    @clear_values()
+    lists = new MoviesApp.Lists()
+    lists.url = api_version + "lists/channels"
+    lists.fetch
+      success: ->
+        @index_view = new MoviesApp.ListsIndex(lists: lists)
+        $(".js-content").html @index_view.render().el
+
+  channels_new: ->
+    @clear_values()
+    console.log "add new channel"
+    @new_list_view = new MoviesApp.ListsNew(list_type: "channel")
+    $(".js-content").html @new_list_view.render().el
 
   show: (id) ->
     console.log "movies router show #{id}"

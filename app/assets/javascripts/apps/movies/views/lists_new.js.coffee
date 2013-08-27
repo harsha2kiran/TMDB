@@ -10,16 +10,18 @@ class MoviesApp.ListsNew extends Backbone.View
 
   render: ->
     edit = $(@el)
-    edit.html @template
+    list_type = @options.list_type
+    edit.html @template(list_type: list_type)
     this
 
   create: (e) ->
     $container = $(@el)
     title = $container.find(".js-title").val()
+    list_type = $container.find(".js-list-type").val()
     description = $container.find(".js-description").val()
     if title != "" && description != ""
       list = new MoviesApp.List()
-      list.save ({ list: { title: title, description: description } }),
+      list.save ({ list: { title: title, description: description, list_type: list_type } }),
         success: ->
           $(".notifications").html("Successfully added new list.").show().fadeOut(10000)
           $container.find(".js-title").removeClass("error").val("")

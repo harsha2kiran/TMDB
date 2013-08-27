@@ -50,6 +50,8 @@ Movies::Application.routes.draw do
     resources :lists do
       collection do
         get "search_my_lists" => "lists#search_my_lists"
+        get "galleries" => "lists#galleries"
+        get "channels" => "lists#channels"
       end
     end
     resources :movie_genres

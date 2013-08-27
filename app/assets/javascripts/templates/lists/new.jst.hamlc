@@ -1,6 +1,12 @@
 %a{ href: "#/lists", class: "span12" }
   Index lists
 
+%h3.span12
+  - unless @list_type
+    Add new list
+  - else
+    = "Add new " + @list_type
+
 .list.span12.box
   %p.span12
     Title
@@ -9,5 +15,6 @@
     Description
     %input.js-description{ type: "text", placeholder: "Description" }
   %p.span12
+    %input.js-list-type{ type: "hidden", value: @list_type }
     %input.js-create{ type: "button", value: "Save" }
 

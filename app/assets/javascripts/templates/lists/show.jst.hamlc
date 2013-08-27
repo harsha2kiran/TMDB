@@ -1,16 +1,24 @@
 - list = @list
-.span12
-  = "'#{list.title}', #{list.description} from #{list.user}"
+- if list
+  %h3.span12
+    = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1) + " '#{list.title}', #{list.description} from #{list.user}"
 
-  -if current_user && list.user_id == current_user.id
-    .span12
-      %p.span12
-        Add movies
-      .span12
-        %input.js-item{ type: "text", placeholder: "Search movies or people" }
-        %input.js-item-id{ type: "hidden" }
-        %input.js-item-type{ type: "hidden" }
-        %input.js-create{ type: "button", value: "Add to list" }
+    -if current_user && list.user_id == current_user.id
+      - if list.list_type == ''
+        .span12
+          %p.span12
+            Add movies
+          .span12
+            %input.js-item{ type: "text", placeholder: "Search movies or people" }
+            %input.js-item-id{ type: "hidden" }
+            %input.js-item-type{ type: "hidden" }
+            %input.js-create{ type: "button", value: "Add to list" }
+
+    - if list.list_type == "gallery"
+      = "add image upload form and tag people and movies"
+
+    - if list.list_type == "channel"
+      = "add videos new form and tag people and movies"
 
   .span12
     - if list.list_items

@@ -3,7 +3,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   inherit_resources
 
   def index
-    @lists = List.find(:all, :include => [:list_items, :user])
+    @lists = List.where("list_type = ''").includes(:list_items, :user)
   end
 
   def show
@@ -39,6 +39,16 @@ class Api::V1::ListsController < Api::V1::BaseController
       results << { label: list.title, value: list.title, id: list.id }
     end
     render json: results
+  end
+
+  def galleries
+    @lists = List.where(list_type: "gallery").includes(:list_items, :user)
+    render 'index'
+  end
+
+  def channels
+    @lists = List.where(list_type: "channel").includes(:list_items, :user)
+    render 'index'
   end
 
 end

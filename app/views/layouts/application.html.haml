@@ -31,6 +31,10 @@
                 %a{:href => "/#genres"} Genres
               %li
                 %a{:href => "/#lists"} Lists
+              %li
+                %a{:href => "/#galleries"} Galleries
+              %li
+                %a{:href => "/#channels"} Channels
               - if user_signed_in?
                 %li
                   %a{:href => "#movies/new"} Add movie
@@ -38,10 +42,10 @@
                   %a{:href => "#people/new"} Add person
                 %li
                   %a{:href => "#lists/new"} Add list
-                %li.login-info
-                  Signed in as #{current_user.email}. Not you?
                 %li
-                  \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
+                  %a{:href => "#galleries/new"} Add gallery
+                %li
+                  %a{:href => "#channels/new"} Add channel
               - else
                 %li
                   %a{:href => new_user_session_path} Add movie
@@ -50,20 +54,32 @@
                 %li
                   %a{:href => new_user_session_path} Add list
                 %li
-                  = link_to "Sign up", new_user_registration_path
-                %li.login-info
-                  or
+                  %a{:href => new_user_session_path} Add gallery
                 %li
-                  \#{link_to "Sign in", new_user_session_path}
-    - if user_signed_in?
-      %a{ href: "#following" }
-        My follows
-      - if current_user.user_type == "admin"
-        |
-        %a{ href: "#admin/movies" }
-          Manage movies
-        |
-        %a{ href: "#admin/people" }
-          Manage people
+                  %a{:href => new_user_session_path} Add channel
+
+      - if user_signed_in?
+        %ul.span12
+          %li.span2
+            %a{ href: "#following" }
+              My follows
+          - if current_user.user_type == "admin"
+            %li.span2
+              %a{ href: "#admin/movies" }
+                Manage movies
+            %li.span2
+              %a{ href: "#admin/people" }
+                Manage people
+          %li.login-info.span5
+            Signed in as #{current_user.email}. Not you?
+            \#{link_to "Sign out", destroy_user_session_path, :method => :delete}
+        - else
+          %li.span2
+            = link_to "Sign up", new_user_registration_path
+          %li.login-info.span2
+            or
+          %li.span2
+            \#{link_to "Sign in", new_user_session_path}
+
 
     = yield

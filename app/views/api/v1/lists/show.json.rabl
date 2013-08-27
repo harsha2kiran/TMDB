@@ -1,5 +1,5 @@
 object @list
-attributes :id,:description, :title, :user_id, :created_at, :updated_at
+attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_type
 
 child :list_items do
   attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at
