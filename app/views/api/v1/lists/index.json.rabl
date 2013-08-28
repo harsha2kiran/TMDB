@@ -13,6 +13,16 @@ child :list_items do
       Image.where(id: item.listable_id, approved: true)
     end
   }
+  node(:videos){ |item|
+    if item.listable_type != "Video"
+      r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+      if r.length > 0
+        r.first.videos
+      end
+    else
+      Video.where(id: item.listable_id, approved: true)
+    end
+  }
 end
 
 node(:user){ |list|

@@ -4,10 +4,9 @@
   - $.each @videos, (i, video) ->
     .span12.video
       .span2
-        = video.title
-      .span2
         %a{ href: video.link, target: "_blank" }
-          = video.link
+          %img{ src: video.thumbnail, alt: "no image" }
+          = video.title
       .span2
         = video.priority
       .span2

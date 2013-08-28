@@ -2,6 +2,23 @@ class Api::V1::VideosController < Api::V1::BaseController
 
   inherit_resources
 
+  def index
+    @videos = Video.where(approved: true).includes(:taggable)
+    movie_ids = []
+    @videos.each do |video|
+      movie_ids << video.map(&:taggable_id)
+    end
+    movie_ids = movie_ids.flatten
+    @movies = Movie.find_all_by_id movie_ids
+    @people = Person.find_all_by_id @videos.tags.map(&:person_id)
+  end
+
+  def show
+    @video = Video.where(approved: true).find(params[:id])
+    @movies = Movie.find_all_by_id @video.tags.map(&:taggable_id)
+    @people = Person.find_all_by_id @video.tags.map(&:person_id)
+  end
+
   def validate_links
     @videos = Video.where(approved: true)
     @videos.each do |video|

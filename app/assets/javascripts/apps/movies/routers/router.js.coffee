@@ -11,6 +11,7 @@ class MoviesApp.Router extends Backbone.Router
     "genres" : "genres_index"
     "genres/:id" : "genres_show"
     "images/:id" : "images_show"
+    "videos/:id" : "videos_show"
     "movies" : "index"
     "movies/new" : "new"
     "movies/:id" : "show"
@@ -35,6 +36,20 @@ class MoviesApp.Router extends Backbone.Router
         @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
         $(".tags").append @edit_tags_view.render().el
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+
+  videos_show: (id) ->
+    console.log "videos show #{id}"
+    @clear_values()
+    window.video_id = id
+    video = new MoviesApp.Video()
+    video.url = api_version + "videos/#{id}"
+    video.fetch
+      success: ->
+        @show_view = new MoviesApp.VideosShow(video: video)
+        $(".js-content").html @show_view.render().el
+
+        @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
+        $(".tags").append @edit_tags_view.render().el
 
   galleries_index: ->
     console.log "galleries index"
@@ -203,8 +218,12 @@ class MoviesApp.Router extends Backbone.Router
         if list.get("list").list_type == "gallery"
           @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
           $(".add-images-form").append @edit_images_view.render().el
+          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+        if list.get("list").list_type == "channel"
+          @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
+          $(".add-videos-form").append @edit_videos_view.render().el
+
 
   list_new: ->
     @clear_values()

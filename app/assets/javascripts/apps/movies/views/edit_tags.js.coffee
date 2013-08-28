@@ -52,6 +52,10 @@ class MoviesApp.EditTags extends Backbone.View
       person_id = $(@el).find(".js-new-tag-person-id").val()
       taggable_id = window.image_id
       taggable_type = "Image"
+    else if window.video_id
+      person_id = $(@el).find(".js-new-tag-person-id").val()
+      taggable_id = window.video_id
+      taggable_type = "Video"
 
     if person_id != "" && taggable_id != ""
       tag = new MoviesApp.Tag()
@@ -100,5 +104,12 @@ class MoviesApp.EditTags extends Backbone.View
           $(".tags").append @edit_tags_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
     else if type == "Video"
-      console.log "video"
+      video = new MoviesApp.Video()
+      video.url = api_version + "videos/#{id}"
+      video.fetch
+        success: ->
+          @show_view = new MoviesApp.VideosShow(video: video)
+          $(".js-content").html @show_view.render().el
+          @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
+          $(".tags").append @edit_tags_view.render().el
 

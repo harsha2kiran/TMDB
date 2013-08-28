@@ -13,7 +13,10 @@ class MoviesApp.EditVideos extends Backbone.View
   render: ->
     edit = $(@el)
     videos = @options.videos
-    edit.html @template(videos: videos)
+    channel = false
+    if @options.channel
+      channel = true
+    edit.html @template(videos: videos, channel: channel)
     this
 
   create: (e) ->
@@ -38,7 +41,7 @@ class MoviesApp.EditVideos extends Backbone.View
           videable_id = window.person_id
           videable_type = "Person"
         video = new MoviesApp.Video()
-        video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail } }),
+        video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true } }),
           success: ->
             $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(10000)
             $(self.el).find(".js-new-video-title").val("").removeClass("error")
@@ -51,6 +54,17 @@ class MoviesApp.EditVideos extends Backbone.View
             $(self.el).find(".js-new-video-priority").val("").removeClass("error")
             $(self.el).find(".js-new-video-category").val("").removeClass("error")
             $(self.el).find(".video-info").hide()
+
+            if self.options.channel
+              $.ajax api_version + "approvals/mark",
+                method: "post"
+                data:
+                  approved_id: video.id
+                  type: "Video"
+                  mark: true
+                success: ->
+                  self.add_video_to_list(video.id)
+
       else
         $(@el).find("input").each (i, input) ->
           $(input).removeClass("error")
@@ -108,8 +122,28 @@ class MoviesApp.EditVideos extends Backbone.View
     s = numhours + ":" + numminutes + ":" + numseconds
     s
 
+  add_video_to_list: (id) ->
+    self = @
+    if window.list_id
+      listable_id = id
+      listable_type = "Video"
+      list_item = new MoviesApp.ListItem()
+      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
+        success: ->
+          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          self.reload_list()
 
+  reload_list: ->
+    list = new MoviesApp.List()
+    list.url = "/api/v1/lists/#{window.list_id}"
+    list.fetch
+      success: ->
+        @show_view = new MoviesApp.ListsShow(list: list)
+        $(".js-content").html @show_view.render().el
 
+        if list.get("list").list_type == "channel"
+          @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
+          $(".add-videos-form").append @edit_videos_view.render().el
 
 
 

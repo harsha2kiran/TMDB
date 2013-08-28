@@ -1,5 +1,5 @@
 object @videos
-attributes :id, :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :created_at, :updated_at
+attributes :id, :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :created_at, :updated_at, :title, :thumbnail, :description, :duration, :category, :duration
 node(:tags) { |video| video.tags }
 # node(:images) { |video| video.images }
 node(:follows) { |video| video.follows }

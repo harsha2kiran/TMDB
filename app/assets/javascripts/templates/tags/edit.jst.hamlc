@@ -2,15 +2,16 @@
   %p
     Tag
   - $.each @tags, (i, tag) ->
-    .span12
-      .span4
-        - if window.movie_id || window.image_id || window.video_id
-          = tag.person.name
-        - else if window.person_id
-          = tag.movie.title
-      - if current_user && current_user.user_type == "admin"
-        .span2
-          %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
+    - if tag.movie && tag.person
+      .span12
+        .span4
+          - if window.movie_id || window.image_id || window.video_id
+            = tag.person.name
+          - else if window.person_id
+            = tag.movie.title
+        - if current_user && current_user.user_type == "admin"
+          .span2
+            %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
   .span12
     %p
       Add new tag member
@@ -20,7 +21,7 @@
     - else if window.person_id
       %input.js-new-tag-movie{ type: "text", placeholder: "Search movies" }
       %input.js-new-tag-movie-id{ type: "hidden" }
-    - else if window.image_id
+    - else if (window.image_id || window.video_id)
       %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
       %input.js-new-tag-person-id{ type: "hidden" }
     %input.js-new-tag-save{ type: "button", value: "Save" }
