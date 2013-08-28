@@ -101,6 +101,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       person_ids << m.crews.map(&:person_id)
       person_ids << m.tags.map(&:person_id)
       language_ids << m.alternative_titles.map(&:language_id)
+      language_ids << m.movie_languages.map(&:language_id)
       genre_ids << m.movie_genres.map(&:genre_id)
       keyword_ids << m.movie_keywords.map(&:keyword_id)
       country_ids << m.revenue_countries.map(&:country_id)

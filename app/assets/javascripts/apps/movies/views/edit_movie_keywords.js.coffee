@@ -8,11 +8,13 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
   events:
     "click .js-new-keyword-save" : "create"
     "click .js-keyword-remove" : "destroy"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     movie_keywords = @options.movie_keywords
-    edit.html @template(movie_keywords: movie_keywords)
+    @edit.html @template(movie_keywords: movie_keywords)
 
     self = @
     $(@el).find(".js-new-keyword").autocomplete
@@ -24,9 +26,11 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-keyword-id").val(ui.item.id)
-        console.log $(self.el).find(".js-new-keyword-id").val()
-
-
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-new-keyword-id").val("")
     this
 
   create: (e) ->
@@ -50,3 +54,21 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Keyword removed.").show().fadeOut(10000)
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-keyword").val()
+    if value != ""
+      model = new MoviesApp.Keyword()
+      model.save ({ keyword: { keyword: value } }),
+        success: ->
+          $(self.el).find(".js-new-keyword").val(value).removeClass "error"
+          $(self.el).find(".js-new-keyword-id").val(model.id)
+          self.create()
+          self.cancel()
+    else
+      @edit.find(".js-new-keyword").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+

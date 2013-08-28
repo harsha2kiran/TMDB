@@ -15,3 +15,12 @@
     %input.js-new-production-company{ type: "text", placeholder: "Search company" }
     %input.js-new-production-company-id{ type: "hidden" }
     %input.js-new-production-company-save{ type: "button", value: "Save" }
+
+    .js-new-item-info.hide
+      This company does not exist. Do you want to add it?
+    .js-new-item-add-form.hide
+      .span1.js-new-item-add-yes
+        Yes
+      .span1.js-new-item-add-no
+        No
+

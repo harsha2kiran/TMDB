@@ -3,7 +3,7 @@ class Api::V1::StatusesController < Api::V1::BaseController
   inherit_resources
 
   def search
-    statuses = Status.where("lower(status) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    statuses = Status.where("approved = TRUE AND lower(status) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     statuses.each do |status|

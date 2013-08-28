@@ -8,11 +8,13 @@ class MoviesApp.EditMovieGenres extends Backbone.View
   events:
     "click .js-new-genre-save" : "create"
     "click .js-genre-remove" : "destroy"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     movie_genres = @options.movie_genres
-    edit.html @template(movie_genres: movie_genres)
+    @edit.html @template(movie_genres: movie_genres)
 
     self = @
     $(@el).find(".js-new-genre").autocomplete
@@ -24,7 +26,11 @@ class MoviesApp.EditMovieGenres extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-genre-id").val(ui.item.id)
-
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-new-genre-id").val("")
     this
 
   create: (e) ->
@@ -40,7 +46,6 @@ class MoviesApp.EditMovieGenres extends Backbone.View
     else
       $(@el).find(".js-new-genre").addClass("error")
 
-
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()
     id = $(e.target).attr("data-id")
@@ -49,3 +54,22 @@ class MoviesApp.EditMovieGenres extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Genre removed.").show().fadeOut(10000)
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-genre").val()
+    if value != ""
+      model = new MoviesApp.Genre()
+      model.save ({ genre: { genre: value } }),
+        success: ->
+          $(self.el).find(".js-new-genre").val(value).removeClass "error"
+          $(self.el).find(".js-new-genre-id").val(model.id)
+          self.create()
+          self.cancel()
+    else
+      @edit.find(".js-new-genre").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+
+

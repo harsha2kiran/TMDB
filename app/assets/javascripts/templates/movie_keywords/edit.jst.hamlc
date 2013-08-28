@@ -15,3 +15,13 @@
     %input.js-new-keyword{ type: "text", placeholder: "Search keyword" }
     %input.js-new-keyword-id{ type: "hidden" }
     %input.js-new-keyword-save{ type: "button", value: "Save" }
+
+    .js-new-item-info.hide
+      This keyword does not exist. Do you want to add it?
+    .js-new-item-add-form.hide
+      .span1.js-new-item-add-yes
+        Yes
+      .span1.js-new-item-add-no
+        No
+
+

@@ -5,10 +5,10 @@
     .span12
       .span4
         = cast.character
-      - if window.movie_id
+      - if window.movie_id && cast.person
         .span4
           = cast.person.name
-      - else if window.person_id
+      - else if window.person_id && cast.movie
         .span4
           = cast.movie.title
       - if current_user && current_user.user_type == "admin"

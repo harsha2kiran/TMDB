@@ -8,11 +8,13 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
   events:
     "click .js-new-language-save" : "create"
     "click .js-language-remove" : "destroy"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     movie_languages = @options.movie_languages
-    edit.html @template(movie_languages: movie_languages)
+    @edit.html @template(movie_languages: movie_languages)
 
     self = @
     $(@el).find(".js-new-language").autocomplete
@@ -24,7 +26,11 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-language-id").val(ui.item.id)
-
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-new-language-id").val("")
     this
 
   create: (e) ->
@@ -48,3 +54,22 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Language removed.").show().fadeOut(10000)
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-language").val()
+    if value != ""
+      model = new MoviesApp.Language()
+      model.save ({ language: { language: value } }),
+        success: ->
+          $(self.el).find(".js-new-language").val(value).removeClass "error"
+          $(self.el).find(".js-new-language-id").val(model.id)
+          self.create()
+          self.cancel()
+    else
+      @edit.find(".js-new-language").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+
+

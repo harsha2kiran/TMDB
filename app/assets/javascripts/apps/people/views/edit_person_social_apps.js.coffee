@@ -8,11 +8,13 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
   events:
     "click .js-new-person-social-app-save" : "create"
     "click .js-person-social-app-remove" : "destroy"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     person_social_apps = @options.person_social_apps
-    edit.html @template(person_social_apps: person_social_apps)
+    @edit.html @template(person_social_apps: person_social_apps)
 
     self = @
     $(@el).find(".js-new-person-social-apps-app").autocomplete
@@ -24,7 +26,11 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-person-social-apps-id").val(ui.item.id)
-
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-new-person-social-apps-app-id").val("")
     this
 
   create: (e) ->
@@ -55,3 +61,27 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Social app link removed.").show().fadeOut(10000)
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-person-social-apps-app").val()
+    link = @edit.find(".js-new-person-social-apps-link").val()
+    if value != "" && link != ""
+      model = new PeopleApp.SocialApp()
+      model.save ({ social_app: { social_app: value, link: link } }),
+        success: ->
+          $(self.el).find(".js-new-person-social-apps-app").val(value).removeClass "error"
+          $(self.el).find(".js-new-person-social-apps-id").val(model.id)
+          self.create()
+          self.cancel()
+    else
+      $(@el).find("input").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+
+

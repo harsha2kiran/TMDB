@@ -3,7 +3,7 @@ class Api::V1::LanguagesController < Api::V1::BaseController
   inherit_resources
 
   def search
-    languages = Language.where("lower(language) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    languages = Language.where("approved = TRUE AND lower(language) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     languages.each do |language|

@@ -8,11 +8,13 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
   events:
     "click .js-new-production-company-save" : "create"
     "click .js-production-company-remove" : "destroy"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     production_companies = @options.production_companies
-    edit.html @template(production_companies: production_companies)
+    @edit.html @template(production_companies: production_companies)
 
     self = @
     $(@el).find(".js-new-production-company").autocomplete
@@ -24,7 +26,11 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-production-company-id").val(ui.item.id)
-
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-new-production-company-id").val("")
     this
 
   create: (e) ->
@@ -48,3 +54,22 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Production company removed.").show().fadeOut(10000)
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-production-company").val()
+    if value != ""
+      model = new MoviesApp.Company()
+      model.save ({ company: { company: value } }),
+        success: ->
+          $(self.el).find(".js-new-production-company").val(value).removeClass "error"
+          $(self.el).find(".js-new-production-company-id").val(model.id)
+          self.create()
+          self.cancel()
+    else
+      @edit.find(".js-new-production-company").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+
+

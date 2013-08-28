@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827164730) do
+ActiveRecord::Schema.define(:version => 20130828163146) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20130827164730) do
     t.string   "genre"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "approved"
   end
 
   create_table "images", :force => true do |t|
@@ -154,12 +155,14 @@ ActiveRecord::Schema.define(:version => 20130827164730) do
     t.string   "keyword"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "approved"
   end
 
   create_table "languages", :force => true do |t|
     t.string   "language"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "approved"
   end
 
   create_table "list_items", :force => true do |t|
@@ -344,6 +347,7 @@ ActiveRecord::Schema.define(:version => 20130827164730) do
     t.string   "link"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "approved"
   end
 
   create_table "statuses", :force => true do |t|

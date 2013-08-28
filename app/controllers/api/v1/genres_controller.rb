@@ -3,7 +3,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   inherit_resources
 
   def index
-    @genres = Genre.all
+    @genres = Genre.where(approved: true)
     @genres.each do |genre|
       genre.movies = []
       movies = []
@@ -20,7 +20,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   end
 
   def show
-    @genre = Genre.where(id: params[:id]).includes(:follows).first
+    @genre = Genre.where(id: params[:id], approved: true).includes(:follows).first
     @genre.movies = []
     movies = []
     movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
@@ -33,7 +33,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   end
 
   def search
-    genres = Genre.where("lower(genre) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    genres = Genre.where("approved = TRUE AND lower(genre) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     genres.each do |genre|
