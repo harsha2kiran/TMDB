@@ -33,10 +33,14 @@ class Api::V1::GenresController < Api::V1::BaseController
   end
 
   def search
-    genres = Genre.where("lower(genre) LIKE ?", "%" + params[:term].downcase + "%")
+    genres = Genre.where("lower(genre) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
+    arr = []
     genres.each do |genre|
-      results << { label: genre.genre, value: genre.genre, id: genre.id }
+      unless arr.include?(genre.genre.downcase)
+        arr << genre.genre.downcase
+        results << { label: genre.genre, value: genre.genre, id: genre.id }
+      end
     end
     render json: results
   end
