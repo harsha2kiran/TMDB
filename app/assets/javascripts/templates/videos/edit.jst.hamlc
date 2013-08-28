@@ -11,8 +11,8 @@
         = video.priority
       .span2
         = video.quality
-      .span2
-        = video.video_type
+      -# .span2
+      -#   = video.video_type
       - if current_user && current_user.user_type == "admin"
         .span2
           %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
@@ -42,13 +42,13 @@
           Thumbnail
         .span3
           %img.js-new-video-thumbnail.hide{ src: "" }
-      .span12
-        .span2
-          Comments allowed?
-        .span3
-          %select.js-new-video-comments
-            %option{ value: "allowed" }= "Allowed"
-            %option{ value: "denied" }= "Denied"
+      -# .span12
+      -#   .span2
+      -#     Comments allowed?
+      -#   .span3
+      -#     %select.js-new-video-comments
+      -#       %option{ value: "allowed" }= "Allowed"
+      -#       %option{ value: "denied" }= "Denied"
       .span12
         .span2
           Priority
@@ -59,12 +59,12 @@
           Quality
         .span3
           %input.js-new-video-quality{ type: "text", placeholder: "Quality" }
-      .span12
-        .span2
-          Category
-        .span3
-          %input.js-new-video-category{ type: "text", placeholder: "Category" }
-      .span12
+      -# .span12
+      -#   .span2
+      -#     Category
+      -#   .span3
+      -#     %input.js-new-video-category{ type: "text", placeholder: "Category" }
+      .span12.hide
         .span2
           Duration
         .span3

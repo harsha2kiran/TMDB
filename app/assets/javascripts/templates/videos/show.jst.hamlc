@@ -6,10 +6,10 @@
       = @video.title
   .span12
     = "Quality: " + @video.quality
-  .span12
+  .span12.hide
     = "Duration: " + @video.duration
-  .span12
-    = "Category: " + @video.category
+  -# .span12
+  -#   = "Category: " + @video.category
   .span12
     = "Description: " + @video.description
 .tags

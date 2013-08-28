@@ -129,10 +129,10 @@
             = video.title
         .span12
           = "Quality: " + video.quality
-        .span12
-          = "Duration: " + video.duration
-        .span12
-          = "Category: " + video.category
+        -# .span12
+        -#   = "Duration: " + video.duration
+        -# .span12
+        -#   = "Category: " + video.category
         .span12
           = "Description: " + video.description
 
