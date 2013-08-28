@@ -5,4 +5,4 @@ node(:tags) { |video|
 }
 node(:images) { |video| video.images }
 node(:follows) { |video| video.follows }
-node(:views) { |video| video.views }
+node(:views) { |video| video.views.count }

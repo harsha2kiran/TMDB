@@ -37,4 +37,4 @@ else
 end
 
 node(:follows) { |movie| movie.follows }
-node(:views) { |movie| movie.views }
+node(:views) { |movie| movie.views.count }

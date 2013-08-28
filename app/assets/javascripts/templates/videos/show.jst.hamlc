@@ -12,4 +12,11 @@
   -#   = "Category: " + @video.category
   .span12
     = "Description: " + @video.description
+
+  .views.span12
+    %span= "Views: "
+      - if @video.views
+        = @video.views + 1
+      - else
+        1
 .tags

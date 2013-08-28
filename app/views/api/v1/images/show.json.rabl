@@ -5,4 +5,4 @@ node(:tags) { |image|
   partial("api/v1/tags/index", :object => image.tags.select {|s| s.approved == true } )
 }
 node(:follows) { |image| image.follows }
-node(:views) { |image| image.views }
+node(:views) { |image| image.views.count }

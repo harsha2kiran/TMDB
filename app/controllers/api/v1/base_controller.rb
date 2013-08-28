@@ -9,7 +9,7 @@ class Api::V1::BaseController < ApplicationController
   before_filter :check_if_destroy, :except => [:mark, :unmark]
   before_filter :check_if_update, :except => [:mark, :unmark]
 
-  doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) }
+  doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) || @controller == "views" }
 
   def current_api_user
     if doorkeeper_token
@@ -29,7 +29,7 @@ class Api::V1::BaseController < ApplicationController
   def check_if_authenticated
     logger.info "controller " + @controller
     logger.info "action " + params[:action]
-    public_controllers = ["movies", "videos", "images", "lists", "people"]
+    public_controllers = ["movies", "videos", "images", "lists", "people", "views"]
     if public_controllers.include?(@controller) && (params[:action] == "index" || params[:action] == "show")
       # no need to authenticate, these are public resources
     else
@@ -50,7 +50,9 @@ class Api::V1::BaseController < ApplicationController
         # end
         # comment end
         #uncomment authenticate_user!
-        authenticate_user!
+        if @controller != "views"
+          authenticate_user!
+        end
       end
     end
   end

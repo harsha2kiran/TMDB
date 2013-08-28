@@ -5,4 +5,10 @@
     .title
       = @image.title
 
+  .views.span12
+    %span= "Views: "
+      - if @image.views
+        = @image.views + 1
+      - else
+        1
 .tags

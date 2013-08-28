@@ -37,6 +37,13 @@ class MoviesApp.Router extends Backbone.Router
         $(".tags").append @edit_tags_view.render().el
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
+        type = "Image"
+        id = window.image_id
+        view = new MoviesApp.View()
+        view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          success: ->
+            console.log view
+
   videos_show: (id) ->
     console.log "videos show #{id}"
     @clear_values()
@@ -50,6 +57,13 @@ class MoviesApp.Router extends Backbone.Router
 
         @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
         $(".tags").append @edit_tags_view.render().el
+
+        type = "Video"
+        id = window.video_id
+        view = new MoviesApp.View()
+        view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          success: ->
+            console.log view
 
   galleries_index: ->
     console.log "galleries index"

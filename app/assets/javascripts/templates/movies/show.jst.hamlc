@@ -44,9 +44,8 @@
 
   %p.views.span12
     %span= "Views: "
-      - if @movie.views.length > 0
-        - $.each @movie.views, (i, view) ->
-          = view.views_count + 1
+      - if @movie.views
+        = @movie.views + 1
       - else
         1
 

@@ -23,4 +23,4 @@ else
 end
 
 node(:follows) { |person| person.follows }
-node(:views) { |person| person.views }
+node(:views) { |person| person.views.count }
