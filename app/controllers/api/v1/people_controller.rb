@@ -75,6 +75,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     items.each do |m|
       movie_ids << m.casts.map(&:movie_id)
       movie_ids << m.crews.map(&:movie_id)
+      movie_ids << m.tags.map(&:taggable_id)
       social_app_ids << m.person_social_apps.map(&:social_app_id)
     end
     movie_ids = movie_ids.flatten

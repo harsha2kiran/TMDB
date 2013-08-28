@@ -10,6 +10,7 @@ class MoviesApp.Router extends Backbone.Router
     "lists/:id" : "lists_show"
     "genres" : "genres_index"
     "genres/:id" : "genres_show"
+    "images/:id" : "images_show"
     "movies" : "index"
     "movies/new" : "new"
     "movies/:id" : "show"
@@ -19,6 +20,21 @@ class MoviesApp.Router extends Backbone.Router
   initialize: ->
     @clear_values()
     console.log "MoviesApp router initialized"
+
+  images_show: (id) ->
+    console.log "images show #{id}"
+    @clear_values()
+    window.image_id = id
+    image = new MoviesApp.Image()
+    image.url = "/api/v1/images/#{id}"
+    image.fetch
+      success: ->
+        @show_view = new MoviesApp.ImagesShow(image: image)
+        $(".js-content").html @show_view.render().el
+
+        @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
+        $(".tags").append @edit_tags_view.render().el
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   galleries_index: ->
     console.log "galleries index"
@@ -183,6 +199,11 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @show_view = new MoviesApp.ListsShow(list: list)
         $(".js-content").html @show_view.render().el
+
+        if list.get("list").list_type == "gallery"
+          @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
+          $(".add-images-form").append @edit_images_view.render().el
+
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   list_new: ->
@@ -204,6 +225,14 @@ class MoviesApp.Router extends Backbone.Router
       delete window.list_id
     catch e
       window.list_id = undefined
+    try
+      delete window.image_id
+    catch e
+      window.image_id = undefined
+    try
+      delete window.video_id
+    catch e
+      window.video_id = undefined
 
   following: ->
     follows = new MoviesApp.Follows()

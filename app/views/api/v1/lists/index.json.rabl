@@ -5,7 +5,12 @@ child :list_items do
   attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at
   node(:images){ |item|
     if item.listable_type != "Image"
-      item.listable_type.classify.constantize.where(id: item.listable_id, approved: true).first.images
+      r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+      if r.length > 0
+        r.first.images
+      end
+    else
+      Image.where(id: item.listable_id, approved: true)
     end
   }
 end

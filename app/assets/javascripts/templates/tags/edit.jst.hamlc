@@ -4,7 +4,7 @@
   - $.each @tags, (i, tag) ->
     .span12
       .span4
-        - if window.movie_id
+        - if window.movie_id || window.image_id || window.video_id
           = tag.person.name
         - else if window.person_id
           = tag.movie.title
@@ -20,4 +20,7 @@
     - else if window.person_id
       %input.js-new-tag-movie{ type: "text", placeholder: "Search movies" }
       %input.js-new-tag-movie-id{ type: "hidden" }
+    - else if window.image_id
+      %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
+      %input.js-new-tag-person-id{ type: "hidden" }
     %input.js-new-tag-save{ type: "button", value: "Save" }

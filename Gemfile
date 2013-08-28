@@ -53,4 +53,4 @@ gem 'country-select'
 gem 'kaminari'
 gem "nokogiri"
 gem "youtube_it"
-
+# gem 'rack-mini-profiler'

@@ -77,20 +77,22 @@
     %p
       Crew
     - $.each @person.crews, (i, crew) ->
-      .span4
-        = crew.job
-      .span4
-        = crew.movie.title
+      - if crew.movie && crew.movie.title
+        .span4
+          = crew.job
+        .span4
+          = crew.movie.title
 
 - if @person.casts.length > 0
   .casts.span12.box
     %p
       Cast
     - $.each @person.casts, (i, cast) ->
-      .span4
-        = cast.character
-      .span4
-        = cast.movie.title
+      - if cast.movie && cast.movie.title
+        .span4
+          = cast.character
+        .span4
+          = cast.movie.title
 
 - if @person.images.length > 0
   .images.span12.box
@@ -121,8 +123,9 @@
 - if @person.tags.length > 0
   .tags.box.span12
     - $.each @person.tags, (i, tag) ->
-      .span12
-        .span4
-          %a{ href: "#movies/#{tag.movie.id}" }
-            = tag.movie.title
+      - if tag.movie && tag.movie.title
+        .span12
+          .span4
+            %a{ href: "#movies/#{tag.movie.id}" }
+              = tag.movie.title
 

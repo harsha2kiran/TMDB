@@ -18,7 +18,7 @@
               .span2
                 %a{ href: "##{url_item}/#{last_listable_id}" }
                   - $.each item.list_item.images, (i, image) ->
-                    - if image.is_main_image
+                    - if image.is_main_image || last_listable_type == "Image"
                       %img{ src: image.image_file.small.url, alt: "no image" }
     .span9
       %a{ href: "#lists/#{list.id}" }

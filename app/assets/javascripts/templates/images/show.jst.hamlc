@@ -4,3 +4,5 @@
       %img{ src: @image.image_file.image_file.small.url, alt: "no image"}
     .title
       = @image.title
+
+.tags

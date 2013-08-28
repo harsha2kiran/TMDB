@@ -12,7 +12,10 @@ class MoviesApp.EditImages extends Backbone.View
   render: ->
     edit = $(@el)
     images = @options.images
-    edit.html @template(images: images)
+    gallery = false
+    if @options.gallery
+      gallery = true
+    edit.html @template(images: images, gallery: gallery)
     self = @
     self.image_id = 0
     $(@el).find(".js-new-image-form").fileupload
@@ -57,6 +60,16 @@ class MoviesApp.EditImages extends Backbone.View
             $(self.el).find(".js-new-image-title").val("")
             $(@el).find(".js-new-image-main").removeClass("error")
             $(@el).find(".js-new-image-title").removeClass("error").val("")
+            if self.options.gallery
+              $.ajax api_version + "approvals/mark",
+                method: "post"
+                data:
+                  approved_id: image.id
+                  type: "Image"
+                  mark: true
+                success: ->
+                  self.add_image_to_list(image.id)
+
       else
         $(@el).find(".js-new-image-main").addClass("error").focus()
         $(@el).find(".js-new-image-title").removeClass("error")
@@ -72,3 +85,28 @@ class MoviesApp.EditImages extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Image removed.").show().fadeOut(10000)
+
+  add_image_to_list: (image_id) ->
+    self = @
+    if window.list_id
+      listable_id = image_id
+      listable_type = "Image"
+      list_item = new MoviesApp.ListItem()
+      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
+        success: ->
+          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          self.reload_list()
+
+  reload_list: ->
+    list = new MoviesApp.List()
+    list.url = "/api/v1/lists/#{window.list_id}"
+    list.fetch
+      success: ->
+        @show_view = new MoviesApp.ListsShow(list: list)
+        $(".js-content").html @show_view.render().el
+
+        if list.get("list").list_type == "gallery"
+          @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
+          $(".add-images-form").append @edit_images_view.render().el
+
+        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })

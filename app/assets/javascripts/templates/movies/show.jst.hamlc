@@ -92,20 +92,23 @@
     %p
       Crew
     - $.each @movie.crews, (i, crew) ->
-      .span4
-        = crew.job
-      .span4
-        = crew.person.name
+      - if crew.person && crew.person.name
+        .span4
+          = crew.job
+        .span4
+          = crew.person.name
 
 - if @movie.casts.length > 0
   .casts.span12.box
     %p
       Cast
     - $.each @movie.casts, (i, cast) ->
-      .span4
-        = cast.character
-      .span4
-        = cast.person.name
+      - if cast.person && cast.person.name
+        .span4
+          = cast.character
+        .span4
+          = cast.person.name
+
 - if @movie.images.length > 0
   .images.span12.box
     - $.each @movie.images, (i, image) ->

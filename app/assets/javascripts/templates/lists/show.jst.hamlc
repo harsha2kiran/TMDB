@@ -3,28 +3,29 @@
   %h3.span12
     = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1) + " '#{list.title}', #{list.description} from #{list.user}"
 
-    -if current_user && list.user_id == current_user.id
-      - if list.list_type == ''
+  -if current_user && list.user_id == current_user.id
+    - if list.list_type == ''
+      .span12
+        %p.span12
+          Add movies or people
         .span12
-          %p.span12
-            Add movies
-          .span12
-            %input.js-item{ type: "text", placeholder: "Search movies or people" }
-            %input.js-item-id{ type: "hidden" }
-            %input.js-item-type{ type: "hidden" }
-            %input.js-create{ type: "button", value: "Add to list" }
+          %input.js-item{ type: "text", placeholder: "Search movies or people" }
+          %input.js-item-id{ type: "hidden" }
+          %input.js-item-type{ type: "hidden" }
+          %input.js-create{ type: "button", value: "Add to list" }
 
-    - if list.list_type == "gallery"
-      = "add image upload form and tag people and movies"
+  - if list.list_type == "gallery"
+    .add-images-form
 
-    - if list.list_type == "channel"
-      = "add videos new form and tag people and movies"
+  - if list.list_type == "channel"
+    .add-videos-form
+    = "add videos new form and tag people and movies"
 
   .span12
     - if list.list_items
       - $.each list.list_items, (i, item) ->
-        .span4.item
-          - if item.list_item.images && item.list_item.images.length > 0
+        - if item.list_item.images && item.list_item.images.length > 0
+          .span4.item
             - last_listable_id = item.list_item.listable_id
             - last_listable_type = item.list_item.listable_type
             - url_item = switch
@@ -32,25 +33,38 @@
               - when last_listable_type == "Image" then "images"
               - when last_listable_type == "Video" then "videos"
               - when last_listable_type == "Person" then "people"
-            %a{ href: "##{url_item}/#{last_listable_id}" }
-              .span12
-                - $.each item.list_item.images, (i, image) ->
-                  - if image.is_main_image
-                    %a.slimbox{ href: image.image_file.url }
+            - if item.list_item.listable_type == "Movie" || item.list_item.listable_type == "Person"
+              %a{ href: "##{url_item}/#{last_listable_id}" }
+                .span12
+                  - $.each item.list_item.images, (i, image) ->
+                    - if image && image.is_main_image
                       %img{ src: image.image_file.small.url, alt: "no image" }
-          - if item.list_item.listable_type == "Video"
-            %a{ href: item.list_item.listable_item.link, target: "_blank" }
-              = item.list_item.listable_item.link
-          - if item.list_item.listable_type == "Image"
-            %a.slimbox{ href: item.list_item.listable_item.image_file.url }
-              %img{ src: item.list_item.listable_item.image_file.small.url, alt: "no image" }
-          .span12
-            - if item.list_item.listable_item.title
-              = item.list_item.listable_item.title
-            - else
-              = item.list_item.listable_item.name
-            -if current_user && list.user_id == current_user.id
-              .span.js-remove
-                %input{ type: "hidden", value: item.list_item.id }
-                Remove
+                  - if item.list_item.listable_item.title
+                    .span12
+                      = item.list_item.listable_item.title
+                  - else
+                    .span12
+                      = item.list_item.listable_item.name
+
+            - if item.list_item.listable_type == "Video"
+              %a{ href: item.list_item.listable_item.link, target: "_blank" }
+                = item.list_item.listable_item.link
+            - if item.list_item.listable_type == "Image" && item.list_item.listable_item.length > 0
+              %a{ href: "#images/#{item.list_item.listable_item[0].id}" }
+                %img{ src: item.list_item.listable_item[0].image_file.small.url, alt: "no image" }
+              - if item.list_item.listable_item && item.list_item.listable_item.length > 0
+                - if item.list_item.listable_item[0].title
+                  .span12
+                    = item.list_item.listable_item[0].title
+                - else
+                  .span12
+                    = item.list_item.listable_item[0].name
+
+
+
+
+              -if current_user && list.user_id == current_user.id  && ((item.list_item.listable_item && item.list_item.listable_item.length > 0) || item.list_item.images.length > 0)
+                .span.js-remove
+                  %input{ type: "hidden", value: item.list_item.id }
+                  Remove
 
