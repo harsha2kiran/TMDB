@@ -10,7 +10,8 @@
           .movie.span6
             %a{ href: "#movies/#{movie.movie.id}" }
               .span12
-                %img{ src: movie.movie.images.image_file.small.url, alt: "no image" }
+                - if movie.movie.images
+                  %img{ src: movie.movie.images.image_file.small.url, alt: "no image" }
               .span12
                 = movie.movie.title
 

@@ -4,6 +4,6 @@ class Release < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user
 
-  validates_presence_of :certification, :country_id, :release_date, :movie_id, :user_id
+  validates_presence_of :country_id, :release_date, :movie_id, :user_id
 
 end

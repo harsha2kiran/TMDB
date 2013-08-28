@@ -36,11 +36,11 @@ class MoviesApp.EditReleases extends Backbone.View
     release_date = $container.find(".js-new-release-release-date").val()
     country_id = $container.find(".js-new-release-country-id").val()
     confirmed = $container.find(".js-new-release-confirmed :selected").val()
-    certification = $container.find(".js-new-release-certification").val()
+    # certification = $container.find(".js-new-release-certification").val()
     primary = $container.find(".js-new-release-primary :selected").val()
-    if release_date != "" && country_id != "" && confirmed != "0" && certification != "" && primary != "0"
+    if release_date != "" && country_id != "" && confirmed != "0" && primary != "0"
       release = new MoviesApp.Release()
-      release.save ({ release: { movie_id: movie_id, release_date: release_date, country_id: country_id, confirmed: confirmed, certification: certification, primary: primary } }),
+      release.save ({ release: { movie_id: movie_id, release_date: release_date, country_id: country_id, confirmed: confirmed, primary: primary } }),
         success: ->
           $(".notifications").html("Successfully added release. Changes will be active after moderation.").show().fadeOut(10000)
           $(self.el).find("input, select").each (i, input) ->

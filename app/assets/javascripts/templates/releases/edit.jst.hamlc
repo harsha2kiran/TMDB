@@ -15,10 +15,10 @@
         Confirmed
       .span12
         = release.confirmed
-      %p
-        Certification
-      .span12
-        = release.certification
+      -# %p
+      -#   Certification
+      -# .span12
+      -#   = release.certification
       %p
         Primary
       .span12
@@ -36,7 +36,7 @@
       %option{ value: 0 }= "Confirmed?"
       %option{ value: "true" }= "Yes"
       %option{ value: "false" }= "No"
-    %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
+    -# %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
     %select.js-new-release-primary
       %option{ value: 0 }= "Primary?"
       %option{ value: "true" }= "Yes"
