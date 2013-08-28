@@ -1,3 +1,18 @@
+%h3
+  = @genre.genre
+
+- if current_user
+  - following = false
+  - $.each @genre.follows, (i, follow) ->
+    - if parseInt(follow.followable_id) == parseInt(window.genre_id) && follow.followable_type == "Genre"
+      - following = true
+  - unless following
+    .follow.span12.box
+      Follow
+  - else
+    .following.span12.box
+      Already following
+
 - if @genre.movies && @genre.movies != [] && @genre.movies.length > 0
   - $.each @genre.movies, (i, movie) ->
     .movie.span3

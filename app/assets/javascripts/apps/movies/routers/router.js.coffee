@@ -188,6 +188,7 @@ class MoviesApp.Router extends Backbone.Router
   genres_show: (id) ->
     console.log "genres show #{id}"
     @clear_values()
+    window.genre_id = id
     genre = new MoviesApp.Genre()
     genre.url = "/api/v1/genres/#{id}"
     genre.fetch
@@ -252,6 +253,10 @@ class MoviesApp.Router extends Backbone.Router
       delete window.video_id
     catch e
       window.video_id = undefined
+    try
+      delete window.genre_id
+    catch e
+      window.genre_id = undefined
 
   following: ->
     follows = new MoviesApp.Follows()

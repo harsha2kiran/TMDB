@@ -8,6 +8,8 @@ class MoviesApp.ListsShow extends Backbone.View
   events:
     "click .js-remove" : "destroy"
     "click .js-create" : "create"
+    "click .follow" : "follow"
+    "click .following" : "unfollow"
 
   render: ->
     show = $(@el)
@@ -62,3 +64,24 @@ class MoviesApp.ListsShow extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Removed from list.").show().fadeOut(10000)
+
+  follow: (e) ->
+    $self = $(e.target)
+    type = "List"
+    id = window.list_id
+    follow = new MoviesApp.Follow()
+    follow.save ({ follow: { followable_id: id, followable_type: type } }),
+      success: ->
+        $self.addClass("following").removeClass("follow").html("Already following")
+
+  unfollow: (e) ->
+    $self = $(e.target)
+    type = "List"
+    id = window.list_id
+    $.ajax api_version + "follows/test",
+      method: "DELETE"
+      data:
+        followable_id: id
+        followable_type: type
+      success: =>
+        $self.addClass("follow").removeClass("following").html("Follow")

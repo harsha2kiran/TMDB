@@ -32,3 +32,4 @@ node(:user){ |list|
     ""
   end
 }
+node(:follows) { |list| list.follows }

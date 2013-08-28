@@ -10,4 +10,3 @@ class MoviesApp.VideosShow extends Backbone.View
     video = @options.video.get("video")
     show.html @template(video: video)
     this
-

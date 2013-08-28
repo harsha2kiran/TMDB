@@ -9,3 +9,4 @@ child :movies do
     movie.images.select {|s| s.is_main_image == true }[0]
   }
 end
+node(:follows) { |genre| genre.follows }

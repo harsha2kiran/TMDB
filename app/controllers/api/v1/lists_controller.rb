@@ -7,7 +7,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def show
-    @list = List.find_by_id(params[:id], :include => [:list_items, :user])
+    @list = List.find_by_id(params[:id], :include => [:list_items, :user, :follows])
   end
 
   def update

@@ -3,6 +3,18 @@
   %h3.span12
     = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1) + " '#{list.title}', #{list.description} from #{list.user}"
 
+- if current_user
+  - following = false
+  - $.each @list.follows, (i, follow) ->
+    - if parseInt(follow.followable_id) == parseInt(window.list_id) && follow.followable_type == "List"
+      - following = true
+  - unless following
+    .follow.span12.box
+      Follow
+  - else
+    .following.span12.box
+      Already following
+
   -if current_user && list.user_id == current_user.id
     - if list.list_type == ''
       .span12

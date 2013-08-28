@@ -20,7 +20,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   end
 
   def show
-    @genre = Genre.find params[:id]
+    @genre = Genre.where(id: params[:id]).includes(:follows).first
     @genre.movies = []
     movies = []
     movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
