@@ -3,12 +3,12 @@ class Image < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 
-  has_many :tags, :as => :taggable
-  has_many :list_items, :as => :listable
-  has_many :videos, :as => :videable
-  has_many :follows, :as => :followable
-  has_many :views, :as => :viewable
-  has_many :reports, :as => :reportable
+  has_many :tags, :as => :taggable, :dependent => :destroy
+  has_many :list_items, :as => :listable, :dependent => :destroy
+  has_many :videos, :as => :videable, :dependent => :destroy
+  has_many :follows, :as => :followable, :dependent => :destroy
+  has_many :views, :as => :viewable, :dependent => :destroy
+  has_many :reports, :as => :reportable, :dependent => :destroy
 
   mount_uploader :image_file, ImageUploader
 

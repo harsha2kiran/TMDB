@@ -6,17 +6,22 @@ class Api::V1::FollowsController < Api::V1::BaseController
     @follows = current_api_user.follows.all
     movie_ids = []
     person_ids = []
+    list_ids = []
     @follows.each do |m|
       if m.followable_type == "Movie"
         movie_ids << m.followable_id
-      else
+      elsif m.followable_type == "Person"
         person_ids << m.followable_id
+      elsif m.followable_type == "List"
+        list_ids << m.followable_id
       end
     end
     movie_ids = movie_ids.flatten
     person_ids = person_ids.flatten
+    list_ids = list_ids.flatten
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @people = person_ids.count > 0 ? Person.find_all_by_id(person_ids) : []
+    @lists = list_ids.count > 0 ? List.find_all_by_id(list_ids) : []
   end
 
   def show

@@ -43,7 +43,7 @@ class MoviesApp.EditVideos extends Backbone.View
         video = new MoviesApp.Video()
         video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true } }),
           success: ->
-            $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(10000)
+            $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
             $(self.el).find(".js-new-video-title").val("").removeClass("error")
             $(self.el).find(".js-new-video-description").val("").removeClass("error")
             $(self.el).find(".js-new-video-comments").val("").removeClass("error")
@@ -83,7 +83,7 @@ class MoviesApp.EditVideos extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Video removed.").show().fadeOut(10000)
+        $(".notifications").html("Video removed.").show().fadeOut(window.hide_delay)
 
   check: (e) ->
     $self = $(@el)
@@ -130,7 +130,7 @@ class MoviesApp.EditVideos extends Backbone.View
       list_item = new MoviesApp.ListItem()
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
-          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           self.reload_list()
 
   reload_list: ->

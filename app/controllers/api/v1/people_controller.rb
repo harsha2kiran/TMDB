@@ -40,7 +40,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     end
 
     load_additional_values(@person, "show")
-
+    @current_api_user = current_api_user
   end
 
   def search

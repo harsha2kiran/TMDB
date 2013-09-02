@@ -22,5 +22,12 @@ else
 
 end
 
-node(:follows) { |person| person.follows }
+node(:follows) { |person|
+  if @current_api_user
+    person.follows.where(user_id: @current_api_user.id)
+  else
+    []
+  end
+}
+
 node(:views) { |person| person.views.count }

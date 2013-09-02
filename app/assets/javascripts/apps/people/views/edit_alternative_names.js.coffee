@@ -23,7 +23,7 @@ class PeopleApp.EditAlternativeNames extends Backbone.View
       alternative_name = new PeopleApp.AlternativeName()
       alternative_name.save ({ alternative_name: { alternative_name: name, person_id: window.person_id } }),
         success: ->
-          $(".notifications").html("Alternative name added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Alternative name added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-alternative-name").val("").removeClass("error")
     else
       $(self.el).find(".js-new-alternative-name").addClass("error")
@@ -35,4 +35,4 @@ class PeopleApp.EditAlternativeNames extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Alternative name removed.").show().fadeOut(10000)
+        $(".notifications").html("Alternative name removed.").show().fadeOut(window.hide_delay)

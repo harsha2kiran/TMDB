@@ -40,7 +40,7 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
     if company_id != ""
       production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val("").removeClass("error")
           $(self.el).find(".js-new-production-company-id").val("")
     else
@@ -53,7 +53,7 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Production company removed.").show().fadeOut(10000)
+        $(".notifications").html("Production company removed.").show().fadeOut(window.hide_delay)
 
   add_new_item: (e) ->
     self = @

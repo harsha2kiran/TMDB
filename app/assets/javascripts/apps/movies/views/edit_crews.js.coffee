@@ -50,7 +50,7 @@ class MoviesApp.EditCrews extends Backbone.View
       crew = new MoviesApp.Crew()
       crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-crew-job").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person-id").val("")
@@ -68,4 +68,4 @@ class MoviesApp.EditCrews extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Crew member removed.").show().fadeOut(10000)
+        $(".notifications").html("Crew member removed.").show().fadeOut(window.hide_delay)

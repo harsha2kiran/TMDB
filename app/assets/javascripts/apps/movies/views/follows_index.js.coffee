@@ -16,9 +16,13 @@ class MoviesApp.FollowsIndex extends Backbone.View
 
   unfollow: (e) ->
     $self = $(e.target)
-    id = $(e.target).attr("data-id")
-    $.ajax api_version + "follows/" + id,
+    followable_id = $(e.target).attr("data-followable_id")
+    followable_type = $(e.target).attr("data-followable_type")
+    $.ajax api_version + "follows/test",
       method: "DELETE"
+      data:
+        followable_id: followable_id
+        followable_type: followable_type
       success: =>
         $self.parents(".follow").first().remove()
 

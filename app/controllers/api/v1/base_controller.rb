@@ -76,7 +76,12 @@ class Api::V1::BaseController < ApplicationController
     if params[:action] == "destroy"
       if current_api_user && current_api_user.user_type == "admin"
       else
-        if current_api_user && @controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i)
+        if current_api_user &&
+          (
+            (@controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i) ) ||
+            (@controller == "follows" &&
+             current_api_user.follows.where(followable_id: params[:followable_id].to_i, followable_type: params[:followable_type]).count > 0)
+          )
         else
           redirect_to root_path, alert: "You must have admin privileges to remove record."
         end

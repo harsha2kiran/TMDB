@@ -36,5 +36,12 @@ else
 
 end
 
-node(:follows) { |movie| movie.follows }
+node(:follows) { |movie|
+  if @current_api_user
+    movie.follows.where(user_id: @current_api_user.id)
+  else
+    []
+  end
+}
+
 node(:views) { |movie| movie.views.count }

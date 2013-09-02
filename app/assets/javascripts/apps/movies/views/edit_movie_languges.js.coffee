@@ -40,7 +40,7 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
       movie_language = new MoviesApp.MovieLanguage()
       movie_language.save ({ movie_language: { language_id: language_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val("").removeClass("error")
           $(self.el).find(".js-new-language-id").val("")
     else
@@ -53,7 +53,7 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Language removed.").show().fadeOut(10000)
+        $(".notifications").html("Language removed.").show().fadeOut(window.hide_delay)
 
   add_new_item: (e) ->
     self = @

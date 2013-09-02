@@ -61,7 +61,7 @@ class MoviesApp.EditTags extends Backbone.View
       tag = new MoviesApp.Tag()
       tag.save ({ tag: { person_id: person_id, taggable_id: taggable_id, taggable_type: taggable_type } }),
         success: ->
-          $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-tag-person").val("").removeClass("error")
           $(self.el).find(".js-new-tag-person-id").val("")
           $(self.el).find(".js-new-tag-movie").val("").removeClass("error")
@@ -90,7 +90,7 @@ class MoviesApp.EditTags extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Tag removed.").show().fadeOut(10000)
+        $(".notifications").html("Tag removed.").show().fadeOut(window.hide_delay)
 
   reload: (type, id) ->
     if type == "Image"

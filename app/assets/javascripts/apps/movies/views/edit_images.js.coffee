@@ -56,7 +56,7 @@ class MoviesApp.EditImages extends Backbone.View
           imageable_type = "Person"
         image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type } }),
           success: ->
-            $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(10000)
+            $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
             $(self.el).find(".js-new-image-title").val("")
             $(@el).find(".js-new-image-main").removeClass("error")
             $(@el).find(".js-new-image-title").removeClass("error").val("")
@@ -84,7 +84,7 @@ class MoviesApp.EditImages extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Image removed.").show().fadeOut(10000)
+        $(".notifications").html("Image removed.").show().fadeOut(window.hide_delay)
 
   add_image_to_list: (image_id) ->
     self = @
@@ -94,7 +94,7 @@ class MoviesApp.EditImages extends Backbone.View
       list_item = new MoviesApp.ListItem()
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
-          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           self.reload_list()
 
   reload_list: ->

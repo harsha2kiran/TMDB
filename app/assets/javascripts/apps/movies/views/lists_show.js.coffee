@@ -39,7 +39,7 @@ class MoviesApp.ListsShow extends Backbone.View
       list_item = new MoviesApp.ListItem()
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
-          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-item").val("").removeClass "error"
           $(self.el).find(".js-item-id").val("")
           list = new MoviesApp.List()
@@ -63,7 +63,7 @@ class MoviesApp.ListsShow extends Backbone.View
         "list_item[list_id]" : window.list_id
       success: =>
         container.remove()
-        $(".notifications").html("Removed from list.").show().fadeOut(10000)
+        $(".notifications").html("Removed from list.").show().fadeOut(window.hide_delay)
 
   follow: (e) ->
     $self = $(e.target)

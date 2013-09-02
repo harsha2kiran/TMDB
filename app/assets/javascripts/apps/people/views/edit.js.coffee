@@ -39,14 +39,14 @@ class PeopleApp.Edit extends Backbone.View
       if approved == "true"
         person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, original_id: original_id } }),
           success: ->
-            $(".notifications").html("Successfully updated person. Changes will be active after moderation.").show().fadeOut(10000)
+            $(".notifications").html("Successfully updated person. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $container.find(".js-name").removeClass("error")
             $(".show-person").attr("href", "#/people/#{person.id}")
       else
         person.url = api_version + "people/" + person_id
         person.save ({ id: person_id, person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, original_id: original_id } }),
           success: ->
-            $(".notifications").html("Successfully updated person. Changes will be active after moderation.").show().fadeOut(10000)
+            $(".notifications").html("Successfully updated person. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $container.find(".js-name").removeClass("error")
             $(".show-person").attr("href", "#/people/#{person.id}")
 

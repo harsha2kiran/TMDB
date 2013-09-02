@@ -42,7 +42,7 @@ class MoviesApp.EditReleases extends Backbone.View
       release = new MoviesApp.Release()
       release.save ({ release: { movie_id: movie_id, release_date: release_date, country_id: country_id, confirmed: confirmed, primary: primary } }),
         success: ->
-          $(".notifications").html("Successfully added release. Changes will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added release. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find("input, select").each (i, input) ->
             $(input).removeClass("error")
     else
@@ -59,4 +59,4 @@ class MoviesApp.EditReleases extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Release removed.").show().fadeOut(10000)
+        $(".notifications").html("Release removed.").show().fadeOut(window.hide_delay)

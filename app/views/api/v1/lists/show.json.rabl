@@ -32,4 +32,10 @@ node(:user){ |list|
     ""
   end
 }
-node(:follows) { |list| list.follows }
+node(:follows) { |list|
+  if @current_api_user
+    list.follows.where(user_id: @current_api_user.id)
+  else
+    []
+  end
+}

@@ -42,7 +42,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
       person_social_app = new PeopleApp.PersonSocialApp()
       person_social_app.save ({ person_social_app: { social_app_id: app_id, person_id: window.person_id, profile_link: profile_link } }),
         success: ->
-          $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-app").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
@@ -60,7 +60,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Social app link removed.").show().fadeOut(10000)
+        $(".notifications").html("Social app link removed.").show().fadeOut(window.hide_delay)
 
   add_new_item: (e) ->
     self = @

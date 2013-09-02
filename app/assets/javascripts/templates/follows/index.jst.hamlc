@@ -6,13 +6,15 @@
       .follow-title.span3
         - if follow.followable_type == "Movie"
           - path = "movies"
-        - else
+        - else if follow.followable_type == "Person"
           - path = "people"
+        - else if follow.followable_type == "List"
+          - path = "lists"
         %a{ href: "##{path}/#{follow.followable_id}" }
           - if followed_content.title
             = followed_content.title
           - else
             = followed_content.name
-      .unfollow.span2{ data: { id: follow.id } }
+      .unfollow.span2{ data: { followable_id: follow.followable_id, followable_type: follow.followable_type } }
         Unfollow
 

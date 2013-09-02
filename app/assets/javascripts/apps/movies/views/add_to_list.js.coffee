@@ -36,7 +36,7 @@ class MoviesApp.AddToList extends Backbone.View
       list_item = new MoviesApp.ListItem()
       list_item.save ({ list_item: { list_id: list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
-          $(".notifications").html("Successfully added to list.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-list").val("").removeClass "error"
           $(self.el).find(".js-list-id").val("")
     else

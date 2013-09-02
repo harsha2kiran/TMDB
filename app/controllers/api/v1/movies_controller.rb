@@ -47,6 +47,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @all = false
     end
     load_additional_values(@movie, "show")
+    @current_api_user = current_api_user
   end
 
   def edit_popular

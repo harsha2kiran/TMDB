@@ -36,7 +36,7 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
       alternative_title = new MoviesApp.AlternativeTitle()
       alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Alternative title added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Alternative title added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-alternative-title").val("").removeClass("error")
           $(self.el).find(".js-new-alternative-title-language").val("").removeClass("error")
           $(self.el).find(".js-new-alternative-title-language-id").val("")
@@ -54,4 +54,4 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Alternative title removed.").show().fadeOut(10000)
+        $(".notifications").html("Alternative title removed.").show().fadeOut(window.hide_delay)

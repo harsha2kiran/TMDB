@@ -40,7 +40,7 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
       movie_keyword = new MoviesApp.MovieKeyword()
       movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-keyword-id").val("")
     else
@@ -53,7 +53,7 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Keyword removed.").show().fadeOut(10000)
+        $(".notifications").html("Keyword removed.").show().fadeOut(window.hide_delay)
 
   add_new_item: (e) ->
     self = @

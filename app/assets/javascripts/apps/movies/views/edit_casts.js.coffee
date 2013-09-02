@@ -49,7 +49,7 @@ class MoviesApp.EditCasts extends Backbone.View
       cast = new MoviesApp.Cast()
       cast.save ({ cast: { character: character, person_id: person_id, movie_id: movie_id } }),
         success: ->
-          $(".notifications").html("Cast member added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Cast member added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-cast-character").val("").removeClass("error")
           $(self.el).find(".js-new-cast-person").val("").removeClass("error")
           $(self.el).find(".js-new-cast-person-id").val("")
@@ -69,4 +69,4 @@ class MoviesApp.EditCasts extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Cast member removed.").show().fadeOut(10000)
+        $(".notifications").html("Cast member removed.").show().fadeOut(window.hide_delay)

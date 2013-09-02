@@ -35,7 +35,7 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
       revenue_country = new MoviesApp.RevenueCountry()
       revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue } }),
         success: ->
-          $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(10000)
+          $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-revenue-country").val("").removeClass("error")
           $(self.el).find(".js-new-revenue-country-id").val("")
           $(self.el).find(".js-new-revenue").val("").removeClass("error")
@@ -53,4 +53,4 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
       method: "DELETE"
       success: =>
         container.remove()
-        $(".notifications").html("Revenue country removed.").show().fadeOut(10000)
+        $(".notifications").html("Revenue country removed.").show().fadeOut(window.hide_delay)

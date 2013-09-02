@@ -15,7 +15,7 @@
           %img{ src: image.image_file.small.url }
           = image.title
 
-- if current_user
+- if current_user && @person.approved
   - following = false
   - $.each @person.follows, (i, follow) ->
     - if parseInt(follow.followable_id) == parseInt(window.person_id) && follow.followable_type == "Person"

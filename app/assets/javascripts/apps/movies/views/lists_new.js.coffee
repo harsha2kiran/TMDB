@@ -23,7 +23,7 @@ class MoviesApp.ListsNew extends Backbone.View
       list = new MoviesApp.List()
       list.save ({ list: { title: title, description: description, list_type: list_type } }),
         success: ->
-          $(".notifications").html("Successfully added new list.").show().fadeOut(10000)
+          $(".notifications").html("Successfully added new list.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").removeClass("error").val("")
           $container.find(".js-description").removeClass("error").val("")
           window.MoviesApp.router.navigate("#lists/#{list.id}", true)
