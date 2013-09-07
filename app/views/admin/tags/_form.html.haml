@@ -3,5 +3,6 @@
     = f.input :approved
     = f.input :taggable_type
     = f.input :taggable_id
+    = f.input :person
     = f.input :user, :label => "User", :as => :select, :collection => User.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
     = f.submit "Update"
