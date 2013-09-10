@@ -24,7 +24,11 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      list = current_api_user.lists.find params[:id]
+      if ["admin", "moderator"].include?(current_api_user.user_type)
+        list = List.find(params[:id])
+      else
+        list = current_api_user.lists.find params[:id]
+      end
       if list.destroy
         format.json { respond_with list }
       else
