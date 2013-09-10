@@ -18,17 +18,21 @@ class PeopleApp.Router extends Backbone.Router
     person.url = "/api/v1/people/#{id}"
     person.fetch
       success: ->
-        @show_view = new PeopleApp.Show(person: person)
-        $(".js-content").html @show_view.render().el
+        if person.get("person")
+          @show_view = new PeopleApp.Show(person: person)
+          $(".js-content").html @show_view.render().el
 
-        type = "Person"
-        id = window.person_id
-        view = new MoviesApp.View()
-        view.save ({ view: { viewable_id: id, viewable_type: type } }),
-          success: ->
-            console.log view
+          type = "Person"
+          id = window.person_id
+          view = new MoviesApp.View()
+          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+            success: ->
+              console.log view
 
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+        else
+          @show_view = new MoviesApp.NotFound(type: "person")
+          $(".js-content").html @show_view.render().el
 
   index: ->
     console.log "people index"

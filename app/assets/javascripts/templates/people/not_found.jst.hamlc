@@ -1,0 +1,4 @@
+Person not found.
+%br
+Visit
+%a{ href: "#people" }= "people index list"

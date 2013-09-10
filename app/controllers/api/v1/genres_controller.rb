@@ -21,15 +21,17 @@ class Api::V1::GenresController < Api::V1::BaseController
 
   def show
     @genre = Genre.where(id: params[:id], approved: true).includes(:follows).first
-    @genre.movies = []
-    movies = []
-    movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
-    unless movie_ids == []
-       movies << Movie.find_all_by_id(movie_ids, :include => [:images])
-    else
+    if @genre
+      @genre.movies = []
       movies = []
+      movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
+      unless movie_ids == []
+         movies << Movie.find_all_by_id(movie_ids, :include => [:images])
+      else
+        movies = []
+      end
+      @genre.movies = movies.flatten
     end
-    @genre.movies = movies.flatten
   end
 
   def search

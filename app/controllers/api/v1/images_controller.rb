@@ -14,9 +14,12 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def show
-    @image = Image.where(approved: true).find(params[:id])
-    @movies = Movie.find_all_by_id @image.tags.map(&:taggable_id)
-    @people = Person.find_all_by_id @image.tags.map(&:person_id)
+    @image = Image.where(approved: true).find_all_by_id(params[:id])
+    if @image != []
+      @image = @image.first
+      @movies = Movie.find_all_by_id @image.tags.map(&:taggable_id)
+      @people = Person.find_all_by_id @image.tags.map(&:person_id)
+    end
   end
 
 

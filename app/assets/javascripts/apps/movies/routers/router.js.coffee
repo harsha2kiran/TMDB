@@ -30,19 +30,23 @@ class MoviesApp.Router extends Backbone.Router
     image.url = "/api/v1/images/#{id}"
     image.fetch
       success: ->
-        @show_view = new MoviesApp.ImagesShow(image: image)
-        $(".js-content").html @show_view.render().el
+        if image.get("image")
+          @show_view = new MoviesApp.ImagesShow(image: image)
+          $(".js-content").html @show_view.render().el
 
-        @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
-        $(".tags").append @edit_tags_view.render().el
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+          @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
+          $(".tags").append @edit_tags_view.render().el
+          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
-        type = "Image"
-        id = window.image_id
-        view = new MoviesApp.View()
-        view.save ({ view: { viewable_id: id, viewable_type: type } }),
-          success: ->
-            console.log view
+          type = "Image"
+          id = window.image_id
+          view = new MoviesApp.View()
+          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+            success: ->
+              console.log view
+        else
+          @show_view = new MoviesApp.NotFound(type: "image")
+          $(".js-content").html @show_view.render().el
 
   videos_show: (id) ->
     console.log "videos show #{id}"
@@ -52,18 +56,22 @@ class MoviesApp.Router extends Backbone.Router
     video.url = api_version + "videos/#{id}"
     video.fetch
       success: ->
-        @show_view = new MoviesApp.VideosShow(video: video)
-        $(".js-content").html @show_view.render().el
+        if video.get("video")
+          @show_view = new MoviesApp.VideosShow(video: video)
+          $(".js-content").html @show_view.render().el
 
-        @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
-        $(".tags").append @edit_tags_view.render().el
+          @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
+          $(".tags").append @edit_tags_view.render().el
 
-        type = "Video"
-        id = window.video_id
-        view = new MoviesApp.View()
-        view.save ({ view: { viewable_id: id, viewable_type: type } }),
-          success: ->
-            console.log view
+          type = "Video"
+          id = window.video_id
+          view = new MoviesApp.View()
+          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+            success: ->
+              console.log view
+        else
+          @show_view = new MoviesApp.NotFound(type: "video")
+          $(".js-content").html @show_view.render().el
 
   galleries_index: ->
     console.log "galleries index"
@@ -105,18 +113,21 @@ class MoviesApp.Router extends Backbone.Router
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
       success: ->
-        @show_view = new MoviesApp.Show(movie: movie)
-        $(".js-content").html @show_view.render().el
+        if movie.get("movie")
+          @show_view = new MoviesApp.Show(movie: movie)
+          $(".js-content").html @show_view.render().el
 
-        type = "Movie"
-        id = window.movie_id
-        view = new MoviesApp.View()
-        view.save ({ view: { viewable_id: id, viewable_type: type } }),
-          success: ->
-            console.log view
+          type = "Movie"
+          id = window.movie_id
+          view = new MoviesApp.View()
+          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+            success: ->
+              console.log view
 
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
-
+          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+        else
+          @show_view = new MoviesApp.NotFound(type: "movie")
+          $(".js-content").html @show_view.render().el
 
   edit: (id) ->
     console.log "movies router edit #{id}"
@@ -207,8 +218,12 @@ class MoviesApp.Router extends Backbone.Router
     genre.url = "/api/v1/genres/#{id}"
     genre.fetch
       success: ->
-        @show_view = new MoviesApp.GenresShow(genre: genre)
-        $(".js-content").html @show_view.render().el
+        if genre.get("genre")
+          @show_view = new MoviesApp.GenresShow(genre: genre)
+          $(".js-content").html @show_view.render().el
+        else
+          @show_view = new MoviesApp.NotFound(type: "genre")
+          $(".js-content").html @show_view.render().el
 
   lists_index: ->
     console.log "lists index"
@@ -227,18 +242,21 @@ class MoviesApp.Router extends Backbone.Router
     list.url = "/api/v1/lists/#{id}"
     list.fetch
       success: ->
-        @show_view = new MoviesApp.ListsShow(list: list)
-        $(".js-content").html @show_view.render().el
+        if list.get("list")
+          @show_view = new MoviesApp.ListsShow(list: list)
+          $(".js-content").html @show_view.render().el
 
-        if list.get("list").list_type == "gallery"
-          @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
-          $(".add-images-form").append @edit_images_view.render().el
-          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+          if list.get("list").list_type == "gallery"
+            @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
+            $(".add-images-form").append @edit_images_view.render().el
+            $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
-        if list.get("list").list_type == "channel"
-          @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
-          $(".add-videos-form").append @edit_videos_view.render().el
-
+          if list.get("list").list_type == "channel"
+            @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
+            $(".add-videos-form").append @edit_videos_view.render().el
+        else
+          @show_view = new MoviesApp.NotFound(type: "list")
+          $(".js-content").html @show_view.render().el
 
   list_new: ->
     @clear_values()

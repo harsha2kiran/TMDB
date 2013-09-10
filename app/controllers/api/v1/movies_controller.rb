@@ -97,6 +97,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if action == "show"
       items = [items]
     end
+    items.reject! { |c| c.nil? }
     items.each do |m|
       person_ids << m.casts.map(&:person_id)
       person_ids << m.crews.map(&:person_id)
