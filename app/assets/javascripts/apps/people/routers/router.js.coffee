@@ -55,6 +55,9 @@ class PeopleApp.Router extends Backbone.Router
         @edit_view = new PeopleApp.Edit(person: person)
         $(".js-content").html @edit_view.render().el
 
+        @add_to_list_view = new MoviesApp.AddToList()
+        $(".js-content").append @add_to_list_view.render().el
+
         @edit_images_view = new MoviesApp.EditImages(images: person.images)
         $(".js-content").append @edit_images_view.render().el
 

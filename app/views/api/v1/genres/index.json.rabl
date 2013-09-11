@@ -1,7 +1,7 @@
 object @genres
 attributes :id, :genre, :created_at, :updated_at
 node(:movies) { |genre|
-  genre.movies
+  genre.movies.select!{ |s| s.approved == true }
 }
 child :movies do
   attributes :id, :title
