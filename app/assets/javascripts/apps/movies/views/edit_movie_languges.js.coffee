@@ -43,6 +43,11 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
           $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val("").removeClass("error")
           $(self.el).find(".js-new-language-id").val("")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-language").val("").removeClass "error"
+          $(self.el).find(".js-new-language-id").val("")
     else
       $(@el).find(".js-new-language").addClass("error")
 
@@ -65,6 +70,11 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
           $(self.el).find(".js-new-language").val(value).removeClass "error"
           $(self.el).find(".js-new-language-id").val(model.id)
           self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-language").val("").removeClass "error"
+          $(self.el).find(".js-new-language-id").val("")
           self.cancel()
     else
       @edit.find(".js-new-language").addClass("error")

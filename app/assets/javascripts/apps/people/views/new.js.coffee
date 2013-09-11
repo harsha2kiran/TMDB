@@ -28,6 +28,9 @@ class PeopleApp.New extends Backbone.View
     if name != ""
       person = new PeopleApp.Person()
       person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id } }),
+        error: ->
+          $(".notifications").html("Person already exist.").show().fadeOut(window.hide_delay)
+          $container.find(".js-name").addClass("error")
         success: ->
           $(".notifications").html("Successfully added new person. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
           $container.find(".js-name").removeClass("error")

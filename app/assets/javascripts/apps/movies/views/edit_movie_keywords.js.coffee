@@ -43,6 +43,11 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
           $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-keyword-id").val("")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-keyword").val("").removeClass "error"
+          $(self.el).find(".js-new-keyword-id").val("")
     else
       $(@el).find(".js-new-keyword").addClass("error").focus()
 
@@ -65,6 +70,11 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
           $(self.el).find(".js-new-keyword").val(value).removeClass "error"
           $(self.el).find(".js-new-keyword-id").val(model.id)
           self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-keyword").val("").removeClass "error"
+          $(self.el).find(".js-new-keyword-id").val("")
           self.cancel()
     else
       @edit.find(".js-new-keyword").addClass("error")

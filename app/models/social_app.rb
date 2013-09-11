@@ -3,5 +3,7 @@ class SocialApp < ActiveRecord::Base
   has_many :person_social_apps, :dependent => :destroy
 
   validates_presence_of :social_app, :link
+  validates :social_app, :uniqueness => { :case_sensitive => false }
+  validates :link, :uniqueness => { :case_sensitive => false }
 
 end

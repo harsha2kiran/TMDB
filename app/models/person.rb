@@ -16,6 +16,9 @@ class Person < ActiveRecord::Base
 
   belongs_to :user
 
+  validates_presence_of :name, :user_id
+  validates :name, :uniqueness => { :case_sensitive => false }
+
   after_create :check_original_id
 
   serialize :locked, ActiveRecord::Coders::Hstore
@@ -28,8 +31,6 @@ class Person < ActiveRecord::Base
     people = Person.where(approved: true).person_search(term)
     people = people.uniq
   end
-
-  validates_presence_of :name, :user_id
 
   private
 

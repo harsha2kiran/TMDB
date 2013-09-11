@@ -43,6 +43,11 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
           $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val("").removeClass("error")
           $(self.el).find(".js-new-production-company-id").val("")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-production-company").val("").removeClass "error"
+          $(self.el).find(".js-new-production-company-id").val("")
     else
       $(self.el).find(".js-new-production-company").addClass("error").focus()
 
@@ -65,6 +70,11 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
           $(self.el).find(".js-new-production-company").val(value).removeClass "error"
           $(self.el).find(".js-new-production-company-id").val(model.id)
           self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-production-company").val("").removeClass "error"
+          $(self.el).find(".js-new-production-company-id").val("")
           self.cancel()
     else
       @edit.find(".js-new-production-company").addClass("error")

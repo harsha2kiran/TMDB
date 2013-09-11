@@ -22,6 +22,9 @@ class MoviesApp.New extends Backbone.View
     if title != ""
       movie = new MoviesApp.Movie()
       movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score } }),
+        error: ->
+          $(".notifications").html("Movie already exist.").show().fadeOut(window.hide_delay)
+          $container.find(".js-title").addClass("error")
         success: ->
           $(".notifications").html("Successfully added new movie. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").removeClass("error")

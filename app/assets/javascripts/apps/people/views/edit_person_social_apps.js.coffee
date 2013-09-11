@@ -46,6 +46,12 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
           $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-app").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
+          $(self.el).find(".js-new-person-social-apps-app").val("").removeClass("error")
+          $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
     else
       $(@el).find("input").each (i, input) ->
         if $(input).val() == ""
@@ -72,7 +78,14 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
         success: ->
           $(self.el).find(".js-new-person-social-apps-app").val(value).removeClass "error"
           $(self.el).find(".js-new-person-social-apps-id").val(model.id)
+          $(self.el).find(".js-new-person-social-apps-link").val(link).removeClass("error")
           self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Social App added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-person-social-apps-app").val("").removeClass "error"
+          $(self.el).find(".js-new-person-social-apps-id").val("")
+          $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
           self.cancel()
     else
       $(@el).find("input").each (i, input) ->

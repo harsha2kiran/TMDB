@@ -43,6 +43,11 @@ class MoviesApp.EditMovieGenres extends Backbone.View
           $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val("").removeClass "error"
           $(self.el).find(".js-new-genre-id").val("")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-genre").val("").removeClass "error"
+          $(self.el).find(".js-new-genre-id").val("")
     else
       $(@el).find(".js-new-genre").addClass("error")
 
@@ -65,6 +70,11 @@ class MoviesApp.EditMovieGenres extends Backbone.View
           $(self.el).find(".js-new-genre").val(value).removeClass "error"
           $(self.el).find(".js-new-genre-id").val(model.id)
           self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-genre").val("").removeClass "error"
+          $(self.el).find(".js-new-genre-id").val("")
           self.cancel()
     else
       @edit.find(".js-new-genre").addClass("error")

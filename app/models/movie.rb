@@ -21,6 +21,9 @@ class Movie < ActiveRecord::Base
 
   belongs_to :user
 
+  validates_presence_of :title, :user_id
+  validates :title, :uniqueness => { :case_sensitive => false }
+
   after_create :check_original_id
 
   serialize :locked, ActiveRecord::Coders::Hstore
@@ -33,8 +36,6 @@ class Movie < ActiveRecord::Base
     movies = Movie.where(approved: true).movie_search(term)
     movies = movies.uniq
   end
-
-  validates_presence_of :title, :user_id
 
   private
 
