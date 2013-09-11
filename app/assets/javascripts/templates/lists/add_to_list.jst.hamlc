@@ -5,3 +5,13 @@
     %input.js-list{ type: "text", placeholder: "Search list" }
     %input.js-list-id{ type: "hidden" }
     %input.js-create{ type: "button", value: "Save" }
+
+    .js-new-item-info.hide
+      This list does not exist. Do you want to add it?
+    .js-new-item-add-form.hide
+      .span1.js-new-item-add-yes
+        Yes
+      .span1.js-new-item-add-no
+        No
+
+

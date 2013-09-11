@@ -3,7 +3,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   inherit_resources
 
   def index
-    @lists = List.where("list_type = ''").includes(:list_items, :user)
+    @lists = List.where("list_type = '' OR list_type IS NULL").includes(:list_items, :user)
   end
 
   def show
@@ -38,7 +38,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def search_my_lists
-    lists = List.where("lower(title) LIKE ? AND user_id = ?", "%" + params[:term].downcase + "%", current_api_user.id)
+    lists = List.where("(list_type = '' OR list_type IS NULL) AND lower(title) LIKE ? AND user_id = ?", "%" + params[:term].downcase + "%", current_api_user.id)
     results = []
     lists.each do |list|
       results << { label: list.title, value: list.title, id: list.id }

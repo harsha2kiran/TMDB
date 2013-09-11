@@ -33,8 +33,12 @@
 
     .span9
       %a{ href: "#lists/#{list.id}" }
-        - if list.user
-          = "'#{list.title}', #{list.description} from #{list.user}"
+        - if list.description
+          - desc = list.description
         - else
-          = "'#{list.title}', #{list.description}"
+          - desc = ""
+        - if list.user
+          = "'#{list.title}', #{desc} from #{list.user}"
+        - else
+          = "'#{list.title}', #{desc}"
 

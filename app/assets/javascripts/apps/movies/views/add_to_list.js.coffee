@@ -7,10 +7,13 @@ class MoviesApp.AddToList extends Backbone.View
 
   events:
     "click .js-create" : "create"
+    "click .js-new-item-add-yes" : "add_new_item"
+    "click .js-new-item-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
-    edit.html @template
+    self = @
+    @edit = $(@el)
+    @edit.html @template
     $(@el).find(".js-list").autocomplete
       source: api_version + "lists/search_my_lists"
       minLength: 2
@@ -19,7 +22,12 @@ class MoviesApp.AddToList extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
-        $(edit).find(".js-list-id").val(ui.item.id)
+        $(self.el).find(".js-list-id").val(ui.item.id)
+        self.cancel()
+      response: (event, ui) ->
+        if ui.content.length == 0
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.edit.find(".js-list-id").val("")
     this
 
   create: (e) ->
@@ -39,5 +47,34 @@ class MoviesApp.AddToList extends Backbone.View
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-list").val("").removeClass "error"
           $(self.el).find(".js-list-id").val("")
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("List added.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-list").val("").removeClass "error"
+          $(self.el).find(".js-list-id").val("")
     else
       $(@el).find(".js-list").addClass("error")
+
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-list").val()
+    if value != ""
+      model = new MoviesApp.List()
+      model.save ({ list: { title: value } }),
+        success: ->
+          $(self.el).find(".js-list").val(value).removeClass "error"
+          $(self.el).find(".js-list-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("List added.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-list").val("").removeClass "error"
+          $(self.el).find(".js-list-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-list").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
+
+

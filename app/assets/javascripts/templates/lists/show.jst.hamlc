@@ -1,7 +1,15 @@
 - list = @list
 - if list
   %h3.span12
-    = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1) + " '#{list.title}', #{list.description} from #{list.user}"
+    - if list.list_type
+      - type = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1)
+    - else
+      - type = ""
+    - if list.description
+      - desc = list.description
+    - else
+      - desc = ""
+    = type + " '#{list.title}', #{desc} from #{list.user}"
 
 - if current_user
   - following = false
@@ -16,7 +24,7 @@
       Already following
 
   -if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-    - if list.list_type == ''
+    - if !list.list_type || list.list_type == ''
       .span12
         %p.span12
           Add movies or people
