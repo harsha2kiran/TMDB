@@ -4,42 +4,36 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
 /db/*.sqlite3
 
-# Ignore database.yml
 database.yml
 plugin_versions.yml
 
-# Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 *.swp
+log/development.log
+/log/development.log
 
-# Ignore carrier wave uploaded files
 /public/uploads
 /public/system
 /public/development
 
-# Ignore cached files from SASS
+/public/public
+public/public
+
+tmp/cache/assets/*
+tmp/cache/assets
+
 .sass-cache/
 
-# Ignore Zeus config
-.zeus.json
-zeus.json
-custom_plan.rb
-
-# I don't know where this is coming from but it is annoying
 b.log
 dump.rdb
 __Routes__
 
-# Ignore custom rvmrc
 .rvmrc_custom
 .ruby-version
 
-# Ignore foreman custom config file
 Procfile.dev
