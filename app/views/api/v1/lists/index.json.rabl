@@ -7,10 +7,10 @@ child :list_items do
     if item.listable_type != "Image"
       r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
       if r.length > 0
-        r.first.images
+        r.first.images.where(is_main_image: true)
       end
     else
-      Image.where(id: item.listable_id, approved: true)
+      Image.where(id: item.listable_id, approved: true, is_main_image: true)
     end
   }
   node(:videos){ |item|

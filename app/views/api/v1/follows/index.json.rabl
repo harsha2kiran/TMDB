@@ -7,5 +7,7 @@ node(:followed_content) { |follow|
     @people.select {|s| follow.followable_id == s.id }[0]
   elsif follow.followable_type == "List"
     @lists.select {|s| follow.followable_id == s.id }[0]
+  elsif follow.followable_type == "Genre"
+    @genres.select {|s| follow.followable_id == s.id }[0]
   end
 }

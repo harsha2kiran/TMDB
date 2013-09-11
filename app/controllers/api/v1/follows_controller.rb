@@ -7,6 +7,7 @@ class Api::V1::FollowsController < Api::V1::BaseController
     movie_ids = []
     person_ids = []
     list_ids = []
+    genre_ids = []
     @follows.each do |m|
       if m.followable_type == "Movie"
         movie_ids << m.followable_id
@@ -14,14 +15,18 @@ class Api::V1::FollowsController < Api::V1::BaseController
         person_ids << m.followable_id
       elsif m.followable_type == "List"
         list_ids << m.followable_id
+      elsif m.followable_type == "Genre"
+        genre_ids << m.followable_id
       end
     end
     movie_ids = movie_ids.flatten
     person_ids = person_ids.flatten
     list_ids = list_ids.flatten
+    genre_ids = genre_ids.flatten
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @people = person_ids.count > 0 ? Person.find_all_by_id(person_ids) : []
     @lists = list_ids.count > 0 ? List.find_all_by_id(list_ids) : []
+    @genres = genre_ids.count > 0 ? Genre.find_all_by_id(genre_ids) : []
   end
 
   def show
