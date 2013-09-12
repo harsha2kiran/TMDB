@@ -16,7 +16,7 @@ class MoviesApp.EditCasts extends Backbone.View
 
     self = @
     $(@el).find(".js-new-cast-person").autocomplete
-      source: api_version + "people/search"
+      source: api_version + "people/search?temp_user_id=" + localStorage.temp_user_id
       minLength: 2
       messages:
         noResults: ''
@@ -26,7 +26,7 @@ class MoviesApp.EditCasts extends Backbone.View
         $(self.el).find(".js-new-cast-person-id").val(ui.item.id)
 
     $(@el).find(".js-new-cast-movie").autocomplete
-      source: api_version + "movies/search"
+      source: api_version + "movies/search?temp_user_id=" + localStorage.temp_user_id
       minLength: 2
       messages:
         noResults: ''

@@ -84,7 +84,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def search
-    movies = Movie.where("lower(title) LIKE ? AND approved = TRUE", "%" + params[:term].downcase + "%")
+    movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE || temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
     results = []
     movies.each do |movie|
       results << { label: movie.title, value: movie.title, id: movie.id }

@@ -54,10 +54,12 @@
                 %li
                   %a{:href => new_user_session_path} Add channel
 
-      - if user_signed_in?
-        %ul.span12
-          %li.span2
-            %a{:href => "/#my_movies"} My Movies
+      %ul.span12
+        %li.span2
+          %a{:href => "/#my_movies"} My Movies
+        %li.span2
+          %a{:href => "/#my_people"} My People
+        - if user_signed_in?
           %li.span2
             %a{ href: "#following" }
               My follows

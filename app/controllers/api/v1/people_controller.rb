@@ -7,20 +7,26 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @people = Person.all
       @all = true
     else
-      if current_api_user
-        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
-      else
-        @people = Person.where(approved: true)
-      end
+      @people = Person.where(approved: true)
       @all = false
     end
-
     @people = @people.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-
     filter_results
-
     load_additional_values(@people, "index")
+  end
 
+  def my_people
+    if current_api_user
+      all_items = Person.where("user_id = ? OR temp_user_id = ?", current_api_user.id, params[:temp_user_id])
+    else
+      all_items = Person.where("temp_user_id = ?", params[:temp_user_id])
+    end
+    all_items = all_items.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    @people = all_items
+    filter_results
+    @all = false
+    load_additional_values(@people, "index")
+    render "index"
   end
 
   def show
@@ -31,6 +37,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
     else
       if current_api_user
         @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user)
+      elsif params[:temp_user_id] && !current_api_user
+        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
       else
         @people = Person.where(approved: true)
       end
@@ -44,7 +52,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def search
-    people = Person.where("lower(name) LIKE ? AND approved = TRUE", "%" + params[:term].downcase + "%")
+    people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
     results = []
     people.each do |person|
       results << { label: person.name, value: person.name, id: person.id }

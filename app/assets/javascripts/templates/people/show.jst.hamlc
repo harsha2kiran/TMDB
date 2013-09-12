@@ -1,9 +1,8 @@
 - window.person = @person
 
 .span12
-  - if window.current_user
-    %a.span2{ href: "#/people/#{@person.id}/edit" }
-      Edit
+  %a.span2{ href: "#/people/#{@person.id}/edit" }
+    Edit
   %a.span2{ href: "#/people" }
     Index
 

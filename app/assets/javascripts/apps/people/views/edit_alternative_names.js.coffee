@@ -21,9 +21,13 @@ class PeopleApp.EditAlternativeNames extends Backbone.View
     name = $(@el).find(".js-new-alternative-name").val()
     if name != ""
       alternative_name = new PeopleApp.AlternativeName()
-      alternative_name.save ({ alternative_name: { alternative_name: name, person_id: window.person_id } }),
+      alternative_name.save ({ alternative_name: { alternative_name: name, person_id: window.person_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Alternative name added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-alternative-name").val("").removeClass("error")
+        error: ->
+          console.log "error"
+          $(".notifications").html("This alternative name already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-alternative-name").val("").removeClass("error")
     else
       $(self.el).find(".js-new-alternative-name").addClass("error")

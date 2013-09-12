@@ -2,6 +2,7 @@ class PeopleApp.Router extends Backbone.Router
 
   routes:
     "people" : "index"
+    "my_people" : "my_people"
     "people/new" : "new"
     "people/:id" : "show"
     "people/:id/edit" : "edit"
@@ -17,6 +18,8 @@ class PeopleApp.Router extends Backbone.Router
     person = new PeopleApp.Person()
     person.url = "/api/v1/people/#{id}"
     person.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
       success: ->
         if person.get("person")
           @show_view = new PeopleApp.Show(person: person)
@@ -34,8 +37,21 @@ class PeopleApp.Router extends Backbone.Router
           @show_view = new MoviesApp.NotFound(type: "person")
           $(".js-content").html @show_view.render().el
 
+  my_people: ->
+    console.log "my movies"
+    @clear_values()
+    people = new PeopleApp.People()
+    people.url = api_version + "people/my_people"
+    people.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: ->
+        @index_view = new PeopleApp.Index(people: people)
+        $(".js-content").html @index_view.render().el
+
   index: ->
     console.log "people index"
+    @clear_values()
     people = new PeopleApp.People()
     people.fetch
       success: ->
@@ -49,6 +65,8 @@ class PeopleApp.Router extends Backbone.Router
     person = new PeopleApp.Person()
     person.url = "/api/v1/people/#{id}"
     person.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
       success: ->
         person = person.get("person")
 

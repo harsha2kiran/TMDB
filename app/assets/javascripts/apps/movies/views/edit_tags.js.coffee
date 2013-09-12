@@ -17,7 +17,7 @@ class MoviesApp.EditTags extends Backbone.View
     self = @
     if window.movie_id || window.image_id || window.video_id
       $(@el).find(".js-new-tag-person").autocomplete
-        source: api_version + "people/search"
+        source: api_version + "people/search?temp_user_id=" + localStorage.temp_user_id
         minLength: 2
         messages:
           noResults: ''
@@ -27,7 +27,7 @@ class MoviesApp.EditTags extends Backbone.View
           $(self.el).find(".js-new-tag-person-id").val(ui.item.id)
     else if window.person_id
       $(@el).find(".js-new-tag-movie").autocomplete
-        source: api_version + "movies/search"
+        source: api_version + "movies/search?temp_user_id=" + localStorage.temp_user_id
         minLength: 2
         messages:
           noResults: ''

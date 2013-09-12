@@ -27,7 +27,7 @@ class PeopleApp.New extends Backbone.View
     imdb_id = $container.find(".js-imdb-id").val()
     if name != ""
       person = new PeopleApp.Person()
-      person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id } }),
+      person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, temp_user_id: localStorage.temp_user_id } }),
         error: ->
           $(".notifications").html("Person already exist.").show().fadeOut(window.hide_delay)
           $container.find(".js-name").addClass("error")

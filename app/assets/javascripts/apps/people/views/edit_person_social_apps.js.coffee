@@ -40,7 +40,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
     profile_link = $(@el).find(".js-new-person-social-apps-link").val()
     if app_id != "" && profile_link != ""
       person_social_app = new PeopleApp.PersonSocialApp()
-      person_social_app.save ({ person_social_app: { social_app_id: app_id, person_id: window.person_id, profile_link: profile_link } }),
+      person_social_app.save ({ person_social_app: { social_app_id: app_id, person_id: window.person_id, profile_link: profile_link, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
@@ -48,7 +48,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
           $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("This social app link already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-app").val("").removeClass("error")
           $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
@@ -76,13 +76,14 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
       model = new PeopleApp.SocialApp()
       model.save ({ social_app: { social_app: value, link: link } }),
         success: ->
+          $(".notifications").html("Social App added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-person-social-apps-app").val(value).removeClass "error"
           $(self.el).find(".js-new-person-social-apps-id").val(model.id)
           $(self.el).find(".js-new-person-social-apps-link").val(link).removeClass("error")
           self.create()
           self.cancel()
         error: (model, response) ->
-          $(".notifications").html("Social App added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Social app is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-person-social-apps-app").val("").removeClass "error"
           $(self.el).find(".js-new-person-social-apps-id").val("")
           $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
