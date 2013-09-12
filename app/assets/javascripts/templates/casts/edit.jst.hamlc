@@ -25,3 +25,20 @@
       %input.js-new-cast-movie{ type: "text", placeholder: "Search movies" }
       %input.js-new-cast-movie-id{ type: "hidden" }
     %input.js-new-cast-save{ type: "button", value: "Save" }
+
+    .js-new-person-info.hide
+      This person does not exist. Do you want to add it?
+    .js-new-person-add-form.hide
+      .span1.js-new-person-add-yes
+        Yes
+      .span1.js-new-person-add-no
+        No
+
+    .js-new-movie-info.hide
+      This movie does not exist. Do you want to add it?
+    .js-new-movie-add-form.hide
+      .span1.js-new-movie-add-yes
+        Yes
+      .span1.js-new-movie-add-no
+        No
+

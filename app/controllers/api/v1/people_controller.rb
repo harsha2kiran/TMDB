@@ -55,8 +55,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:edit_page]
       create!
     else
-      person = Person.where("lower(title) LIKE ?", "%" + params[:person][:title].downcase + "%")
-      if movie.count > 0
+      person = Person.where("lower(name) LIKE ?", "%" + params[:person][:name].downcase + "%")
+      if person.count > 0
         raise "error"
       else
         create!

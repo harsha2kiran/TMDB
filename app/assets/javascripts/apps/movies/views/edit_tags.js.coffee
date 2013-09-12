@@ -8,11 +8,15 @@ class MoviesApp.EditTags extends Backbone.View
   events:
     "click .js-new-tag-save" : "create"
     "click .js-tag-remove" : "destroy"
+    "click .js-new-movie-add-yes" : "add_new_movie"
+    "click .js-new-movie-add-no" : "cancel"
+    "click .js-new-person-add-yes" : "add_new_person"
+    "click .js-new-person-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     tags = @options.tags
-    edit.html @template(tags: tags)
+    @edit.html @template(tags: tags)
 
     self = @
     if window.movie_id || window.image_id || window.video_id
@@ -25,6 +29,10 @@ class MoviesApp.EditTags extends Backbone.View
             ''
         select: (event, ui) ->
           $(self.el).find(".js-new-tag-person-id").val(ui.item.id)
+        response: (event, ui) ->
+          if ui.content.length == 0
+            $(self.el).find(".js-new-person-info, .js-new-person-add-form").show()
+            $(self.el).find(".js-new-person-id").val("")
     else if window.person_id
       $(@el).find(".js-new-tag-movie").autocomplete
         source: api_version + "movies/search?temp_user_id=" + localStorage.temp_user_id
@@ -35,6 +43,10 @@ class MoviesApp.EditTags extends Backbone.View
             ''
         select: (event, ui) ->
           $(self.el).find(".js-new-tag-movie-id").val(ui.item.id)
+        response: (event, ui) ->
+          if ui.content.length == 0
+            $(self.el).find(".js-new-movie-info, .js-new-movie-add-form").show()
+            $(self.el).find(".js-new-movie-id").val("")
     this
 
   create: (e) ->
@@ -119,4 +131,48 @@ class MoviesApp.EditTags extends Backbone.View
           $(".js-content").html @show_view.render().el
           @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
           $(".tags").append @edit_tags_view.render().el
+
+  add_new_movie: (e) ->
+    self = @
+    value = @edit.find(".js-new-tag-movie").val()
+    if value != ""
+      model = new MoviesApp.Movie()
+      model.save ({ movie: { title: value } }),
+        success: ->
+          $(".notifications").html("Movie added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag-movie").val(value).removeClass "error"
+          $(self.el).find(".js-new-tag-movie-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Movie is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag-movie").val("").removeClass "error"
+          $(self.el).find(".js-new-tag-movie-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-new-movie").addClass("error")
+
+  add_new_person: (e) ->
+    self = @
+    value = @edit.find(".js-new-tag-person").val()
+    if value != ""
+      model = new PeopleApp.Person()
+      model.save ({ person: { name: value } }),
+        success: ->
+          $(".notifications").html("Person added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag-person").val(value).removeClass "error"
+          $(self.el).find(".js-new-tag-person-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Person is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag-person").val("").removeClass "error"
+          $(self.el).find(".js-new-tag-person-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-new-tag-person").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-person-info, .js-new-person-add-form").hide()
+    @edit.find(".js-new-movie-info, .js-new-movie-add-form").hide()
 

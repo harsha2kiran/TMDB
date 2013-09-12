@@ -8,11 +8,15 @@ class MoviesApp.EditCrews extends Backbone.View
   events:
     "click .js-new-crew-save" : "create"
     "click .js-crew-remove" : "destroy"
+    "click .js-new-movie-add-yes" : "add_new_movie"
+    "click .js-new-movie-add-no" : "cancel"
+    "click .js-new-person-add-yes" : "add_new_person"
+    "click .js-new-person-add-no" : "cancel"
 
   render: ->
-    edit = $(@el)
+    @edit = $(@el)
     crews = @options.crews
-    edit.html @template(crews: crews)
+    @edit.html @template(crews: crews)
 
     self = @
     $(@el).find(".js-new-crew-person").autocomplete
@@ -24,6 +28,10 @@ class MoviesApp.EditCrews extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-crew-person-id").val(ui.item.id)
+      response: (event, ui) ->
+        if ui.content.length == 0
+          $(self.el).find(".js-new-person-info, .js-new-person-add-form").show()
+          $(self.el).find(".js-new-person-id").val("")
 
     $(@el).find(".js-new-crew-movie").autocomplete
       source: api_version + "movies/search?temp_user_id=" + localStorage.temp_user_id
@@ -34,6 +42,10 @@ class MoviesApp.EditCrews extends Backbone.View
           ''
       select: (event, ui) ->
         $(self.el).find(".js-new-crew-movie-id").val(ui.item.id)
+      response: (event, ui) ->
+        if ui.content.length == 0
+          $(self.el).find(".js-new-movie-info, .js-new-movie-add-form").show()
+          $(self.el).find(".js-new-movie-id").val("")
     this
 
   create: (e) ->
@@ -54,12 +66,16 @@ class MoviesApp.EditCrews extends Backbone.View
           $(self.el).find(".js-new-crew-job").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person-id").val("")
+          $(self.el).find(".js-new-crew-movie").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-movie-id").val("")
         error: ->
           console.log "error"
           $(".notifications").html("This crew member already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-crew-job").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person-id").val("")
+          $(self.el).find(".js-new-crew-movie").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-movie-id").val("")
     else
       $(@el).find("input").each (i, input) ->
         if $(input).val() == ""
@@ -75,3 +91,48 @@ class MoviesApp.EditCrews extends Backbone.View
       success: =>
         container.remove()
         $(".notifications").html("Crew member removed.").show().fadeOut(window.hide_delay)
+
+  add_new_movie: (e) ->
+    self = @
+    value = @edit.find(".js-new-crew-movie").val()
+    if value != ""
+      model = new MoviesApp.Movie()
+      model.save ({ movie: { title: value } }),
+        success: ->
+          $(".notifications").html("Movie added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-crew-movie").val(value).removeClass "error"
+          $(self.el).find(".js-new-crew-movie-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Movie is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-crew-movie").val("").removeClass "error"
+          $(self.el).find(".js-new-crew-movie-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-new-movie").addClass("error")
+
+  add_new_person: (e) ->
+    self = @
+    value = @edit.find(".js-new-crew-person").val()
+    if value != ""
+      model = new PeopleApp.Person()
+      model.save ({ person: { name: value } }),
+        success: ->
+          $(".notifications").html("Person added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-crew-person").val(value).removeClass "error"
+          $(self.el).find(".js-new-crew-person-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Person is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-crew-person").val("").removeClass "error"
+          $(self.el).find(".js-new-crew-person-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-new-crew-person").addClass("error")
+
+  cancel: ->
+    @edit.find(".js-new-person-info, .js-new-person-add-form").hide()
+    @edit.find(".js-new-movie-info, .js-new-movie-add-form").hide()
+

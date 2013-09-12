@@ -14,6 +14,7 @@ class DashboardApp.Gallery extends Backbone.View
       auto: 2
       wrap: "last"
       initCallback: self.mycarousel_initCallback
+      itemFallbackDimension: 300
     this
 
   mycarousel_initCallback: (carousel) ->
