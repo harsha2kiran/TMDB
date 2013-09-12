@@ -36,7 +36,7 @@ class PeopleApp.Edit extends Backbone.View
     if name != ""
       person = new PeopleApp.Person()
       if approved == "true"
-        person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
+        person.save ({ edit_page: true, person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
           success: ->
             $(".notifications").html("Successfully updated person. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $container.find(".js-name").removeClass("error")

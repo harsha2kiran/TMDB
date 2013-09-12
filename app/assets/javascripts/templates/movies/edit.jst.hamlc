@@ -1,7 +1,7 @@
 - window.movie = @movie
 
 .span12
-  %a.span2.show-movie{ href: "#/movies/#{@movie.id}"}
+  %a.span2.show-movie{ href: "#/movies/#{window.movie_id}"}
     Show
   %a.span2{ href: "#/movies" }
     Index

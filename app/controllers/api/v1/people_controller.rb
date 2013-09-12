@@ -43,12 +43,25 @@ class Api::V1::PeopleController < Api::V1::BaseController
         @people = Person.where(approved: true)
       end
       @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-      @person = @people.find_by_id params[:id]
+      @person = @people.last #find_by_id params[:id]
       @all = false
     end
 
     load_additional_values(@person, "show")
     @current_api_user = current_api_user
+  end
+
+  def create
+    if params[:edit_page]
+      create!
+    else
+      person = Person.where("lower(title) LIKE ?", "%" + params[:person][:title].downcase + "%")
+      if movie.count > 0
+        raise "error"
+      else
+        create!
+      end
+    end
   end
 
   def search

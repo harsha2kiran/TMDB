@@ -29,13 +29,18 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
                 approved_values = approved_record.attributes
                 approved_values  = approved_values.except("id", "created_at", "updated_at")
                 approved_values["approved"] = mark
+                unless approved_values["user_id"]
+                  approved_values["user_id"] = current_api_user.id
+                end
 
                 # update currently active item with new approved values
                 original_record.approved = true
                 if original_record.update_attributes(approved_values)
-                  user = User.find approved_record.user_id
-                  add_points_to_user(user)
-                  add_badges_to_user(user)
+                  if approved_record.user_id
+                    user = User.find approved_record.user_id
+                    add_points_to_user(user)
+                    add_badges_to_user(user)
+                  end
                   approved_record.destroy
                   format.json { render json: original_record }
                 else
@@ -91,7 +96,7 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     copy_record = original_record.clone
     copy_record.approved = false
     copy_values = copy_record.attributes
-    copy_values = copy_values.except("id", "created_at", "updated_at")
+    copy_values = copy_values.except("id", "created_at", "updated_at", "temp_user_id")
     new_copy_record = original_record.class.name.classify.constantize.new(copy_values)
     if new_copy_record.save
       true

@@ -62,7 +62,9 @@ class Api::V1::MoviesController < Api::V1::BaseController
         @movies = Movie.where(approved: true)
       end
       @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-      @movie = @movies.find_by_id(params[:id])
+      # raise @movies.to_yaml
+      @movie = @movies.last #find_by_id(params[:id])
+      # raise @movie.to_yaml
       @all = false
     end
     load_additional_values(@movie, "show")

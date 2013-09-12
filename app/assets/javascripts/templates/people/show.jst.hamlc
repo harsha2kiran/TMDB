@@ -1,7 +1,7 @@
 - window.person = @person
 
 .span12
-  %a.span2{ href: "#/people/#{@person.id}/edit" }
+  %a.span2{ href: "#/people/#{window.person_id}/edit" }
     Edit
   %a.span2{ href: "#/people" }
     Index

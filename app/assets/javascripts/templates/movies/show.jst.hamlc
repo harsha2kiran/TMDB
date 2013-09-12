@@ -2,7 +2,7 @@
 
 .span12
   -# - if window.current_user
-  %a.span2{ href: "#/movies/#{@movie.id}/edit" }
+  %a.span2{ href: "#/movies/#{window.movie_id}/edit" }
     Edit
   %a.span2{ href: "#/movies" }
     Index
