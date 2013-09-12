@@ -38,14 +38,14 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
     company_id = $(@el).find(".js-new-production-company-id").val()
     production_company = new MoviesApp.ProductionCompany()
     if company_id != ""
-      production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id } }),
+      production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val("").removeClass("error")
           $(self.el).find(".js-new-production-company-id").val("")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Production company  already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val("").removeClass "error"
           $(self.el).find(".js-new-production-company-id").val("")
     else
@@ -67,12 +67,13 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
       model = new MoviesApp.Company()
       model.save ({ company: { company: value } }),
         success: ->
+          $(".notifications").html("Company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val(value).removeClass "error"
           $(self.el).find(".js-new-production-company-id").val(model.id)
           self.create()
           self.cancel()
         error: (model, response) ->
-          $(".notifications").html("Company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Company is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-production-company").val("").removeClass "error"
           $(self.el).find(".js-new-production-company-id").val("")
           self.cancel()

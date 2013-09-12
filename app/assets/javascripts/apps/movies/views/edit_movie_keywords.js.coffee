@@ -38,14 +38,14 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
     keyword_id = $(@el).find(".js-new-keyword-id").val()
     if keyword_id != ""
       movie_keyword = new MoviesApp.MovieKeyword()
-      movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id } }),
+      movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-keyword-id").val("")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Keyword already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-keyword-id").val("")
     else
@@ -67,12 +67,13 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
       model = new MoviesApp.Keyword()
       model.save ({ keyword: { keyword: value } }),
         success: ->
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val(value).removeClass "error"
           $(self.el).find(".js-new-keyword-id").val(model.id)
           self.create()
           self.cancel()
         error: (model, response) ->
-          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Keyword is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-keyword-id").val("")
           self.cancel()

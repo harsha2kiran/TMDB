@@ -48,9 +48,15 @@ class MoviesApp.EditCrews extends Backbone.View
       movie_id = $(@el).find(".js-new-crew-movie-id").val()
     if job != "" && person_id != "" && movie_id != ""
       crew = new MoviesApp.Crew()
-      crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id } }),
+      crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-crew-job").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-person").val("").removeClass("error")
+          $(self.el).find(".js-new-crew-person-id").val("")
+        error: ->
+          console.log "error"
+          $(".notifications").html("This crew member already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-crew-job").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person").val("").removeClass("error")
           $(self.el).find(".js-new-crew-person-id").val("")

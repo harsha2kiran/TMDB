@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title, :user_id, :original_id, :popular
+  attr_accessible :approved, :content_score, :locked, :overview, :tagline, :title, :user_id, :original_id, :popular, :temp_user_id
   has_many :alternative_titles
   has_many :crews
   has_many :casts
@@ -21,8 +21,8 @@ class Movie < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :title, :user_id
-  validates :title, :uniqueness => { :case_sensitive => false }
+  validates_presence_of :title
+  # validates :title, :uniqueness => { :case_sensitive => false }
 
   after_create :check_original_id
 

@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessible :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :user_id, :title, :description, :category, :comments, :duration, :thumbnail
+  attr_accessible :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :user_id, :title, :description, :category, :comments, :duration, :thumbnail, :temp_user_id
   belongs_to :videable, polymorphic: true
 
   has_many :tags, :as => :taggable, :dependent => :destroy
@@ -11,8 +11,9 @@ class Video < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :link, :user_id, :priority, :quality, :title
+  validates_presence_of :link, :priority, :quality, :title
   validates :link, url: true
+  validates :link, :uniqueness => { :scope => [:videable_id, :videable_type] }
 
   include PgSearch
   pg_search_scope :video_search, :against => [:title],

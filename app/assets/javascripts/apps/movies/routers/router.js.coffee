@@ -13,6 +13,7 @@ class MoviesApp.Router extends Backbone.Router
     "images/:id" : "images_show"
     "videos/:id" : "videos_show"
     "movies" : "index"
+    "my_movies" : "my_movies"
     "movies/new" : "new"
     "movies/:id" : "show"
     "movies/:id/edit" : "edit"
@@ -112,6 +113,8 @@ class MoviesApp.Router extends Backbone.Router
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
       success: ->
         if movie.get("movie")
           @show_view = new MoviesApp.Show(movie: movie)
@@ -136,6 +139,8 @@ class MoviesApp.Router extends Backbone.Router
     movie = new MoviesApp.Movie()
     movie.url = "/api/v1/movies/#{id}"
     movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
       success: ->
         movie = movie.get("movie")
 
@@ -197,6 +202,18 @@ class MoviesApp.Router extends Backbone.Router
     @clear_values()
     movies = new MoviesApp.Movies()
     movies.fetch
+      success: ->
+        @index_view = new MoviesApp.Index(movies: movies)
+        $(".js-content").html @index_view.render().el
+
+  my_movies: ->
+    console.log "my movies"
+    @clear_values()
+    movies = new MoviesApp.Movies()
+    movies.url = api_version + "movies/my_movies"
+    movies.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
       success: ->
         @index_view = new MoviesApp.Index(movies: movies)
         $(".js-content").html @index_view.render().el

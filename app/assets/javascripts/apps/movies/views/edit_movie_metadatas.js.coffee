@@ -36,7 +36,7 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
     if status != ""
       if homepage.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         movie_metadata = new MoviesApp.MovieMetadata()
-        movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status } }),
+        movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status, temp_user_id: localStorage.temp_user_id } }),
           success: ->
             $(".notifications").html("Successfully updated movie metadata. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $($container).find("input").each (i, input) ->

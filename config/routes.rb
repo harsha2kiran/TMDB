@@ -63,6 +63,7 @@ Movies::Application.routes.draw do
         get "get_popular" => "movies#get_popular"
         get "edit_popular" => "movies#edit_popular"
         get "search" => "movies#search"
+        get "my_movies" => "movies#my_movies"
       end
     end
     resources :people do

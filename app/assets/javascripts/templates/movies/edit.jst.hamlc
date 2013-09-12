@@ -11,48 +11,48 @@
     Title
     - if $.inArray("title", @locked) > -1
       %input.js-title{ readonly: "readonly", type: "text", value: @movie.title, placeholder: "Title" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "title", action: "unmark" } }
           Unlock
     - else
       %input.js-title{ type: "text", value: @movie.title, placeholder: "Title" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "title", action: "mark" } }
           Lock
   %p.tagline.span12
     Tagline
     - if $.inArray("tagline", @locked) > -1
       %input.js-tagline{ readonly: "readonly", type: "text", value: @movie.tagline, placeholder: "Tagline" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "tagline", action: "unmark" } }
           Unlock
     - else
       %input.js-tagline{ type: "text", value: @movie.tagline, placeholder: "Tagline" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "tagline", action: "mark" } }
           Lock
   %p.overview.span12
     Overview
     - if $.inArray("overview", @locked) > -1
       %input.js-overview{ readonly: "readonly", type: "text", value: @movie.overview, placeholder: "Overview" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "overview", action: "unmark" } }
           Unlock
     - else
       %input.js-overview{ type: "text", value: @movie.overview, placeholder: "Overview" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "overview", action: "mark" } }
           Lock
   %p.content-score.span12
     Content Score
     - if $.inArray("content_score", @locked) > -1
       %input.js-content-score{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "content_score", action: "unmark" } }
           Unlock
     - else
       %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score" }
-      - if current_user.user_type == "admin" || current_user.user_type == "moderator"
+      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
         %span.lock{ data: { controller: "movies", field: "content_score", action: "mark" } }
           Lock
   %p.span12

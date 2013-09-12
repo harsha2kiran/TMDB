@@ -59,7 +59,14 @@ class MoviesApp.EditTags extends Backbone.View
 
     if person_id != "" && taggable_id != ""
       tag = new MoviesApp.Tag()
-      tag.save ({ tag: { person_id: person_id, taggable_id: taggable_id, taggable_type: taggable_type } }),
+      tag.save ({ tag: { person_id: person_id, taggable_id: taggable_id, taggable_type: taggable_type, temp_user_id: localStorage.temp_user_id } }),
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Tag already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag-person").val("").removeClass("error")
+          $(self.el).find(".js-new-tag-person-id").val("")
+          $(self.el).find(".js-new-tag-movie").val("").removeClass("error")
+          $(self.el).find(".js-new-tag-movie-id").val("")
         success: ->
           $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-tag-person").val("").removeClass("error")

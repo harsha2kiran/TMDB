@@ -34,9 +34,15 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
     language_id = $(@el).find(".js-new-alternative-title-language-id").val()
     if title != "" && language_id != ""
       alternative_title = new MoviesApp.AlternativeTitle()
-      alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id } }),
+      alternative_title.save ({ alternative_title: { alternative_title: title, language_id: language_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Alternative title added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-alternative-title").val("").removeClass("error")
+          $(self.el).find(".js-new-alternative-title-language").val("").removeClass("error")
+          $(self.el).find(".js-new-alternative-title-language-id").val("")
+        error: ->
+          console.log "error"
+          $(".notifications").html("This alternative title already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-alternative-title").val("").removeClass("error")
           $(self.el).find(".js-new-alternative-title-language").val("").removeClass("error")
           $(self.el).find(".js-new-alternative-title-language-id").val("")

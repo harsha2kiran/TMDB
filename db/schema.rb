@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911013250) do
+ActiveRecord::Schema.define(:version => 20130911200315) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "alternative_titles", :force => true do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "badges", :force => true do |t|
@@ -77,9 +79,10 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "person_id"
     t.string   "character"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "companies", :force => true do |t|
@@ -101,9 +104,10 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "person_id"
     t.string   "job"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -150,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "updated_at",                                   :null => false
     t.integer  "user_id"
     t.decimal  "priority",       :precision => 8, :scale => 2
+    t.string   "temp_user_id"
   end
 
   create_table "keywords", :force => true do |t|
@@ -178,36 +183,40 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "list_type"
+    t.string   "temp_user_id"
   end
 
   create_table "movie_genres", :force => true do |t|
     t.integer  "movie_id"
     t.integer  "genre_id"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "movie_keywords", :force => true do |t|
     t.integer  "keyword_id"
     t.integer  "movie_id"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "movie_languages", :force => true do |t|
     t.integer  "movie_id"
     t.integer  "language_id"
     t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "movie_metadata", :force => true do |t|
@@ -222,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "movies", :force => true do |t|
@@ -236,6 +246,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "user_id"
     t.integer  "original_id"
     t.decimal  "popular",       :precision => 8, :scale => 2
+    t.string   "temp_user_id"
   end
 
   create_table "oauth_access_grants", :force => true do |t|
@@ -291,6 +302,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "updated_at",     :null => false
     t.integer  "user_id"
     t.integer  "original_id"
+    t.string   "temp_user_id"
   end
 
   create_table "person_social_apps", :force => true do |t|
@@ -301,15 +313,17 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "production_companies", :force => true do |t|
     t.integer  "movie_id"
     t.integer  "company_id"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "releases", :force => true do |t|
@@ -323,6 +337,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -331,6 +346,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "temp_user_id"
   end
 
   create_table "revenue_countries", :force => true do |t|
@@ -338,9 +354,10 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.integer  "movie_id"
     t.integer  "revenue"
     t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "social_apps", :force => true do |t|
@@ -365,6 +382,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
   create_table "user_badges", :force => true do |t|
@@ -422,6 +440,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.string   "category"
     t.string   "duration"
     t.string   "thumbnail"
+    t.string   "temp_user_id"
   end
 
   create_table "views", :force => true do |t|
@@ -431,6 +450,7 @@ ActiveRecord::Schema.define(:version => 20130911013250) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "temp_user_id"
   end
 
 end

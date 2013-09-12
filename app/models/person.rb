@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id, :original_id
+  attr_accessible :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id, :original_id, :temp_user_id
 
   has_many :alternative_names, :dependent => :destroy
   has_many :crews, :dependent => :destroy
@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :name, :user_id
+  validates_presence_of :name
   validates :name, :uniqueness => { :case_sensitive => false }
 
   after_create :check_original_id

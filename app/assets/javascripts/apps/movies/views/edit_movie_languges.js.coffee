@@ -38,14 +38,14 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
     language_id = $(@el).find(".js-new-language-id").val()
     if language_id != ""
       movie_language = new MoviesApp.MovieLanguage()
-      movie_language.save ({ movie_language: { language_id: language_id, movie_id: movie_id } }),
+      movie_language.save ({ movie_language: { language_id: language_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val("").removeClass("error")
           $(self.el).find(".js-new-language-id").val("")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Language already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val("").removeClass "error"
           $(self.el).find(".js-new-language-id").val("")
     else
@@ -67,12 +67,13 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
       model = new MoviesApp.Language()
       model.save ({ language: { language: value } }),
         success: ->
+          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val(value).removeClass "error"
           $(self.el).find(".js-new-language-id").val(model.id)
           self.create()
           self.cancel()
         error: (model, response) ->
-          $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Language is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-language").val("").removeClass "error"
           $(self.el).find(".js-new-language-id").val("")
           self.cancel()

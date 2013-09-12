@@ -9,7 +9,7 @@ class Api::V1::BaseController < ApplicationController
   before_filter :check_if_destroy, :except => [:mark, :unmark]
   before_filter :check_if_update, :except => [:mark, :unmark]
 
-  doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) || @controller == "views" }
+  # doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) || @controller == "views" }
 
   def current_api_user
     if doorkeeper_token
@@ -26,16 +26,16 @@ class Api::V1::BaseController < ApplicationController
     @attribute_names = @controller.classify.constantize.attribute_names
   end
 
-  def check_if_authenticated
-    logger.info "controller " + @controller
-    logger.info "action " + params[:action]
-    public_controllers = ["movies", "videos", "images", "lists", "people", "views"]
-    if public_controllers.include?(@controller) && (params[:action] == "index" || params[:action] == "show")
-      # no need to authenticate, these are public resources
-    else
-      authenticate_user!
-    end
-  end
+#   def check_if_authenticated
+#     logger.info "controller " + @controller
+#     logger.info "action " + params[:action]
+#     public_controllers = ["movies", "videos", "images", "lists", "people", "views"]
+#     if public_controllers.include?(@controller) && (params[:action] == "index" || params[:action] == "show")
+#       # no need to authenticate, these are public resources
+#     else
+#       authenticate_user!
+#     end
+#   end
 
   def set_params_user_id
     if ["create", "update"].include?(params[:action])
@@ -50,9 +50,9 @@ class Api::V1::BaseController < ApplicationController
         # end
         # comment end
         #uncomment authenticate_user!
-        if @controller != "views"
-          authenticate_user!
-        end
+        # if @controller != "views"
+        #   authenticate_user!
+        # end
       end
     end
   end
@@ -61,7 +61,7 @@ class Api::V1::BaseController < ApplicationController
     # add approved = false value to record on create if column exist
     if params[:action] == "create"
       if @attribute_names.include?("approved")
-        if current_api_user.user_type == "admin"
+        if current_user && current_api_user.user_type == "admin"
           unless params["#{@controller.singularize.to_sym}"][:approved]
             params["#{@controller.singularize.to_sym}"][:approved] = false
           end
@@ -92,9 +92,14 @@ class Api::V1::BaseController < ApplicationController
 
   def check_if_update
     if params[:action] == "update"
-      if ["admin", "moderator"].include?(current_api_user.user_type)
-      else
-        redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
+      if current_api_user
+        if ["admin", "moderator"].include?(current_api_user.user_type)
+        else
+          redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
+        end
+      elsif params[:temp_user_id] && !current_api_user && (@controller == "movies" || @controller == "people")
+        #TODO fix this
+
       end
     else
     end

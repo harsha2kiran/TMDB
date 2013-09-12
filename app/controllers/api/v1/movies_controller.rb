@@ -11,24 +11,41 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @movies = all_items.page(params[:page]).order('title ASC')
       @all = true
     else
-      if current_api_user
-        all_items = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
-      else
-        all_items = Movie.where("approved = TRUE")
-      end
-
-      all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-
+      all_items = Movie.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
       @items_count = all_items.count
       @movies = all_items
-
       filter_results
-
       @all = false
     end
-
     load_additional_values(@movies, "index")
+  end
 
+  def my_movies
+    if current_api_user
+      all_items = Movie.where("user_id = ? OR temp_user_id = ?", current_api_user.id, params[:temp_user_id])
+    else
+      all_items = Movie.where("temp_user_id = ?", params[:temp_user_id])
+    end
+    all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    @items_count = all_items.count
+    @movies = all_items
+    filter_results
+    @all = false
+    load_additional_values(@movies, "index")
+    render "index"
+  end
+
+  def create
+    if params[:edit_page]
+      create!
+    else
+      movie = Movie.where("lower(title) LIKE ?", "%" + params[:movie][:title].downcase + "%")
+      if movie.count > 0
+        raise "error"
+      else
+        create!
+      end
+    end
   end
 
   def show
@@ -39,6 +56,8 @@ class Api::V1::MoviesController < Api::V1::BaseController
     else
       if current_api_user
         @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+      elsif params[:temp_user_id] && !current_api_user
+        @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
       else
         @movies = Movie.where(approved: true)
       end

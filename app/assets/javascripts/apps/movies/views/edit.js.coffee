@@ -31,14 +31,14 @@ class MoviesApp.Edit extends Backbone.View
     if title != ""
       movie = new MoviesApp.Movie()
       if approved == "true"
-        movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id } }),
+        movie.save ({ edit_page: true, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
           success: ->
             $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $container.find(".js-title").removeClass("error")
             $(".show-movie").attr("href", "#/movies/#{movie.id}")
       else
         movie.url = api_version + "movies/" + movie_id
-        movie.save ({ id: movie_id, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id } }),
+        movie.save ({ id: movie_id, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
           success: ->
             $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
             $container.find(".js-title").removeClass("error")

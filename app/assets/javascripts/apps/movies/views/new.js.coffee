@@ -21,7 +21,7 @@ class MoviesApp.New extends Backbone.View
     content_score = $container.find(".js-content-score").val()
     if title != ""
       movie = new MoviesApp.Movie()
-      movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score } }),
+      movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, temp_user_id: localStorage.temp_user_id } }),
         error: ->
           $(".notifications").html("Movie already exist.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").addClass("error")

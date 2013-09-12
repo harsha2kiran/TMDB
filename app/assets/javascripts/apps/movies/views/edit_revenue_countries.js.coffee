@@ -33,9 +33,15 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
     revenue = $(@el).find(".js-new-revenue").val()
     if country_id != "" && revenue != ""
       revenue_country = new MoviesApp.RevenueCountry()
-      revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue } }),
+      revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-revenue-country").val("").removeClass("error")
+          $(self.el).find(".js-new-revenue-country-id").val("")
+          $(self.el).find(".js-new-revenue").val("").removeClass("error")
+        error: ->
+          console.log "error"
+          $(".notifications").html("Revenue for this country already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-revenue-country").val("").removeClass("error")
           $(self.el).find(".js-new-revenue-country-id").val("")
           $(self.el).find(".js-new-revenue").val("").removeClass("error")

@@ -38,14 +38,14 @@ class MoviesApp.EditMovieGenres extends Backbone.View
     genre_id = $(@el).find(".js-new-genre-id").val()
     if genre_id
       movie_genre = new MoviesApp.MovieGenre()
-      movie_genre.save ({ movie_genre: { genre_id: genre_id, movie_id: movie_id } }),
+      movie_genre.save ({ movie_genre: { genre_id: genre_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val("").removeClass "error"
           $(self.el).find(".js-new-genre-id").val("")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Genre already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val("").removeClass "error"
           $(self.el).find(".js-new-genre-id").val("")
     else
@@ -67,12 +67,13 @@ class MoviesApp.EditMovieGenres extends Backbone.View
       model = new MoviesApp.Genre()
       model.save ({ genre: { genre: value } }),
         success: ->
+          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val(value).removeClass "error"
           $(self.el).find(".js-new-genre-id").val(model.id)
           self.create()
           self.cancel()
         error: (model, response) ->
-          $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("Genre is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val("").removeClass "error"
           $(self.el).find(".js-new-genre-id").val("")
           self.cancel()
