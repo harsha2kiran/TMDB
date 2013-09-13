@@ -78,17 +78,30 @@ class MoviesApp.EditImages extends Backbone.View
       $(@el).find(".js-new-image-title").addClass("error").focus()
 
   reload_items: ->
-    movie = new MoviesApp.Movie()
-    movie.url = "/api/v1/movies/#{window.movie_id}"
-    movie.fetch
-      data:
-        temp_user_id: localStorage.temp_user_id
-      success: =>
-        movie = movie.get("movie")
-        $(@el).remove()
-        @stopListening()
-        @edit_images_view = new MoviesApp.EditImages(images: movie.images)
-        $(".images").html @edit_images_view.render().el
+    if window.movie_id
+      movie = new MoviesApp.Movie()
+      movie.url = "/api/v1/movies/#{window.movie_id}"
+      movie.fetch
+        data:
+          temp_user_id: localStorage.temp_user_id
+        success: =>
+          movie = movie.get("movie")
+          $(@el).remove()
+          @stopListening()
+          @edit_images_view = new MoviesApp.EditImages(images: movie.images)
+          $(".images").html @edit_images_view.render().el
+    else if window.person_id
+      person = new PeopleApp.Person()
+      person.url = "/api/v1/people/#{window.person_id}"
+      person.fetch
+        data:
+          temp_user_id: localStorage.temp_user_id
+        success: =>
+          person = person.get("person")
+          $(@el).remove()
+          @stopListening()
+          @edit_images_view = new MoviesApp.EditImages(images: person.images)
+          $(".images").html @edit_images_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".image").first()

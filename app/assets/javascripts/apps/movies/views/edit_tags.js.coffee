@@ -100,17 +100,30 @@ class MoviesApp.EditTags extends Backbone.View
           $(input).removeClass("error")
 
   reload_items: ->
-    movie = new MoviesApp.Movie()
-    movie.url = "/api/v1/movies/#{window.movie_id}"
-    movie.fetch
-      data:
-        temp_user_id: localStorage.temp_user_id
-      success: =>
-        movie = movie.get("movie")
-        $(@el).remove()
-        @stopListening()
-        @edit_tags_view = new MoviesApp.EditTags(tags: movie.tags)
-        $(".tags").html @edit_tags_view.render().el
+    if window.movie_id
+      movie = new MoviesApp.Movie()
+      movie.url = "/api/v1/movies/#{window.movie_id}"
+      movie.fetch
+        data:
+          temp_user_id: localStorage.temp_user_id
+        success: =>
+          movie = movie.get("movie")
+          $(@el).remove()
+          @stopListening()
+          @edit_tags_view = new MoviesApp.EditTags(tags: movie.tags)
+          $(".tags").html @edit_tags_view.render().el
+    else if window.person_id
+      person = new PeopleApp.Person()
+      person.url = "/api/v1/people/#{window.person_id}"
+      person.fetch
+        data:
+          temp_user_id: localStorage.temp_user_id
+        success: =>
+          person = person.get("person")
+          $(@el).remove()
+          @stopListening()
+          @edit_tags_view = new MoviesApp.EditTags(tags: person.tags)
+          $(".tags").html @edit_tags_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

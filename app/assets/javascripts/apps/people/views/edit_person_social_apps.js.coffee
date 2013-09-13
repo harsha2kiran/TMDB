@@ -43,9 +43,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
       person_social_app.save ({ person_social_app: { social_app_id: app_id, person_id: window.person_id, profile_link: profile_link, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Social app link added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-person-social-apps-app-id").val("").removeClass("error")
-          $(self.el).find(".js-new-person-social-apps-app").val("").removeClass("error")
-          $(self.el).find(".js-new-person-social-apps-link").val("").removeClass("error")
+          self.reload_items()
         error: (model, response) ->
           console.log "error"
           $(".notifications").html("This social app link already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -58,6 +56,19 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    person = new PeopleApp.Person()
+    person.url = "/api/v1/people/#{window.person_id}"
+    person.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        person = person.get("person")
+        $(@el).remove()
+        @stopListening()
+        @edit_person_social_apps_view = new PeopleApp.EditPersonSocialApps(person_social_apps: person.person_social_apps)
+        $(".person-social-apps").html @edit_person_social_apps_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

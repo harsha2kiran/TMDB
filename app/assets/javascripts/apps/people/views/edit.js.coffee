@@ -20,6 +20,31 @@ class PeopleApp.Edit extends Backbone.View
     $(@el).find(".js-birthday, .js-day-of-death").datepicker(
       dateFormat: "yy-mm-dd"
     )
+
+    @add_to_list_view = new MoviesApp.AddToList()
+    $(@el).find(".add-to-list").html @add_to_list_view.render().el
+
+    @edit_images_view = new MoviesApp.EditImages(images: person.images)
+    $(@el).find(".images").html @edit_images_view.render().el
+
+    @edit_videos_view = new MoviesApp.EditVideos(videos: person.videos)
+    $(@el).find(".videos").html @edit_videos_view.render().el
+
+    @edit_casts_view = new MoviesApp.EditCasts(casts: person.casts)
+    $(@el).find(".cast").html @edit_casts_view.render().el
+
+    @edit_crews_view = new MoviesApp.EditCrews(crews: person.crews)
+    $(@el).find(".crew").html @edit_crews_view.render().el
+
+    @edit_alternative_names_view = new PeopleApp.EditAlternativeNames(alternative_names: person.alternative_names)
+    $(@el).find(".alternative-names").html @edit_alternative_names_view.render().el
+
+    @edit_person_social_apps_view = new PeopleApp.EditPersonSocialApps(person_social_apps: person.person_social_apps)
+    $(@el).find(".person-social-apps").html @edit_person_social_apps_view.render().el
+
+    @edit_tags_view = new MoviesApp.EditTags(tags: person.tags)
+    $(@el).find(".tags").html @edit_tags_view.render().el
+
     this
 
   update: (e) ->

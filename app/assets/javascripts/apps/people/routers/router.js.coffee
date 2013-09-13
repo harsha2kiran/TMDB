@@ -73,30 +73,6 @@ class PeopleApp.Router extends Backbone.Router
         @edit_view = new PeopleApp.Edit(person: person)
         $(".js-content").html @edit_view.render().el
 
-        @add_to_list_view = new MoviesApp.AddToList()
-        $(".js-content").append @add_to_list_view.render().el
-
-        @edit_images_view = new MoviesApp.EditImages(images: person.images)
-        $(".js-content").append @edit_images_view.render().el
-
-        @edit_videos_view = new MoviesApp.EditVideos(videos: person.videos)
-        $(".js-content").append @edit_videos_view.render().el
-
-        @edit_casts_view = new MoviesApp.EditCasts(casts: person.casts)
-        $(".js-content").append @edit_casts_view.render().el
-
-        @edit_crews_view = new MoviesApp.EditCrews(crews: person.crews)
-        $(".js-content").append @edit_crews_view.render().el
-
-        @edit_alternative_names_view = new PeopleApp.EditAlternativeNames(alternative_names: person.alternative_names)
-        $(".js-content").append @edit_alternative_names_view.render().el
-
-        @edit_person_social_apps_view = new PeopleApp.EditPersonSocialApps(person_social_apps: person.person_social_apps)
-        $(".js-content").append @edit_person_social_apps_view.render().el
-
-        @edit_tags_view = new MoviesApp.EditTags(tags: person.tags)
-        $(".js-content").append @edit_tags_view.render().el
-
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   new: ->

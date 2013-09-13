@@ -98,3 +98,11 @@
     %input.js-original-id{ type: "hidden", value: @person.original_id }
     %input.js-update{ type: "button", value: "Update" }
 
+.add-to-list
+.images
+.videos
+.cast
+.crew
+.alternative-names
+.person-social-apps
+.tags
