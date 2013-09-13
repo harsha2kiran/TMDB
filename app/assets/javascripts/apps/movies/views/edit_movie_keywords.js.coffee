@@ -41,8 +41,7 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
       movie_keyword.save ({ movie_keyword: { keyword_id: keyword_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-keyword").val("").removeClass "error"
-          $(self.el).find(".js-new-keyword-id").val("")
+          self.reload_items()
         error: (model, response) ->
           console.log "error"
           $(".notifications").html("Keyword already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -50,6 +49,19 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
           $(self.el).find(".js-new-keyword-id").val("")
     else
       $(@el).find(".js-new-keyword").addClass("error").focus()
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_movie_keywords_view = new MoviesApp.EditMovieKeywords(movie_keywords: movie.movie_keywords)
+        $(".keywords").html @edit_movie_keywords_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

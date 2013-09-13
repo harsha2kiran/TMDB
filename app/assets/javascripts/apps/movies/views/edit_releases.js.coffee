@@ -13,6 +13,7 @@ class MoviesApp.EditReleases extends Backbone.View
     edit_release = $(@el)
     releases = @options.releases
     edit_release.html @template(releases: releases)
+
     $(@el).find(".js-new-release-release-date").datepicker(
       dateFormat: "yy-mm-dd"
     )
@@ -43,14 +44,26 @@ class MoviesApp.EditReleases extends Backbone.View
       release.save ({ release: { movie_id: movie_id, release_date: release_date, country_id: country_id, confirmed: confirmed, primary: primary, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Successfully added release. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find("input, select").each (i, input) ->
-            $(input).removeClass("error")
+          self.reload_items()
     else
       $(@el).find("input, select").each (i, input) ->
         if $(input).val() == "" || $(input).val() == "0"
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_releases_view = new MoviesApp.EditReleases(releases: movie.releases)
+        $(".releases").html @edit_releases_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".release").first()

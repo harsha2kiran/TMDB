@@ -36,9 +36,7 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
       revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Revenue country added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-revenue-country").val("").removeClass("error")
-          $(self.el).find(".js-new-revenue-country-id").val("")
-          $(self.el).find(".js-new-revenue").val("").removeClass("error")
+          self.reload_items()
         error: ->
           console.log "error"
           $(".notifications").html("Revenue for this country already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -51,6 +49,19 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
+        $(".revenue-countries").html @edit_revenue_countries_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

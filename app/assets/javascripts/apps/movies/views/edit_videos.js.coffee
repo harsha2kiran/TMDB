@@ -44,16 +44,18 @@ class MoviesApp.EditVideos extends Backbone.View
         video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true, temp_user_id: localStorage.temp_user_id } }),
           success: ->
             $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-            $(self.el).find(".js-new-video-title").val("").removeClass("error")
-            $(self.el).find(".js-new-video-description").val("").removeClass("error")
-            $(self.el).find(".js-new-video-comments").val("").removeClass("error")
-            $(self.el).find(".js-new-video-duration").val("").removeClass("error")
-            $(self.el).find(".js-new-video-link").val("").removeClass("error")
-            $(self.el).find(".js-new-video-type").val("").removeClass("error")
-            $(self.el).find(".js-new-video-quality").val("").removeClass("error")
-            $(self.el).find(".js-new-video-priority").val("").removeClass("error")
-            $(self.el).find(".js-new-video-category").val("").removeClass("error")
-            $(self.el).find(".video-info").hide()
+            # $(self.el).find(".js-new-video-title").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-description").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-comments").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-duration").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-link").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-type").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-quality").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-priority").val("").removeClass("error")
+            # $(self.el).find(".js-new-video-category").val("").removeClass("error")
+            # $(self.el).find(".video-info").hide()
+
+            self.reload_items()
 
             if self.options.channel
               $.ajax api_version + "approvals/mark",
@@ -88,6 +90,19 @@ class MoviesApp.EditVideos extends Backbone.View
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_videos_view = new MoviesApp.EditVideos(videos: movie.videos)
+        $(".videos").html @edit_videos_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".video").first()

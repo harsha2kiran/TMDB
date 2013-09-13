@@ -63,11 +63,7 @@ class MoviesApp.EditCrews extends Backbone.View
       crew.save ({ crew: { job: job, person_id: person_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Crew member added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-crew-job").val("").removeClass("error")
-          $(self.el).find(".js-new-crew-person").val("").removeClass("error")
-          $(self.el).find(".js-new-crew-person-id").val("")
-          $(self.el).find(".js-new-crew-movie").val("").removeClass("error")
-          $(self.el).find(".js-new-crew-movie-id").val("")
+          self.reload_items()
         error: ->
           console.log "error"
           $(".notifications").html("This crew member already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -82,6 +78,19 @@ class MoviesApp.EditCrews extends Backbone.View
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_crews_view = new MoviesApp.EditCrews(crews: movie.crews)
+        $(".crew").html @edit_crews_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

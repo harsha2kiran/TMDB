@@ -81,10 +81,7 @@ class MoviesApp.EditTags extends Backbone.View
           $(self.el).find(".js-new-tag-movie-id").val("")
         success: ->
           $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-tag-person").val("").removeClass("error")
-          $(self.el).find(".js-new-tag-person-id").val("")
-          $(self.el).find(".js-new-tag-movie").val("").removeClass("error")
-          $(self.el).find(".js-new-tag-movie-id").val("")
+          self.reload_items()
 
           if taggable_type == "Image" || taggable_type == "Video"
             $.ajax api_version + "approvals/mark",
@@ -101,6 +98,19 @@ class MoviesApp.EditTags extends Backbone.View
           $(input).addClass("error")
         else
           $(input).removeClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_tags_view = new MoviesApp.EditTags(tags: movie.tags)
+        $(".tags").html @edit_tags_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

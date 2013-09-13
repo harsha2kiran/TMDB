@@ -60,3 +60,19 @@
     %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
     %input.js-update{ type: "button", value: "Update" }
 
+
+.add-to-list
+.movie-metadata
+.videos
+.images
+.genres
+.cast
+.crew
+.keywords
+.alternative-titles
+.languages
+.tags
+.releases
+.production-companies
+.revenue-countries
+

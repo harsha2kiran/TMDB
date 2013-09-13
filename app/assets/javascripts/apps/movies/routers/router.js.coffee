@@ -147,48 +147,6 @@ class MoviesApp.Router extends Backbone.Router
         @edit_view = new MoviesApp.Edit(movie: movie)
         $(".js-content").html @edit_view.render().el
 
-        @add_to_list_view = new MoviesApp.AddToList()
-        $(".js-content").append @add_to_list_view.render().el
-
-        @edit_movie_metadata_view = new MoviesApp.EditMovieMetadatas(movie_metadatas: movie.movie_metadatas)
-        $(".js-content").append @edit_movie_metadata_view.render().el
-
-        @edit_videos_view = new MoviesApp.EditVideos(videos: movie.videos)
-        $(".js-content").append @edit_videos_view.render().el
-
-        @edit_images_view = new MoviesApp.EditImages(images: movie.images)
-        $(".js-content").append @edit_images_view.render().el
-
-        @edit_movie_genres_view = new MoviesApp.EditMovieGenres(movie_genres: movie.movie_genres)
-        $(".js-content").append @edit_movie_genres_view.render().el
-
-        @edit_casts_view = new MoviesApp.EditCasts(casts: movie.casts)
-        $(".js-content").append @edit_casts_view.render().el
-
-        @edit_crews_view = new MoviesApp.EditCrews(crews: movie.crews)
-        $(".js-content").append @edit_crews_view.render().el
-
-        @edit_movie_keywords_view = new MoviesApp.EditMovieKeywords(movie_keywords: movie.movie_keywords)
-        $(".js-content").append @edit_movie_keywords_view.render().el
-
-        @edit_alternative_titles_view = new MoviesApp.EditAlternativeTitles(alternative_titles: movie.alternative_titles)
-        $(".js-content").append @edit_alternative_titles_view.render().el
-
-        @edit_movie_languages_view = new MoviesApp.EditMovieLanguages(movie_languages: movie.movie_languages)
-        $(".js-content").append @edit_movie_languages_view.render().el
-
-        @edit_tags_view = new MoviesApp.EditTags(tags: movie.tags)
-        $(".js-content").append @edit_tags_view.render().el
-
-        @edit_releases_view = new MoviesApp.EditReleases(releases: movie.releases)
-        $(".js-content").append @edit_releases_view.render().el
-
-        @edit_production_companies_view = new MoviesApp.EditProductionCompanies(production_companies: movie.production_companies)
-        $(".js-content").append @edit_production_companies_view.render().el
-
-        @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
-        $(".js-content").append @edit_revenue_countries_view.render().el
-
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   new: ->

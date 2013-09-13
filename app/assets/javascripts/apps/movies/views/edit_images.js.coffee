@@ -60,6 +60,7 @@ class MoviesApp.EditImages extends Backbone.View
             $(self.el).find(".js-new-image-title").val("")
             $(@el).find(".js-new-image-main").removeClass("error")
             $(@el).find(".js-new-image-title").removeClass("error").val("")
+            self.reload_items()
             if self.options.gallery
               $.ajax api_version + "approvals/mark",
                 method: "post"
@@ -76,6 +77,18 @@ class MoviesApp.EditImages extends Backbone.View
     else
       $(@el).find(".js-new-image-title").addClass("error").focus()
 
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_images_view = new MoviesApp.EditImages(images: movie.images)
+        $(".images").html @edit_images_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".image").first()

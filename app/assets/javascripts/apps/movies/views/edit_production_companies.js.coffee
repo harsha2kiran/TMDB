@@ -41,8 +41,7 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
       production_company.save ({ production_company: { company_id: company_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Production company added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-production-company").val("").removeClass("error")
-          $(self.el).find(".js-new-production-company-id").val("")
+          self.reload_items()
         error: (model, response) ->
           console.log "error"
           $(".notifications").html("Production company  already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -50,6 +49,19 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
           $(self.el).find(".js-new-production-company-id").val("")
     else
       $(self.el).find(".js-new-production-company").addClass("error").focus()
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_production_companies_view = new MoviesApp.EditProductionCompanies(production_companies: movie.production_companies)
+        $(".production-companies").html @edit_production_companies_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

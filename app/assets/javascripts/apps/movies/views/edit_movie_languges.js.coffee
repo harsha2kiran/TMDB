@@ -41,8 +41,7 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
       movie_language.save ({ movie_language: { language_id: language_id, movie_id: movie_id, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-language").val("").removeClass("error")
-          $(self.el).find(".js-new-language-id").val("")
+          self.reload_items()
         error: (model, response) ->
           console.log "error"
           $(".notifications").html("Language already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -50,6 +49,19 @@ class MoviesApp.EditMovieLanguages extends Backbone.View
           $(self.el).find(".js-new-language-id").val("")
     else
       $(@el).find(".js-new-language").addClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_movie_languages_view = new MoviesApp.EditMovieLanguages(movie_languages: movie.movie_languages)
+        $(".languages").html @edit_movie_languages_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()

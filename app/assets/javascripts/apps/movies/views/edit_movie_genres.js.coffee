@@ -43,6 +43,7 @@ class MoviesApp.EditMovieGenres extends Backbone.View
           $(".notifications").html("Genre added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-genre").val("").removeClass "error"
           $(self.el).find(".js-new-genre-id").val("")
+          self.reload_items()
         error: (model, response) ->
           console.log "error"
           $(".notifications").html("Genre already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -50,6 +51,19 @@ class MoviesApp.EditMovieGenres extends Backbone.View
           $(self.el).find(".js-new-genre-id").val("")
     else
       $(@el).find(".js-new-genre").addClass("error")
+
+  reload_items: ->
+    movie = new MoviesApp.Movie()
+    movie.url = "/api/v1/movies/#{window.movie_id}"
+    movie.fetch
+      data:
+        temp_user_id: localStorage.temp_user_id
+      success: =>
+        movie = movie.get("movie")
+        $(@el).remove()
+        @stopListening()
+        @edit_movie_genres_view = new MoviesApp.EditMovieGenres(movie_genres: movie.movie_genres)
+        $(".genres").html @edit_movie_genres_view.render().el
 
   destroy: (e) ->
     container = $(e.target).parents(".span12").first()
