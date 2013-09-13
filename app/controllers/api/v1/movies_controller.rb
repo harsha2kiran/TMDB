@@ -62,7 +62,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
         @movies = Movie.where(approved: true)
       end
       @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-      @movie = @movies.last #find_by_id(params[:id])
+      @movie = @movies.where(original_id: params[:id]).last #.last #find_by_id(params[:id])
       @all = false
     end
     load_additional_values(@movie, "show")
