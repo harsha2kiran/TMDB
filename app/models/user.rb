@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def inactive_message
-    "Sorry, this account has been deactivated."
+    "Account is not yet confirmed. Please click on validation link sent on mail."
   end
 
   protected
