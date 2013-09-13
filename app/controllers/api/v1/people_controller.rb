@@ -43,7 +43,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
         @people = Person.where(approved: true)
       end
       @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-      @person = @people.last #find_by_id params[:id]
+      @person = @people.find_by_id params[:id]
       @all = false
     end
 

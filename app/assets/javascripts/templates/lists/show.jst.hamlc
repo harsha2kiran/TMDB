@@ -27,9 +27,9 @@
     - if !list.list_type || list.list_type == ''
       .span12
         %p.span12
-          Add movies or people
+          Add movies, people, images or videos
         .span12
-          %input.js-item{ type: "text", placeholder: "Search movies or people" }
+          %input.js-item{ type: "text", placeholder: "Search" }
           %input.js-item-id{ type: "hidden" }
           %input.js-item-type{ type: "hidden" }
           %input.js-create{ type: "button", value: "Add to list" }
@@ -45,7 +45,7 @@
     - $.each list.list_items, (i, item) ->
 
       - if (item.list_item.images && item.list_item.images.length > 0) || (item.list_item.listable_item && item.list_item.listable_item.link)
-        .span4.item
+        .span2.item
           - last_listable_id = item.list_item.listable_id
           - last_listable_type = item.list_item.listable_type
           - url_item = switch
@@ -56,9 +56,12 @@
           - if item.list_item.listable_type == "Movie" || item.list_item.listable_type == "Person"
             %a{ href: "##{url_item}/#{last_listable_id}" }
               .span12
+                - found = false
                 - $.each item.list_item.images, (i, image) ->
-                  - if image && image.is_main_image
-                    %img{ src: image.image_file.small.url, alt: "no image" }
+                  - if found == false
+                    - if image && image.is_main_image && image.approved
+                      - found = true
+                      %img{ src: image.image_file.small.url, alt: "no image" }
                 - if item.list_item.listable_item.title
                   .span12
                     = item.list_item.listable_item.title
