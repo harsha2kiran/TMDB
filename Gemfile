@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
+gem "nokogiri"
 gem 'pg'
 gem 'pg_search'
 group :assets do
@@ -51,6 +52,5 @@ gem 'activeadmin'
 gem "erb2haml"
 gem 'country-select'
 gem 'kaminari'
-gem "nokogiri"
 gem "youtube_it"
 gem 'rack-mini-profiler'
