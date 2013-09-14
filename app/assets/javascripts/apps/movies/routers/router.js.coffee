@@ -42,7 +42,7 @@ class MoviesApp.Router extends Backbone.Router
           type = "Image"
           id = window.image_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
         else
@@ -67,7 +67,7 @@ class MoviesApp.Router extends Backbone.Router
           type = "Video"
           id = window.video_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
         else
@@ -123,7 +123,7 @@ class MoviesApp.Router extends Backbone.Router
           type = "Movie"
           id = window.movie_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
 

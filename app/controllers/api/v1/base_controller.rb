@@ -39,20 +39,18 @@ class Api::V1::BaseController < ApplicationController
 
   def set_params_user_id
     if ["create", "update"].include?(params[:action])
+      #comment this
+      if params[:temp_user_id]
+        params["#{@controller.singularize.to_sym}"][:temp_user_id] = params[:temp_user_id]
+      end
       # add user_id value from current_user or redirect to login.
       # check if current model has attribute user_id, if not, skip it
       if current_api_user && @attribute_names.include?("user_id")
         params["#{@controller.singularize.to_sym}"][:user_id] = current_api_user.id
-      else
-        # comment this
-        # if @attribute_names.include?("user_id")
-        #   params["#{@controller.singularize.to_sym}"][:user_id] = User.first.id
-        # end
-        # comment end
-        #uncomment authenticate_user!
-        # if @controller != "views"
-        #   authenticate_user!
-        # end
+      end
+      #comment this
+      if !current_api_user && @attribute_names.include?("temp_user_id") && !params["#{@controller.singularize.to_sym}"][:temp_user_id]
+        raise "user_id or temp_user_id must be provided for update or create"
       end
     end
   end

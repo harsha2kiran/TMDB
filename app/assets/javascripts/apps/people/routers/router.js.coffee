@@ -28,7 +28,7 @@ class PeopleApp.Router extends Backbone.Router
           type = "Person"
           id = window.person_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
 

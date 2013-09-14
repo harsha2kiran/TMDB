@@ -21,7 +21,7 @@ window.MoviesApp = {
       if item_type != "" && item_id != ""
         lock = new MoviesApp.Lock()
         lock.url = api_version + "locks/" + action
-        lock.save ({ field: field, item_id: item_id, item_type: item_type }),
+        lock.save ({ field: field, item_id: item_id, item_type: item_type, temp_user_id: localStorage.temp_user_id }),
           success: (data) ->
             if action == "mark"
               self.prev().attr("readonly", "readonly")

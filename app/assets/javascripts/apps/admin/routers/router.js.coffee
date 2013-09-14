@@ -44,7 +44,7 @@ class AdminApp.Router extends Backbone.Router
           type = "Movie"
           id = window.movie_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
 
@@ -65,7 +65,7 @@ class AdminApp.Router extends Backbone.Router
           type = "Person"
           id = window.person_id
           view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type } }),
+          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               console.log view
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })

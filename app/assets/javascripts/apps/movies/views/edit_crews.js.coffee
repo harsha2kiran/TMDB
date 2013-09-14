@@ -119,7 +119,7 @@ class MoviesApp.EditCrews extends Backbone.View
     value = @edit.find(".js-new-crew-movie").val()
     if value != ""
       model = new MoviesApp.Movie()
-      model.save ({ movie: { title: value } }),
+      model.save ({ movie: { title: value, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Movie added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-crew-movie").val(value).removeClass "error"
@@ -139,7 +139,7 @@ class MoviesApp.EditCrews extends Backbone.View
     value = @edit.find(".js-new-crew-person").val()
     if value != ""
       model = new PeopleApp.Person()
-      model.save ({ person: { name: value } }),
+      model.save ({ person: { name: value, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Person added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-crew-person").val(value).removeClass "error"

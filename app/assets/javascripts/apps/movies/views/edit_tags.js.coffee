@@ -160,7 +160,7 @@ class MoviesApp.EditTags extends Backbone.View
     value = @edit.find(".js-new-tag-movie").val()
     if value != ""
       model = new MoviesApp.Movie()
-      model.save ({ movie: { title: value } }),
+      model.save ({ movie: { title: value, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Movie added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-tag-movie").val(value).removeClass "error"
@@ -180,7 +180,7 @@ class MoviesApp.EditTags extends Backbone.View
     value = @edit.find(".js-new-tag-person").val()
     if value != ""
       model = new PeopleApp.Person()
-      model.save ({ person: { name: value } }),
+      model.save ({ person: { name: value, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Person added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-tag-person").val(value).removeClass "error"
