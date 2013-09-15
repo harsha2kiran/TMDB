@@ -55,7 +55,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     if params[:edit_page]
       create!
     else
-      person = Person.where("lower(name) LIKE ?", "%" + params[:person][:name].downcase + "%")
+      person = Person.where("lower(name) = ?", params[:person][:name].downcase)
       if person.count > 0
         raise "error"
       else

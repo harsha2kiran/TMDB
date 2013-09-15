@@ -39,7 +39,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if params[:edit_page]
       create!
     else
-      movie = Movie.where("lower(title) LIKE ?", "%" + params[:movie][:title].downcase + "%")
+      movie = Movie.where("lower(title) = ?", params[:movie][:title].downcase)
       if movie.count > 0
         raise "error"
       else
