@@ -10,7 +10,7 @@ class Api::V1::GenresController < Api::V1::BaseController
       movie_ids = genre.movie_genres.where(approved: true).limit(3).uniq.map(&:movie_id)
       unless movie_ids == []
         # movie_ids.each do |id|
-          movies << Movie.find_all_by_id(movie_ids, :include => [:images])
+          movies << Movie.where(approved: true).find_all_by_id(movie_ids, :include => [:images])
         # end
       else
         movies = []
@@ -26,7 +26,7 @@ class Api::V1::GenresController < Api::V1::BaseController
       movies = []
       movie_ids = @genre.movie_genres.where(approved: true).uniq.map(&:movie_id)
       unless movie_ids == []
-         movies << Movie.find_all_by_id(movie_ids, :include => [:images])
+         movies << Movie.where(approved: true).find_all_by_id(movie_ids, :include => [:images])
       else
         movies = []
       end
