@@ -1,75 +1,18 @@
 - @lists.each (list) ->
   - list = list.get("list")
   .span12.box
-    %a{ href: "#lists/#{list.id}" }
-      - if list.description
-        - desc = list.description
-      - else
-        - desc = ""
-      - if list.user
-        = "'#{list.title}', #{desc} from #{list.user}"
-      - else
-        = "'#{list.title}', #{desc}"
-    -# .span3
-      -# - if list.list_items
-      -#   - items_shown = 0
-      -#   - $.each list.list_items, (i, item) ->
-
-      -#     - if item.list_item.images && item.list_item.images.length > 0
-      -#       - found = false
-      -#       - $.each item.list_item.images, (i, image) ->
-      -#         - if found == false && items_shown < 4
-      -#           - if image.is_main_image && image.approved
-      -#             - found = true
-      -#             - items_shown = items_shown + 1
-      -#             .span2
-      -#               %img{ src: image.image_file.small.url, alt: "no image" }
-
-      -#     - if item.list_item.videos && item.list_item.videos.length > 0 && items_shown < 4
-      -#       - if item.list_item.videos[0].approved
-      -#         .span2
-      -#           %img{ src: item.list_item.videos[0].thumbnail, alt: "no image" }
-      -#           - items_shown = items_shown + 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          -# - if item.list_item.videos && item.list_item.videos.length > 0
-          -#   - if count < 3
-          -#     - count = count + 1
-          -#     .span2
-          -#       %a{ href: "#videos/#{item.list_item.listable_id}" }
-          -#         %img{ src: item.list_item.videos[0].thumbnail, alt: "no image" }
-
-
-          -# - if item.list_item.images && item.list_item.images.length > 0
-          -#   - last_listable_id = item.list_item.listable_id
-          -#   - last_listable_type = item.list_item.listable_type
-          -#   - url_item = switch
-          -#     - when last_listable_type == "Movie" then "movies"
-          -#     - when last_listable_type == "Image" then "images"
-          -#     - when last_listable_type == "Video" then "videos"
-          -#     - when last_listable_type == "Person" then "people"
-          -#   - if count < 3
-          -#     - count = count + 1
-          -#     .span2
-          -#       %a{ href: "##{url_item}/#{last_listable_id}" }
-          -#         - found = false
-          -#         - $.each item.list_item.images, (i, image) ->
-          -#           - if found == false
-          -#             - if image.is_main_image || last_listable_type == "Image"
-          -#               - found = true
-          -#               %img{ src: image.image_file.small.url, alt: "no image" }
-
-
+    .span8
+      %a{ href: "#lists/#{list.id}" }
+        - if list.description
+          - desc = list.description
+        - else
+          - desc = ""
+        - if list.user
+          = "'#{list.title}', #{desc} from #{list.user}"
+        - else
+          = "'#{list.title}', #{desc}"
+    .span2
+      - if current_user && ((list.user_id == current_user.id) || (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+        .js-remove
+          %input{ type: "hidden", value: list.id }
+          Remove

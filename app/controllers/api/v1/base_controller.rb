@@ -77,6 +77,7 @@ class Api::V1::BaseController < ApplicationController
         if current_api_user &&
           (
             (@controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i) ) ||
+            (@controller == "lists" && current_api_user.lists.map(&:id).include?(params[:id].to_i) ) ||
             (@controller == "follows" &&
              current_api_user.follows.where(followable_id: params[:followable_id].to_i, followable_type: params[:followable_type]).count > 0)
           )
