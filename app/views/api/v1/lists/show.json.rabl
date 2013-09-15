@@ -27,7 +27,7 @@ if @list
   end
 
   node(:user){ |list|
-    if list.user && list.user.first_name != "" && list.user.last_name != ""
+    if list.user && list.user.first_name && list.user.last_name && list.user.first_name != "" && list.user.last_name != ""
       list.user.first_name + " " + list.user.last_name
     else
       list.user.email
