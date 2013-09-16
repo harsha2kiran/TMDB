@@ -6,8 +6,13 @@
       - link = "#admin/movies/#{movie.id}"
     - else
       - link = "#movies/#{movie.id}"
+
+    - class_name = ""
+    - unless movie.approved
+      - class_name = "pending"
+
     %a{ href: link }
-      .span3.movie
+      %div{ class: "span3 movie #{class_name}" }
         .image
           - movie.images = eval(movie.images)
           - if movie.images.length > 0
@@ -21,4 +26,8 @@
           - else
             %img{ src: "", alt: "no image"}
         .title
-          = movie.title
+          - if class_name == ""
+            = movie.title
+          - else
+            = movie.title + " (Pending)"
+

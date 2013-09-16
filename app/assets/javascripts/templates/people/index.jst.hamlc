@@ -6,8 +6,13 @@
       - link = "#admin/people/#{person.id}"
     - else
       - link = "#people/#{person.id}"
+
+    - class_name = ""
+    - unless person.approved
+      - class_name = "pending"
+
     %a{ href: link }
-      .span3.person
+      %div{ class: "span3 person #{class_name}" }
         .image
           - person.images = eval(person.images)
           - if person.images.length > 0
@@ -21,4 +26,7 @@
           - else
             %img{ src: "", alt: "no image"}
         .title
-          = person.name
+          - if class_name == ""
+            = person.name
+          - else
+            = person.name + " (Pending)"
