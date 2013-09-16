@@ -31,6 +31,8 @@
     .following.span12.box
       Already following
 
+.add-to-list
+
 .person.span12.box
   %h2.name.span12
     = @person.name

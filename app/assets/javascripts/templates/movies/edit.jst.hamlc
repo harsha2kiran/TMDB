@@ -61,7 +61,6 @@
     %input.js-update{ type: "button", value: "Update" }
 
 
-.add-to-list
 .movie-metadata
 .videos
 .images

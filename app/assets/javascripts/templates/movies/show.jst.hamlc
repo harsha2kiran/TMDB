@@ -32,6 +32,8 @@
     .following.span12.box
       Already following
 
+.add-to-list
+
 .movie.span12.box
   %h2.title.span12
     = @movie.title

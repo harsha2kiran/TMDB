@@ -18,9 +18,6 @@ class MoviesApp.Edit extends Backbone.View
       window.locked = []
     edit.html @template(movie: movie, locked: window.locked)
 
-    @add_to_list_view = new MoviesApp.AddToList()
-    $(@el).find(".add-to-list").html @add_to_list_view.render().el
-
     @edit_movie_metadata_view = new MoviesApp.EditMovieMetadatas(movie_metadatas: movie.movie_metadatas)
     $(@el).find(".movie-metadata").html @edit_movie_metadata_view.render().el
 

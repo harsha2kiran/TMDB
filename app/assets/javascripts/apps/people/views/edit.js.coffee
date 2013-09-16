@@ -21,9 +21,6 @@ class PeopleApp.Edit extends Backbone.View
       dateFormat: "yy-mm-dd"
     )
 
-    @add_to_list_view = new MoviesApp.AddToList()
-    $(@el).find(".add-to-list").html @add_to_list_view.render().el
-
     @edit_images_view = new MoviesApp.EditImages(images: person.images)
     $(@el).find(".images").html @edit_images_view.render().el
 

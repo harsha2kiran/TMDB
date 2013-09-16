@@ -25,6 +25,10 @@ class PeopleApp.Router extends Backbone.Router
           @show_view = new PeopleApp.Show(person: person)
           $(".js-content").html @show_view.render().el
 
+          if current_user
+            @add_to_list_view = new MoviesApp.AddToList()
+            $(".add-to-list").html @add_to_list_view.render().el
+
           type = "Person"
           id = window.person_id
           view = new MoviesApp.View()
