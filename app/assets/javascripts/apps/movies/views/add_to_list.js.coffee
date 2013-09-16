@@ -51,7 +51,7 @@ class MoviesApp.AddToList extends Backbone.View
           $(self.el).find(".js-list-id").val("")
         error: (model, response) ->
           console.log "error"
-          $(".notifications").html("List added.").show().fadeOut(window.hide_delay)
+          $(".notifications").html("List item already exist.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-list").val("").removeClass "error"
           $(self.el).find(".js-list-id").val("")
     else

@@ -3,7 +3,7 @@ class Api::V1::KeywordsController < Api::V1::BaseController
   inherit_resources
 
   def search
-    keywords = Keyword.where("approved = TRUE AND lower(keyword) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    keywords = Keyword.where("lower(keyword) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     keywords.each do |keyword|

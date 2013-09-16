@@ -65,11 +65,14 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def search
-    if current_api_user
-      people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
-    else
-      people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
-    end
+    # if current_api_user
+    #   people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
+    # else
+    #   people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
+    # end
+
+    people = Person.where("lower(name) LIKE ?", "%" + params[:term].downcase + "%")
+
     results = []
     people.each do |person|
       results << { label: person.name, value: person.name, id: person.id }

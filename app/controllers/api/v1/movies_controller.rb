@@ -84,11 +84,14 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def search
-    if current_api_user
-      movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
-    else
-      movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
-    end
+    # if current_api_user
+    #   movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
+    # else
+    #   movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
+    # end
+
+    movies = Movie.where("lower(title) LIKE ?", "%" + params[:term].downcase + "%")
+
     results = []
     movies.each do |movie|
       results << { label: movie.title, value: movie.title, id: movie.id }

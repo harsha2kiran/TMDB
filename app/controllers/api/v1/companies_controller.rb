@@ -3,7 +3,7 @@ class Api::V1::CompaniesController < Api::V1::BaseController
   inherit_resources
 
   def search
-    companies = Company.where("approved = TRUE AND lower(company) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    companies = Company.where("lower(company) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     companies.each do |company|

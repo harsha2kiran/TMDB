@@ -35,7 +35,7 @@ class Api::V1::GenresController < Api::V1::BaseController
   end
 
   def search
-    genres = Genre.where("approved = TRUE AND lower(genre) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    genres = Genre.where("lower(genre) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     genres.each do |genre|
