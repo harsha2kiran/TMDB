@@ -11,9 +11,21 @@ class PeopleApp.New extends Backbone.View
   render: ->
     edit = $(@el)
     edit.html @template
+    self = @
     $(@el).find(".js-birthday, .js-day-of-death").datepicker(
       dateFormat: "yy-mm-dd"
     )
+    $(@el).find(".js-name").autocomplete
+      source: api_version + "people/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(".notifications").html("Person already exist.").show().fadeOut(window.hide_delay)
+        @new_view = new PeopleApp.New()
+        $(".js-content").html @new_view.render().el
     this
 
   create: (e) ->

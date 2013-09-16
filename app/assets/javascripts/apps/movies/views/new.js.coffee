@@ -11,6 +11,18 @@ class MoviesApp.New extends Backbone.View
   render: ->
     edit = $(@el)
     edit.html @template
+    self = @
+    $(@el).find(".js-title").autocomplete
+      source: api_version + "movies/search"
+      minLength: 2
+      messages:
+        noResults: ''
+        results: ->
+          ''
+      select: (event, ui) ->
+        $(".notifications").html("Movie already exist.").show().fadeOut(window.hide_delay)
+        @new_view = new MoviesApp.New()
+        $(".js-content").html @new_view.render().el
     this
 
   create: (e) ->
