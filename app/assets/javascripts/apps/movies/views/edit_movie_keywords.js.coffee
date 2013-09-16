@@ -31,6 +31,8 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
         if ui.content.length == 0
           self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
           self.edit.find(".js-new-keyword-id").val("")
+        else
+          self.edit.find(".js-new-item-info, .js-new-item-add-form").hide()
     this
 
   create: (e) ->

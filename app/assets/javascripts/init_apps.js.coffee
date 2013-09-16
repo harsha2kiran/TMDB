@@ -29,3 +29,8 @@ $(document).ready ->
     unless $(e.target).hasClass("ui-corner-all")
       $(window).scrollTop(0)
 
+  $("body").on "keyup", ".ui-autocomplete-input", (e) ->
+    if $(@).val() == ""
+      $(".js-new-item-info, .js-new-item-add-form").hide()
+      $(".js-new-movie-info, .js-new-movie-add-form").hide()
+      $(".js-new-person-info, .js-new-person-add-form").hide()

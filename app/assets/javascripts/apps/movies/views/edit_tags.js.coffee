@@ -33,6 +33,8 @@ class MoviesApp.EditTags extends Backbone.View
           if ui.content.length == 0
             $(self.el).find(".js-new-person-info, .js-new-person-add-form").show()
             $(self.el).find(".js-new-person-id").val("")
+          else
+            self.edit.find(".js-new-person-info, .js-new-person-add-form").hide()
     else if window.person_id
       $(@el).find(".js-new-tag-movie").autocomplete
         source: api_version + "movies/search?temp_user_id=" + localStorage.temp_user_id
@@ -47,6 +49,8 @@ class MoviesApp.EditTags extends Backbone.View
           if ui.content.length == 0
             $(self.el).find(".js-new-movie-info, .js-new-movie-add-form").show()
             $(self.el).find(".js-new-movie-id").val("")
+          else
+            self.edit.find(".js-new-movie-info, .js-new-movie-add-form").hide()
     this
 
   create: (e) ->
