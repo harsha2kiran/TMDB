@@ -9,7 +9,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
       else
         list = current_api_user.lists.find params[:list_item][:list_id]
       end
-      if list.list_items.create(params[:list_item])
+      if list.list_items.create!(params[:list_item])
         format.json { render json: true }
       else
         format.json { render :json => "Error creating list item.", :status => :unprocessable_entity }
