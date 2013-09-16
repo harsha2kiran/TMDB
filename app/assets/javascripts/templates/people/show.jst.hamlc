@@ -7,12 +7,17 @@
     Index
 
 .span12
-  - $.each @person.images, (i, image) ->
-    - if image.is_main_image == true
-      .span4
-        %a.slimbox{ href: image.image_file.url }
-          %img{ src: image.image_file.small.url }
-          = image.title
+  - if @person.images && @person.images.length > 0
+    - $.each @person.images, (i, image) ->
+      - if image.is_main_image == true
+        .span4
+          %a.slimbox{ href: image.image_file.url }
+            %img{ src: image.image_file.small.url }
+            = image.title
+  - else
+    .span4
+      %a{ href: "#people/#{@person.id}/edit" }
+        %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
 
 - if current_user && @person.approved
   - following = false
