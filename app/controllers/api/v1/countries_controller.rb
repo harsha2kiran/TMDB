@@ -3,7 +3,7 @@ class Api::V1::CountriesController < Api::V1::BaseController
   inherit_resources
 
   def search
-    countries = Country.where("lower(country) LIKE ?", "%" + params[:term].downcase + "%").order("id ASC")
+    countries = Country.where("lower(country) LIKE ? OR lower(iso) LIKE ?", "%" + params[:term].downcase + "%", "%" + params[:term].downcase + "%").order("id ASC")
     results = []
     arr = []
     countries.each do |country|

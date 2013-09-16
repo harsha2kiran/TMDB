@@ -25,6 +25,7 @@ $(document).ready ->
   $("body").on "click", ".sign-out", ->
     localStorage.removeItem("temp_user_id")
 
-  $("body").on "click", "a", ->
-    $(window).scrollTop(0)
+  $("body").on "click", "a", (e) ->
+    unless $(e.target).hasClass("ui-corner-all")
+      $(window).scrollTop(0)
 
