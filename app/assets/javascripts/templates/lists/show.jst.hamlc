@@ -43,51 +43,61 @@
 .span12
   - if list.list_items
     - $.each list.list_items, (i, item) ->
+      .span2.item
+        - found = false
+        - if item.list_item.listable_type == "Movie"
+          %a{ href: "#movies/#{item.list_item.listable_id}" }
+            .span12
+              - $.each item.list_item.images, (i, image) ->
+                - if found == false
+                  - if image && image.is_main_image && image.approved
+                    - found = true
+                    %img{ src: image.image_file.small.url, alt: "no image" }
+              - if found == false
+                %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+            .span12
+              = item.list_item.listable_item.title
 
-      - if (item.list_item.images && item.list_item.images.length > 0) || (item.list_item.listable_item && item.list_item.listable_item.link)
-        .span2.item
-          - last_listable_id = item.list_item.listable_id
-          - last_listable_type = item.list_item.listable_type
-          - url_item = switch
-            - when last_listable_type == "Movie" then "movies"
-            - when last_listable_type == "Image" then "images"
-            - when last_listable_type == "Video" then "videos"
-            - when last_listable_type == "Person" then "people"
-          - if item.list_item.listable_type == "Movie" || item.list_item.listable_type == "Person"
-            %a{ href: "##{url_item}/#{last_listable_id}" }
-              .span12
-                - found = false
-                - $.each item.list_item.images, (i, image) ->
-                  - if found == false
-                    - if image && image.is_main_image && image.approved
-                      - found = true
-                      %img{ src: image.image_file.small.url, alt: "no image" }
-                - if item.list_item.listable_item.title
-                  .span12
-                    = item.list_item.listable_item.title
-                - else
-                  .span12
-                    = item.list_item.listable_item.name
+        - found = false
+        - if item.list_item.listable_type == "Person"
+          %a{ href: "#people/#{item.list_item.listable_id}" }
+            .span12
+              - $.each item.list_item.images, (i, image) ->
+                - if found == false
+                  - if image && image.is_main_image && image.approved
+                    - found = true
+                    %img{ src: image.image_file.small.url, alt: "no image" }
+              - if found == false
+                %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+            .span12
+              = item.list_item.listable_item.name
 
-          - if item.list_item.listable_type == "Image" && item.list_item.listable_item.length > 0
-            %a{ href: "#images/#{item.list_item.listable_item[0].id}" }
-              %img{ src: item.list_item.listable_item[0].image_file.small.url, alt: "no image" }
-            - if item.list_item.listable_item && item.list_item.listable_item.length > 0
-              .span12
-                - if item.list_item.listable_item[0].title
-                  = item.list_item.listable_item[0].title
-                - else
-                  = item.list_item.listable_item[0].name
+        - found = false
+        - if item.list_item.listable_type == "Image"
+          %a{ href: "#images/#{item.list_item.listable_id}" }
+            .span12
+              - $.each item.list_item.images, (i, image) ->
+                - if found == false
+                  - if image && image.approved
+                    - found = true
+                    %img{ src: image.image_file.small.url, alt: "no image" }
+                .span12
+                  = image.title
+              - if found == false
+                %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
 
-          - if item.list_item.listable_type == "Video"
-            %a{ href: "#videos/#{item.list_item.listable_item.id}" }
-              .span12
+        - found = false
+        - if item.list_item.listable_type == "Video"
+          %a{ href: "#videos/#{item.list_item.listable_id}" }
+            .span12
+              - if item.list_item.listable_item && item.list_item.listable_item.approved
+                - found = true
                 %img{ src: item.list_item.listable_item.thumbnail, alt: "no image" }
               .span12
                 = item.list_item.listable_item.title
 
-          - if (current_user && list.user_id == current_user.id  && ((item.list_item.listable_item && item.list_item.listable_item.length > 0) || item.list_item.images.length > 0)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-            .span.js-remove
-              %input{ type: "hidden", value: item.list_item.id }
-              Remove
+        - if (current_user && list.user_id == current_user.id  && ((item.list_item.listable_item && item.list_item.listable_item.length > 0) || item.list_item.images.length > 0)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+          .span.js-remove
+            %input{ type: "hidden", value: item.list_item.id }
+            Remove
 

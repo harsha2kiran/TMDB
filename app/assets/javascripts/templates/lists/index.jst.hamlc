@@ -1,18 +1,19 @@
 - @lists.each (list) ->
   - list = list.get("list")
-  .span12.box
-    .span8
-      %a{ href: "#lists/#{list.id}" }
-        - if list.description
-          - desc = list.description
-        - else
-          - desc = ""
-        - if list.user
-          = "'#{list.title}', #{desc} from #{list.user}"
-        - else
-          = "'#{list.title}', #{desc}"
-    .span2
-      - if current_user && ((list.user_id == current_user.id) || (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-        .js-remove
-          %input{ type: "hidden", value: list.id }
-          Remove
+  - if (list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+    .span12.box
+      .span8
+        %a{ href: "#lists/#{list.id}" }
+          - if list.description
+            - desc = list.description
+          - else
+            - desc = ""
+          - if list.user
+            = "'#{list.title}', #{desc} from #{list.user}"
+          - else
+            = "'#{list.title}', #{desc}"
+      .span2
+        - if (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+          .js-remove
+            %input{ type: "hidden", value: list.id }
+            Remove
