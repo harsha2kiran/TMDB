@@ -34,7 +34,7 @@ class PeopleApp.EditAlternativeNames extends Backbone.View
 
   reload_items: ->
     person = new PeopleApp.Person()
-    person.url = "/api/v1/people/#{window.person_id}"
+    person.url = "/api/v1/people/#{window.person_id}/my_person"
     person.fetch
       data:
         temp_user_id: localStorage.temp_user_id

@@ -11,6 +11,9 @@ class PeopleApp.Index extends Backbone.View
     admin = false
     if @options.admin
       admin = true
-    index.html @template(people: people, admin: admin)
+    my_person = false
+    if @options.my_person
+      my_person = true
+    index.html @template(people: people, admin: admin, my_person: my_person)
     this
 

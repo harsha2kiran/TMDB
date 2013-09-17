@@ -1,8 +1,12 @@
 - window.person = @person
 
 .span12
-  %a.span2.show-person{ href: "#/people/#{window.person_id}"}
-    Show
+  - if @my_person == "my_person"
+    %a.span2.show-person{ href: "#/people/#{window.person_id}/my_person"}
+      Show
+  - else
+    %a.span2.show-person{ href: "#/people/#{window.person_id}"}
+      Show
   %a.span2{ href: "#/people" }
     Index
 

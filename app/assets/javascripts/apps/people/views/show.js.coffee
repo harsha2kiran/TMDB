@@ -11,7 +11,8 @@ class PeopleApp.Show extends Backbone.View
   render: ->
     show = $(@el)
     person = @options.person.get("person")
-    show.html @template(person: person)
+    my_person = @options.my_person
+    show.html @template(person: person, my_person: my_person)
     this
 
   follow: (e) ->

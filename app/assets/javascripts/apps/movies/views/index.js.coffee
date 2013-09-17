@@ -11,6 +11,9 @@ class MoviesApp.Index extends Backbone.View
     admin = false
     if @options.admin
       admin = true
-    index.html @template(movies: movies, admin: admin)
+    my_movie = false
+    if @options.my_movie
+      my_movie = true
+    index.html @template(movies: movies, admin: admin, my_movie: my_movie)
     this
 

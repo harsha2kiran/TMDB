@@ -30,6 +30,15 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def show
+    @people = Person.where(approved: true)
+    @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    @person = @people.find_by_id(params[:id])
+    @all = false
+    load_additional_values(@person, "show")
+    @current_api_user = current_api_user
+  end
+
+  def my_person
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @people = Person.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
       @person = @people.find_by_id params[:id]
@@ -43,12 +52,13 @@ class Api::V1::PeopleController < Api::V1::BaseController
         @people = Person.where(approved: true)
       end
       @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-      @person = @people.where(original_id: params[:id]).last
+      @person = @people.where(original_id: params[:person_id]).last
       @all = false
     end
 
     load_additional_values(@person, "show")
     @current_api_user = current_api_user
+    render "my_person"
   end
 
   def create

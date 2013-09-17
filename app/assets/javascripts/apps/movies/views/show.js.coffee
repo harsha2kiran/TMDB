@@ -12,7 +12,8 @@ class MoviesApp.Show extends Backbone.View
   render: ->
     show = $(@el)
     movie = @options.movie.get("movie")
-    show.html @template(movie: movie)
+    my_movie = @options.my_movie
+    show.html @template(movie: movie, my_movie: my_movie)
     this
 
   follow: (e) ->

@@ -86,7 +86,7 @@ class MoviesApp.EditCrews extends Backbone.View
   reload_items: ->
     if window.movie_id
       movie = new MoviesApp.Movie()
-      movie.url = "/api/v1/movies/#{window.movie_id}"
+      movie.url = "/api/v1/movies/#{window.movie_id}/my_movie"
       movie.fetch
         data:
           temp_user_id: localStorage.temp_user_id

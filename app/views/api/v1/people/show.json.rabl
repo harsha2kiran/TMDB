@@ -11,53 +11,25 @@ if @person
     node(:videos) { |movie| movie.videos }
   else
     node(:alternative_names) { |person|
-      if @current_api_user
-        partial("api/v1/alternative_names/index", :object => person.alternative_names.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
-      else
-        partial("api/v1/alternative_names/index", :object => person.alternative_names.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
-      end
+      partial("api/v1/alternative_names/index", :object => person.alternative_names.select {|s| (s.approved == true) })
     }
     node(:crews) { |person|
-      if @current_api_user
-        partial("api/v1/crews/index", :object => person.crews.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
-      else
-        partial("api/v1/crews/index", :object => person.crews.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
-      end
+      partial("api/v1/crews/index", :object => person.crews.select {|s| (s.approved == true) })
     }
     node(:casts) { |person|
-      if @current_api_user
-        partial("api/v1/casts/index", :object => person.casts.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
-      else
-        partial("api/v1/casts/index", :object => person.casts.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
-      end
+      partial("api/v1/casts/index", :object => person.casts.select {|s| (s.approved == true) })
     }
     node(:person_social_apps) { |person|
-      if @current_api_user
-        partial("api/v1/person_social_apps/index", :object => person.person_social_apps.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
-      else
-        partial("api/v1/person_social_apps/index", :object => person.person_social_apps.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
-      end
+      partial("api/v1/person_social_apps/index", :object => person.person_social_apps.select {|s| (s.approved == true) })
     }
     node(:tags) { |person|
-      if @current_api_user
-        partial("api/v1/tags/index", :object => person.tags.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
-      else
-        partial("api/v1/tags/index", :object => person.tags.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
-      end
+      partial("api/v1/tags/index", :object => person.tags.select {|s| (s.approved == true) })
     }
     node(:images) { |person|
-      if @current_api_user
-        person.images.select {|s| (s.approved == true || s.user_id == @current_api_user.id) }
-      else
-        person.images.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) }
-      end
+      person.images.select {|s| (s.approved == true) }
     }
     node(:videos) { |person|
-      if @current_api_user
-        person.videos.select {|s| (s.approved == true || s.user_id == @current_api_user.id) }
-      else
-        person.videos.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) }
-      end
+      person.videos.select {|s| (s.approved == true) }
     }
   end
   node(:follows) { |person|

@@ -46,7 +46,7 @@ class PeopleApp.New extends Backbone.View
         success: ->
           $(".notifications").html("Successfully added new person. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
           $container.find(".js-name").removeClass("error")
-          window.PeopleApp.router.navigate("#people/#{person.id}", true)
+          window.PeopleApp.router.navigate("#people/#{person.id}/my_person", true)
     else
       $container.find(".js-name").addClass("error")
 

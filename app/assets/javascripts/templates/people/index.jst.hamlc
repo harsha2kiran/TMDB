@@ -1,11 +1,18 @@
 .index-people
   - admin = @admin
+  - my_person = @my_person
   - @people.each (person) ->
     - person = person.get("person")
+
     - if admin == true
       - link = "#admin/people/#{person.id}"
     - else
       - link = "#people/#{person.id}"
+
+    - if my_person == true
+      - link = "#people/#{person.original_id}/my_person"
+    - else
+      - link = "#people/#{person.original_id}"
 
     - class_name = ""
     - unless person.approved

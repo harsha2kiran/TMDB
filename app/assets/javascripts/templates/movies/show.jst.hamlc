@@ -1,9 +1,14 @@
 - window.movie = @movie
 
 .span12
-  -# - if window.current_user
-  %a.span2{ href: "#/movies/#{window.movie_id}/edit" }
+
+  -# - if @my_movie == "my_movie"
+  %a.span2{ href: "#/movies/#{window.movie_id}/edit/my_movie" }
     Edit
+  -# - else
+  -#   %a.span2{ href: "#/movies/#{window.movie_id}/edit" }
+  -#     Edit
+
   %a.span2{ href: "#/movies" }
     Index
 
@@ -17,8 +22,12 @@
             = image.title
   - else
     .span4
-      %a{ href: "#movies/#{@movie.id}/edit" }
-        %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+      - if @my_movie == "my_movie"
+        %a{ href: "#movies/#{@movie.id}/edit/my_movie" }
+          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+      - else
+        %a{ href: "#movies/#{@movie.id}/edit" }
+          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
 
 - if current_user && @movie.approved
   - following = false
@@ -31,8 +40,6 @@
   - else
     .following.span12.box
       Already following
-
-.add-to-list
 
 .movie.span12.box
   %h2.title.span12
@@ -55,6 +62,8 @@
         = @movie.views + 1
       - else
         1
+
+.add-to-list
 
 - if @movie.alternative_titles.length > 0
   .alternative-titles.span12.box

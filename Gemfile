@@ -47,7 +47,6 @@ end
 gem 'activerecord-postgres-hstore'
 gem "rmagick"
 gem "carrierwave"
-gem 'activeadmin'
 
 gem "erb2haml"
 gem 'country-select'

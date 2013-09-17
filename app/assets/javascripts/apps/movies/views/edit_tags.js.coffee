@@ -106,7 +106,7 @@ class MoviesApp.EditTags extends Backbone.View
   reload_items: ->
     if window.movie_id
       movie = new MoviesApp.Movie()
-      movie.url = "/api/v1/movies/#{window.movie_id}"
+      movie.url = "/api/v1/movies/#{window.movie_id}/my_movie"
       movie.fetch
         data:
           temp_user_id: localStorage.temp_user_id
@@ -118,7 +118,7 @@ class MoviesApp.EditTags extends Backbone.View
           $(".tags").html @edit_tags_view.render().el
     else if window.person_id
       person = new PeopleApp.Person()
-      person.url = "/api/v1/people/#{window.person_id}"
+      person.url = "/api/v1/people/#{window.person_id}/my_person"
       person.fetch
         data:
           temp_user_id: localStorage.temp_user_id

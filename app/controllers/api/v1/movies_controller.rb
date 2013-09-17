@@ -49,9 +49,18 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def show
+    @movies = Movie.where(approved: true)
+    @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    @movie = @movies.find_by_id(params[:id])
+    @all = false
+    load_additional_values(@movie, "show")
+    @current_api_user = current_api_user
+  end
+
+  def my_movie
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas])
-      @movie = @movies.find_by_id(params[:id])
+      @movie = @movies.find_by_id(params[:movie_id])
       @all = true
     else
       if current_api_user
@@ -62,11 +71,12 @@ class Api::V1::MoviesController < Api::V1::BaseController
         @movies = Movie.where(approved: true)
       end
       @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-      @movie = @movies.where(original_id: params[:id]).last #.last #find_by_id(params[:id])
+      @movie = @movies.where(original_id: params[:movie_id]).last #.last #find_by_id(params[:id])
       @all = false
     end
     load_additional_values(@movie, "show")
     @current_api_user = current_api_user
+    render "my_movie"
   end
 
   def edit_popular

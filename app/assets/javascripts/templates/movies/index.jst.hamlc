@@ -1,11 +1,18 @@
 .index-movies
   - admin = @admin
+  - my_movie = @my_movie
   - @movies.each (movie) ->
     - movie = movie.get("movie")
+
     - if admin == true
       - link = "#admin/movies/#{movie.id}"
     - else
       - link = "#movies/#{movie.id}"
+
+    - if my_movie == true
+      - link = "#movies/#{movie.original_id}/my_movie"
+    - else
+      - link = "#movies/#{movie.original_id}"
 
     - class_name = ""
     - unless movie.approved

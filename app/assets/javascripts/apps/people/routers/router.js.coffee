@@ -4,7 +4,9 @@ class PeopleApp.Router extends Backbone.Router
     "people" : "index"
     "my_people" : "my_people"
     "people/new" : "new"
+    "people/:id/my_person" : "my_person"
     "people/:id" : "show"
+    "people/:id/edit/my_person" : "edit_my_person"
     "people/:id/edit" : "edit"
 
   initialize: ->
@@ -12,17 +14,26 @@ class PeopleApp.Router extends Backbone.Router
     console.log "PeopleApp router initialized"
 
   show: (id) ->
+    @show_person_action(id, "show")
+
+  my_person: (id) ->
+    @show_person_action(id, "my_person")
+
+  show_person_action: (id, my_person) ->
     console.log "people router show #{id}"
     @clear_values()
     window.person_id = id
     person = new PeopleApp.Person()
-    person.url = "/api/v1/people/#{id}"
+    if my_person == "my_person"
+      person.url = "/api/v1/people/#{id}/my_person"
+    else
+      person.url = "/api/v1/people/#{id}"
     person.fetch
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
         if person.get("person")
-          @show_view = new PeopleApp.Show(person: person)
+          @show_view = new PeopleApp.Show(person: person, my_person: my_person)
           $(".js-content").html @show_view.render().el
 
           if current_user
@@ -50,7 +61,7 @@ class PeopleApp.Router extends Backbone.Router
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
-        @index_view = new PeopleApp.Index(people: people)
+        @index_view = new PeopleApp.Index(people: people, my_person: true)
         $(".js-content").html @index_view.render().el
 
   index: ->
@@ -63,18 +74,27 @@ class PeopleApp.Router extends Backbone.Router
         $(".js-content").html @index_view.render().el
 
   edit: (id) ->
+    @edit_person_action(id, "edit")
+
+  edit_my_person: (id) ->
+    @edit_person_action(id, "my_person")
+
+  edit_person_action: (id, my_person) ->
     @clear_values()
     console.log "people router edit #{id}"
     window.person_id = id
     person = new PeopleApp.Person()
-    person.url = "/api/v1/people/#{id}"
+    if my_person == "my_person"
+      person.url = "/api/v1/people/#{id}/my_person"
+    else
+      person.url = "/api/v1/people/#{id}"
     person.fetch
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
         person = person.get("person")
 
-        @edit_view = new PeopleApp.Edit(person: person)
+        @edit_view = new PeopleApp.Edit(person: person, my_person: my_person)
         $(".js-content").html @edit_view.render().el
 
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })

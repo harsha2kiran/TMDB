@@ -15,7 +15,9 @@ class MoviesApp.Router extends Backbone.Router
     "movies" : "index"
     "my_movies" : "my_movies"
     "movies/new" : "new"
+    "movies/:id/my_movie" : "my_movie"
     "movies/:id" : "show"
+    "movies/:id/edit/my_movie" : "edit_my_movie"
     "movies/:id/edit" : "edit"
     "following" : "following"
 
@@ -107,17 +109,26 @@ class MoviesApp.Router extends Backbone.Router
     $(".js-content").html @new_list_view.render().el
 
   show: (id) ->
-    console.log "movies router show #{id}"
+    @show_movie_action(id, "show")
+
+  my_movie: (id) ->
+    @show_movie_action(id, "my_movie")
+
+  show_movie_action: (id, my_movie) ->
+    console.log "movies router my movie #{id}"
     @clear_values()
     window.movie_id = id
     movie = new MoviesApp.Movie()
-    movie.url = "/api/v1/movies/#{id}"
+    if my_movie == "my_movie"
+      movie.url = api_version + "movies/#{id}/my_movie"
+    else
+      movie.url = api_version + "movies/#{id}"
     movie.fetch
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
         if movie.get("movie")
-          @show_view = new MoviesApp.Show(movie: movie)
+          @show_view = new MoviesApp.Show(movie: movie, my_movie: my_movie)
           $(".js-content").html @show_view.render().el
 
           if current_user
@@ -137,18 +148,27 @@ class MoviesApp.Router extends Backbone.Router
           $(".js-content").html @show_view.render().el
 
   edit: (id) ->
+    @edit_movie_action(id, "edit")
+
+  edit_my_movie: (id) ->
+    @edit_movie_action(id, "my_movie")
+
+  edit_movie_action: (id, my_movie) ->
     console.log "movies router edit #{id}"
     @clear_values()
     window.movie_id = id
     movie = new MoviesApp.Movie()
-    movie.url = "/api/v1/movies/#{id}"
+    if my_movie == "my_movie"
+      movie.url = "/api/v1/movies/#{id}/my_movie"
+    else
+      movie.url = "/api/v1/movies/#{id}"
     movie.fetch
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
         movie = movie.get("movie")
 
-        @edit_view = new MoviesApp.Edit(movie: movie)
+        @edit_view = new MoviesApp.Edit(movie: movie, my_movie: my_movie)
         $(".js-content").html @edit_view.render().el
 
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
@@ -177,7 +197,7 @@ class MoviesApp.Router extends Backbone.Router
       data:
         temp_user_id: localStorage.temp_user_id
       success: ->
-        @index_view = new MoviesApp.Index(movies: movies)
+        @index_view = new MoviesApp.Index(movies: movies, my_movie: true)
         $(".js-content").html @index_view.render().el
 
   genres_index: ->

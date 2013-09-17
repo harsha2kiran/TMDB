@@ -65,12 +65,14 @@ Movies::Application.routes.draw do
         get "search" => "movies#search"
         get "my_movies" => "movies#my_movies"
       end
+      get "my_movie" => "movies#my_movie"
     end
     resources :people do
       collection do
         get "search" => "people#search"
         get "my_people" => "people#my_people"
       end
+      get "my_person" => "people#my_person"
     end
     resources :person_social_apps
     resources :production_companies
