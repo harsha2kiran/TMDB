@@ -7,6 +7,7 @@ class MoviesApp.Edit extends Backbone.View
 
   events:
     "click .js-update" : "update"
+    "click .edit-menu-item" : "goto"
 
   render: ->
     edit = $(@el)
@@ -58,6 +59,12 @@ class MoviesApp.Edit extends Backbone.View
     @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
     $(@el).find(".revenue-countries").html @edit_revenue_countries_view.render().el
 
+    console.log "local:" + localStorage.tab
+    if localStorage && localStorage.tab != ""
+    else
+      localStorage.tab = "movie"
+    @goto_tab_from_show()
+
     this
 
   update: (e) ->
@@ -87,3 +94,14 @@ class MoviesApp.Edit extends Backbone.View
 
     else
       $container.find(".js-title").addClass("error")
+
+  goto_tab_from_show: ->
+    $(".tab").hide()
+    $(@el).find("." + localStorage.tab).show()
+    localStorage.tab = ""
+
+  goto: (e) ->
+    id = $(e.target).attr("id")
+    tab = id.replace("goto-", "")
+    $(".tab").hide()
+    $("." + tab).show()

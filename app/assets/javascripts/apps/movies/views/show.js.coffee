@@ -8,6 +8,7 @@ class MoviesApp.Show extends Backbone.View
   events:
     "click .follow" : "follow"
     "click .following" : "unfollow"
+    "click .show-add-item" : "add_item"
 
   render: ->
     show = $(@el)
@@ -36,3 +37,9 @@ class MoviesApp.Show extends Backbone.View
         followable_type: type
       success: =>
         $self.addClass("follow").removeClass("following").html("Follow")
+
+  add_item: (e) ->
+    id = $(e.target).attr("id")
+    tab = id.replace("add-", "")
+    localStorage.tab = tab
+    window.MoviesApp.router.navigate("#movies/#{window.movie_id}/edit/my_movie", true)

@@ -59,6 +59,8 @@
 
 .add-to-list
 
+#add-alternative-titles.show-add-item
+  Add alternative titles
 - if @movie.alternative_titles.length > 0
   .alternative-titles.span12.box
     %p
@@ -69,6 +71,8 @@
       .span4
         = title.language.language
 
+#add-movie-metadata.show-add-item
+  Add metadata
 - if @movie.movie_metadatas.length > 0
   .movie-metadatas.span12.box
     %p
@@ -96,6 +100,8 @@
       .span5
         = metadata.status.status
 
+#add-crew.show-add-item
+  Add crew
 - if @movie.crews.length > 0
   .crews.span12.box
     %p
@@ -107,6 +113,8 @@
         .span4
           = crew.person.name
 
+#add-cast.show-add-item
+  Add cast
 - if @movie.casts.length > 0
   .casts.span12.box
     %p
@@ -118,6 +126,8 @@
         .span4
           = cast.person.name
 
+#add-images.show-add-item
+  Add images
 - if @movie.images.length > 0
   .images.span12.box
     - $.each @movie.images, (i, image) ->
@@ -127,6 +137,8 @@
             %img{ src: image.image_file.small.url }
             = image.title
 
+#add-videos.show-add-item
+  Add videos
 - if @movie.videos.length > 0
   .videos.span12.box
     - $.each @movie.videos, (i, video) ->
@@ -145,6 +157,8 @@
         .span12
           = "Description: " + video.description
 
+#add-genres.show-add-item
+  Add genres
 - if @movie.movie_genres.length > 0
   .movie-genres.span12.box
     %p
@@ -153,6 +167,8 @@
       .span2
         = genre.genre.genre
 
+#add-keywords.show-add-item
+  Add keywords
 - if @movie.movie_keywords.length > 0
   .movie-keywords.span12.box
     %p
@@ -161,6 +177,8 @@
       .span2
         = keyword.keyword.keyword
 
+#add-languages.show-add-item
+  Add languages
 - if @movie.movie_languages.length > 0
   .movie-languages.span12.box
     %p
@@ -169,6 +187,8 @@
       .span2
         = language.language.language
 
+#add-revenue-countries.show-add-item
+  Add revenue countries
 - if @movie.revenue_countries.length > 0
   .revenue-countries.span12.box
     %p
@@ -177,6 +197,8 @@
       .span2
         = country.country.country
 
+#add-production-companies.show-add-item
+  Add production companies
 - if @movie.production_companies.length > 0
   .production-companies.span12.box
     %p
@@ -185,6 +207,8 @@
       .span2
         = company.company.company
 
+#add-tags.show-add-item
+  Add tags
 - if @movie.tags.length > 0
   .tags.span12.box
     %p
@@ -193,6 +217,8 @@
       .span2
         = tag.person.name
 
+#add-releases.show-add-item
+  Add releases
 - if @movie.releases.length > 0
   .releases.span12.box
     %p
