@@ -1,5 +1,6 @@
 class PeopleApp.Show extends Backbone.View
   template: JST['templates/people/show']
+  className: "row-fluid"
 
   initialize: ->
     _.bindAll this, "render"
@@ -7,6 +8,7 @@ class PeopleApp.Show extends Backbone.View
   events:
     "click .follow" : "follow"
     "click .following" : "unfollow"
+    "click .show-add-item" : "add_item"
 
   render: ->
     show = $(@el)
@@ -36,3 +38,9 @@ class PeopleApp.Show extends Backbone.View
         followable_type: type
       success: =>
         $self.addClass("follow").removeClass("following").html("Follow")
+
+  add_item: (e) ->
+    id = $(e.target).attr("id")
+    tab = id.replace("add-", "")
+    localStorage.tab = tab
+    window.PeopleApp.router.navigate("#people/#{window.person_id}/edit/my_person", true)

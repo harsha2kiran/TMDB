@@ -7,6 +7,7 @@ class PeopleApp.Edit extends Backbone.View
 
   events:
     "click .js-update" : "update"
+    "click .edit-menu-item" : "goto"
 
   render: ->
     edit = $(@el)
@@ -43,6 +44,11 @@ class PeopleApp.Edit extends Backbone.View
     @edit_tags_view = new MoviesApp.EditTags(tags: person.tags)
     $(@el).find(".tags").html @edit_tags_view.render().el
 
+    if localStorage && localStorage.tab != ""
+    else
+      localStorage.tab = "person"
+    @goto_tab_from_show()
+
     this
 
   update: (e) ->
@@ -75,3 +81,13 @@ class PeopleApp.Edit extends Backbone.View
     else
       $container.find(".js-name").addClass("error")
 
+  goto_tab_from_show: ->
+    $(".tab").hide()
+    $(@el).find("." + localStorage.tab).show()
+    localStorage.tab = ""
+
+  goto: (e) ->
+    id = $(e.target).attr("id")
+    tab = id.replace("goto-", "")
+    $(".tab").hide()
+    $("." + tab).show()

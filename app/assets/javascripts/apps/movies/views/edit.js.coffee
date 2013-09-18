@@ -59,7 +59,6 @@ class MoviesApp.Edit extends Backbone.View
     @edit_revenue_countries_view = new MoviesApp.EditRevenueCountries(revenue_countries: movie.revenue_countries)
     $(@el).find(".revenue-countries").html @edit_revenue_countries_view.render().el
 
-    console.log "local:" + localStorage.tab
     if localStorage && localStorage.tab != ""
     else
       localStorage.tab = "movie"

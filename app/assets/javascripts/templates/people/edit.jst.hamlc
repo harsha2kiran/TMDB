@@ -1,111 +1,131 @@
 - window.person = @person
 
-.span12
-  - if @my_person == "my_person"
-    %a.span2.show-person{ href: "#/people/#{window.person_id}/my_person"}
-      Show
-  - else
-    %a.span2.show-person{ href: "#/people/#{window.person_id}"}
-      Show
-  %a.span2{ href: "#/people" }
-    Index
+.edit-menu.span2
+  #goto-person.edit-menu-item
+    Person
+  #goto-images.edit-menu-item
+    Images
+  #goto-videos.edit-menu-item
+    Videos
+  #goto-cast.edit-menu-item
+    Cast
+  #goto-crew.edit-menu-item
+    Crew
+  #goto-alternative-names.edit-menu-item
+    Alternative names
+  #goto-person-social-apps.edit-menu-item
+    Social Apps
+  #goto-tags.edit-menu-item
+    Tags
 
-.person.span12.box
-  %p.name.span12
-    Name
-    - if $.inArray("name", @locked) > -1
-      %input.js-name{ readonly: "readonly", type: "text", value: @person.name, placeholder: "Name" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "name", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-name{ type: "text", value: @person.name, placeholder: "Name" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "name", action: "mark" } }
-          Lock
-  %p.biography.span12
-    Biography
-    - if $.inArray("biography", @locked) > -1
-      %textarea.js-biography{ readonly: "readonly", type: "text", placeholder: "Biography" }
-        = @person.biography
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "biography", action: "unmark" } }
-          Unlock
-    - else
-      %textarea.js-biography{ type: "text", placeholder: "Biography" }
-        = @person.biography
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "biography", action: "mark" } }
-          Lock
-  %p.homepage.span12
-    Homepage
-    - if $.inArray("homepage", @locked) > -1
-      %input.js-homepage{ readonly: "readonly", type: "text", value: @person.homepage, placeholder: "Homepage" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "homepage", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-homepage{ type: "text", value: @person.homepage, placeholder: "Homepage" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "homepage", action: "mark" } }
-          Lock
-  %p.birthday.span12
-    Birthday
-    - if $.inArray("birthday", @locked) > -1
-      %input.js-birthday{ readonly: "readonly", type: "text", value: @person.birthday, placeholder: "Birthday" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "birthday", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-birthday{ type: "text", value: @person.birthday, placeholder: "Birthday" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "birthday", action: "mark" } }
-          Lock
-  %p.place-of-birth.span12
-    Place of birth
-    - if $.inArray("place_of_birth", @locked) > -1
-      %input.js-place-of-birth{ readonly: "readonly", type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "place_of_birth", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-place-of-birth{ type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "place_of_birth", action: "mark" } }
-          Lock
-  %p.day-of-death.span12
-    Day of death
-    - if $.inArray("day_of_death", @locked) > -1
-      %input.js-day-of-death{ readonly: "readonly", type: "text", value: @person.day_of_death, placeholder: "Day of death" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "day_of_death", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-day-of-death{ type: "text", value: @person.day_of_death, placeholder: "Day of death" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "day_of_death", action: "mark" } }
-          Lock
-  %p.imdb-id.span12
-    IMDB ID
-    - if $.inArray("imdb_id", @locked) > -1
-      %input.js-imdb-id{ readonly: "readonly", type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "imdb_id", action: "unmark" } }
-          Unlock
-    - else
-      %input.js-imdb-id{ type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
-      - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "people", field: "imdb_id", action: "mark" } }
-          Lock
-  %p.span12
-    %input.js-approved{ type: "hidden", value: @person.approved.toString() }
-    %input.js-original-id{ type: "hidden", value: @person.original_id }
-    %input.js-update{ type: "button", value: "Update" }
+.edit-content.span10
 
-.images
-.videos
-.cast
-.crew
-.alternative-names
-.person-social-apps
-.tags
+  .span12
+    - if @my_person == "my_person"
+      %a.span2.show-person{ href: "#/people/#{window.person_id}/my_person"}
+        Show
+    - else
+      %a.span2.show-person{ href: "#/people/#{window.person_id}"}
+        Show
+    %a.span2{ href: "#/people" }
+      Index
+
+  .person.span12.box.tab.hide
+    %p.name.span12
+      Name
+      - if $.inArray("name", @locked) > -1
+        %input.js-name{ readonly: "readonly", type: "text", value: @person.name, placeholder: "Name" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "name", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-name{ type: "text", value: @person.name, placeholder: "Name" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "name", action: "mark" } }
+            Lock
+    %p.biography.span12
+      Biography
+      - if $.inArray("biography", @locked) > -1
+        %textarea.js-biography{ readonly: "readonly", type: "text", placeholder: "Biography" }
+          = @person.biography
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "biography", action: "unmark" } }
+            Unlock
+      - else
+        %textarea.js-biography{ type: "text", placeholder: "Biography" }
+          = @person.biography
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "biography", action: "mark" } }
+            Lock
+    %p.homepage.span12
+      Homepage
+      - if $.inArray("homepage", @locked) > -1
+        %input.js-homepage{ readonly: "readonly", type: "text", value: @person.homepage, placeholder: "Homepage" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "homepage", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-homepage{ type: "text", value: @person.homepage, placeholder: "Homepage" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "homepage", action: "mark" } }
+            Lock
+    %p.birthday.span12
+      Birthday
+      - if $.inArray("birthday", @locked) > -1
+        %input.js-birthday{ readonly: "readonly", type: "text", value: @person.birthday, placeholder: "Birthday" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "birthday", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-birthday{ type: "text", value: @person.birthday, placeholder: "Birthday" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "birthday", action: "mark" } }
+            Lock
+    %p.place-of-birth.span12
+      Place of birth
+      - if $.inArray("place_of_birth", @locked) > -1
+        %input.js-place-of-birth{ readonly: "readonly", type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "place_of_birth", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-place-of-birth{ type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "place_of_birth", action: "mark" } }
+            Lock
+    %p.day-of-death.span12
+      Day of death
+      - if $.inArray("day_of_death", @locked) > -1
+        %input.js-day-of-death{ readonly: "readonly", type: "text", value: @person.day_of_death, placeholder: "Day of death" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "day_of_death", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-day-of-death{ type: "text", value: @person.day_of_death, placeholder: "Day of death" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "day_of_death", action: "mark" } }
+            Lock
+    %p.imdb-id.span12
+      IMDB ID
+      - if $.inArray("imdb_id", @locked) > -1
+        %input.js-imdb-id{ readonly: "readonly", type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "imdb_id", action: "unmark" } }
+            Unlock
+      - else
+        %input.js-imdb-id{ type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
+        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+          %span.lock{ data: { controller: "people", field: "imdb_id", action: "mark" } }
+            Lock
+    %p.span12
+      %input.js-approved{ type: "hidden", value: @person.approved.toString() }
+      %input.js-original-id{ type: "hidden", value: @person.original_id }
+      %input.js-update{ type: "button", value: "Update" }
+
+  .images.tab.hide
+  .videos.tab.hide
+  .cast.tab.hide
+  .crew.tab.hide
+  .alternative-names.tab.hide
+  .person-social-apps.tab.hide
+  .tags.tab.hide

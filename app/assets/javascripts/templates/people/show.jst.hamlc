@@ -35,8 +35,6 @@
     .following.span12.box
       Already following
 
-.add-to-list
-
 .person.span12.box
   %h2.name.span12
     = @person.name
@@ -73,6 +71,10 @@
       - else
         1
 
+.add-to-list
+
+#add-alternative-names.show-add-item
+  Add alternative names
 - if @person.alternative_names.length > 0
   .alternative-titles.span12.box
     %p
@@ -81,6 +83,8 @@
       .span4
         = name.alternative_name
 
+#add-crew.show-add-item
+  Add crew
 - if @person.crews.length > 0
   .crews.span12.box
     %p
@@ -92,6 +96,8 @@
         .span4
           = crew.movie.title
 
+#add-cast.show-add-item
+  Add cast
 - if @person.casts.length > 0
   .casts.span12.box
     %p
@@ -103,6 +109,8 @@
         .span4
           = cast.movie.title
 
+#add-images.show-add-item
+  Add images
 - if @person.images.length > 0
   .images.span12.box
     - $.each @person.images, (i, image) ->
@@ -112,6 +120,8 @@
             %img{ src: image.image_file.small.url }
             = image.title
 
+#add-videos.show-add-item
+  Add videos
 - if @person.videos.length > 0
   .videos.span12.box
     - $.each @person.videos, (i, video) ->
@@ -122,6 +132,8 @@
           .span12
             = video.title
 
+#add-person-social-apps.show-add-item
+  Add social apps
 - if @person.person_social_apps.length > 0
   .social-apps.box.span12
     - $.each @person.person_social_apps, (i, social_app) ->
@@ -132,6 +144,8 @@
           %a{ href: social_app.profile_link, target: "_blank" }
             = social_app.profile_link
 
+#add-tags.show-add-item
+  Add tags
 - if @person.tags.length > 0
   .tags.box.span12
     - $.each @person.tags, (i, tag) ->
