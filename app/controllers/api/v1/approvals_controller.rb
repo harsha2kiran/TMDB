@@ -41,6 +41,7 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
                     add_points_to_user(user)
                     add_badges_to_user(user)
                   end
+                  # update foreign keys (ids) on each related table according to item type
                   approved_record.destroy
                   format.json { render json: original_record }
                 else

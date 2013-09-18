@@ -71,8 +71,14 @@ class Api::V1::MoviesController < Api::V1::BaseController
         @movies = Movie.where(approved: true)
       end
       @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-      @movie = @movies.where(original_id: params[:movie_id]).last #.last #find_by_id(params[:id])
+      @movie = @movies.where(original_id: params[:movie_id]).last
+      @original_movie = @movies.where(id: params[:movie_id]).first
       @all = false
+    end
+    if @movie.id != @original_movie.id
+      add_original_values(@movie, @original_movie)
+    else
+      add_default_values(@movie)
     end
     load_additional_values(@movie, "show")
     @current_api_user = current_api_user
@@ -161,4 +167,33 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @statuses = Status.all
   end
 
+  def add_original_values(movie, original_movie)
+    @images = movie.images.to_a + original_movie.images.to_a
+    @videos = movie.videos.to_a + original_movie.videos.to_a
+    @movie_genres = movie.movie_genres.to_a + original_movie.movie_genres.to_a
+    @casts = movie.casts.to_a + original_movie.casts.to_a
+    @crews = movie.crews.to_a + original_movie.crews.to_a
+    @movie_keywords = movie.movie_keywords.to_a + original_movie.movie_keywords.to_a
+    @alternative_titles = movie.alternative_titles.to_a + original_movie.alternative_titles.to_a
+    @movie_languages = movie.movie_languages.to_a + original_movie.movie_languages.to_a
+    @tags = movie.tags.to_a + original_movie.tags.to_a
+    @releases = movie.releases.to_a + original_movie.releases.to_a
+    @production_companies = movie.production_companies.to_a + original_movie.production_companies.to_a
+    @revenue_countries = movie.revenue_countries.to_a + original_movie.revenue_countries.to_a
+  end
+
+  def add_default_values(movie)
+    @images = movie.images.to_a
+    @videos = movie.videos.to_a
+    @movie_genres = movie.movie_genres.to_a
+    @casts = movie.casts.to_a
+    @crews = movie.crews.to_a
+    @movie_keywords = movie.movie_keywords.to_a
+    @alternative_titles = movie.alternative_titles.to_a
+    @movie_languages = movie.movie_languages.to_a
+    @tags = movie.tags.to_a
+    @releases = movie.releases.to_a
+    @production_companies = movie.production_companies.to_a
+    @revenue_countries = movie.revenue_countries.to_a
+  end
 end

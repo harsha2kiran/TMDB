@@ -53,9 +53,14 @@ class Api::V1::PeopleController < Api::V1::BaseController
       end
       @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
       @person = @people.where(original_id: params[:person_id]).last
+      @original_person = @people.where(id: params[:person_id]).first
       @all = false
     end
-
+    if @person.id != @original_person.id
+      add_original_values(@person, @original_person)
+    else
+      add_default_values(@person)
+    end
     load_additional_values(@person, "show")
     @current_api_user = current_api_user
     render "my_person"
@@ -121,6 +126,26 @@ class Api::V1::PeopleController < Api::V1::BaseController
     social_app_ids = social_app_ids.flatten
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
+  end
+
+  def add_original_values(person, original_person)
+    @images = person.images.to_a + original_person.images.to_a
+    @videos = person.videos.to_a + original_person.videos.to_a
+    @casts = person.casts.to_a + original_person.casts.to_a
+    @crews = person.crews.to_a + original_person.crews.to_a
+    @tags = person.tags.to_a + original_person.tags.to_a
+    @alternative_names = person.alternative_names.to_a + original_person.alternative_names.to_a
+    @person_social_apps = person.person_social_apps.to_a + original_person.person_social_apps.to_a
+  end
+
+  def add_default_values(person)
+    @images = person.images.to_a
+    @videos = person.videos.to_a
+    @casts = person.casts.to_a
+    @crews = person.crews.to_a
+    @tags = person.tags.to_a
+    @alternative_names = person.alternative_names.to_a
+    @person_social_apps = person.person_social_apps.to_a
   end
 
 end

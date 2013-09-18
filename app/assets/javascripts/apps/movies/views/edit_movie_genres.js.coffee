@@ -15,7 +15,6 @@ class MoviesApp.EditMovieGenres extends Backbone.View
     @edit = $(@el)
     movie_genres = @options.movie_genres
     @edit.html @template(movie_genres: movie_genres)
-
     self = @
     $(@el).find(".js-new-genre").autocomplete
       source: api_version + "genres/search"

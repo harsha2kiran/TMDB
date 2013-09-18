@@ -1,14 +1,8 @@
 - window.movie = @movie
 
 .span12
-
-  -# - if @my_movie == "my_movie"
   %a.span2{ href: "#/movies/#{window.movie_id}/edit/my_movie" }
     Edit
-  -# - else
-  -#   %a.span2{ href: "#/movies/#{window.movie_id}/edit" }
-  -#     Edit
-
   %a.span2{ href: "#/movies" }
     Index
 
