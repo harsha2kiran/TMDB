@@ -23,7 +23,11 @@ class Api::V1::BaseController < ApplicationController
 
   def set_controller_name
     @controller = params[:controller].gsub("api/v1/", "")
-    @attribute_names = @controller.classify.constantize.attribute_names
+    if @controller != "approvals"
+      @attribute_names = @controller.classify.constantize.attribute_names
+    else
+      @attribute_names = []
+    end
   end
 
 #   def check_if_authenticated

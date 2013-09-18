@@ -111,6 +111,8 @@ Movies::Application.routes.draw do
     resources :approvals do
       collection do
         post "mark" => "approvals#mark"
+        get "main_items" => "approvals#main_items"
+        get "main_item" => "approvals#main_item"
       end
     end
     get '/search' => 'search#search', :as => :search

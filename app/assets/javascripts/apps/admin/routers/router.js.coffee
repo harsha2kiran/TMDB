@@ -11,63 +11,51 @@ class AdminApp.Router extends Backbone.Router
     console.log "AdminApp router initialized"
 
   movies: ->
-    if current_user && current_user.user_type == "admin"
-      console.log "admin movies index"
-      @clear_values()
-      movies = new MoviesApp.Movies()
-      movies.fetch
-        success: ->
-          @index_view = new MoviesApp.Index(movies: movies, admin: true)
-          $(".js-content").html @index_view.render().el
+    type = "Movie"
+    @index_main_items(type)
 
   people: ->
+    type = "Person"
+    @index_main_items(type)
+
+  index_main_items: (type) ->
     if current_user && current_user.user_type == "admin"
-      console.log "admin people index"
-      people = new PeopleApp.People()
-      people.fetch
+      console.log "admin main items index"
+      @clear_values()
+      items = new AdminApp.MainItems()
+      items.url = api_version + "approvals/main_items"
+      items.fetch
+        data:
+          type: type
         success: ->
-          @index_view = new PeopleApp.Index(people: people, admin: true)
+          @index_view = new AdminApp.MainItemsIndex(items: items, type: type)
           $(".js-content").html @index_view.render().el
 
   movie: (id) ->
-    if current_user && current_user.user_type == "admin"
-      console.log "admin router show movie #{id}"
-      @clear_values()
-      window.movie_id = id
-      movie = new MoviesApp.Movie()
-      movie.url = "/api/v1/movies/#{id}"
-      movie.fetch
-        success: ->
-          @show_view = new AdminApp.Movie(movie: movie)
-          $(".js-content").html @show_view.render().el
-
-          type = "Movie"
-          id = window.movie_id
-          view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
-            success: ->
-              console.log view
-
-          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+    type = "Movie"
+    @show_main_item(id, type)
 
   person: (id) ->
-    if current_user && current_user.user_type == "admin"
-      console.log "admin router show person #{id}"
-      @clear_values()
-      window.person_id = id
-      person = new PeopleApp.Person()
-      person.url = "/api/v1/people/#{id}"
-      person.fetch
-        success: ->
-          @show_view = new AdminApp.Person(person: person)
-          $(".js-content").html @show_view.render().el
+    type = "Person"
+    @show_main_item(id, type)
 
-          type = "Person"
-          id = window.person_id
-          view = new MoviesApp.View()
-          view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
-            success: ->
-              console.log view
+  show_main_item: (id, type) ->
+    if current_user && current_user.user_type == "admin"
+      console.log "admin router show main item #{id}"
+      @clear_values()
+      if type == "Movie"
+        window.movie_id = id
+      else if type == "Person"
+        window.person_id = id
+      items = new AdminApp.MainItems()
+      items.url = api_version + "approvals/main_item"
+      items.fetch
+        data:
+          id: id
+          type: type
+        success: ->
+          @show_view = new AdminApp.MainItemShow(id: id, items: items, type: type)
+          $(".js-content").html @show_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   clear_values: ->

@@ -73,6 +73,19 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     end
   end
 
+  def main_items
+    @type = params[:type]
+    @items = @type.classify.constantize.where("id = original_id").order("created_at")
+    render "main_items"
+  end
+
+  def main_item
+    @type = params[:type]
+    @id = params[:id]
+    @item = @type.classify.constantize.where("original_id = ?", @id).order("created_at")
+    render "main_item"
+  end
+
   private
 
   def add_points_to_user(user)

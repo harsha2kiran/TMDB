@@ -1,0 +1,58 @@
+- type = @type
+- @items.each (item) ->
+  .span12.box
+    - if type == "Movie"
+      - item = item.get("movie")
+      %p.title.span12
+        = item.title
+        - if item.approved
+          = " (Approved) "
+        - else
+          = " (Pending) "
+      - if item.tagline != ""
+        %p.tagline.span12
+          = item.tagline
+      - if item.overview != ""
+        %p.overview.span12
+          %span= "Overview"
+          = item.overview
+      - if item.content_score
+        %p.content-score.span12
+          %span= "Content Score: "
+          = item.content_score
+    - else if type == "Person"
+      - item = item.get("person")
+      %p.name.span12
+        = item.name
+        - if item.approved
+          = " (Approved) "
+        - else
+          = " (Pending) "
+      - if item.biography
+        .biography.span12
+          %span= "Biography: "
+          = item.biography
+      - if item.homepage
+        .homepage.span12
+          %span= "Homepage: "
+          %a{ href: item.homepage, target: "_blank" }
+            = item.homepage
+      - if item.birthday
+        .birthday.span12
+          %span= "Birthday: "
+          = item.birthday
+      - if item.place_of_birth
+        .place-of-birth.span12
+          %span= "Place of birth: "
+          = item.place_of_birth
+      - if item.day_of_death
+        .day-of-death.span12
+          %span= "Day of death: "
+          = item.day_of_death
+      - if item.imdb_id
+        .imdb-id.span12
+          %span= "IMDB ID: "
+          = item.imdb_id
+    %input.item-id{ type: "hidden", value: item.id }
+    %input.approved{ type: "hidden", value: item.approved.toString() }
+    %input.js-approve{ type: "button", value: "Approve" }

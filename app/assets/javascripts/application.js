@@ -27,6 +27,9 @@
 //= require_tree ./templates/
 
 //= require apps/admin/admin_app
+//= require_tree ./apps/admin/models/
+//= require_tree ./apps/admin/collections/
+//= require_tree ./apps/admin/views/
 //= require_tree ./apps/admin/routers/
 
 //= require apps/people/people_app

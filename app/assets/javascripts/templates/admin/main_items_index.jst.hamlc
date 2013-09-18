@@ -1,0 +1,10 @@
+- type = @type
+- @items.each (item) ->
+  - if type == "Movie"
+    - item = item.get("movie")
+    %a.span12{ href: "#admin/movies/#{item.id}" }
+      = item.title
+  - else if type == "Person"
+    - item = item.get("person")
+    %a.span12{ href: "#admin/people/#{item.id}" }
+      = item.name

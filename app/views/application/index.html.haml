@@ -11,6 +11,17 @@
   .content.js-content
     main content
 
+.footer
+  %ul
+    - if current_user && current_user.user_type == "admin"
+      %li.span2
+        %a{ href: "#admin/movies" }
+          Manage movies
+      %li.span2
+        %a{ href: "#admin/people" }
+          Manage people
+
+
 .popup-container
   .popup
 
