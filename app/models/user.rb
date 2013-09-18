@@ -37,9 +37,9 @@ class User < ActiveRecord::Base
     super && self.active == true
   end
 
-  def inactive_message
-    "Account is not yet confirmed. Please click on validation link sent on mail."
-  end
+  # def inactive_message
+  #   "Account is not yet confirmed. Please click on validation link sent on mail."
+  # end
 
   protected
 
