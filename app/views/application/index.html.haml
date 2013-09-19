@@ -14,13 +14,69 @@
 .footer
   %ul
     - if current_user && current_user.user_type == "admin"
-      %li.span2
+      %li.span12
         %a{ href: "#admin/movies" }
           Manage movies
-      %li.span2
+      %li.span12
         %a{ href: "#admin/people" }
           Manage people
-
+      %li.span12
+        %a{ href: "#admin/items_index/AlternativeName" }
+          Manage alternative names
+      %li.span12
+        %a{ href: "#admin/items_index/AlternativeTitle" }
+          Manage alternative titles
+      %li.span12
+        %a{ href: "#admin/items_index/Cast" }
+          Manage cast
+      %li.span12
+        %a{ href: "#admin/items_index/Company" }
+          Manage companies
+      %li.span12
+        %a{ href: "#admin/items_index/Crew" }
+          Manage crew
+      %li.span12
+        %a{ href: "#admin/items_index/Genre" }
+          Manage genres
+      %li.span12
+        %a{ href: "#admin/items_index/Image" }
+          Manage images
+      %li.span12
+        %a{ href: "#admin/items_index/Keyword" }
+          Manage keywords
+      %li.span12
+        %a{ href: "#admin/items_index/Language" }
+          Manage languages
+      %li.span12
+        %a{ href: "#admin/items_index/MovieGenre" }
+          Manage movie-genres
+      %li.span12
+        %a{ href: "#admin/items_index/MovieKeyword" }
+          Manage movie-keywords
+      %li.span12
+        %a{ href: "#admin/items_index/MovieMetadata" }
+          Manage movie metadata
+      %li.span12
+        %a{ href: "#admin/items_index/PersonSocialApp" }
+          Manage person-social-apps
+      %li.span12
+        %a{ href: "#admin/items_index/ProductionCompany" }
+          Manage production companies
+      %li.span12
+        %a{ href: "#admin/items_index/Release" }
+          Manage releases
+      %li.span12
+        %a{ href: "#admin/items_index/RevenueCountry" }
+          Manage revenue countries
+      %li.span12
+        %a{ href: "#admin/items_index/SocialApp" }
+          Manage social apps
+      %li.span12
+        %a{ href: "#admin/items_index/Tag" }
+          Manage tags
+      %li.span12
+        %a{ href: "#admin/items_index/Video" }
+          Manage videos
 
 .popup-container
   .popup

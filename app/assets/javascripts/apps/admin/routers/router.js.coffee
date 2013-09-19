@@ -1,6 +1,7 @@
 class AdminApp.Router extends Backbone.Router
 
   routes:
+    "admin/items_index/:type" : "items_index"
     "admin/movies" : "movies"
     "admin/people" : "people"
     "admin/movies/:id" : "movie"
@@ -57,6 +58,19 @@ class AdminApp.Router extends Backbone.Router
           @show_view = new AdminApp.MainItemShow(id: id, items: items, type: type)
           $(".js-content").html @show_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+
+  items_index: (type) ->
+    if current_user && current_user.user_type == "admin"
+      console.log "admin items index"
+      @clear_values()
+      items = new AdminApp.Items()
+      items.url = api_version + "approvals/items"
+      items.fetch
+        data:
+          type: type
+        success: ->
+          @index_view = new AdminApp.ItemsIndex(items: items, type: type)
+          $(".js-content").html @index_view.render().el
 
   clear_values: ->
     try

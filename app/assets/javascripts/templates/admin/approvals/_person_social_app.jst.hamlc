@@ -1,0 +1,10 @@
+- item = @item.get("person_social_app")
+- if item.approved == true then value = "Reject" else value = "Approve"
+.item.span12
+  .span2
+    = "Social app title"
+  .span2
+    = "Person name"
+  .span2
+    %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
+

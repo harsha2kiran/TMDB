@@ -1,0 +1,10 @@
+- item = @item.get("tag")
+- if item.approved == true then value = "Reject" else value = "Approve"
+.item.span12
+  .span2
+    = "Tagged item"
+  .span2
+    = "tagged contnet"
+  .span2
+    %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
+

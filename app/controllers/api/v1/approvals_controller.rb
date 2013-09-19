@@ -86,6 +86,23 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     render "main_item"
   end
 
+  def items
+    @type = params[:type]
+    if @type == "MovieMetadata"
+      @items = MovieMetadata.order("created_at")
+    else
+      @items = @type.classify.constantize.order("created_at")
+    end
+    render "items"
+  end
+
+  def item
+    @type = params[:type]
+    @id = params[:id]
+    @item = @type.classify.constantize.where("id = ?", @id).order("created_at")
+    render "item"
+  end
+
   private
 
   def add_points_to_user(user)

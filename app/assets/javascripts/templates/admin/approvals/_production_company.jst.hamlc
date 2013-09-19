@@ -1,0 +1,10 @@
+- item = @item.get("production_company")
+- if item.approved == true then value = "Reject" else value = "Approve"
+.item.span12
+  .span2
+    = "Movie title"
+  .span2
+    = "production company"
+  .span2
+    %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
+

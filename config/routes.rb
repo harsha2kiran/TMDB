@@ -113,6 +113,8 @@ Movies::Application.routes.draw do
         post "mark" => "approvals#mark"
         get "main_items" => "approvals#main_items"
         get "main_item" => "approvals#main_item"
+        get "items" => "approvals#items"
+        get "item" => "approvals#item"
       end
     end
     get '/search' => 'search#search', :as => :search
