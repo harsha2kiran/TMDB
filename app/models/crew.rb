@@ -5,6 +5,6 @@ class Crew < ActiveRecord::Base
   belongs_to :person
 
   validates_presence_of :job, :movie_id, :person_id
-  validates :job, :uniqueness => { :scope => [:person_id, :movie_id] }
+  validates :job, :uniqueness => { :scope => [:person_id, :movie_id], :case_sensitive => false }
 
 end

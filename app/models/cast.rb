@@ -5,6 +5,6 @@ class Cast < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :character, :movie_id, :person_id
-  validates :character, :uniqueness => { :scope => [:person_id, :movie_id] }
+  validates :character, :uniqueness => { :scope => [:person_id, :movie_id], :case_sensitive => false }
 
 end

@@ -6,6 +6,6 @@ class AlternativeTitle < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :alternative_title, :language_id, :movie_id
-  validates :alternative_title, :uniqueness => { :scope => [:language_id, :movie_id] }
+  validates :alternative_title, :uniqueness => { :scope => [:language_id, :movie_id], :case_sensitive => false }
 
 end

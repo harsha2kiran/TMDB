@@ -5,6 +5,6 @@ class PersonSocialApp < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :person_id, :profile_link, :social_app_id
-  validates :profile_link, :uniqueness => { :scope => [:person_id, :social_app_id] }
+  validates :profile_link, :uniqueness => { :scope => [:person_id, :social_app_id], :case_sensitive => false }
 
 end
