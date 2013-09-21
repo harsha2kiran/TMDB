@@ -22,6 +22,8 @@ class AdminApp.MainItemShow extends Backbone.View
     id = @id
     approved_id = $(e.target).parents(".box").find(".item-id").val()
     original_id = $(".approved[value='true']").prev().val()
+    if !original_id
+      original_id = approved_id
     if approved_id && original_id
       $.ajax api_version + "approvals/mark",
         method: "post"

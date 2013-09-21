@@ -12,9 +12,10 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
           approved_id = params[:approved_id]
 
           if original_id == approved_id
-            original_record = type.classify.constantize.where(id: original_id).first
+            original_record = type.classify.constantize.find(original_id)
             original_record.approved = true
             original_record.save
+            format.json { render json: original_record }
           else
             # get currently active item and duplicate it for backup
             original_record = type.classify.constantize.where(id: original_id)
