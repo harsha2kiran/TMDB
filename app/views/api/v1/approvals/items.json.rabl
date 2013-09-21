@@ -2,6 +2,9 @@ object @items
 case @type
   when "Image"
     attributes :id, :approved, :image_file, :image_type, :is_main_image, :imageable_id, :imageable_type, :title, :user_id, :priority, :temp_user_id, :created_at, :updated_at
+    node(:imageable_item) { |item|
+      item.imageable_type.classify.constantize.find(item.imageable_id)
+    }
   when "Video"
     attributes :id, :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :user_id, :title, :description, :category, :comments, :duration, :thumbnail, :temp_user_id, :created_at, :updated_at
   when "AlternativeName"

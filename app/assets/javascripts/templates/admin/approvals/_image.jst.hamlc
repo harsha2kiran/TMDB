@@ -6,7 +6,10 @@
   .span2
     = item.is_main_image.toString()
   .span2
-    = "imageable item"
+    - if item.imageable_item.title
+      = item.imageable_item.title
+    - else if item.imageable_item.name
+      = item.imageable_item.name
   .span2
     %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
 
