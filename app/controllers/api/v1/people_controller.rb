@@ -117,10 +117,10 @@ class Api::V1::PeopleController < Api::V1::BaseController
     end
     items.reject! { |c| c.nil? }
     items.each do |m|
-      movie_ids << m.casts.map(&:movie_id)
-      movie_ids << m.crews.map(&:movie_id)
-      movie_ids << m.tags.map(&:taggable_id)
-      social_app_ids << m.person_social_apps.map(&:social_app_id)
+      movie_ids << @casts.map(&:movie_id) if @casts
+      movie_ids << @crews.map(&:movie_id) if @cres
+      movie_ids << @tags.map(&:taggable_id) if @tags
+      social_app_ids << @person_social_apps.map(&:social_app_id) if @person_social_apps
     end
     movie_ids = movie_ids.flatten
     social_app_ids = social_app_ids.flatten

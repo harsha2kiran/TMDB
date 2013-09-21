@@ -78,6 +78,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if @movie.id != @original_movie.id
       add_original_values(@movie, @original_movie)
     else
+      @movie.movie_languages.map(&:language_id).to_yaml
       add_default_values(@movie)
     end
     load_additional_values(@movie, "show")
@@ -141,16 +142,16 @@ class Api::V1::MoviesController < Api::V1::BaseController
     end
     items.reject! { |c| c.nil? }
     items.each do |m|
-      person_ids << m.casts.map(&:person_id)
-      person_ids << m.crews.map(&:person_id)
-      person_ids << m.tags.map(&:person_id)
-      language_ids << m.alternative_titles.map(&:language_id)
-      language_ids << m.movie_languages.map(&:language_id)
-      genre_ids << m.movie_genres.map(&:genre_id)
-      keyword_ids << m.movie_keywords.map(&:keyword_id)
-      country_ids << m.revenue_countries.map(&:country_id)
-      country_ids << m.releases.map(&:country_id)
-      company_ids << m.production_companies.map(&:company_id)
+      person_ids << @casts.map(&:person_id) if @casts
+      person_ids << @crews.map(&:person_id) if @crews
+      person_ids << @tags.map(&:person_id) if @tags
+      language_ids << @alternative_titles.map(&:language_id) if @alternative_titles
+      language_ids << @movie_languages.map(&:language_id) if @movie_languages
+      genre_ids << @movie_genres.map(&:genre_id) if @movie_genres
+      keyword_ids << @movie_keywords.map(&:keyword_id) if @movie_keywords
+      country_ids << @revenue_countries.map(&:country_id) if @revenue_countries
+      country_ids << @releases.map(&:country_id) if @releases
+      company_ids << @production_companies.map(&:company_id) if @production_companies
     end
     person_ids = person_ids.flatten.uniq
     genre_ids = genre_ids.flatten.uniq
