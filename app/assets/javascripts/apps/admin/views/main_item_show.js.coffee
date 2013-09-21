@@ -20,6 +20,7 @@ class AdminApp.MainItemShow extends Backbone.View
   approve: (e) ->
     type = @type
     id = @id
+    mark = $(e.target).attr("data-value")
     approved_id = $(e.target).parents(".box").find(".item-id").val()
     original_id = $(".approved[value='true']").prev().val()
     if !original_id
@@ -31,7 +32,7 @@ class AdminApp.MainItemShow extends Backbone.View
           approved_id: approved_id
           original_id: original_id
           type: type
-          mark: true
+          mark: mark
         success: ->
           items = new AdminApp.MainItems()
           items.url = api_version + "approvals/main_item"

@@ -55,4 +55,7 @@
           = item.imdb_id
     %input.item-id{ type: "hidden", value: item.id }
     %input.approved{ type: "hidden", value: item.approved.toString() }
-    %input.js-approve{ type: "button", value: "Approve" }
+    - if item.approved
+      %input.js-approve{ type: "button", value: "Unapprove", "data-value" => "false" }
+    - else
+      %input.js-approve{ type: "button", value: "Approve", "data-value" => "true" }

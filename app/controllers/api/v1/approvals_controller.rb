@@ -13,7 +13,7 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
 
           if original_id == approved_id
             original_record = type.classify.constantize.find(original_id)
-            original_record.approved = true
+            original_record.approved = mark
             original_record.save
             format.json { render json: original_record }
           else
