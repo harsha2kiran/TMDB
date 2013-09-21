@@ -15,6 +15,10 @@ class PeopleApp.Show extends Backbone.View
     person = @options.person.get("person")
     my_person = @options.my_person
     show.html @template(person: person, my_person: my_person)
+    # $(@el).find(".box").each ->
+    #   console.log $(@)
+    #   if $.trim($(@).html()) == ""
+    #     $(@).hide()
     this
 
   follow: (e) ->

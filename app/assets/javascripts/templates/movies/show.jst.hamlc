@@ -164,8 +164,9 @@
     %p
       Genres
     - $.each @movie.movie_genres, (i, genre) ->
-      .span2
-        = genre.genre.genre
+      - if genre.genre
+        .span2
+          = genre.genre.genre
 
 #add-keywords.show-add-item
   Add keywords
@@ -174,8 +175,9 @@
     %p
       Keywords
     - $.each @movie.movie_keywords, (i, keyword) ->
-      .span2
-        = keyword.keyword.keyword
+      - if keyword.keyword
+        .span2
+          = keyword.keyword.keyword
 
 #add-languages.show-add-item
   Add languages
@@ -184,8 +186,9 @@
     %p
       Languages
     - $.each @movie.movie_languages, (i, language) ->
-      .span2
-        = language.language.language
+      - if language.language
+        .span2
+          = language.language.language
 
 #add-revenue-countries.show-add-item
   Add revenue countries
@@ -194,8 +197,9 @@
     %p
       Revenue countries
     - $.each @movie.revenue_countries, (i, country) ->
-      .span2
-        = country.country.country
+      - if country.country
+        .span2
+          = country.country.country
 
 #add-production-companies.show-add-item
   Add production companies
@@ -204,8 +208,9 @@
     %p
       Production companies
     - $.each @movie.production_companies, (i, company) ->
-      .span2
-        = company.company.company
+      - if company.company
+        .span2
+          = company.company.company
 
 #add-tags.show-add-item
   Add tags
@@ -214,8 +219,9 @@
     %p
       Tagged people
     - $.each @movie.tags, (i, tag) ->
-      .span2
-        = tag.person.name
+      - if tag.person
+        .span2
+          = tag.person.name
 
 #add-releases.show-add-item
   Add releases
@@ -224,24 +230,25 @@
     %p
       Releases
     - $.each @movie.releases, (i, release) ->
-      %p
-        Release date
-      .span12
-        = release.release_date
-      %p
-        Country
-      .span12
-        = release.country.country
-      %p
-        Confirmed
-      .span12
-        = release.confirmed
-      %p
-        Certification
-      .span12
-        = release.certification
-      %p
-        Primary
-      .span12
-        = release.primary
+      - if release.country
+        %p
+          Release date
+        .span12
+          = release.release_date
+        %p
+          Country
+        .span12
+          = release.country.country
+        %p
+          Confirmed
+        .span12
+          = release.confirmed
+        %p
+          Certification
+        .span12
+          = release.certification
+        %p
+          Primary
+        .span12
+          = release.primary
 
