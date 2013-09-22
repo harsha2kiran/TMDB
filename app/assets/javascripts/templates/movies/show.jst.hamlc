@@ -66,10 +66,11 @@
     %p
       Alternative Titles
     - $.each @movie.alternative_titles, (i, title) ->
-      .span4
-        = title.alternative_title
-      .span4
-        = title.language.language
+      - if title.language
+        .span4
+          = title.alternative_title
+        .span4
+          = title.language.language
 
 #add-movie-metadata.show-add-item
   Add metadata

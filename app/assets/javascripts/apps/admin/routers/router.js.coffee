@@ -57,6 +57,16 @@ class AdminApp.Router extends Backbone.Router
         success: ->
           @show_view = new AdminApp.MainItemShow(id: id, items: items, type: type)
           $(".js-content").html @show_view.render().el
+
+          details = new AdminApp.MainItems()
+          if type == "Movie"
+            details.url = api_version + "movies/#{id}?moderate=true"
+          else
+            details.url = api_version + "people/#{id}?moderate=true"
+          details.fetch
+            success: ->
+              @details_view = new AdminApp.ItemsIndex(items: details, type: type)
+              $(".js-item-details").html @details_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   items_index: (type) ->

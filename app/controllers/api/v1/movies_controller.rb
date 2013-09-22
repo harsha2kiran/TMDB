@@ -49,32 +49,33 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def show
-    @movies = Movie.where(approved: true)
-    @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-    @movie = @movies.find_by_id(params[:id])
-    @all = false
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+      @movie = Movie.where(id: params[:id]).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+      @movie = @movie.first
+      add_default_values(@movie)
+      @all = true
+    else
+      @movies = Movie.where(approved: true)
+      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+      @movie = @movies.find_by_id(params[:id])
+      @all = false
+    end
     load_additional_values(@movie, "show")
     @current_api_user = current_api_user
   end
 
   def my_movie
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @movies = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas])
-      @movie = @movies.find_by_id(params[:movie_id])
-      @all = true
+    if current_api_user
+      @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+    elsif params[:temp_user_id] && !current_api_user
+      @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
     else
-      if current_api_user
-        @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
-      elsif params[:temp_user_id] && !current_api_user
-        @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
-      else
-        @movies = Movie.where(approved: true)
-      end
-      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-      @movie = @movies.where(original_id: params[:movie_id]).last
-      @original_movie = @movies.where(id: params[:movie_id]).first
-      @all = false
+      @movies = Movie.where(approved: true)
     end
+    @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    @movie = @movies.where(original_id: params[:movie_id]).last
+    @original_movie = @movies.where(id: params[:movie_id]).first
+    @all = false
     if @movie.id != @original_movie.id
       add_original_values(@movie, @original_movie)
     else

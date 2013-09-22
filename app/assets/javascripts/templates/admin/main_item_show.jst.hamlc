@@ -1,3 +1,5 @@
+%h3
+  = "Main #{@type} info"
 - type = @type
 - @items.each (item) ->
   .span12.box
@@ -59,3 +61,7 @@
       %input.js-approve{ type: "button", value: "Unapprove", "data-value" => "false" }
     - else
       %input.js-approve{ type: "button", value: "Approve", "data-value" => "true" }
+
+%h3
+  Details
+.js-item-details
