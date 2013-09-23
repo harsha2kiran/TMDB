@@ -52,7 +52,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @movie = Movie.where(id: params[:id]).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
       @movie = @movie.first
-      add_default_values(@movie)
       @all = true
     else
       @movies = Movie.where(approved: true)
@@ -60,6 +59,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @movie = @movies.find_by_id(params[:id])
       @all = false
     end
+    add_default_values(@movie)
     load_additional_values(@movie, "show")
     @current_api_user = current_api_user
   end
@@ -170,6 +170,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def add_original_values(movie, original_movie)
+    @movie_metadatas = movie.movie_metadatas.to_a + original_movie.movie_metadatas.to_a
     @images = movie.images.to_a + original_movie.images.to_a
     @videos = movie.videos.to_a + original_movie.videos.to_a
     @movie_genres = movie.movie_genres.to_a + original_movie.movie_genres.to_a
@@ -185,6 +186,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def add_default_values(movie)
+    @movie_metadatas = movie.movie_metadatas.to_a
     @images = movie.images.to_a
     @videos = movie.videos.to_a
     @movie_genres = movie.movie_genres.to_a

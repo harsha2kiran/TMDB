@@ -17,17 +17,16 @@ class AdminApp.ItemsIndex extends Backbone.View
     container.html @template(items: items, type: type)
     self = @
 
-    selectors = [".js-alternative-title-language"]
-    urls = ["languages"]
+    selectors = [".js-alternative-title-language", ".js-metadata-status", ".js-crew-person", ".js-cast-person", ".js-genre"]
+    urls = ["languages", "statuses", "people", "people", "genres"]
     $.each selectors, (i, selector) ->
       self.init_autocomplete(container, selector, urls[i])
     this
 
   approve: (e) ->
     console.log "update"
-    id = $(e.target).parents(".js-edit-item").first().find("#id")
+    id = $(e.target).parents(".js-edit-item").first().children()
     model = id.attr("data-model")
-    model = model.charAt(0).toUpperCase() + model.slice(1)
     id = id.val()
     if $.trim($(e.target).html()) == "Approve"
       mark = true
@@ -47,18 +46,17 @@ class AdminApp.ItemsIndex extends Backbone.View
 
   update: (e) ->
     console.log "update"
-    id = $(e.target).parents(".span12").first().find("#id")
+    id = $(e.target).parents(".js-edit-item").first().children()
     controller = id.attr("data-controller")
-    model = id.attr("data-model")
+    key = id.attr("data-key")
     id = id.val()
     values = {}
-    values[model] = @generate_values(e)
+    values[key] = @generate_values(e)
     model = new AdminApp.Item()
     model.url = api_version + controller + "/" + id
     model.set(values)
     model.save id: id,
       success: ->
-        console.log model
         $(".notifications").html("Successfully updated item.").show().fadeOut(window.hide_delay)
       error: ->
         $(".notifications").html("Error while updating item.").show().fadeOut(window.hide_delay)
@@ -66,7 +64,7 @@ class AdminApp.ItemsIndex extends Backbone.View
   remove: (e) ->
     console.log "remove"
     container = $(e.target).parents(".js-edit-item").first()
-    id = container.find("#id")
+    id = container.children()
     controller = id.attr("data-controller")
     id = id.val()
     if confirm("Remove item?") == true
@@ -79,9 +77,9 @@ class AdminApp.ItemsIndex extends Backbone.View
   generate_values: (e) ->
     parent = $(e.target).parents(".js-edit-item").first()
     values = {}
-    $.each parent.find("input"), (i, item) ->
-      if $(item).attr("id") && $(item).attr("id") != "id" && $(item).attr("id") != "controller" && $(item).attr("id") != "model"
-        values[$(item).attr("id")] = $(item).val()
+    $.each parent.find("input, select"), (i, item) ->
+      if $(item).attr("data-id") && $(item).attr("data-id") != "id"
+        values[$(item).attr("data-id")] = $(item).val()
     values
 
   init_autocomplete: (container, selector, url) ->

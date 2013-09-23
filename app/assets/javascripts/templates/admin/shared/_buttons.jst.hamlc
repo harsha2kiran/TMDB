@@ -1,0 +1,9 @@
+.span1
+  %button.js-update= "Update"
+.span1
+  %button.js-remove= "Remove"
+.span1
+  - if @approved
+    %button.js-approve= "Unapprove"
+  - else
+    %button.js-approve= "Approve"

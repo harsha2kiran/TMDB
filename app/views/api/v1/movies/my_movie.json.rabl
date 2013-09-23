@@ -75,9 +75,9 @@ if @movie
     }
     node(:movie_metadatas) { |movie|
       if @current_api_user
-        partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
+        partial("api/v1/movie_metadatas/index", :object => @movie_metadatas.select {|s| (s.approved == true || s.user_id == @current_api_user.id) })
       else
-        partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
+        partial("api/v1/movie_metadatas/index", :object => @movie_metadatas.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) })
       end
     }
     node(:revenue_countries) { |movie|

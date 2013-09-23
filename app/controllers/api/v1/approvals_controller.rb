@@ -4,9 +4,9 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
 
   def mark
     respond_to do |format|
+      type = params[:type]
+      mark = params[:mark]
       if ["admin", "moderator"].include?(current_api_user.user_type)
-        type = params[:type]
-        mark = params[:mark]
         if ["Movie", "Person"].include?(type)
           original_id = params[:original_id]
           approved_id = params[:approved_id]
@@ -60,8 +60,12 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
           end
         else
           id = params[:approved_id]
-          record = type.classify.constantize.find id
-          record.approved = true
+          if type == "MovieMetadata"
+            record = MovieMetadata.find id
+          else
+            record = type.classify.constantize.find id
+          end
+          record.approved = mark
           if record.save
             format.json { render json: record }
           else
