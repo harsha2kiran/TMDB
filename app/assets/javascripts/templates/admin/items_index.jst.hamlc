@@ -9,15 +9,22 @@
       Alternative Titles
     - $.each item.alternative_titles, (i, title) ->
       - if title.language
-        .span4
-          = title.alternative_title
-        .span4
-          = title.language.language
-        .span2
-          - if title.approved
-            %input{ type: "button", value: "Unapprove" }
-          - else
-            %input{ type: "button", value: "Approve" }
+        .span12.js-edit-item
+          .span2
+            %input#id.edit-item{ type: "hidden", value: title.id, "data-model" => "alternative_title", "data-controller" => "alternative_titles" }
+            %input#alternative_title.edit-item{ type: "text", value: title.alternative_title }
+          .span2
+            %input.edit-item.js-alternative-title-language{ type: "text", placeholder: "Language", value: title.language.language }
+            %input#language_id.edit-item{ type: "hidden", value: title.language_id }
+          .span1
+            %button.js-update= "Update"
+          .span1
+            %button.js-remove= "Remove"
+          .span1
+            - if title.approved
+              %button.js-approve= "Unapprove"
+            - else
+              %button.js-approve= "Approve"
 
 - if item.movie_metadatas.length > 0
   .movie-metadatas.span12.box

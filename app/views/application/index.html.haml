@@ -12,10 +12,10 @@
     main content
 
 .footer
-  %h4
-    Manage content
-  %ul
-    - if current_user && current_user.user_type == "admin"
+  - if current_user && current_user.user_type == "admin"
+    %h4
+      Manage content
+    %ul
       %li.span12
         %a{ href: "#admin/movies" }
           Manage movies
