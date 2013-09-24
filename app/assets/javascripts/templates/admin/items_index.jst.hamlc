@@ -148,8 +148,12 @@
       Languages
     - $.each item.movie_languages, (i, language) ->
       - if language.language
-        .span2
-          = language.language.language
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: language.id, "data-id" => "id", "data-model" => "MovieLanguage", "data-key" => "movie_language", "data-controller" => "movie_languages" }
+          .span2
+            %input.js-language.edit-item{ type: "text", value: language.language.language }
+            %input.edit-item{ type: "hidden", value: language.language_id, "data-id" => "language_id" }
+          != JST['templates/admin/shared/_buttons'](approved: language.approved)
 
 - if item.revenue_countries.length > 0
   .revenue-countries.span12.box
@@ -157,8 +161,12 @@
       Revenue countries
     - $.each item.revenue_countries, (i, country) ->
       - if country.country
-        .span2
-          = country.country.country
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: country.id, "data-id" => "id", "data-model" => "RevenueCountry", "data-key" => "revenue_country", "data-controller" => "revenue_countries" }
+          .span2
+            %input.js-country.edit-item{ type: "text", value: country.country.country }
+            %input.edit-item{ type: "hidden", value: country.country_id, "data-id" => "country_id" }
+          != JST['templates/admin/shared/_buttons'](approved: country.approved)
 
 - if item.production_companies.length > 0
   .production-companies.span12.box
@@ -166,8 +174,12 @@
       Production companies
     - $.each item.production_companies, (i, company) ->
       - if company.company
-        .span2
-          = company.company.company
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: company.id, "data-id" => "id", "data-model" => "ProductionCompany", "data-key" => "production_company", "data-controller" => "production_companies" }
+          .span2
+            %input.js-company.edit-item{ type: "text", value: company.company.company }
+            %input.edit-item{ type: "hidden", value: company.company_id, "data-id" => "company_id" }
+          != JST['templates/admin/shared/_buttons'](approved: company.approved)
 
 - if item.tags.length > 0
   .tags.span12.box
@@ -175,8 +187,12 @@
       Tagged people
     - $.each item.tags, (i, tag) ->
       - if tag.person
-        .span2
-          = tag.person.name
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: tag.id, "data-id" => "id", "data-model" => "Tag", "data-key" => "tag", "data-controller" => "tags" }
+          .span2
+            %input.js-tag-people.edit-item{ type: "text", value: tag.person.name }
+            %input.edit-item{ type: "hidden", value: tag.person_id, "data-id" => "person_id" }
+          != JST['templates/admin/shared/_buttons'](approved: tag.approved)
 
 - if item.releases.length > 0
   .releases.span12.box
@@ -184,67 +200,36 @@
       Releases
     - $.each item.releases, (i, release) ->
       - if release.country
-        %p
-          Release date
-        .span12
-          = release.release_date
-        %p
-          Country
-        .span12
-          = release.country.country
-        %p
-          Confirmed
-        .span12
-          = release.confirmed
-        %p
-          Certification
-        .span12
-          = release.certification
-        %p
-          Primary
-        .span12
-          = release.primary
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: release.id, "data-id" => "id", "data-model" => "Release", "data-key" => "release", "data-controller" => "releases" }
+          %p
+            Release date
+          .span12
+            %input.js-datepicker.edit-item{ type: "text", value: moment(release.release_date).format("YYYY-MM-DD"), "data-id" => "release_date" }
+          %p
+            Country
+          .span12
+            %input.js-release-country.edit-item{ type: "text", value: release.country.country }
+            %input.edit-item{ type: "hidden", value: release.country_id, "data-id" => "country_id" }
+          %p
+            Confirmed
+          .span12
+            %select.edit-item{ "data-id" => "confirmed" }
+              - if release.confirmed
+                %option{ value: "true", selected: "selected" }= "Yes"
+                %option{ value: "false" }= "No"
+              - else
+                %option{ value: "true" }= "Yes"
+                %option{ value: "false", selected: "selected" }= "No"
+          %p
+            Primary
+          .span12
+            %select.edit-item{ "data-id" => "primary" }
+              - if release.primary
+                %option{ value: "true", selected: "selected" }= "Yes"
+                %option{ value: "false" }= "No"
+              - else
+                %option{ value: "true" }= "Yes"
+                %option{ value: "false", selected: "selected" }= "No"
+          != JST['templates/admin/shared/_buttons'](approved: release.approved)
 
--# - type = @type
--# - @items.each (item) ->
--#   - switch type
--#     - when "AlternativeName"
--#       != JST['templates/admin/approvals/_alternative_name'](item: item)
--#     - when "AlternativeTitle"
--#       != JST['templates/admin/approvals/_alternative_title'](item: item)
--#     - when "Cast"
--#       != JST['templates/admin/approvals/_cast'](item: item)
--#     - when "Company"
--#       != JST['templates/admin/approvals/_company'](item: item)
--#     - when "Crew"
--#       != JST['templates/admin/approvals/_crew'](item: item)
--#     - when "Genre"
--#       != JST['templates/admin/approvals/_genre'](item: item)
--#     - when "Image"
--#       != JST['templates/admin/approvals/_image'](item: item)
--#     - when "Keyword"
--#       != JST['templates/admin/approvals/_keyword'](item: item)
--#     - when "Language"
--#       != JST['templates/admin/approvals/_language'](item: item)
--#     - when "MovieGenre"
--#       != JST['templates/admin/approvals/_movie_genre'](item: item)
--#     - when "MovieKeyword"
--#       != JST['templates/admin/approvals/_movie_keyword'](item: item)
--#     - when "MovieLanguage"
--#       != JST['templates/admin/approvals/_movie_language'](item: item)
--#     - when "MovieMetadata"
--#       != JST['templates/admin/approvals/_movie_metadata'](item: item)
--#     - when "PersonSocialApp"
--#       != JST['templates/admin/approvals/_person_social_app'](item: item)
--#     - when "ProductionCompany"
--#       != JST['templates/admin/approvals/_production_company'](item: item)
--#     - when "Release"
--#       != JST['templates/admin/approvals/_release'](item: item)
--#     - when "RevenueCountry"
--#       != JST['templates/admin/approvals/_revenue_country'](item: item)
--#     - when "SocialApp"
--#       != JST['templates/admin/approvals/_social_app'](item: item)
--#     - when "Tag"
--#       != JST['templates/admin/approvals/_tag'](item: item)
--#     - when "Video"
--#       != JST['templates/admin/approvals/_video'](item: item)

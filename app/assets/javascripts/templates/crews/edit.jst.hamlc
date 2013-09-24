@@ -5,8 +5,6 @@
     .span12
       .span4
         = crew.job
-      - console.log window.person_id
-      - console.log crew.movie
       - if window.movie_id && crew.person
         .span4
           = crew.person.name

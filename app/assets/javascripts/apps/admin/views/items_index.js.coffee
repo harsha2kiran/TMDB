@@ -17,14 +17,15 @@ class AdminApp.ItemsIndex extends Backbone.View
     container.html @template(items: items, type: type)
     self = @
 
-    selectors = [".js-alternative-title-language", ".js-metadata-status", ".js-crew-person", ".js-cast-person", ".js-genre"]
-    urls = ["languages", "statuses", "people", "people", "genres"]
+    selectors = [".js-alternative-title-language", ".js-metadata-status", ".js-crew-person", ".js-cast-person", ".js-genre", ".js-language", ".js-country", ".js-tag-people", ".js-release-country"]
+    urls = ["languages", "statuses", "people", "people", "genres", "language", "countries", "people", "countries"]
     $.each selectors, (i, selector) ->
       self.init_autocomplete(container, selector, urls[i])
+    self.init_datepicker()
     this
 
   approve: (e) ->
-    console.log "update"
+    console.log "approve"
     id = $(e.target).parents(".js-edit-item").first().children()
     model = id.attr("data-model")
     id = id.val()
@@ -95,3 +96,9 @@ class AdminApp.ItemsIndex extends Backbone.View
       response: (event, ui) ->
         if ui.content.length == 0
           container.find(selector).next().val("")
+
+  init_datepicker: ->
+    $(@el).find(".js-datepicker").datepicker(
+      dateFormat: "yy-mm-dd"
+    )
+

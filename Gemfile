@@ -53,3 +53,4 @@ gem 'country-select'
 gem 'kaminari'
 gem "youtube_it"
 gem 'rack-mini-profiler'
+gem 'momentjs-rails'

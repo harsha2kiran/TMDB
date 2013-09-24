@@ -67,6 +67,9 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
           end
           record.approved = mark
           if record.save
+            if mark == "true"
+              approve_master_value(type, record)
+            end
             format.json { render json: record }
           else
             format.json { render :json => "Error approving content.", :status => :unprocessable_entity }
@@ -109,6 +112,44 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
   end
 
   private
+
+  def approve_master_value(type, record)
+    type = type.classify
+    if ["MovieGenre", "MovieKeyword", "AlternativeTitle", "MovieLanguage", "Cast", "Crew", "ProductionCompany", "Tag"].include?(type)
+      case type
+      when "MovieGenre"
+        item = Genre.find(record.genre_id)
+      when "MovieKeyword"
+        item = Keyword.find(record.keyword_id)
+      when "AlternativeTitle"
+        item = Language.find(record.language_id)
+      when "MovieLanguage"
+        item = Language.find(record.language_id)
+      when "Cast"
+        person = Person.find(record.person_id)
+        movie = Movie.find(record.movie_id)
+      when "Crew"
+        person = Person.find(record.person_id)
+        movie = Movie.find(record.movie_id)
+      when "Tag"
+        person = Person.find(record.person_id)
+        if record.taggable_type == "Movie"
+          movie = Movie.find(record.taggable_id)
+        end
+      when "ProductionCompany"
+        item = Company.find(record.company_id)
+      end
+      if item
+        item.approved = true
+        item.save
+      else
+        person.approved = true
+        movie.approved = true
+        person.save
+        movie.save
+      end
+    end
+  end
 
   def add_points_to_user(user)
     unless user.points

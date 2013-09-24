@@ -235,7 +235,7 @@
         %p
           Release date
         .span12
-          = release.release_date
+          = moment(release.release_date).format("YYYY-MM-DD")
         %p
           Country
         .span12
@@ -243,13 +243,9 @@
         %p
           Confirmed
         .span12
-          = release.confirmed
-        %p
-          Certification
-        .span12
-          = release.certification
+          = if release.confirmed then "Yes" else "No"
         %p
           Primary
         .span12
-          = release.primary
+          = if release.primary then "Yes" else "No"
 

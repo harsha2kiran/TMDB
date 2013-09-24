@@ -49,5 +49,6 @@
 //= require_tree ./apps/movies/collections/
 //= require_tree ./apps/movies/views/
 //= require_tree ./apps/movies/routers/
+//= require moment
 
 //= require_tree .
