@@ -30,10 +30,18 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def show
-    @people = Person.where(approved: true)
-    @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-    @person = @people.find_by_id(params[:id])
-    @all = false
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+      @person = Person.where(id: params[:id]).includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      @person = @person.first
+      @original_person = @person
+      @all = true
+    else
+      @people = Person.where(approved: true)
+      @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      @person = @people.find_by_id(params[:id])
+      @all = false
+    end
+    add_default_values(@person)
     load_additional_values(@person, "show")
     @current_api_user = current_api_user
   end
@@ -118,7 +126,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
     items.reject! { |c| c.nil? }
     items.each do |m|
       movie_ids << @casts.map(&:movie_id) if @casts
-      movie_ids << @crews.map(&:movie_id) if @cres
+      movie_ids << @crews.map(&:movie_id) if @crews
       movie_ids << @tags.map(&:taggable_id) if @tags
       social_app_ids << @person_social_apps.map(&:social_app_id) if @person_social_apps
     end

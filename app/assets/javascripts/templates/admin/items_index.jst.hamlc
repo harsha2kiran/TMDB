@@ -135,8 +135,12 @@
       Keywords
     - $.each item.movie_keywords, (i, keyword) ->
       - if keyword.keyword
-        .span2
-          = keyword.keyword.keyword
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: keyword.id, "data-id" => "id", "data-model" => "MovieKeyword", "data-key" => "movie_keyword", "data-controller" => "movie_keywords" }
+          .span2
+            %input.js-keyword.edit-item{ type: "text", value: keyword.keyword.keyword }
+            %input.edit-item{ type: "hidden", value: keyword.keyword_id, "data-id" => "keyword_id" }
+          != JST['templates/admin/shared/_buttons'](approved: keyword.approved)
 
 - if item.movie_languages.length > 0
   .movie-languages.span12.box

@@ -18,43 +18,43 @@ if @movie
     node(:releases) { |movie| partial("api/v1/releases/index", :object => movie.releases ) }
   else
     node(:images) { |movie|
-      movie.images.order("images.priority ASC").select {|s| (s.approved == true) }
+      @images.select {|s| (s.approved == true) }
     }
     node(:videos) { |movie|
-      movie.videos.order("videos.priority ASC").select {|s| (s.approved == true && s.link_active == true) }
+      @videos.select {|s| (s.approved == true && s.link_active == true) }
     }
     node(:alternative_titles) { |movie|
-      partial("api/v1/alternative_titles/index", :object => movie.alternative_titles.select {|s| (s.approved == true) } )
+      partial("api/v1/alternative_titles/index", :object => @alternative_titles.select {|s| (s.approved == true) } )
     }
     node(:crews) { |movie|
-      partial("api/v1/crews/index", :object => movie.crews.select {|s| (s.approved == true) })
+      partial("api/v1/crews/index", :object => @crews.select {|s| (s.approved == true) })
     }
     node(:casts) { |movie|
-      partial("api/v1/casts/index", :object => movie.casts.select {|s| (s.approved == true) })
+      partial("api/v1/casts/index", :object => @casts.select {|s| (s.approved == true) })
     }
     node(:movie_genres) { |movie|
-      partial("api/v1/movie_genres/index", :object => movie.movie_genres.select {|s| (s.approved == true) })
+      partial("api/v1/movie_genres/index", :object => @movie_genres.select {|s| (s.approved == true) })
     }
     node(:movie_keywords) { |movie|
-      partial("api/v1/movie_keywords/index", :object => movie.movie_keywords.select {|s| (s.approved == true) })
+      partial("api/v1/movie_keywords/index", :object => @movie_keywords.select {|s| (s.approved == true) })
     }
     node(:movie_languages) { |movie|
-      partial("api/v1/movie_languages/index", :object => movie.movie_languages.select {|s| (s.approved == true) })
+      partial("api/v1/movie_languages/index", :object => @movie_languages.select {|s| (s.approved == true) })
     }
     node(:movie_metadatas) { |movie|
-      partial("api/v1/movie_metadatas/index", :object => movie.movie_metadatas.select {|s| (s.approved == true) })
+      partial("api/v1/movie_metadatas/index", :object => @movie_metadatas.select {|s| (s.approved == true) })
     }
     node(:revenue_countries) { |movie|
-      partial("api/v1/revenue_countries/index", :object => movie.revenue_countries.select {|s| (s.approved == true) })
+      partial("api/v1/revenue_countries/index", :object => @revenue_countries.select {|s| (s.approved == true) })
     }
     node(:tags) { |movie|
-      partial("api/v1/tags/index", :object => movie.tags.select {|s| (s.approved == true) } )
+      partial("api/v1/tags/index", :object => @tags.select {|s| (s.approved == true) } )
     }
     node(:production_companies) { |movie|
-      partial("api/v1/production_companies/index", :object => movie.production_companies.select {|s| (s.approved == true) } )
+      partial("api/v1/production_companies/index", :object => @production_companies.select {|s| (s.approved == true) } )
     }
     node(:releases) { |movie|
-      partial("api/v1/releases/index", :object => movie.releases.select {|s| (s.approved == true) } )
+      partial("api/v1/releases/index", :object => @releases.select {|s| (s.approved == true) } )
     }
   end
   node(:follows) { |movie|

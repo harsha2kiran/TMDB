@@ -52,6 +52,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       @movie = Movie.where(id: params[:id]).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
       @movie = @movie.first
+      @original_movie = @movie
       @all = true
     else
       @movies = Movie.where(approved: true)
