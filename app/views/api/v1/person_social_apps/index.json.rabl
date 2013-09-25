@@ -4,14 +4,14 @@ if @original_person
   node(:social_app){ |person_social_app|
     @social_apps.select {|s| person_social_app.social_app_id == s.id }[0]
   }
-  node(:person){ |crew|
-    @people.select {|s| crew.person_id == s.id }[0]
-  }
+  # node(:person){ |crew|
+  #   @people.select {|s| crew.person_id == s.id }[0]
+  # }
 else
   node(:social_app){ |person_social_app|
     @social_apps.select {|s| person_social_app.social_app_id == s.id && s.approved == true }[0]
   }
-  node(:person){ |crew|
-    @people.select {|s| crew.person_id == s.id && s.approved == true }[0]
-  }
+  # node(:person){ |crew|
+  #   @people.select {|s| crew.person_id == s.id && s.approved == true }[0]
+  # }
 end

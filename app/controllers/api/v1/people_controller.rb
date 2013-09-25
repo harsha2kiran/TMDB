@@ -4,14 +4,18 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def index
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @people = Person.all
+      all_items = Person.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
+      @items_count = all_items.count
+      @people = all_items.page(params[:page]).order('name ASC')
       @all = true
     else
-      @people = Person.where(approved: true)
+      all_items = Person.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      @items_count = all_items.count
+      @people = all_items
+      filter_results
       @all = false
     end
-    @people = @people.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-    filter_results
+    @current_api_user = current_api_user
     load_additional_values(@people, "index")
   end
 
@@ -26,7 +30,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
     filter_results
     @all = false
     load_additional_values(@people, "index")
-    render "index"
+    @current_api_user = current_api_user
+    render "my_people"
   end
 
   def show
@@ -47,23 +52,17 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def my_person
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @people = Person.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
-      @person = @people.find_by_id params[:id]
-      @all = true
+    if current_api_user
+      @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user)
+    elsif params[:temp_user_id] && !current_api_user
+      @people = Person.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
     else
-      if current_api_user
-        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user)
-      elsif params[:temp_user_id] && !current_api_user
-        @people = Person.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
-      else
-        @people = Person.where(approved: true)
-      end
-      @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-      @person = @people.where(original_id: params[:person_id]).last
-      @original_person = @people.where(id: params[:person_id]).first
-      @all = false
+      @people = Person.where(approved: true)
     end
+    @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    @person = @people.where(original_id: params[:person_id]).last
+    @original_person = @people.where(id: params[:person_id]).first
+    @all = false
     if @person.id != @original_person.id
       add_original_values(@person, @original_person)
     else
@@ -130,8 +129,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
       movie_ids << @tags.map(&:taggable_id) if @tags
       social_app_ids << @person_social_apps.map(&:social_app_id) if @person_social_apps
     end
-    movie_ids = movie_ids.flatten
-    social_app_ids = social_app_ids.flatten
+    movie_ids = movie_ids.flatten.uniq
+    social_app_ids = social_app_ids.flatten.uniq
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
   end

@@ -4,6 +4,10 @@ if @all
   node(:images) { |person| person.images }
 else
   node(:images) { |person|
-    person.images.select {|s| s.approved == true }
+    if @current_api_user
+      person.images.select {|s| (s.approved == true || s.user_id == @current_api_user.id) }
+    else
+      person.images.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) }
+    end
   }
 end

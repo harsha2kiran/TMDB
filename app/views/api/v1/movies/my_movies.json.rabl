@@ -5,9 +5,10 @@ if @all
   node(:images) { |movie| movie.images }
 else
   node(:images) { |movie|
-    movie.images.order("images.priority ASC")
+    if @current_api_user
+      movie.images.select {|s| (s.approved == true || s.user_id == @current_api_user.id) }
+    else
+      movie.images.select {|s| (s.approved == true || s.temp_user_id == params[:temp_user_id]) }
+    end
   }
 end
-
-node(:follows) { |movie| movie.follows }
-node(:views) { |movie| movie.views }

@@ -3,7 +3,7 @@
 - else
   - item = @items.models[0].attributes.person
 
-- if item.alternative_titles.length > 0
+- if item.alternative_titles && item.alternative_titles.length > 0
   .alternative-titles.span12.box
     %p
       Alternative Titles
@@ -18,7 +18,18 @@
             %input.edit-item{ type: "hidden", value: title.language_id, "data-id" => "language_id" }
           != JST['templates/admin/shared/_buttons'](approved: title.approved)
 
-- if item.movie_metadatas.length > 0
+- if item.alternative_names && item.alternative_names.length > 0
+  .alternative-titles.span12.box
+    %p
+      Alternative Names
+    - $.each item.alternative_names, (i, name) ->
+      .span12.js-edit-item
+        %input.edit-item{ type: "hidden", value: name.id, "data-id" => "id", "data-model" => "AlternativeName", "data-key" => "alternative_name", "data-controller" => "alternative_names" }
+        .span2
+          %input.edit-item{ type: "text", value: name.alternative_name, "data-id" => "alternative_name" }
+        != JST['templates/admin/shared/_buttons'](approved: name.approved)
+
+- if item.movie_metadatas && item.movie_metadatas.length > 0
   .movie-metadatas.span12.box
     %p
       Metadata
@@ -48,37 +59,45 @@
           %input.edit-item{ type: "hidden", value: metadata.status_id, "data-id" => "status_id" }
         != JST['templates/admin/shared/_buttons'](approved: metadata.approved)
 
-- if item.crews.length > 0
+- if item.crews && item.crews.length > 0
   .crews.span12.box
     %p
       Crew
     - $.each item.crews, (i, crew) ->
-      - if crew.person && crew.person.name
+      - if (crew.person && crew.person.name) || (crew.movie && crew.movie.title)
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: crew.id, "data-id" => "id", "data-model" => "Crew", "data-key" => "crew", "data-controller" => "crews" }
           .span2
             %input.edit-item{ type: "text", value: crew.job, "data-id" => "job" }
           .span2
-            %input.js-crew-person.edit-item{ type: "text", value: crew.person.name }
-            %input.edit-item{ type: "hidden", value: crew.person_id, "data-id" => "person_id" }
+            - if crew.person
+              %input.js-crew-person.edit-item{ type: "text", value: crew.person.name }
+              %input.edit-item{ type: "hidden", value: crew.person_id, "data-id" => "person_id" }
+            - else if crew.movie
+              %input.js-crew-movie.edit-item{ type: "text", value: crew.movie.title }
+              %input.edit-item{ type: "hidden", value: crew.movie_id, "data-id" => "movie_id" }
           != JST['templates/admin/shared/_buttons'](approved: crew.approved)
 
-- if item.casts.length > 0
+- if item.casts && item.casts.length > 0
   .casts.span12.box
     %p
       Cast
     - $.each item.casts, (i, cast) ->
-      - if cast.person && cast.person.name
+      - if (cast.person && cast.person.name) || (cast.movie && cast.movie.title)
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: cast.id, "data-id" => "id", "data-model" => "Cast", "data-key" => "cast", "data-controller" => "casts" }
           .span2
             %input.edit-item{ type: "text", value: cast.character, "data-id" => "character" }
           .span2
-            %input.js-cast-person.edit-item{ type: "text", value: cast.person.name }
-            %input.edit-item{ type: "hidden", value: cast.person_id, "data-id" => "person_id" }
+            - if cast.person
+              %input.js-cast-person.edit-item{ type: "text", value: cast.person.name }
+              %input.edit-item{ type: "hidden", value: cast.person_id, "data-id" => "person_id" }
+            - else if cast.movie
+              %input.js-cast-movie.edit-item{ type: "text", value: cast.movie.title }
+              %input.edit-item{ type: "hidden", value: cast.movie_id, "data-id" => "movie_id" }
           != JST['templates/admin/shared/_buttons'](approved: cast.approved)
 
-- if item.images.length > 0
+- if item.images && item.images.length > 0
   .images.span12.box
     - $.each item.images, (i, image) ->
       .span12.js-edit-item
@@ -100,7 +119,7 @@
           %input.edit-item{ type: "text", value: image.priority, "data-id" => "priority" }
         != JST['templates/admin/shared/_buttons'](approved: image.approved)
 
-- if item.videos.length > 0
+- if item.videos && item.videos.length > 0
   .videos.span12.box
     - $.each item.videos, (i, video) ->
       .span12.js-edit-item
@@ -116,7 +135,7 @@
           %input.edit-item{ type: "text", value: video.description, "data-id" => "description" }
         != JST['templates/admin/shared/_buttons'](approved: video.approved)
 
-- if item.movie_genres.length > 0
+- if item.movie_genres && item.movie_genres.length > 0
   .movie-genres.span12.box
     %p
       Genres
@@ -129,7 +148,7 @@
             %input.edit-item{ type: "hidden", value: genre.genre_id, "data-id" => "genre_id" }
           != JST['templates/admin/shared/_buttons'](approved: genre.approved)
 
-- if item.movie_keywords.length > 0
+- if item.movie_keywords && item.movie_keywords.length > 0
   .movie-keywords.span12.box
     %p
       Keywords
@@ -142,7 +161,7 @@
             %input.edit-item{ type: "hidden", value: keyword.keyword_id, "data-id" => "keyword_id" }
           != JST['templates/admin/shared/_buttons'](approved: keyword.approved)
 
-- if item.movie_languages.length > 0
+- if item.movie_languages && item.movie_languages.length > 0
   .movie-languages.span12.box
     %p
       Languages
@@ -155,7 +174,7 @@
             %input.edit-item{ type: "hidden", value: language.language_id, "data-id" => "language_id" }
           != JST['templates/admin/shared/_buttons'](approved: language.approved)
 
-- if item.revenue_countries.length > 0
+- if item.revenue_countries && item.revenue_countries.length > 0
   .revenue-countries.span12.box
     %p
       Revenue countries
@@ -168,7 +187,7 @@
             %input.edit-item{ type: "hidden", value: country.country_id, "data-id" => "country_id" }
           != JST['templates/admin/shared/_buttons'](approved: country.approved)
 
-- if item.production_companies.length > 0
+- if item.production_companies && item.production_companies.length > 0
   .production-companies.span12.box
     %p
       Production companies
@@ -181,20 +200,39 @@
             %input.edit-item{ type: "hidden", value: company.company_id, "data-id" => "company_id" }
           != JST['templates/admin/shared/_buttons'](approved: company.approved)
 
-- if item.tags.length > 0
+- if item.person_social_apps && item.person_social_apps.length > 0
+  .movie-languages.span12.box
+    %p
+      Social Apps
+    - $.each item.person_social_apps, (i, app) ->
+      - if app.social_app
+        .span12.js-edit-item
+          %input.edit-item{ type: "hidden", value: app.id, "data-id" => "id", "data-model" => "PersonSocialApp", "data-key" => "person_social_app", "data-controller" => "person_social_apps" }
+          .span2
+            %input.js-social-app.edit-item{ type: "text", value: app.social_app.social_app }
+            %input.edit-item{ type: "hidden", value: app.social_app_id, "data-id" => "social_app_id" }
+          .span2
+            %input.edit-item{ type: "text", value: app.profile_link, "data-id" => "profile_link" }
+          != JST['templates/admin/shared/_buttons'](approved: app.approved)
+
+- if item.tags && item.tags.length > 0
   .tags.span12.box
     %p
       Tagged people
     - $.each item.tags, (i, tag) ->
-      - if tag.person
-        .span12.js-edit-item
-          %input.edit-item{ type: "hidden", value: tag.id, "data-id" => "id", "data-model" => "Tag", "data-key" => "tag", "data-controller" => "tags" }
-          .span2
+      .span12.js-edit-item
+        %input.edit-item{ type: "hidden", value: tag.id, "data-id" => "id", "data-model" => "Tag", "data-key" => "tag", "data-controller" => "tags" }
+        .span2
+          - if tag.person
             %input.js-tag-people.edit-item{ type: "text", value: tag.person.name }
             %input.edit-item{ type: "hidden", value: tag.person_id, "data-id" => "person_id" }
-          != JST['templates/admin/shared/_buttons'](approved: tag.approved)
+          - else if tag.movie
+            %input.js-tag-movie.edit-item{ type: "text", value: tag.movie.title }
+            %input.edit-item{ type: "hidden", value: tag.movie_id, "data-id" => "taggable_id" }
+            %input.edit-item{ type: "hidden", value: "Movie", "data-id" => "taggable_type" }
+        != JST['templates/admin/shared/_buttons'](approved: tag.approved)
 
-- if item.releases.length > 0
+- if item.releases && item.releases.length > 0
   .releases.span12.box
     %p
       Releases

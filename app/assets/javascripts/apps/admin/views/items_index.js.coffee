@@ -17,8 +17,8 @@ class AdminApp.ItemsIndex extends Backbone.View
     container.html @template(items: items, type: type)
     self = @
 
-    selectors = [".js-alternative-title-language", ".js-metadata-status", ".js-crew-person", ".js-cast-person", ".js-genre", ".js-language", ".js-country", ".js-tag-people", ".js-release-country"]
-    urls = ["languages", "statuses", "people", "people", "genres", "language", "countries", "people", "countries"]
+    selectors = [".js-alternative-title-language", ".js-metadata-status", ".js-crew-person", ".js-cast-person", ".js-genre", ".js-language", ".js-country", ".js-tag-people", ".js-release-country", ".js-crew-movie", ".js-cast-movie", ".js-social-app", ".js-tag-movie"]
+    urls = ["languages", "statuses", "people", "people", "genres", "language", "countries", "people", "countries", "movies", "movies", "social_apps", "movies"]
     $.each selectors, (i, selector) ->
       self.init_autocomplete(container, selector, urls[i])
     self.init_datepicker()

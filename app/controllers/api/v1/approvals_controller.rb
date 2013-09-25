@@ -115,7 +115,7 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
 
   def approve_master_value(type, record)
     type = type.classify
-    if ["MovieGenre", "MovieKeyword", "AlternativeTitle", "MovieLanguage", "Cast", "Crew", "ProductionCompany", "Tag"].include?(type)
+    if ["MovieGenre", "MovieKeyword", "AlternativeTitle", "MovieLanguage", "Cast", "Crew", "ProductionCompany", "Tag", "PersonSocialApp"].include?(type)
       case type
       when "MovieGenre"
         item = Genre.find(record.genre_id)
@@ -138,6 +138,8 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
         end
       when "ProductionCompany"
         item = Company.find(record.company_id)
+      when "PersonSocialApp"
+        item = SocialApp.find(record.social_app_id)
       end
       if item
         item.approved = true

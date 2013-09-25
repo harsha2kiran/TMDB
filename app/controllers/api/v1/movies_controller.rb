@@ -2,8 +2,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   inherit_resources
 
-  respond_to :json
-
   def index
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
       all_items = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
@@ -17,6 +15,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       filter_results
       @all = false
     end
+    @current_api_user = current_api_user
     load_additional_values(@movies, "index")
   end
 
@@ -32,7 +31,8 @@ class Api::V1::MoviesController < Api::V1::BaseController
     filter_results
     @all = false
     load_additional_values(@movies, "index")
-    render "index"
+    @current_api_user = current_api_user
+    render "my_movies"
   end
 
   def create
@@ -80,7 +80,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if @movie.id != @original_movie.id
       add_original_values(@movie, @original_movie)
     else
-      @movie.movie_languages.map(&:language_id).to_yaml
       add_default_values(@movie)
     end
     load_additional_values(@movie, "show")
