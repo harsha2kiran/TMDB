@@ -1,10 +1,66 @@
-- type = @type
-- @items.each (item) ->
+%table.datatable
+  - type = @type
   - if type == "Movie"
-    - item = item.get("movie")
-    %a.span12{ href: "#admin/movies/#{item.id}" }
-      = item.title
+    %thead
+      %tr
+        %th
+          Title
+        %th
+          Overview
+        %th
+          Tagline
+        %th
+          Content Score
+        %th
+          Moderate
   - else if type == "Person"
-    - item = item.get("person")
-    %a.span12{ href: "#admin/people/#{item.id}" }
-      = item.name
+    %thead
+      %tr
+        %th
+          Name
+        %th
+          Biography
+        %th
+          Birthday
+        %th
+          Place of birth
+        %th
+          Day of death
+        %th
+          Homepage
+        %th
+          Imdb ID
+        %th
+          Moderate
+  %tbody
+    - @items.each (item) ->
+      - if type == "Movie"
+        - item = item.get("movie")
+        %tr{ "data-id" => item.id, "data-model" => "Movie" }
+          %td.jeditable{ "data-id" => "title" }= item.title
+          %td.jeditable{ "data-id" => "overview" }= item.overview
+          %td.jeditable{ "data-id" => "tagline" }= item.tagline
+          %td.jeditable{ "data-id" => "content_score" }= item.content_score
+          %td
+            %a.span12{ href: "#admin/movies/#{item.id}" }
+              Moderate
+
+      - else if type == "Person"
+        - item = item.get("person")
+        %tr{ "data-id" => item.id, "data-model" => "Person" }
+          %td.jeditable{ "data-id" => "name" }= item.name
+          %td.jeditable{ "data-id" => "biography" }= item.biography
+          - if item.birthday
+            %td.jeditable{ "data-id" => "birthday" }= moment(item.birthday).format("YYYY-MM-DD")
+          - else
+            %td.jeditable{ "data-id" => "birthday" }= item.birthday
+          %td.jeditable{ "data-id" => "place_of_birth" }= item.place_of_birth
+          - if item.day_of_death
+            %td.jeditable{ "data-id" => "day_of_death" }= moment(item.day_of_death).format("YYYY-MM-DD")
+          - else
+            %td.jeditable{ "data-id" => "day_of_death" }= item.day_of_death
+          %td.jeditable{ "data-id" => "homepage" }= item.homepage
+          %td.jeditable{ "data-id" => "imdb_id" }= item.imdb_id
+          %td
+            %a.span12{ href: "#admin/people/#{item.id}" }
+              Moderate

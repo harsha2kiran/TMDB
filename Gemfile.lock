@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 494f752b8eb8350f33841c822a67d014c869219f
+  specs:
+    jquery-datatables-rails (1.11.2)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -339,6 +346,7 @@ DEPENDENCIES
   has_scope
   html5-rails
   inherited_resources
+  jquery-datatables-rails!
   jquery-fileupload-rails
   jquery-rails (~> 2.3.0)
   jquery-timepicker-rails

@@ -34,3 +34,8 @@ $(document).ready ->
       $(".js-new-item-info, .js-new-item-add-form").hide()
       $(".js-new-movie-info, .js-new-movie-add-form").hide()
       $(".js-new-person-info, .js-new-person-add-form").hide()
+
+  $('.datatable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sPaginationType": "bootstrap"
+  })

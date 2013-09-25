@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require ../../../vendor/assets/javascripts/jquery.jeditable.mini.js
 //= require hamlcoffee
 //= require ../../../vendor/assets/javascripts/bootstrap
 //= require ejs
@@ -50,5 +51,8 @@
 //= require_tree ./apps/movies/views/
 //= require_tree ./apps/movies/routers/
 //= require moment
+
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 
 //= require_tree .

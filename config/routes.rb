@@ -115,6 +115,7 @@ Movies::Application.routes.draw do
         get "main_item" => "approvals#main_item"
         get "items" => "approvals#items"
         get "item" => "approvals#item"
+        post "inline_edit" => "approvals#inline_edit"
       end
     end
     get '/search' => 'search#search', :as => :search

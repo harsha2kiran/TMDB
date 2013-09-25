@@ -111,6 +111,14 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     render "item"
   end
 
+  def inline_edit
+    model = params[:model].classify.constantize
+    movie = model.find params[:id]
+    movie[params[:column].to_sym] = params[:value]
+    movie.save
+    render text: params[:value]
+  end
+
   private
 
   def approve_master_value(type, record)
