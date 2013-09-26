@@ -8,6 +8,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{ name: "fragment", content: "!" }
   %body{:id => body_id}
     .notifications
 
@@ -63,13 +64,6 @@
           %li.span2
             %a{ href: "#following" }
               My follows
-          -# - if current_user.user_type == "admin"
-          -#   %li.span2
-          -#     %a{ href: "#admin/movies" }
-          -#       Manage movies
-          -#   %li.span2
-          -#     %a{ href: "#admin/people" }
-          -#       Manage people
           %li.login-info.span5
             Signed in as #{current_user.email}. Not you?
             \#{link_to "Sign out", destroy_user_session_path, :method => :delete, class: "sign-out" }

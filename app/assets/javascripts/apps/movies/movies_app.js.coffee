@@ -4,7 +4,6 @@ window.MoviesApp = {
     window.MoviesApp.router = new MoviesApp.Router()
     Backbone.history.start()
 
-
     $("body").on "click", ".lock", (e) ->
       self = $(@)
       field = $(@).attr("data-field")

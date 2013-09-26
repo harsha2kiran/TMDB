@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.12'
+# gem "google_ajax_crawler"
 gem "nokogiri"
 gem 'pg'
 gem 'pg_search'
@@ -52,6 +53,8 @@ gem "erb2haml"
 gem 'country-select'
 gem 'kaminari'
 gem "youtube_it"
-gem 'rack-mini-profiler'
+# gem 'rack-mini-profiler'
 gem 'momentjs-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'puma'
+
