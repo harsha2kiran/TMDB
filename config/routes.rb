@@ -69,6 +69,8 @@ Movies::Application.routes.draw do
     end
     resources :people do
       collection do
+        get "get_popular" => "people#get_popular"
+        get "edit_popular" => "people#edit_popular"
         get "search" => "people#search"
         get "my_people" => "people#my_people"
       end

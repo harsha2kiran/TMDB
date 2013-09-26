@@ -4,19 +4,23 @@
   - @gallery.each (item) ->
     .edit-gallery-item
       - if item.get("image")
-        %a{ href: "#movies/#{item.get('id')}" }
+        - link = if item.get("type") == "Movie" then "movies" else "people"
+        %a{ href: "##{link}/#{item.get('id')}" }
           %img{ src: item.get("image").image_file.small.url, width: 150 }
       - else
         %img{ src: "", alt: "missing img", width: 150 }
       .values
         .title
-          %label= "Movie title: "
+          - if item.get("type") == "Movie"
+            %label= "Title: "
+          - else
+            %label= "Name: "
           = '"' + item.get("title") + '"'
         .popular
           %label= "Position in gallery:"
           %input.js-popular{ type: "text", value: item.get("popular") }
         .save
-          %input.js-popular-id{ type: "hidden", value: item.get("id") }
+          %input.js-popular-id{ type: "hidden", value: item.get("id"), "data-type" => item.get("type") }
           %input.js-popular-save{ type: "button", value: "Save" }
 %a.js-close-edit-gallery.link{ href: "#" }
   Back

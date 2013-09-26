@@ -17,16 +17,24 @@ class DashboardApp.EditGallery extends Backbone.View
     this
 
   save_popular: (e) ->
-    $values = $(e.target).parents(".values")
+    $values = $(e.target).parents(".values").first()
     $popular = $values.find(".js-popular")
     popular_val = $popular.val()
     if popular_val && popular_val != "" && !isNaN(popular_val)
       id = $values.find(".js-popular-id").val()
+      type = $values.find(".js-popular-id").attr("data-type")
       if id && id != ""
         item = new DashboardApp.GalleryModel()
-        item.save ({ id: id, movie: { id: id, popular: popular_val } }),
-          success: ->
-            console.log "updated"
+        if type == "Movie"
+          item.url = "/api/v1/movies/#{id}"
+          item.save ({ id: id, movie: { id: id, popular: popular_val } }),
+            success: ->
+              console.log "updated"
+        else
+          item.url = "/api/v1/people/#{id}"
+          item.save ({ id: id, person: { id: id, popular: popular_val } }),
+            success: ->
+              console.log "updated"
     else
       $popular.addClass("error")
 

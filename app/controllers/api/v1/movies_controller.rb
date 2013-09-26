@@ -89,7 +89,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def edit_popular
     if current_api_user && current_api_user.user_type == "admin"
-      @movies = Movie.select("id, title, popular").where(approved: true).includes(:images).order("popular ASC")
+      @items = fetch_popular
     else
       @movies = []
     end
@@ -97,19 +97,12 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def get_popular
-    @movies = Movie.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
+    @items = fetch_popular
     render 'popular'
   end
 
   def search
-    # if current_api_user
-    #   movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
-    # else
-    #   movies = Movie.where("lower(title) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
-    # end
-
     movies = Movie.where("lower(title) LIKE ?", "%" + params[:term].downcase + "%")
-
     results = []
     movies.each do |movie|
       results << { label: movie.title, value: movie.title, id: movie.id }
@@ -118,6 +111,20 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   private
+
+  def fetch_popular
+    items = []
+    movies = Movie.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
+    movies.each do |item|
+      items << { id: item.id, title: item.title, popular: item.popular, images: item.images, type: "Movie" }
+    end
+    people = Person.select("id, name, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
+    people.each do |item|
+      items << { id: item.id, title: item.name, popular: item.popular, images: item.images, type: "Person" }
+    end
+    items.sort! { |a,b| a[:popular] <=> b[:popular] }
+    items
+  end
 
   def filter_results
     original_ids = []

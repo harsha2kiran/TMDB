@@ -7,6 +7,7 @@ class AdminApp.MainItemShow extends Backbone.View
 
   events:
     "click .js-approve" : "approve"
+    "click .js-add-popular" : "popular"
 
   render: ->
     show = $(@el)
@@ -54,3 +55,32 @@ class AdminApp.MainItemShow extends Backbone.View
               @details_view = new AdminApp.ItemsIndex(items: details, type: type)
               $(".js-item-details").html @details_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+
+  popular: (e) ->
+    item = $(e.target)
+    id = item.attr("data-id")
+    type = item.attr("data-type")
+    position = $(@el).find(".js-popular").val()
+    if position == ""
+      position = "0"
+    if position == "0" || position == "0.0"
+      text = type + " will be removed from home page gallery. Please confirm."
+    else
+      text = type + " will be visible in home page gallery. Please confirm."
+    if confirm(text) == true
+      item = new DashboardApp.GalleryModel()
+      if type == "Movie"
+        item.url = api_version + "movies/" + id
+        item.save ({ id: id, movie: { id: id, popular: position } }),
+          success: ->
+            console.log "updated"
+      else if type == "Person"
+        item.url = api_version + "people/" + id
+        item.save ({ id: id, person: { id: id, popular: position } }),
+          success: ->
+            console.log "updated"
+
+
+
+
+

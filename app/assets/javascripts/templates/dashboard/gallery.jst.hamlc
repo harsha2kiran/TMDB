@@ -2,8 +2,13 @@
   - @gallery.each (item) ->
     - if item.get("image")
       %li.dashboard-gallery-item
-        %a{ href: "#movies/#{item.get('id')}" }
-          %img{ src: item.get("image").image_file.small.url, width: 150 }
+        - if item.get("type") == "Movie"
+          %a{ href: "#movies/#{item.get('id')}" }
+            %img{ src: item.get("image").image_file.small.url, width: 150 }
+        - else
+          %a{ href: "#people/#{item.get('id')}" }
+            %img{ src: item.get("image").image_file.small.url, width: 150 }
+
 
 - if current_user && current_user.user_type == "admin"
   %a.js-edit-popular.link{ href: "#dashboard/edit_popular" }
