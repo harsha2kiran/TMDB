@@ -13,6 +13,8 @@
           Content Score
         %th
           Moderate
+        %th
+          Delete
   - else if type == "Person"
     %thead
       %tr
@@ -32,6 +34,8 @@
           Imdb ID
         %th
           Moderate
+        %th
+          Delete
   %tbody
     - @items.each (item) ->
       - if type == "Movie"
@@ -42,8 +46,14 @@
           %td.jeditable{ "data-id" => "tagline" }= item.tagline
           %td.jeditable{ "data-id" => "content_score" }= item.content_score
           %td
-            %a.span12{ href: "#admin/movies/#{item.id}" }
+            %a.span6{ href: "#admin/movies/#{item.id}" }
               Moderate
+            - if item.approved.toString() == "true"
+              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
+            - else
+              (Unapproved)
+          %td
+            %button.js-remove{ "data-id" => item.id, "data-controller" => "movies" }= "Delete"
 
       - else if type == "Person"
         - item = item.get("person")
@@ -61,6 +71,12 @@
             %td.jeditable{ "data-id" => "day_of_death" }= item.day_of_death
           %td.jeditable{ "data-id" => "homepage" }= item.homepage
           %td.jeditable{ "data-id" => "imdb_id" }= item.imdb_id
-          %td
-            %a.span12{ href: "#admin/people/#{item.id}" }
+          %td.moderate
+            %a.span6{ href: "#admin/people/#{item.id}" }
               Moderate
+            - if item.approved
+              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
+            - else
+              (Unapproved)
+          %td
+            %button.js-remove{ "data-id" => item.id, "data-controller" => "people" }= "Delete"

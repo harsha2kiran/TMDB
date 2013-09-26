@@ -5,13 +5,16 @@ class AdminApp.MainItemsIndex extends Backbone.View
   initialize: ->
     _.bindAll this, "render"
 
+  events:
+    "click .js-remove" : "remove"
+    "click .js-unapprove" : "unapprove"
+
   render: ->
     self = @
     index = $(@el)
     items = @options.items
     type = @options.type
     index.html @template(items: items, type: type)
-
 
     oTable = $(@el).find(".datatable").dataTable
       bJQueryUI: true
@@ -22,14 +25,52 @@ class AdminApp.MainItemsIndex extends Backbone.View
       callback: (sValue, y) ->
         aPos = oTable.fnGetPosition(this)
         oTable.fnUpdate sValue, aPos[0], aPos[1]
-
       submitdata: (value, settings) ->
         id: @parentNode.getAttribute("data-id")
         model: @parentNode.getAttribute("data-model")
         column: this.getAttribute("data-id")
-
       height: "14px"
       width: "100%"
-
     this
 
+  remove: (e) ->
+    self = @
+    container = $(e.target).parents("tr").first()
+    id = $(e.target).attr("data-id")
+    controller = $(e.target).attr("data-controller")
+    if confirm("Remove item?") == true
+      $.ajax api_version + controller + "/" + id,
+        method: "DELETE"
+        success: =>
+          $(".notifications").html("Successfully removed item.").show().fadeOut(window.hide_delay)
+          container.remove()
+          if controller == "movies"
+            type = "Movie"
+          else
+            type = "Person"
+          self.reload_datatable(type)
+
+  unapprove: (e) ->
+    self = @
+    container = $(e.target).parents("tr").first()
+    id = container.attr("data-id")
+    type = container.attr("data-model")
+    $.ajax api_version + "approvals/mark",
+      method: "post"
+      data:
+        approved_id: id
+        original_id: id
+        type: type
+        mark: false
+      success: ->
+        self.reload_datatable(type)
+
+  reload_datatable: (type) ->
+    items = new AdminApp.MainItems()
+    items.url = api_version + "approvals/main_items"
+    items.fetch
+      data:
+        type: type
+      success: ->
+        @index_view = new AdminApp.MainItemsIndex(items: items, type: type)
+        $(".js-content").html @index_view.render().el
