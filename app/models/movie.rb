@@ -37,6 +37,46 @@ class Movie < ActiveRecord::Base
     movies = movies.uniq
   end
 
+  def self.find_all_includes
+    self.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+  end
+
+  def self.find_all_approved_includes
+    self.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+  end
+
+  def self.all_by_user_or_temp(user_id, temp_id)
+    self.where("user_id = ? OR temp_user_id = ?", user_id, temp_id)
+  end
+
+  def self.all_by_temp(temp_id)
+    self.where("temp_user_id = ?", temp_id)
+  end
+
+  def self.order_include_my_movies
+    self.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+  end
+
+  def self.find_and_include_by_id(id)
+    self.where(id: id).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+  end
+
+  def self.find_and_include_all_approved
+    self.where(approved: true).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+  end
+
+  def self.my_movie_by_user(user_id)
+    self.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", user_id)
+  end
+
+  def self.my_movie_by_temp(temp_id)
+    self.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", temp_id)
+  end
+
+  def self.find_popular
+    self.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
+  end
+
   private
 
   def check_original_id

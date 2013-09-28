@@ -2,17 +2,19 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   inherit_resources
 
+  include MoviesHelper
+
   def index
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Movie.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+      all_items = Movie.find_all_includes
       @items_count = all_items.count
       @movies = all_items.page(params[:page]).order('title ASC')
       @all = true
     else
-      all_items = Movie.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+      all_items = Movie.find_all_approved_includes
       @items_count = all_items.count
       @movies = all_items
-      filter_results
+      @movies = filter_results(@movies)
       @all = false
     end
     @current_api_user = current_api_user
@@ -21,14 +23,14 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def my_movies
     if current_api_user
-      all_items = Movie.where("user_id = ? OR temp_user_id = ?", current_api_user.id, params[:temp_user_id])
+      all_items = Movie.all_by_user_or_temp(current_api_user.id, params[:temp_user_id])
     else
-      all_items = Movie.where("temp_user_id = ?", params[:temp_user_id])
+      all_items = Movie.all_by_temp(params[:temp_user_id])
     end
-    all_items = all_items.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    all_items = all_items.order_include_my_movies
     @items_count = all_items.count
     @movies = all_items
-    filter_results
+    @movies = filter_results(@movies)
     @all = false
     load_additional_values(@movies, "index")
     @current_api_user = current_api_user
@@ -50,13 +52,12 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def show
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @movie = Movie.where(id: params[:id]).includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+      @movie = Movie.find_and_include_by_id(params[:id])
       @movie = @movie.first
       @original_movie = @movie
       @all = true
     else
-      @movies = Movie.where(approved: true)
-      @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+      @movies = Movie.find_and_include_all_approved
       @movie = @movies.find_by_id(params[:id])
       @all = false
     end
@@ -67,9 +68,9 @@ class Api::V1::MoviesController < Api::V1::BaseController
 
   def my_movie
     if current_api_user
-      @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user.id)
+      @movies = Movie.my_movie_by_user(current_api_user.id)
     elsif params[:temp_user_id] && !current_api_user
-      @movies = Movie.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
+      @movies = Movie.my_movie_by_temp(params[:temp_user_id])
     else
       @movies = Movie.where(approved: true)
     end
@@ -113,29 +114,9 @@ class Api::V1::MoviesController < Api::V1::BaseController
   private
 
   def fetch_popular
-    items = []
-    movies = Movie.select("id, title, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
-    movies.each do |item|
-      items << { id: item.id, title: item.title, popular: item.popular, images: item.images, type: "Movie" }
-    end
-    people = Person.select("id, name, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
-    people.each do |item|
-      items << { id: item.id, title: item.name, popular: item.popular, images: item.images, type: "Person" }
-    end
-    items.sort! { |a,b| a[:popular] <=> b[:popular] }
-    items
-  end
-
-  def filter_results
-    original_ids = []
-    @movies.each_with_index do |movie, i|
-      if original_ids.include?(movie.original_id)
-        @movies[i] = ""
-      else
-        original_ids << movie.original_id
-      end
-    end
-    @movies.reject! { |c| c == "" }
+    movies = Movie.find_popular
+    people = Person.find_popular
+    items = collect_popular(movies, people)
   end
 
   def load_additional_values(items, action)

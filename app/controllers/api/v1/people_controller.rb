@@ -2,17 +2,19 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   inherit_resources
 
+  include PeopleHelper
+
   def index
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Person.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
+      all_items = Person.find_all_and_include
       @items_count = all_items.count
       @people = all_items.page(params[:page]).order('name ASC')
       @all = true
     else
-      all_items = Person.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      all_items = Person.find_all_approved_includes
       @items_count = all_items.count
       @people = all_items
-      filter_results
+      @people = filter_results(@people)
       @all = false
     end
     @current_api_user = current_api_user
@@ -21,13 +23,13 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def my_people
     if current_api_user
-      all_items = Person.where("user_id = ? OR temp_user_id = ?", current_api_user.id, params[:temp_user_id])
+      all_items = Person.all_by_user_or_temp(current_api_user.id, params[:temp_user_id])
     else
-      all_items = Person.where("temp_user_id = ?", params[:temp_user_id])
+      all_items = Person.all_by_temp(params[:temp_user_id])
     end
-    all_items = all_items.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    all_items = all_items.order_include_my_people
     @people = all_items
-    filter_results
+    @people = filter_results(@people)
     @all = false
     load_additional_values(@people, "index")
     @current_api_user = current_api_user
@@ -36,13 +38,12 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def show
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @person = Person.where(id: params[:id]).includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      @person = Person.find_and_include_by_id(params[:id])
       @person = @person.first
       @original_person = @person
       @all = true
     else
-      @people = Person.where(approved: true)
-      @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+      @people = Person.find_and_include_all_approved
       @person = @people.find_by_id(params[:id])
       @all = false
     end
@@ -53,9 +54,9 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def my_person
     if current_api_user
-      @people = Person.where("(approved = TRUE) OR (approved = FALSE AND user_id = ?)", current_api_user)
+      @people = Person.my_person_by_user(current_api_user.id)
     elsif params[:temp_user_id] && !current_api_user
-      @people = Person.where("(approved = TRUE) OR (approved = FALSE AND temp_user_id = ?)", params[:temp_user_id])
+      @people = Person.my_person_by_temp(params[:temp_user_id])
     else
       @people = Person.where(approved: true)
     end
@@ -87,14 +88,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def search
-    # if current_api_user
-    #   people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ? OR user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id], current_api_user.id)
-    # else
-    #   people = Person.where("lower(name) LIKE ? AND (approved = TRUE OR temp_user_id = ?)", "%" + params[:term].downcase + "%", params[:temp_user_id])
-    # end
-
     people = Person.where("lower(name) LIKE ?", "%" + params[:term].downcase + "%")
-
     results = []
     people.each do |person|
       results << { label: person.name, value: person.name, id: person.id }
@@ -103,18 +97,6 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   private
-
-  def filter_results
-    original_ids = []
-    @people.each_with_index do |person, i|
-      if original_ids.include?(person.original_id)
-        @people[i] = ""
-      else
-        original_ids << person.original_id
-      end
-    end
-    @people.reject! { |c| c == "" }
-  end
 
   def load_additional_values(items, action)
     movie_ids = []
