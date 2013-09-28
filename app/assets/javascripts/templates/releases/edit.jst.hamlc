@@ -15,10 +15,10 @@
         Confirmed
       .span12
         = if release.confirmed then "Yes" else "No"
-      %p
-        Primary
-      .span12
-        = if release.primary then "Yes" else "No"
+      -# %p
+      -#   Primary
+      -# .span12
+      -#   = if release.primary then "Yes" else "No"
       - if current_user && current_user.user_type == "admin"
         .span12
           %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
@@ -33,8 +33,8 @@
       %option{ value: "true" }= "Yes"
       %option{ value: "false" }= "No"
     -# %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
-    %select.js-new-release-primary
-      %option{ value: 0 }= "Primary?"
-      %option{ value: "true" }= "Yes"
-      %option{ value: "false" }= "No"
+    -# %select.js-new-release-primary
+    -#   %option{ value: 0 }= "Primary?"
+    -#   %option{ value: "true" }= "Yes"
+    -#   %option{ value: "false" }= "No"
     %input.js-new-release-save{ type: "button", value: "Save" }

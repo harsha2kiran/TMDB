@@ -259,15 +259,15 @@
               - else
                 %option{ value: "true" }= "Yes"
                 %option{ value: "false", selected: "selected" }= "No"
-          %p
-            Primary
-          .span12
-            %select.edit-item{ "data-id" => "primary" }
-              - if release.primary
-                %option{ value: "true", selected: "selected" }= "Yes"
-                %option{ value: "false" }= "No"
-              - else
-                %option{ value: "true" }= "Yes"
-                %option{ value: "false", selected: "selected" }= "No"
+          -# %p
+          -#   Primary
+          -# .span12
+          -#   %select.edit-item{ "data-id" => "primary" }
+          -#     - if release.primary
+          -#       %option{ value: "true", selected: "selected" }= "Yes"
+          -#       %option{ value: "false" }= "No"
+          -#     - else
+          -#       %option{ value: "true" }= "Yes"
+          -#       %option{ value: "false", selected: "selected" }= "No"
           != JST['templates/admin/shared/_buttons'](approved: release.approved)
 
