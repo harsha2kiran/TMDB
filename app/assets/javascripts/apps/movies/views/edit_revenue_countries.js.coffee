@@ -31,6 +31,8 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
     self = @
     country_id = $(@el).find(".js-new-revenue-country-id").val()
     revenue = $(@el).find(".js-new-revenue").val()
+    revenue = revenue.replace(/\D/g,'')
+    $(@el).find(".js-new-revenue").val(revenue)
     if country_id != "" && revenue != ""
       revenue_country = new MoviesApp.RevenueCountry()
       revenue_country.save ({ revenue_country: { country_id: country_id, movie_id: movie_id, revenue: revenue, temp_user_id: localStorage.temp_user_id } }),

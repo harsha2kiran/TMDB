@@ -34,52 +34,44 @@ class MoviesApp.EditVideos extends Backbone.View
 
     if link != "" && category != "" && comments != "" && description != "" && priority != "" && quality != "" && title != "" && duration != "" && thumbnail != ""
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
-        if window.movie_id
-          videable_id = window.movie_id
-          videable_type = "Movie"
-        else if window.person_id
-          videable_id = window.person_id
-          videable_type = "Person"
-        video = new MoviesApp.Video()
-        video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true, temp_user_id: localStorage.temp_user_id } }),
-          success: ->
-            $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-            # $(self.el).find(".js-new-video-title").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-description").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-comments").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-duration").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-link").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-type").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-quality").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-priority").val("").removeClass("error")
-            # $(self.el).find(".js-new-video-category").val("").removeClass("error")
-            # $(self.el).find(".video-info").hide()
-
-            self.reload_items()
-
-            if self.options.channel
-              $.ajax api_version + "approvals/mark",
-                method: "post"
-                data:
-                  approved_id: video.id
-                  type: "Video"
-                  mark: true
-                success: ->
-                  self.add_video_to_list(video.id)
-          error: ->
-            console.log "error"
-            $(".notifications").html("This video already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
-            $(self.el).find(".js-new-video-title").val("").removeClass("error")
-            $(self.el).find(".js-new-video-description").val("").removeClass("error")
-            $(self.el).find(".js-new-video-comments").val("").removeClass("error")
-            $(self.el).find(".js-new-video-duration").val("").removeClass("error")
-            $(self.el).find(".js-new-video-link").val("").removeClass("error")
-            $(self.el).find(".js-new-video-type").val("").removeClass("error")
-            $(self.el).find(".js-new-video-quality").val("").removeClass("error")
-            $(self.el).find(".js-new-video-priority").val("").removeClass("error")
-            $(self.el).find(".js-new-video-category").val("").removeClass("error")
-            $(self.el).find(".video-info").hide()
-
+        if !isNaN(priority)
+          if window.movie_id
+            videable_id = window.movie_id
+            videable_type = "Movie"
+          else if window.person_id
+            videable_id = window.person_id
+            videable_type = "Person"
+          video = new MoviesApp.Video()
+          video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true, temp_user_id: localStorage.temp_user_id } }),
+            success: ->
+              $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+              self.reload_items()
+              if self.options.channel
+                $.ajax api_version + "approvals/mark",
+                  method: "post"
+                  data:
+                    approved_id: video.id
+                    type: "Video"
+                    mark: true
+                  success: ->
+                    self.add_video_to_list(video.id)
+            error: ->
+              console.log "error"
+              $(".notifications").html("This video already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
+              $(self.el).find(".js-new-video-title").val("").removeClass("error")
+              $(self.el).find(".js-new-video-description").val("").removeClass("error")
+              $(self.el).find(".js-new-video-comments").val("").removeClass("error")
+              $(self.el).find(".js-new-video-duration").val("").removeClass("error")
+              $(self.el).find(".js-new-video-link").val("").removeClass("error")
+              $(self.el).find(".js-new-video-type").val("").removeClass("error")
+              $(self.el).find(".js-new-video-quality").val("").removeClass("error")
+              $(self.el).find(".js-new-video-priority").val("").removeClass("error")
+              $(self.el).find(".js-new-video-category").val("").removeClass("error")
+              $(self.el).find(".video-info").hide()
+        else
+          $(@el).find("input").each (i, input) ->
+            $(input).removeClass("error")
+          $(self.el).find(".js-new-video-priority").addClass("error")
       else
         $(@el).find("input").each (i, input) ->
           $(input).removeClass("error")

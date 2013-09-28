@@ -87,7 +87,7 @@
           %span.lock{ data: { controller: "movies", field: "content_score", action: "unmark" } }
             Unlock
       - else
-        %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score" }
+        %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score", pattern: "\\d*" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "movies", field: "content_score", action: "mark" } }
             Lock

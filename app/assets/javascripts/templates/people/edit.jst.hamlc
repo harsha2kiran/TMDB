@@ -71,6 +71,8 @@
             Lock
     %p.birthday.span12
       Birthday
+      - if @person.birthday
+        - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
       - if $.inArray("birthday", @locked) > -1
         %input.js-birthday{ readonly: "readonly", type: "text", value: @person.birthday, placeholder: "Birthday" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")

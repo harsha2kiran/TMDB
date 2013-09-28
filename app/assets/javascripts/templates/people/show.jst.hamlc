@@ -48,6 +48,7 @@
       %a{ href: @person.homepage, target: "_blank" }
         = @person.homepage
   - if @person.birthday
+    - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
     .birthday.span12
       %span= "Birthday: "
       = @person.birthday

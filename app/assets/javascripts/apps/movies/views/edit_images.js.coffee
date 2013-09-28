@@ -47,30 +47,33 @@ class MoviesApp.EditImages extends Backbone.View
     priority = $(@el).find(".js-new-image-priority").val()
     if title != ""
       if is_main_image != ""
-        image = new MoviesApp.Image()
-        if window.movie_id
-          imageable_id = window.movie_id
-          imageable_type = "Movie"
-        else if window.person_id
-          imageable_id = window.person_id
-          imageable_type = "Person"
-        image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
-          success: ->
-            $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-            $(self.el).find(".js-new-image-title").val("")
-            $(@el).find(".js-new-image-main").removeClass("error")
-            $(@el).find(".js-new-image-title").removeClass("error").val("")
-            self.reload_items()
-            if self.options.gallery
-              $.ajax api_version + "approvals/mark",
-                method: "post"
-                data:
-                  approved_id: image.id
-                  type: "Image"
-                  mark: true
-                success: ->
-                  self.add_image_to_list(image.id)
-
+        if !isNaN(priority)
+          image = new MoviesApp.Image()
+          if window.movie_id
+            imageable_id = window.movie_id
+            imageable_type = "Movie"
+          else if window.person_id
+            imageable_id = window.person_id
+            imageable_type = "Person"
+          image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
+            success: ->
+              $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+              $(self.el).find(".js-new-image-title").val("")
+              $(@el).find(".js-new-image-main").removeClass("error")
+              $(@el).find(".js-new-image-title").removeClass("error").val("")
+              self.reload_items()
+              if self.options.gallery
+                $.ajax api_version + "approvals/mark",
+                  method: "post"
+                  data:
+                    approved_id: image.id
+                    type: "Image"
+                    mark: true
+                  success: ->
+                    self.add_image_to_list(image.id)
+        else
+          $(@el).find("input, select").removeClass("error")
+          $(@el).find(".js-new-image-priority").addClass("error").focus()
       else
         $(@el).find(".js-new-image-main").addClass("error").focus()
         $(@el).find(".js-new-image-title").removeClass("error")
