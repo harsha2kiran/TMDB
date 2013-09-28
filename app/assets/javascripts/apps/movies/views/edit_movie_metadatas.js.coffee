@@ -34,7 +34,7 @@ class MoviesApp.EditMovieMetadatas extends Backbone.View
     runtime = $container.find(".js-metadata-runtime").val()
     status = $container.find(".js-metadata-status-id").val()
     if status != ""
-      if homepage.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
+      if homepage.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/) || homepage == ""
         movie_metadata = new MoviesApp.MovieMetadata()
         movie_metadata.save ({ movie_metadata: { movie_id: movie_id, budget: budget, homepage: homepage, imdb_id: imdb_id, runtime: runtime, status_id: status, temp_user_id: localStorage.temp_user_id } }),
           success: ->
