@@ -25,28 +25,28 @@
               %li.active
                 %a{:href => "/#"} Home
               %li
-                %a{:href => "/#movies"} Movies
+                %a{:href => "/#!/movies"} Movies
               %li
-                %a{:href => "/#people"} People
+                %a{:href => "/#!/people"} People
               %li
-                %a{:href => "/#genres"} Genres
+                %a{:href => "/#!/genres"} Genres
               %li
-                %a{:href => "/#lists"} Lists
+                %a{:href => "/#!/lists"} Lists
               %li
-                %a{:href => "/#galleries"} Galleries
+                %a{:href => "/#!/galleries"} Galleries
               %li
-                %a{:href => "/#channels"} Channels
+                %a{:href => "/#!/channels"} Channels
               %li
-                %a{:href => "/#movies/new"} Add movie
+                %a{:href => "/#!/movies/new"} Add movie
               %li
-                %a{:href => "/#people/new"} Add person
+                %a{:href => "/#!/people/new"} Add person
               - if user_signed_in?
                 %li
-                  %a{:href => "/#lists/new"} Add list
+                  %a{:href => "/#!/lists/new"} Add list
                 %li
-                  %a{:href => "/#galleries/new"} Add gallery
+                  %a{:href => "/#!/galleries/new"} Add gallery
                 %li
-                  %a{:href => "/#channels/new"} Add channel
+                  %a{:href => "/#!/channels/new"} Add channel
               - else
                 %li
                   %a{:href => new_user_session_path} Add list
@@ -57,12 +57,12 @@
 
       %ul.span12
         %li.span2
-          %a{:href => "/#my_movies"} My Movies
+          %a{:href => "/#!/my_movies"} My Movies
         %li.span2
-          %a{:href => "/#my_people"} My People
+          %a{:href => "/#!/my_people"} My People
         - if user_signed_in?
           %li.span2
-            %a{ href: "#following" }
+            %a{ href: "/#!/following" }
               My follows
           %li.login-info.span5
             Signed in as #{current_user.email}. Not you?

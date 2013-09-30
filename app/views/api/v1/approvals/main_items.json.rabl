@@ -5,7 +5,7 @@ elsif @type == "Person"
   attributes :id, :approved, :biography, :birthday, :day_of_death, :homepage, :imdb_id, :locked, :name, :place_of_birth, :user_id, :original_id, :temp_user_id, :created_at, :updated_at
 end
 node(:pending){ |item|
-  if item.pending_items.count > 0
+  if item.pending_items.length > 0
     true
   else
     false

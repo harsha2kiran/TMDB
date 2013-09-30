@@ -5,14 +5,14 @@
     - person = person.get("person")
 
     - if admin == true
-      - link = "#admin/people/#{person.id}"
+      - link = "/#!/admin/people/#{person.id}"
     - else
-      - link = "#people/#{person.id}"
+      - link = "/#!/people/#{person.id}"
 
     - if my_person == true
-      - link = "#people/#{person.original_id}/my_person"
+      - link = "/#!/people/#{person.original_id}/my_person"
     - else
-      - link = "#people/#{person.original_id}"
+      - link = "/#!/people/#{person.original_id}"
 
     - class_name = ""
     - if (person.pending == true || person.approved == false) && my_person == true

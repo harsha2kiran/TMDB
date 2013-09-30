@@ -1,4 +1,4 @@
-%a{ href: "#/people", class: "span12" }
+%a{ href: "/#!/people", class: "span12" }
   Index
 
 

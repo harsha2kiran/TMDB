@@ -1,4 +1,4 @@
-%a{ href: "#/movies", class: "span12" }
+%a{ href: "/#!/movies", class: "span12" }
   Index
 
 .movie.span12.box

@@ -42,4 +42,4 @@ class MoviesApp.Show extends Backbone.View
     id = $(e.target).attr("id")
     tab = id.replace("add-", "")
     localStorage.tab = tab
-    window.MoviesApp.router.navigate("#movies/#{window.movie_id}/edit/my_movie", true)
+    window.MoviesApp.router.navigate("/#!/movies/#{window.movie_id}/edit/my_movie", true)

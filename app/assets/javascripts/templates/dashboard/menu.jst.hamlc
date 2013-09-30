@@ -1,10 +1,6 @@
 .menu-item
-  %a{ href: "#movies" }
+  %a{ href: "/#!/movies" }
     Movies
 .menu-item
-  %a{ href: "#people" }
+  %a{ href: "/#!/people" }
     People
--# .menu-item
--#   Lists
--# .menu-item
--#   Genres

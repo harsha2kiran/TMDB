@@ -1,4 +1,4 @@
 Video not found.
 %br
 Visit
-%a{ href: "#channels" }= "channles index list"
+%a{ href: "/#!/channels" }= "channles index list"

@@ -1,4 +1,4 @@
 Genre not found.
 %br
 Visit
-%a{ href: "#genres" }= "genres index list"
+%a{ href: "/#!/genres" }= "genres index list"

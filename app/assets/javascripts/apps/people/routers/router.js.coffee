@@ -1,13 +1,13 @@
 class PeopleApp.Router extends Backbone.Router
 
   routes:
-    "people" : "index"
-    "my_people" : "my_people"
-    "people/new" : "new"
-    "people/:id/my_person" : "my_person"
-    "people/:id" : "show"
-    "people/:id/edit/my_person" : "edit_my_person"
-    "people/:id/edit" : "edit"
+    "!/people" : "index"
+    "!/my_people" : "my_people"
+    "!/people/new" : "new"
+    "!/people/:id/my_person" : "my_person"
+    "!/people/:id" : "show"
+    "!/people/:id/edit/my_person" : "edit_my_person"
+    "!/people/:id/edit" : "edit"
 
   initialize: ->
     @clear_values()

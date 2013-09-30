@@ -22,12 +22,12 @@
 
   .span12
     - if @my_person == "my_person"
-      %a.span2.show-person{ href: "#/people/#{window.person_id}/my_person"}
+      %a.span2.show-person{ href: "/#!/people/#{window.person_id}/my_person"}
         Show
     - else
-      %a.span2.show-person{ href: "#/people/#{window.person_id}"}
+      %a.span2.show-person{ href: "/#!/people/#{window.person_id}"}
         Show
-    %a.span2{ href: "#/people" }
+    %a.span2{ href: "/#!/people" }
       Index
 
   .person.span12.box.tab.hide

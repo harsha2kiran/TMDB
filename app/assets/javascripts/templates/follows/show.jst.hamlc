@@ -1,7 +1,7 @@
 - if @genre.movies && @genre.movies != [] && @genre.movies.length > 0
   - $.each @genre.movies, (i, movie) ->
     .movie.span3
-      %a{ href: "#movies/#{movie.movie.id}" }
+      %a{ href: "/#!/movies/#{movie.movie.id}" }
         .span12
           %img{ src: movie.movie.images.image_file.small.url, alt: "no image" }
         .span12

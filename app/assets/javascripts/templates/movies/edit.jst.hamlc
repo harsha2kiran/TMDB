@@ -34,12 +34,12 @@
 
   .span12
     - if @my_movie == "my_movie"
-      %a.span2.show-movie{ href: "#/movies/#{window.movie_id}/my_movie"}
+      %a.span2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
         Show
     - else
-      %a.span2.show-movie{ href: "#/movies/#{window.movie_id}"}
+      %a.span2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
         Show
-    %a.span2{ href: "#/movies" }
+    %a.span2{ href: "/#!/movies" }
       Index
 
   .movie.span12.box.tab.hide

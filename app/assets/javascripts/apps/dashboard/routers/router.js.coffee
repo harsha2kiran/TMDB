@@ -2,7 +2,7 @@ class DashboardApp.Router extends Backbone.Router
 
   routes:
     "" : "index"
-    "dashboard/edit_popular" : "edit_popular"
+    "!/dashboard/edit_popular" : "edit_popular"
 
   initialize: ->
     console.log "DashboardApp router initialized"

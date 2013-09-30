@@ -1,4 +1,4 @@
-%a{ href: "#/lists", class: "span12" }
+%a{ href: "/#!/lists", class: "span12" }
   Index lists
 
 %h3.span12

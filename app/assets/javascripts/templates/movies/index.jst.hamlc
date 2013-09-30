@@ -5,14 +5,14 @@
     - movie = movie.get("movie")
 
     - if admin == true
-      - link = "#admin/movies/#{movie.id}"
+      - link = "/#!/admin/movies/#{movie.id}"
     - else
-      - link = "#movies/#{movie.id}"
+      - link = "/#!/movies/#{movie.id}"
 
     - if my_movie == true
-      - link = "#movies/#{movie.original_id}/my_movie"
+      - link = "/#!/movies/#{movie.original_id}/my_movie"
     - else
-      - link = "#movies/#{movie.original_id}"
+      - link = "/#!/movies/#{movie.original_id}"
 
     - class_name = ""
     - if (movie.pending == true || movie.approved == false) && my_movie == true

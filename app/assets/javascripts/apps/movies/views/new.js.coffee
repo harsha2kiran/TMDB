@@ -40,7 +40,7 @@ class MoviesApp.New extends Backbone.View
         success: ->
           $(".notifications").html("Successfully added new movie. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").removeClass("error")
-          window.MoviesApp.router.navigate("#movies/#{movie.id}/my_movie", true)
+          window.MoviesApp.router.navigate("/#!/movies/#{movie.id}/my_movie", true)
     else
       $container.find(".js-title").addClass("error")
 

@@ -2,13 +2,13 @@
   - genre = genre.get("genre")
   .span3
     .genre-title
-      %a{ href: "#genres/#{genre.id}" }
+      %a{ href: "/#!/genres/#{genre.id}" }
         = genre.genre
     .movies-list
       - if genre.movies && genre.movies != [] && genre.movies.length > 0
         - $.each genre.movies, (i, movie) ->
           .movie.span6
-            %a{ href: "#movies/#{movie.movie.id}" }
+            %a{ href: "/#!/movies/#{movie.movie.id}" }
               .span12
                 - if movie.movie.images
                   %img{ src: movie.movie.images.image_file.small.url, alt: "no image" }

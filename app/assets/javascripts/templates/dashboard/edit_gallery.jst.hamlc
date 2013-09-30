@@ -5,7 +5,7 @@
     .edit-gallery-item
       - if item.get("image")
         - link = if item.get("type") == "Movie" then "movies" else "people"
-        %a{ href: "##{link}/#{item.get('id')}" }
+        %a{ href: "/#!/#{link}/#{item.get('id')}" }
           %img{ src: item.get("image").image_file.small.url, width: 150 }
       - else
         %img{ src: "", alt: "missing img", width: 150 }

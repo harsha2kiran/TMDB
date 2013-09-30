@@ -12,7 +12,7 @@
           - path = "lists"
         - else if follow.followable_type == "Genre"
           - path = "genres"
-        %a{ href: "##{path}/#{follow.followable_id}" }
+        %a{ href: "/#!/#{path}/#{follow.followable_id}" }
           - if followed_content.title
             = followed_content.title
           - else if followed_content.genre

@@ -10,7 +10,6 @@ class DashboardApp.EditGallery extends Backbone.View
     "click .js-close-edit-gallery" : "close_edit_popular"
 
   render: ->
-    # DashboardApp.router.navigate("/dashboard/edit_popular", true)
     gallery = $(@el)
     gallery.html @template(gallery: @collection)
     self = @
