@@ -37,4 +37,5 @@
             = movie.title
           - else
             = movie.title + " (Pending)"
-
+.span12.text-center.js-load-more
+  Load more

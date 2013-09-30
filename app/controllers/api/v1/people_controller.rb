@@ -15,6 +15,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @items_count = all_items.count
       @people = all_items
       @people = filter_results(@people)
+      page = params[:page] ? params[:page] : 1
+      @people = @people.page(page).per(40)
       @all = false
     end
     @current_api_user = current_api_user
@@ -32,6 +34,8 @@ class Api::V1::PeopleController < Api::V1::BaseController
     @people = filter_results(@people)
     @all = false
     load_additional_values(@people, "index")
+    page = params[:page] ? params[:page] : 1
+    @people = @people.page(page).per(40)
     @current_api_user = current_api_user
     render "my_people"
   end

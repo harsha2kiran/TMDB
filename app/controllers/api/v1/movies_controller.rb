@@ -12,9 +12,10 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @all = true
     else
       all_items = Movie.find_all_approved_includes
-      # @items_count = all_items.count
       @movies = all_items
       @movies = filter_results(@movies)
+      page = params[:page] ? params[:page] : 1
+      @movies = @movies.page(page).per(40)
       @all = false
     end
     @current_api_user = current_api_user
@@ -33,6 +34,8 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @movies = filter_results(@movies)
     @all = false
     load_additional_values(@movies, "index")
+    page = params[:page] ? params[:page] : 1
+    @movies = @movies.page(page).per(40)
     @current_api_user = current_api_user
     render "my_movies"
   end

@@ -37,3 +37,5 @@
             = person.name
           - else
             = person.name + " (Pending)"
+.span12.text-center.js-load-more
+  Load more

@@ -83,6 +83,7 @@ class AdminApp.Router extends Backbone.Router
           $(".js-content").html @index_view.render().el
 
   clear_values: ->
+    window.current_page = 1
     try
       delete window.person_id
     catch e
