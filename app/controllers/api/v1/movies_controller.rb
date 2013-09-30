@@ -12,7 +12,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @all = true
     else
       all_items = Movie.find_all_approved_includes
-      @items_count = all_items.count
+      # @items_count = all_items.count
       @movies = all_items
       @movies = filter_results(@movies)
       @all = false

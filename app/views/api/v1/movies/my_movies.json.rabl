@@ -13,7 +13,7 @@ else
   }
 end
 node(:pending){ |movie|
-  if movie.pending_items.count > 0
+  if movie.pending_items.length > 0
     true
   else
     false

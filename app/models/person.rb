@@ -38,11 +38,13 @@ class Person < ActiveRecord::Base
   end
 
   def self.find_all_and_include
-    self.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
+    # self.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
+    self.find(:all, :includes => [:images, :pending_items])
   end
 
   def self.find_all_approved_includes
-    self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    # self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:images, :pending_items)
   end
 
   def self.all_by_user_or_temp(user_id, temp_id)
@@ -54,7 +56,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.order_include_my_people
-    self.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags, :pending_items)
+    self.order("people.approved DESC, people.updated_at DESC").includes(:images, :pending_items)
   end
 
   def self.find_and_include_by_id(id)

@@ -39,11 +39,13 @@ class Movie < ActiveRecord::Base
   end
 
   def self.find_all_includes
-    self.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+    # self.find(:all, :includes => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases])
+    self.find(:all, :includes => [:images, :pending_items])
   end
 
   def self.find_all_approved_includes
-    self.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    # self.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    self.where(approved: true).order("movies.approved DESC, movies.updated_at DESC").includes(:images, :pending_items)
   end
 
   def self.all_by_user_or_temp(user_id, temp_id)
@@ -55,7 +57,8 @@ class Movie < ActiveRecord::Base
   end
 
   def self.order_include_my_movies
-    self.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas, :pending_items)
+    # self.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas, :pending_items)
+    self.order("movies.approved DESC, movies.updated_at DESC").includes(:images, :pending_items)
   end
 
   def self.find_and_include_by_id(id)

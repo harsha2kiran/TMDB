@@ -12,7 +12,7 @@ else
   }
 end
 node(:pending){ |person|
-  if person.pending_items.count > 0
+  if person.pending_items.length > 0
     true
   else
     false
