@@ -63,6 +63,8 @@ class PeopleApp.Router extends Backbone.Router
       success: ->
         @index_view = new PeopleApp.Index(people: people, my_person: true)
         $(".js-content").html @index_view.render().el
+        if people.models.length < 40
+          $(".js-load-more").remove()
 
   index: ->
     console.log "people index"
@@ -72,6 +74,8 @@ class PeopleApp.Router extends Backbone.Router
       success: ->
         @index_view = new PeopleApp.Index(people: people)
         $(".js-content").html @index_view.render().el
+        if people.models.length < 40
+          $(".js-load-more").remove()
 
   edit: (id) ->
     @edit_person_action(id, "edit")

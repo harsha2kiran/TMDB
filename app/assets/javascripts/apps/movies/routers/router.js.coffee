@@ -187,6 +187,8 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @index_view = new MoviesApp.Index(movies: movies)
         $(".js-content").html @index_view.render().el
+        if movies.models.length < 40
+          $(".js-load-more").remove()
 
   my_movies: ->
     console.log "my movies"
@@ -199,6 +201,8 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         @index_view = new MoviesApp.Index(movies: movies, my_movie: true)
         $(".js-content").html @index_view.render().el
+        if movies.models.length < 40
+          $(".js-load-more").remove()
 
   genres_index: ->
     console.log "genres index"
