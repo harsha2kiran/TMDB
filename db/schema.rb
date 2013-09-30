@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926205338) do
+ActiveRecord::Schema.define(:version => 20130929134723) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -287,6 +287,17 @@ ActiveRecord::Schema.define(:version => 20130926205338) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+
+  create_table "pending_items", :force => true do |t|
+    t.integer  "pendable_id"
+    t.string   "pendable_type"
+    t.integer  "user_id"
+    t.string   "temp_user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "approvable_id"
+    t.string   "approvable_type"
+  end
 
   create_table "people", :force => true do |t|
     t.string   "name"

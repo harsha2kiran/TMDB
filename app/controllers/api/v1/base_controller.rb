@@ -3,13 +3,93 @@ class Api::V1::BaseController < ApplicationController
   respond_to :json, :js
 
   before_filter :set_controller_name, :except => [:mark, :unmark]
-  # before_filter :check_if_authenticated
   before_filter :set_params_user_id, :except => [:mark, :unmark]
   before_filter :set_approved_false, :except => [:mark, :unmark]
   before_filter :check_if_destroy, :except => [:mark, :unmark]
   before_filter :check_if_update, :except => [:mark, :unmark]
+  after_filter :set_pending
 
-  # doorkeeper_for :all, :unless => lambda { user_signed_in? || ["index", "show", "search", "search_my_lists", "get_current_user", "get_popular"].include?(params[:action]) || @controller == "views" }
+  def set_pending
+    if ["create", "update"].include?(params[:action])
+
+      hash_id = @controller.singularize
+
+      if is_pendable
+        if current_api_user
+          last_item = @controller.classify.constantize.where(user_id: current_api_user.id).last
+        else
+          last_item = @controller.classify.constantize.where(temp_user_id: params[hash_id.to_sym][:temp_user_id]).last
+        end
+      end
+
+      # all these have movie_id column
+      if ["alternative_titles", "casts", "crews", "movie_genres",
+          "movie_keywords", "movie_languages", "movie_metadatas",
+          "production_companies", "releases", "revenue_countries"].include?(@controller)
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = params[hash_id.to_sym][:movie_id]
+        pending.pendable_type = "Movie"
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
+
+      # all these have person_id column
+      if ["alternative_names", "casts", "crews", "person_social_apps", "tags"].include?(@controller)
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = params[hash_id.to_sym][:person_id]
+        pending.pendable_type = "Person"
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
+
+      if @controller == "images" && params[:action] == "update"
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = params[hash_id.to_sym][:imageable_id]
+        pending.pendable_type = params[hash_id.to_sym][:imageable_type]
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
+
+      if @controller == "videos"
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = params[hash_id.to_sym][:videable_id]
+        pending.pendable_type = params[hash_id.to_sym][:videable_type]
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
+
+      if @controller == "tags"
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = params[hash_id.to_sym][:taggable_id]
+        pending.pendable_type = params[hash_id.to_sym][:taggable_type]
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
+
+      # if @controller == "movies"
+      #   pending = add_new_pending_item(hash_id, last_item)
+      #   pending.pendable_id = pending.approvable_id
+      #   pending.pendable_type = "Movie"
+      #   unless pending_exist(pending, hash_id, last_item)
+      #     pending.save
+      #   end
+      # end
+
+      # if @controller == "people"
+      #   pending = add_new_pending_item(hash_id, last_item)
+      #   pending.pendable_id = pending.approvable_id
+      #   pending.pendable_type = "Person"
+      #   unless pending_exist(pending, hash_id, last_item)
+      #     pending.save
+      #   end
+      # end
+    end
+  end
 
   def current_api_user
     if doorkeeper_token
@@ -21,6 +101,44 @@ class Api::V1::BaseController < ApplicationController
 
   private
 
+  def is_pendable
+    if ["alternative_names", "casts", "crews", "person_social_apps", "tags",
+      "images", "videos", "alternative_titles", "casts", "crews", "movie_genres",
+      "movie_keywords", "movie_languages", "movie_metadatas", "movies", "people",
+      "production_companies", "releases", "revenue_countries"].include?(@controller)
+      true
+    else
+      false
+    end
+  end
+
+  def pending_exist(pending, hash_id, last_item)
+    if current_api_user
+      exist = PendingItem.where(
+        pendable_id: pending.pendable_id, pendable_type: pending.pendable_type,
+        approvable_id: last_item.id, approvable_type: @controller.classify,
+        user_id: current_api_user.id)
+    else
+      exist = PendingItem.where(
+        pendable_id: pending.pendable_id, pendable_type: pending.pendable_type,
+        approvable_id: last_item.id, approvable_type: @controller.classify,
+        temp_user_id: params[hash_id.to_sym][:temp_user_id])
+    end
+    exist = exist.count > 0 ? true : false
+  end
+
+  def add_new_pending_item(hash_id, last_item)
+    pending = PendingItem.new
+    if current_api_user && current_api_user.id
+      pending.user_id = current_api_user.id
+    else
+      pending.temp_user_id = params[hash_id.to_sym][:temp_user_id]
+    end
+    pending.approvable_id = last_item.id
+    pending.approvable_type = @controller.classify
+    pending
+  end
+
   def set_controller_name
     @controller = params[:controller].gsub("api/v1/", "")
     if @controller != "approvals"
@@ -29,17 +147,6 @@ class Api::V1::BaseController < ApplicationController
       @attribute_names = []
     end
   end
-
-#   def check_if_authenticated
-#     logger.info "controller " + @controller
-#     logger.info "action " + params[:action]
-#     public_controllers = ["movies", "videos", "images", "lists", "people", "views"]
-#     if public_controllers.include?(@controller) && (params[:action] == "index" || params[:action] == "show")
-#       # no need to authenticate, these are public resources
-#     else
-#       authenticate_user!
-#     end
-#   end
 
   def set_params_user_id
     if ["create", "update"].include?(params[:action])
@@ -63,7 +170,7 @@ class Api::V1::BaseController < ApplicationController
     # add approved = false value to record on create if column exist
     if params[:action] == "create"
       if @attribute_names.include?("approved")
-        if current_user && current_api_user.user_type == "admin"
+        if current_api_user && current_api_user.user_type == "admin"
           unless params["#{@controller.singularize.to_sym}"][:approved]
             params["#{@controller.singularize.to_sym}"][:approved] = false
           end
@@ -101,7 +208,6 @@ class Api::V1::BaseController < ApplicationController
           redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
         end
       elsif params[:temp_user_id] && !current_api_user && (@controller == "movies" || @controller == "people")
-        #TODO fix this
 
       end
     else

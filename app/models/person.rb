@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :views, :as => :viewable, :dependent => :destroy
   has_many :reports, :as => :reportable, :dependent => :destroy
+  has_many :pending_items, :as => :pendable, :dependent => :destroy
 
   belongs_to :user
 
@@ -53,7 +54,7 @@ class Person < ActiveRecord::Base
   end
 
   def self.order_include_my_people
-    self.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    self.order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags, :pending_items)
   end
 
   def self.find_and_include_by_id(id)

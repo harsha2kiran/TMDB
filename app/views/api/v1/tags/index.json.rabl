@@ -1,5 +1,5 @@
 object @tags
-attributes :id, :approved, :person_id, :taggable_type, :created_at, :updated_at, :taggable_id
+attributes :id, :approved, :person_id, :taggable_type, :created_at, :updated_at, :taggable_id, :user_id, :temp_user_id
 node(:tagged_content) { |tagged_content|
   if tagged_content.taggable_type == "Movie"
     if @movies

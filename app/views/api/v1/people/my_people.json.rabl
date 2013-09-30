@@ -11,3 +11,10 @@ else
     end
   }
 end
+node(:pending){ |person|
+  if person.pending_items.count > 0
+    true
+  else
+    false
+  end
+}

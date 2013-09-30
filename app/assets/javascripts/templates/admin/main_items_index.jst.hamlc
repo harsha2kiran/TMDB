@@ -48,10 +48,10 @@
           %td
             %a.span6{ href: "#admin/movies/#{item.id}" }
               Moderate
-            - if item.approved.toString() == "true"
-              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
+            - if item.pending || item.approved == false
+              (Pending)
             - else
-              (Unapproved)
+              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
           %td
             %button.js-remove{ "data-id" => item.id, "data-controller" => "movies" }= "Delete"
 
@@ -74,9 +74,9 @@
           %td.moderate
             %a.span6{ href: "#admin/people/#{item.id}" }
               Moderate
-            - if item.approved
-              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
+            - if item.pending || item.approved == false
+              (Pending)
             - else
-              (Unapproved)
+              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
           %td
             %button.js-remove{ "data-id" => item.id, "data-controller" => "people" }= "Delete"

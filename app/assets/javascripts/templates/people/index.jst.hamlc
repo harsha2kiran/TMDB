@@ -15,7 +15,7 @@
       - link = "#people/#{person.original_id}"
 
     - class_name = ""
-    - unless person.approved
+    - if (person.pending == true || person.approved == false) && my_person == true
       - class_name = "pending"
 
     %a{ href: link }

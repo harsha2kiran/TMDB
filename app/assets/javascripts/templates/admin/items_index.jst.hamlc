@@ -1,7 +1,11 @@
 - if @items.models[0].attributes.movie
   - item = @items.models[0].attributes.movie
+  - type = "Movie"
+  .span.js-main-item{ "data-id" => item.id, "data-type" => "Movie" }
 - else
   - item = @items.models[0].attributes.person
+  - type = "Person"
+  .span.js-main-item{ "data-id" => item.id, "data-type" => "Person" }
 
 - if item.alternative_titles && item.alternative_titles.length > 0
   .alternative-titles.span12.box
@@ -11,6 +15,7 @@
       - if title.language
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: title.id, "data-id" => "id", "data-model" => "AlternativeTitle", "data-key" => "alternative_title", "data-controller" => "alternative_titles" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => title.user_id, "data-temp-user-id" => title.temp_user_id }
           .span2
             %input.edit-item{ type: "text", value: title.alternative_title, "data-id" => "alternative_title" }
           .span2
@@ -25,6 +30,7 @@
     - $.each item.alternative_names, (i, name) ->
       .span12.js-edit-item
         %input.edit-item{ type: "hidden", value: name.id, "data-id" => "id", "data-model" => "AlternativeName", "data-key" => "alternative_name", "data-controller" => "alternative_names" }
+        %input.js-user-temp-id{ type: "hidden", "data-user-id" => name.user_id, "data-temp-user-id" => name.temp_user_id }
         .span2
           %input.edit-item{ type: "text", value: name.alternative_name, "data-id" => "alternative_name" }
         != JST['templates/admin/shared/_buttons'](approved: name.approved)
@@ -36,6 +42,7 @@
     - $.each item.movie_metadatas, (i, metadata) ->
       .span12.js-edit-item
         %input.edit-item{ type: "hidden", value: metadata.id, "data-id" => "id", "data-model" => "MovieMetadata", "data-key" => "movie_metadata", "data-controller" => "movie_metadatas" }
+        %input.js-user-temp-id{ type: "hidden", "data-user-id" => metadata.user_id, "data-temp-user-id" => metadata.temp_user_id }
         .span1
           Budget
         .span12
@@ -67,6 +74,11 @@
       - if (crew.person && crew.person.name) || (crew.movie && crew.movie.title)
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: crew.id, "data-id" => "id", "data-model" => "Crew", "data-key" => "crew", "data-controller" => "crews" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => crew.user_id, "data-temp-user-id" => crew.temp_user_id }
+          - if type == "Movie"
+            %input.js-additional{ type: "hidden", "data-id" => crew.person_id, "data-type" => "Person" }
+          - else if type == "Person"
+            %input.js-additional{ type: "hidden", "data-id" => crew.movie_id, "data-type" => "Movie" }
           .span2
             %input.edit-item{ type: "text", value: crew.job, "data-id" => "job" }
           .span2
@@ -86,6 +98,11 @@
       - if (cast.person && cast.person.name) || (cast.movie && cast.movie.title)
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: cast.id, "data-id" => "id", "data-model" => "Cast", "data-key" => "cast", "data-controller" => "casts" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => cast.user_id, "data-temp-user-id" => cast.temp_user_id }
+          - if type == "Movie"
+            %input.js-additional{ type: "hidden", "data-id" => cast.person_id, "data-type" => "Person" }
+          - else if type == "Person"
+            %input.js-additional{ type: "hidden", "data-id" => cast.movie_id, "data-type" => "Movie" }
           .span2
             %input.edit-item{ type: "text", value: cast.character, "data-id" => "character" }
           .span2
@@ -102,6 +119,7 @@
     - $.each item.images, (i, image) ->
       .span12.js-edit-item
         %input.edit-item{ type: "hidden", value: image.id, "data-id" => "id", "data-model" => "Image", "data-key" => "image", "data-controller" => "images" }
+        %input.js-user-temp-id{ type: "hidden", "data-user-id" => image.user_id, "data-temp-user-id" => image.temp_user_id }
         .span1
           %a.slimbox{ href: image.image_file.url, title: image.title }
             %img{ src: image.image_file.small.url }
@@ -124,6 +142,7 @@
     - $.each item.videos, (i, video) ->
       .span12.js-edit-item
         %input.edit-item{ type: "hidden", value: video.id, "data-id" => "id", "data-model" => "Video", "data-key" => "video", "data-controller" => "videos" }
+        %input.js-user-temp-id{ type: "hidden", "data-user-id" => video.user_id, "data-temp-user-id" => video.temp_user_id }
         %a{ href: video.link, target: "_blank" }
           .span12
             %img{ src: video.thumbnail, alt: "no image" }
@@ -143,6 +162,7 @@
       - if genre.genre
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: genre.id, "data-id" => "id", "data-model" => "MovieGenre", "data-key" => "movie_genre", "data-controller" => "movie_genres" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => genre.user_id, "data-temp-user-id" => genre.temp_user_id }
           .span2
             %input.js-genre.edit-item{ type: "text", value: genre.genre.genre }
             %input.edit-item{ type: "hidden", value: genre.genre_id, "data-id" => "genre_id" }
@@ -156,6 +176,7 @@
       - if keyword.keyword
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: keyword.id, "data-id" => "id", "data-model" => "MovieKeyword", "data-key" => "movie_keyword", "data-controller" => "movie_keywords" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => keyword.user_id, "data-temp-user-id" => keyword.temp_user_id }
           .span2
             %input.js-keyword.edit-item{ type: "text", value: keyword.keyword.keyword }
             %input.edit-item{ type: "hidden", value: keyword.keyword_id, "data-id" => "keyword_id" }
@@ -169,6 +190,7 @@
       - if language.language
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: language.id, "data-id" => "id", "data-model" => "MovieLanguage", "data-key" => "movie_language", "data-controller" => "movie_languages" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => language.user_id, "data-temp-user-id" => language.temp_user_id }
           .span2
             %input.js-language.edit-item{ type: "text", value: language.language.language }
             %input.edit-item{ type: "hidden", value: language.language_id, "data-id" => "language_id" }
@@ -182,6 +204,7 @@
       - if country.country
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: country.id, "data-id" => "id", "data-model" => "RevenueCountry", "data-key" => "revenue_country", "data-controller" => "revenue_countries" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => country.user_id, "data-temp-user-id" => country.temp_user_id }
           .span2
             %input.js-country.edit-item{ type: "text", value: country.country.country }
             %input.edit-item{ type: "hidden", value: country.country_id, "data-id" => "country_id" }
@@ -195,6 +218,7 @@
       - if company.company
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: company.id, "data-id" => "id", "data-model" => "ProductionCompany", "data-key" => "production_company", "data-controller" => "production_companies" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => company.user_id, "data-temp-user-id" => company.temp_user_id }
           .span2
             %input.js-company.edit-item{ type: "text", value: company.company.company }
             %input.edit-item{ type: "hidden", value: company.company_id, "data-id" => "company_id" }
@@ -208,6 +232,7 @@
       - if app.social_app
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: app.id, "data-id" => "id", "data-model" => "PersonSocialApp", "data-key" => "person_social_app", "data-controller" => "person_social_apps" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => app.user_id, "data-temp-user-id" => app.temp_user_id }
           .span2
             %input.js-social-app.edit-item{ type: "text", value: app.social_app.social_app }
             %input.edit-item{ type: "hidden", value: app.social_app_id, "data-id" => "social_app_id" }
@@ -222,6 +247,11 @@
     - $.each item.tags, (i, tag) ->
       .span12.js-edit-item
         %input.edit-item{ type: "hidden", value: tag.id, "data-id" => "id", "data-model" => "Tag", "data-key" => "tag", "data-controller" => "tags" }
+        %input.js-user-temp-id{ type: "hidden", "data-user-id" => tag.user_id, "data-temp-user-id" => tag.temp_user_id }
+        - if type == "Movie"
+          %input.js-additional{ type: "hidden", "data-id" => tag.person_id, "data-type" => "Person" }
+        - else if type == "Person"
+          %input.js-additional{ type: "hidden", "data-id" => tag.taggable_id, "data-type" => "Movie" }
         .span2
           - if tag.person
             %input.js-tag-people.edit-item{ type: "text", value: tag.person.name }
@@ -240,6 +270,7 @@
       - if release.country
         .span12.js-edit-item
           %input.edit-item{ type: "hidden", value: release.id, "data-id" => "id", "data-model" => "Release", "data-key" => "release", "data-controller" => "releases" }
+          %input.js-user-temp-id{ type: "hidden", "data-user-id" => release.user_id, "data-temp-user-id" => release.temp_user_id }
           %p
             Release date
           .span12
@@ -259,15 +290,5 @@
               - else
                 %option{ value: "true" }= "Yes"
                 %option{ value: "false", selected: "selected" }= "No"
-          -# %p
-          -#   Primary
-          -# .span12
-          -#   %select.edit-item{ "data-id" => "primary" }
-          -#     - if release.primary
-          -#       %option{ value: "true", selected: "selected" }= "Yes"
-          -#       %option{ value: "false" }= "No"
-          -#     - else
-          -#       %option{ value: "true" }= "Yes"
-          -#       %option{ value: "false", selected: "selected" }= "No"
           != JST['templates/admin/shared/_buttons'](approved: release.approved)
 

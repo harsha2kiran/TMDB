@@ -81,9 +81,59 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     end
   end
 
+  def add_remove_pending
+    user_id = params[:user_id] if params[:user_id]
+    temp_user_id = params[:temp_user_id] if params[:temp_user_id]
+    approvable_id = params[:approvable_id]
+    approvable_type = params[:approvable_type]
+    pendable_id = params[:pendable_id]
+    pendable_type = params[:pendable_type]
+
+    pending = []
+
+    # check if pending item exist
+
+    if ["Cast", "Crew", "Tag"].include?(approvable_type)
+      pending = PendingItem.where(approvable_id: approvable_id, approvable_type: approvable_type)
+    else
+      pending = PendingItem.where(pendable_type: pendable_type, pendable_id: pendable_id, approvable_id: approvable_id, approvable_type: approvable_type)
+    end
+
+    if user_id != "" && user_id != "undefined"
+      pending = pending.where(user_id: user_id)
+    elsif temp_user_id != "" && temp_user_id != "undefined"
+      pending = pending.where(temp_user_id: temp_user_id)
+    end
+
+    # if doesn't exist and user is unapproving
+    if params[:approval_type] == "unapprove" && pending.count == 0
+      if user_id != "" && user_id != "undefined"
+        pending = PendingItem.new(pendable_type: pendable_type, pendable_id: pendable_id, approvable_id: approvable_id, approvable_type: approvable_type, user_id: user_id)
+      else
+        pending = PendingItem.new(pendable_type: pendable_type, pendable_id: pendable_id, approvable_id: approvable_id, approvable_type: approvable_type, temp_user_id: temp_user_id)
+      end
+      pending.save
+    elsif params[:approval_type] == "approve" && pending.count > 0
+      pending.destroy_all
+    end
+
+    if ["Cast", "Crew", "Tag"].include?(approvable_type)
+      if params[:approval_type] == "unapprove" && params[:additional_id] && params[:additional_type] && params[:additional_id] != "" && params[:additional_type] != ""
+        if user_id && user_id != "undefined"
+          p = PendingItem.new(pendable_type: params[:additional_type], pendable_id: params[:additional_id], approvable_id: approvable_id, approvable_type: approvable_type, user_id: user_id)
+        else
+          p = PendingItem.new(pendable_type: params[:additional_type], pendable_id: params[:additional_id], approvable_id: approvable_id, approvable_type: approvable_type, temp_user_id: temp_user_id)
+        end
+        p.save
+      end
+    end
+
+    render nothing: true
+  end
+
   def main_items
     @type = params[:type]
-    @items = @type.classify.constantize.where("id = original_id").order("created_at")
+    @items = @type.classify.constantize.where("id = original_id").includes(:pending_items).order("created_at")
     render "main_items"
   end
 

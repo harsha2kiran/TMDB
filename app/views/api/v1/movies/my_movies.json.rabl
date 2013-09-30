@@ -12,3 +12,10 @@ else
     end
   }
 end
+node(:pending){ |movie|
+  if movie.pending_items.count > 0
+    true
+  else
+    false
+  end
+}

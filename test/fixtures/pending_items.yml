@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pendable_id: 1
+  pendable_type: MyString
+  user_id: 1
+  temp_user_id: MyString
+
+two:
+  pendable_id: 1
+  pendable_type: MyString
+  user_id: 1
+  temp_user_id: MyString

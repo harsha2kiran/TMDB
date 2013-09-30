@@ -23,6 +23,8 @@ class AdminApp.MainItemShow extends Backbone.View
     id = @id
     mark = $(e.target).attr("data-value")
     approved_id = $(e.target).parents(".box").find(".item-id").val()
+    temp_user_id = $(e.target).attr("data-temp-user-id")
+    user_id = $(e.target).attr("data-user-id")
     original_id = $(".approved[value='true']").prev().val()
     if !original_id
       original_id = approved_id
@@ -35,6 +37,18 @@ class AdminApp.MainItemShow extends Backbone.View
           type: type
           mark: mark
         success: ->
+
+          # if mark.toString() == "true"
+          #   $.ajax api_version + "approvals/remove_pending",
+          #     method: "post"
+          #     data:
+          #       original_id: original_id
+          #       type: type
+          #       user_id: user_id
+          #       temp_user_id: temp_user_id
+          #     success: (response) ->
+          #       console.log response
+
           items = new AdminApp.MainItems()
           items.url = api_version + "approvals/main_item"
           items.fetch

@@ -15,7 +15,7 @@
       - link = "#movies/#{movie.original_id}"
 
     - class_name = ""
-    - unless movie.approved
+    - if (movie.pending == true || movie.approved == false) && my_movie == true
       - class_name = "pending"
 
     %a{ href: link }

@@ -18,6 +18,7 @@ class Movie < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :views, :as => :viewable, :dependent => :destroy
   has_many :reports, :as => :reportable, :dependent => :destroy
+  has_many :pending_items, :as => :pendable, :dependent => :destroy
 
   belongs_to :user
 
@@ -54,7 +55,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.order_include_my_movies
-    self.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    self.order("movies.approved DESC, movies.updated_at DESC").includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas, :pending_items)
   end
 
   def self.find_and_include_by_id(id)

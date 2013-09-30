@@ -25,7 +25,9 @@ class AdminApp.ItemsIndex extends Backbone.View
     this
 
   approve: (e) ->
+    self = @
     console.log "approve"
+    parent = $(e.target).parents(".js-edit-item").first()
     id = $(e.target).parents(".js-edit-item").first().children()
     model = id.attr("data-model")
     id = id.val()
@@ -33,6 +35,16 @@ class AdminApp.ItemsIndex extends Backbone.View
       mark = true
     else
       mark = false
+
+    pendable_id = $(".js-main-item").attr("data-id")
+    pendable_type = $(".js-main-item").attr("data-type")
+    approvable_id = id
+    approvable_type = model
+    additional_id = parent.find(".js-additional").attr("data-id")
+    additional_type = parent.find(".js-additional").attr("data-type")
+    user_id = parent.find(".js-user-temp-id").attr("data-user-id")
+    temp_user_id = parent.find(".js-user-temp-id").attr("data-temp-user-id")
+
     $.ajax api_version + "approvals/mark",
       method: "post"
       data:
@@ -40,10 +52,29 @@ class AdminApp.ItemsIndex extends Backbone.View
         type: model
         mark: mark
       success: ->
-        if mark == true
+        if mark
+          approval_type = "approve"
           $(e.target).html "Unapprove"
         else
+          approval_type = "unapprove"
           $(e.target).html "Approve"
+        self.send_add_remove_pending(pendable_id, pendable_type, user_id, temp_user_id, approvable_id, approvable_type, approval_type, additional_id, additional_type)
+
+  send_add_remove_pending: (pendable_id, pendable_type, user_id, temp_user_id, approvable_id, approvable_type, approval_type, additional_id ="", additional_type = "") ->
+    $.ajax api_version + "approvals/add_remove_pending",
+      method: "post"
+      data:
+        pendable_id: pendable_id
+        pendable_type: pendable_type
+        user_id: user_id
+        temp_user_id: temp_user_id
+        approvable_id: approvable_id
+        approvable_type: approvable_type
+        approval_type: approval_type
+        additional_id: additional_id
+        additional_type: additional_type
+      success: (response) ->
+        console.log response
 
   update: (e) ->
     console.log "update"
@@ -63,15 +94,25 @@ class AdminApp.ItemsIndex extends Backbone.View
         $(".notifications").html("Error while updating item.").show().fadeOut(window.hide_delay)
 
   remove: (e) ->
+    self = @
     console.log "remove"
     container = $(e.target).parents(".js-edit-item").first()
     id = container.children()
     controller = id.attr("data-controller")
+    model = id.attr("data-model")
     id = id.val()
     if confirm("Remove item?") == true
       $.ajax api_version + controller + "/" + id,
         method: "DELETE"
         success: =>
+          pendable_id = $(".js-main-item").attr("data-id")
+          pendable_type = $(".js-main-item").attr("data-type")
+          approvable_id = id
+          approvable_type = model
+          user_id = container.find(".js-user-temp-id").attr("data-user-id")
+          temp_user_id = container.find(".js-user-temp-id").attr("data-temp-user-id")
+          approval_type = "approve"
+          self.send_add_remove_pending(pendable_id, pendable_type, user_id, temp_user_id, approvable_id, approvable_type, approval_type)
           $(".notifications").html("Successfully removed item.").show().fadeOut(window.hide_delay)
           container.remove()
 

@@ -3,6 +3,7 @@ class MovieMetadata < ActiveRecord::Base
   belongs_to :movie
   belongs_to :status
   belongs_to :user
+  has_many :pending_items, :as => :approvable, :dependent => :destroy
 
   validates_presence_of :status_id
   validates :homepage, url: true, :allow_blank => true

@@ -1,5 +1,5 @@
 object @casts
-attributes :id, :approved, :character, :movie_id, :person_id, :created_at, :updated_at
+attributes :id, :approved, :character, :movie_id, :person_id, :created_at, :updated_at, :user_id, :temp_user_id
 if @people
   if @original_movie || @original_person
     node(:person){ |cast|

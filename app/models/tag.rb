@@ -3,6 +3,7 @@ class Tag < ActiveRecord::Base
   belongs_to :taggable, polymorphic: true
   belongs_to :person
   belongs_to :user
+  has_many :pending_items, :as => :approvable, :dependent => :destroy
 
   validates_presence_of :person_id, :taggable_id, :taggable_type
   validates :person_id, :uniqueness => { :scope => [:taggable_type, :taggable_id] }
