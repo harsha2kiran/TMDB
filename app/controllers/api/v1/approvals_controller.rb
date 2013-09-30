@@ -81,6 +81,33 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     end
   end
 
+  def add_remove_main_pending
+    user_id = params[:user_id] if params[:user_id]
+    temp_user_id = params[:temp_user_id] if params[:temp_user_id]
+    original_id = params[:original_id]
+    type = params[:type]
+    mark = params[:mark]
+
+    if mark.to_s == "true"
+      pending = PendingItem.where(approvable_id: original_id, approvable_type: type.classify, pendable_id: original_id, pendable_type: type.classify)
+      if user_id != "" && user_id != "undefined"
+        pending = pending.where(user_id: user_id)
+      elsif temp_user_id != "" && temp_user_id != "undefined"
+        pending = pending.where(temp_user_id: temp_user_id)
+      end
+      pending.destroy_all
+    else
+      pending = PendingItem.new(approvable_id: original_id, approvable_type: type.classify, pendable_id: original_id, pendable_type: type.classify)
+      if user_id != "" && user_id != "undefined"
+        pending.user_id = user_id
+      elsif temp_user_id != "" && temp_user_id != "undefined"
+        pending.temp_user_id = temp_user_id
+      end
+      pending.save
+    end
+    render nothing: true
+  end
+
   def add_remove_pending
     user_id = params[:user_id] if params[:user_id]
     temp_user_id = params[:temp_user_id] if params[:temp_user_id]
@@ -115,6 +142,8 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
       pending.save
     elsif params[:approval_type] == "approve" && pending.count > 0
       pending.destroy_all
+      pending = PendingItem.where(approvable_id: params[:additional_id], approvable_type: params[:additional_type], pendable_id: params[:additional_id], pendable_type: params[:additional_type])
+      pending.destroy_all
     end
 
     if ["Cast", "Crew", "Tag"].include?(approvable_type)
@@ -125,6 +154,8 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
           p = PendingItem.new(pendable_type: params[:additional_type], pendable_id: params[:additional_id], approvable_id: approvable_id, approvable_type: approvable_type, temp_user_id: temp_user_id)
         end
         p.save
+        pending = PendingItem.new(approvable_id: params[:additional_id], approvable_type: params[:additional_type], pendable_id: params[:additional_id], pendable_type: params[:additional_type])
+        pending.save
       end
     end
 

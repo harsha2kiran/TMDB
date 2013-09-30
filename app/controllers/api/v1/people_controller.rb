@@ -61,7 +61,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
       @people = Person.where(approved: true)
     end
     @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-    @person = @people.where(original_id: params[:person_id]).last
+    @person = @people.where(original_id: params[:person_id]).order("updated_at DESC").first
     @original_person = @people.where(id: params[:person_id]).first
     @all = false
     if @person.id != @original_person.id
@@ -88,7 +88,7 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def search
-    people = Person.where("lower(name) LIKE ?", "%" + params[:term].downcase + "%")
+    people = Person.where("lower(name) LIKE ? AND id = original_id", "%" + params[:term].downcase + "%")
     results = []
     people.each do |person|
       results << { label: person.name, value: person.name, id: person.id }

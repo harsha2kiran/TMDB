@@ -119,6 +119,7 @@ Movies::Application.routes.draw do
         get "item" => "approvals#item"
         post "inline_edit" => "approvals#inline_edit"
         post "add_remove_pending" => "approvals#add_remove_pending"
+        post "add_remove_main_pending" => "approvals#add_remove_main_pending"
       end
     end
     get '/search' => 'search#search', :as => :search

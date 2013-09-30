@@ -75,7 +75,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
       @movies = Movie.where(approved: true)
     end
     @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-    @movie = @movies.where(original_id: params[:movie_id]).last
+    @movie = @movies.where(original_id: params[:movie_id]).order("updated_at DESC").first
     @original_movie = @movies.where(id: params[:movie_id]).first
     @all = false
     if @movie.id != @original_movie.id
@@ -103,7 +103,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def search
-    movies = Movie.where("lower(title) LIKE ?", "%" + params[:term].downcase + "%")
+    movies = Movie.where("lower(title) LIKE ? AND id = original_id", "%" + params[:term].downcase + "%")
     results = []
     movies.each do |movie|
       results << { label: movie.title, value: movie.title, id: movie.id }

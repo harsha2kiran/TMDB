@@ -71,23 +71,23 @@ class Api::V1::BaseController < ApplicationController
         end
       end
 
-      # if @controller == "movies"
-      #   pending = add_new_pending_item(hash_id, last_item)
-      #   pending.pendable_id = pending.approvable_id
-      #   pending.pendable_type = "Movie"
-      #   unless pending_exist(pending, hash_id, last_item)
-      #     pending.save
-      #   end
-      # end
+      if @controller == "movies"
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = pending.approvable_id
+        pending.pendable_type = "Movie"
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
 
-      # if @controller == "people"
-      #   pending = add_new_pending_item(hash_id, last_item)
-      #   pending.pendable_id = pending.approvable_id
-      #   pending.pendable_type = "Person"
-      #   unless pending_exist(pending, hash_id, last_item)
-      #     pending.save
-      #   end
-      # end
+      if @controller == "people"
+        pending = add_new_pending_item(hash_id, last_item)
+        pending.pendable_id = pending.approvable_id
+        pending.pendable_type = "Person"
+        unless pending_exist(pending, hash_id, last_item)
+          pending.save
+        end
+      end
     end
   end
 
@@ -134,7 +134,11 @@ class Api::V1::BaseController < ApplicationController
     else
       pending.temp_user_id = params[hash_id.to_sym][:temp_user_id]
     end
-    pending.approvable_id = last_item.id
+    if @controller == "movies" || @controller == "people"
+      pending.approvable_id = last_item.original_id
+    else
+      pending.approvable_id = last_item.id
+    end
     pending.approvable_type = @controller.classify
     pending
   end

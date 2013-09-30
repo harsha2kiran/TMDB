@@ -38,16 +38,16 @@ class AdminApp.MainItemShow extends Backbone.View
           mark: mark
         success: ->
 
-          # if mark.toString() == "true"
-          #   $.ajax api_version + "approvals/remove_pending",
-          #     method: "post"
-          #     data:
-          #       original_id: original_id
-          #       type: type
-          #       user_id: user_id
-          #       temp_user_id: temp_user_id
-          #     success: (response) ->
-          #       console.log response
+          $.ajax api_version + "approvals/add_remove_main_pending",
+            method: "post"
+            data:
+              original_id: original_id
+              type: type
+              user_id: user_id
+              temp_user_id: temp_user_id
+              mark: mark
+            success: (response) ->
+              console.log response
 
           items = new AdminApp.MainItems()
           items.url = api_version + "approvals/main_item"
