@@ -4,6 +4,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def index
     @lists = List.where("list_type = '' OR list_type IS NULL").includes(:list_items, :user)
+    @current_api_user = current_api_user
   end
 
   def show

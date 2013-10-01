@@ -7,6 +7,7 @@ class MoviesApp.ListsShow extends Backbone.View
 
   events:
     "click .js-remove" : "destroy"
+    "click .js-approve" : "approve"
     "click .js-create" : "create"
     "click .follow" : "follow"
     "click .following" : "unfollow"
@@ -37,7 +38,7 @@ class MoviesApp.ListsShow extends Backbone.View
       listable_id = item_id
       listable_type = item_type
       list_item = new MoviesApp.ListItem()
-      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
+      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         error: ->
           $(".notifications").html("Cannot add this item to list.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-item").val("").removeClass "error"
@@ -88,3 +89,19 @@ class MoviesApp.ListsShow extends Backbone.View
         followable_type: type
       success: =>
         $self.addClass("follow").removeClass("following").html("Follow")
+
+  approve: (e) ->
+    if $(e.target).hasClass("js-approve")
+      id = $(e.target).find("input").val()
+    else
+      id = $(e.target).parents(".js-approve").find("input").val()
+    container = $(e.target).parents(".item").first()
+    $.ajax api_version + "list_items/" + id,
+      method: "PUT"
+      data:
+        "list_item[id]" : id
+        "list_item[list_id]" : window.list_id
+        "list_item[approved]" : true
+      success: =>
+        $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
+        $(e.target).remove()

@@ -3,7 +3,7 @@ attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_t
 
 if @list
   child :list_items do
-    attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at
+    attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at, :approved, :user_id, :temp_user_id
     node(:images){ |item|
       if item.listable_type != "Image"
         r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
@@ -16,7 +16,11 @@ if @list
     }
     node(:listable_item){ |item|
       if item.listable_type != "Image"
-        r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+        if @current_api_user
+          r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
+        else
+          r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
+        end
         if r.length > 0
           r.first
         end

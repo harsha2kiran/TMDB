@@ -26,86 +26,116 @@
       .following.span12.box
         Already following
 
-    -if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-      - if !list.list_type || list.list_type == ''
-        .span12
-          %p.span12
-            Add movies, people, images or videos
-          .span12
-            %input.js-item{ type: "text", placeholder: "Search" }
-            %input.js-item-id{ type: "hidden" }
-            %input.js-item-type{ type: "hidden" }
-            %input.js-create{ type: "button", value: "Add to list" }
+    -# -if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+  - if !list.list_type || list.list_type == ''
+    .span12
+      %p.span12
+        Add movies and people to list
+      .span12
+        %input.js-item{ type: "text", placeholder: "Search" }
+        %input.js-item-id{ type: "hidden" }
+        %input.js-item-type{ type: "hidden" }
+        %input.js-create{ type: "button", value: "Add to list" }
 
-    - if list.list_type == "gallery"
-      .add-images-form
+  - if list.list_type == "gallery"
+    .add-images-form
 
-    - if list.list_type == "channel"
-      .add-videos-form
+  - if list.list_type == "channel"
+    .add-videos-form
 
   .span12
     - if list.list_items
       - $.each list.list_items, (i, item) ->
-        .span2.item
-          - found = false
-          - if item.list_item.listable_type == "Movie"
-            %a{ href: "/#!/movies/#{item.list_item.listable_id}" }
-              .span12
-                - $.each item.list_item.images, (i, image) ->
-                  - if found == false
-                    - if image && image.is_main_image && image.approved
-                      - found = true
-                      %img{ src: image.image_file.small.url, alt: "no image" }
-                - if found == false
-                  %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-              .span12
-                = item.list_item.listable_item.title
 
-          - found = false
-          - if item.list_item.listable_type == "Person"
-            %a{ href: "/#!/people/#{item.list_item.listable_id}" }
-              .span12
-                - $.each item.list_item.images, (i, image) ->
-                  - if found == false
-                    - if image && image.is_main_image && image.approved
-                      - found = true
-                      %img{ src: image.image_file.small.url, alt: "no image" }
-                - if found == false
-                  %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-              .span12
-                = item.list_item.listable_item.name
+        -# if is admin or mod or owner or list item is approved
+        - if item.list_item.approved || item.list_item.temp_user_id == localStorage.temp_user_id || (current_user && item.list_item.user_id == current_user.id)  || ((current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")))
+          .span2.item
 
-          - found = false
-          - if item.list_item.listable_type == "Image"
-            %a{ href: "/#!/images/#{item.list_item.listable_id}" }
-              .span12
-                - $.each item.list_item.images, (i, image) ->
-                  - if found == false
-                    - if image && image.approved
-                      - found = true
-                      %img{ src: image.image_file.small.url, alt: "no image" }
-                  .span12
-                    = image.title
-                - if found == false
-                  %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-
-          - found = false
-          - if item.list_item.listable_type == "Video"
-            %a{ href: "/#!/videos/#{item.list_item.listable_id}" }
-              .span12
-                - if item.list_item.listable_item && item.list_item.listable_item.approved
-                  - found = true
-                  %img{ src: item.list_item.listable_item.thumbnail, alt: "no image" }
+            - found = false
+            - if item.list_item.listable_type == "Movie" && item.list_item.listable_item
+              - if item.list_item.listable_item.approved
+                - my_item = ""
+              - else
+                - my_item = "/my_movie"
+              %a{ href: "/#!/movies/#{item.list_item.listable_id}#{my_item}" }
+                .span12
+                  - if item.list_item.images && item.list_item.images.length > 0
+                    - $.each item.list_item.images, (i, image) ->
+                      - if found == false
+                        - if image && image.is_main_image && image.approved
+                          - found = true
+                          %img{ src: image.image_file.small.url, alt: "no image" }
+                    - if found == false
+                      %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+                  - else
+                    %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
                 .span12
                   = item.list_item.listable_item.title
 
-          - if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-            .span.js-remove
-              %input{ type: "hidden", value: item.list_item.id }
-              Remove
+            - found = false
+            - if item.list_item.listable_type == "Person" && item.list_item.listable_item
+              - if item.list_item.listable_item.approved
+                - my_item = ""
+              - else
+                - my_item = "/my_person"
+              %a{ href: "/#!/people/#{item.list_item.listable_id}#{my_item}" }
+                .span12
+                  - if item.list_item.images && item.list_item.images.length > 0
+                    - $.each item.list_item.images, (i, image) ->
+                      - if found == false
+                        - if image && image.is_main_image && image.approved
+                          - found = true
+                          %img{ src: image.image_file.small.url, alt: "no image" }
+                    - if found == false
+                      %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+                  - else
+                    %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+                .span12
+                  = item.list_item.listable_item.name
+
+            -# if is owner, admin or mod can remove items
+            - if (current_user && current_user.id == item.list_item.user_id) || (item.list_item.temp_user_id == localStorage.temp_user_id) || (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+              .span.js-remove
+                %input{ type: "hidden", value: item.list_item.id }
+                Remove
+
+            -# if is owner, admin or mod can approve items
+            - if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+              - unless item.list_item.approved
+                .span.js-approve
+                  %input{ type: "hidden", value: item.list_item.id }
+                  Approve
 - else
   .span12
     List doesn't exist
   .span12
     %a{ href: "/#!/lists", class: "span12" }
       Go back to index lists
+
+
+
+
+
+-#           - found = false
+-#           - if item.list_item.listable_type == "Image"
+-#             %a{ href: "/#!/images/#{item.list_item.listable_id}" }
+-#               .span12
+-#                 - $.each item.list_item.images, (i, image) ->
+-#                   - if found == false
+-#                     - if image && image.approved
+-#                       - found = true
+-#                       %img{ src: image.image_file.small.url, alt: "no image" }
+-#                   .span12
+-#                     = image.title
+-#                 - if found == false
+-#                   %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+
+-#           - found = false
+-#           - if item.list_item.listable_type == "Video"
+-#             %a{ href: "/#!/videos/#{item.list_item.listable_id}" }
+-#               .span12
+-#                 - if item.list_item.listable_item && item.list_item.listable_item.approved
+-#                   - found = true
+-#                   %img{ src: item.list_item.listable_item.thumbnail, alt: "no image" }
+-#                 .span12
+-#                   = item.list_item.listable_item.title
