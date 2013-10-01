@@ -27,8 +27,11 @@ class MoviesApp.EditCasts extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        if ui.item.id == "0"
+          self.add_new_person()
         $(self.el).find(".js-new-cast-person-id").val(ui.item.id)
       response: (event, ui) ->
+        ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-cast-person").val()), "person")
         if ui.content.length == 0
           $(self.el).find(".js-new-person-info, .js-new-person-add-form").show()
           $(self.el).find(".js-new-person-id").val("")
@@ -43,8 +46,11 @@ class MoviesApp.EditCasts extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        if ui.item.id == "0"
+          self.add_new_movie()
         $(self.el).find(".js-new-cast-movie-id").val(ui.item.id)
       response: (event, ui) ->
+        ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-cast-movie").val()), "movie")
         if ui.content.length == 0
           $(self.el).find(".js-new-movie-info, .js-new-movie-add-form").show()
           $(self.el).find(".js-new-movie-id").val("")

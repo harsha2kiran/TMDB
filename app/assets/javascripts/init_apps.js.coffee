@@ -39,3 +39,13 @@ $(document).ready ->
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap"
   })
+
+window.check_autocomplete = (items, term, type) ->
+  found = false
+  term = term.toLowerCase()
+  $.each items, (i, item) ->
+    if item.label.toLowerCase() == term
+      found = true
+  if found == false
+    items.push { "label" : "Missing #{type}? Add it.", "value" : "Missing #{type}? Add it.", "id" : "0" }
+  items

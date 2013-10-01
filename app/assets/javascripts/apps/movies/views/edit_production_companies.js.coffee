@@ -25,9 +25,12 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        if ui.item.id == "0"
+          self.add_new_item()
         $(self.el).find(".js-new-production-company-id").val(ui.item.id)
         self.cancel()
       response: (event, ui) ->
+        ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-production-company").val()), "company")
         if ui.content.length == 0
           self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
           self.edit.find(".js-new-production-company-id").val("")

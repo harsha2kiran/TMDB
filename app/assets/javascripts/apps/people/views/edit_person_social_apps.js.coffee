@@ -25,9 +25,12 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        if ui.item.id == "0"
+          self.add_new_item()
         $(self.el).find(".js-new-person-social-apps-id").val(ui.item.id)
         self.cancel()
       response: (event, ui) ->
+        ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-person-social-apps-app").val()), "social app")
         if ui.content.length == 0
           self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
           self.edit.find(".js-new-person-social-apps-app-id").val("")
@@ -85,7 +88,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
     self = @
     value = @edit.find(".js-new-person-social-apps-app").val()
     link = @edit.find(".js-new-person-social-apps-link").val()
-    if value != "" && link != ""
+    if value != ""
       model = new PeopleApp.SocialApp()
       model.save ({ social_app: { social_app: value, link: link } }),
         success: ->

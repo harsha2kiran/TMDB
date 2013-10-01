@@ -25,8 +25,11 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        if ui.item.id == "0"
+          self.add_new_item()
         $(self.el).find(".js-new-alternative-title-language-id").val(ui.item.id)
       response: (event, ui) ->
+        ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-language").val()), "language")
         if ui.content.length == 0
           self.edit.find(".js-new-item-info, .js-new-item-add-form").show()
           self.edit.find(".js-new-alternative-title-language-id").val("")
