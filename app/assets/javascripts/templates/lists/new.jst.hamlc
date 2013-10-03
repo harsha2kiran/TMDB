@@ -1,5 +1,12 @@
-%a{ href: "/#!/lists", class: "span12" }
-  Index lists
+- if @list_type  == "gallery"
+  %a{ href: "/#!/galleries", class: "span12" }
+    All galleries
+- else if @list_type  == "channel"
+  %a{ href: "/#!/channels", class: "span12" }
+    All channels
+- else
+  %a{ href: "/#!/lists", class: "span12" }
+    All lists
 
 %h3.span12
   - unless @list_type

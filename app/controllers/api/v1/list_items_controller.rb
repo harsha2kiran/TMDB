@@ -37,12 +37,12 @@ class Api::V1::ListItemsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      if ["admin", "moderator"].include?(current_api_user.user_type)
-        list = List.find params[:list_item][:list_id]
-        list_item = list.list_items.find params[:id]
-      else
-        list = current_api_user.lists.find params[:list_item][:list_id]
-        list_item = list.list_items.find params[:id]
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        list_item = ListItem.find params[:id]
+      elsif current_api_user && current_api_user.user_type = "user"
+        list_item = ListItem.where(user_id: current_api_user.id).find(params[:id])
+      elsif params[:temp_user_id]
+        list_item = ListItem.where(temp_user_id: params[:temp_user_id]).find(params[:id])
       end
       if list_item.destroy
         format.json { respond_with list_item }

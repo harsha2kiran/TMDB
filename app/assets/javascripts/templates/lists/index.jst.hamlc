@@ -1,6 +1,15 @@
 - @lists.each (list) ->
   - list = list.get("list")
-  - if (list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+
+  - is_empty = true
+  - if list && list.list_items
+    - $.each list.list_items, (i, item) ->
+      - if item.list_item.approved
+        - is_empty = false
+    - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+      - is_empty = false
+
+  - if !is_empty && (list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
     .span12.box
       .span8
         %a{ href: "/#!/lists/#{list.id}" }

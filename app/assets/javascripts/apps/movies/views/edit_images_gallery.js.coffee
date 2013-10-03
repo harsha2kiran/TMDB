@@ -1,6 +1,6 @@
-class MoviesApp.EditImages extends Backbone.View
-  template: JST['templates/images/edit']
-  className: "row-fluid edit-images"
+class MoviesApp.EditImagesGallery extends Backbone.View
+  template: JST['templates/images/edit_gallery']
+  className: "row-fluid edit-images-gallery"
 
   initialize: ->
     _.bindAll this, "render"
@@ -8,20 +8,22 @@ class MoviesApp.EditImages extends Backbone.View
   events:
     "click .js-new-image-update" : "update"
     "click .js-image-remove" : "destroy"
+    "drop .drop-image" : "test"
+    "dragover .drop-image" : "test"
+
+  test: ->
+    console.log "Test"
 
   render: ->
     edit = $(@el)
     images = @options.images
-    gallery = false
-    if @options.gallery
-      gallery = true
+    gallery = true
     edit.html @template(images: images, gallery: gallery)
     self = @
     self.image_id = 0
     $(@el).find(".js-new-image-form").fileupload
       add: (e, data) ->
         console.log "add"
-        $(".js-new-image-save").attr("disabled", "disabled")
         file = data.files[0]
         file.unique_id = Math.random().toString(36).substr(2,16)
         window.data_data = data
@@ -33,10 +35,16 @@ class MoviesApp.EditImages extends Backbone.View
         $(".js-upload-status").html("Error uploading image.")
         console.log('fail')
       done: (e, data) ->
+        if data.result.title != "" && window.list_id
+          self.add_image_to_list(data.result.id)
+          $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          self.reload_list_items()
+          $(".js-new-image-title").val("")
+        else
+          @edit_single_image_view = new MoviesApp.EditSingleImage(image: data.result)
+          $(".dropped-images").append @edit_single_image_view.render().el
+        $(".js-upload-status").html("Finished uploading image.")
         console.log('done')
-        self.image_id = data.result.id
-        $(".js-new-image-save").removeAttr("disabled")
-        $(".js-upload-status").html("Successfully uploaded image. Make sure you insert title and click save to confirm upload.")
     this
 
   update: (e) ->
@@ -45,37 +53,28 @@ class MoviesApp.EditImages extends Backbone.View
     is_main_image = $(@el).find(".js-new-image-main").val()
     title = $(@el).find(".js-new-image-title").val()
     priority = $(@el).find(".js-new-image-priority").val()
-    if title != "" || window.list_id
-      if is_main_image != "" || window.list_id
-        if !isNaN(priority) || window.list_id
-          console.log window.list_id
-          image = new MoviesApp.Image()
-          if window.movie_id
-            imageable_id = window.movie_id
-            imageable_type = "Movie"
-          else if window.person_id
-            imageable_id = window.person_id
-            imageable_type = "Person"
-          else if window.list_id
-            imageable_id = window.list_id
-            imageable_type = "List"
-          image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
-            success: ->
-              if window.list_id
-                self.add_image_to_list(self.image_id)
-              $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-              $(self.el).find(".js-new-image-title").val("")
-              $(@el).find(".js-new-image-main").removeClass("error")
-              $(@el).find(".js-new-image-title").removeClass("error").val("")
-              self.reload_items()
-        else
-          $(@el).find("input, select").removeClass("error")
-          $(@el).find(".js-new-image-priority").addClass("error").focus()
-      else
-        $(@el).find(".js-new-image-main").addClass("error").focus()
-        $(@el).find(".js-new-image-title").removeClass("error")
+    if title != "" && window.list_id
+      image = new MoviesApp.Image()
+      imageable_id = window.list_id
+      imageable_type = "List"
+      image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
+        success: ->
+          if window.list_id
+            self.add_image_to_list(self.image_id)
+          $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-image-title").removeClass("error").val("")
+          self.reload_items()
     else
       $(@el).find(".js-new-image-title").addClass("error").focus()
+
+  reload_list_items: ->
+    list = new MoviesApp.List()
+    list.url = "/api/v1/lists/#{window.list_id}?temp_user_id=" + localStorage.temp_user_id
+    list.fetch
+      success: ->
+        if list.get("list")
+          @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
+          $(".list_items").html @show_list_items_view.render().el
 
   reload_items: ->
     if window.movie_id
@@ -118,10 +117,10 @@ class MoviesApp.EditImages extends Backbone.View
       listable_id = image_id
       listable_type = "Image"
       list_item = new MoviesApp.ListItem()
-      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
+      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
-          self.reload_list()
+          # self.reload_list()
 
   reload_list: ->
     list = new MoviesApp.List()

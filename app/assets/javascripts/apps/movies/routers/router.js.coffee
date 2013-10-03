@@ -3,8 +3,10 @@ class MoviesApp.Router extends Backbone.Router
   routes:
     "!/galleries" : "galleries_index"
     "!/galleries/new" : "galleries_new"
+    "!/galleries/:id" : "galleries_show"
     "!/channels" : "channels_index"
     "!/channels/new" : "channels_new"
+    "!/channels/:id" : "channels_show"
     "!/lists" : "lists_index"
     "!/lists/new" : "list_new"
     "!/lists/:id" : "lists_show"
@@ -242,15 +244,18 @@ class MoviesApp.Router extends Backbone.Router
     @clear_values()
     window.list_id = id
     list = new MoviesApp.List()
-    list.url = "/api/v1/lists/#{id}"
+    list.url = "/api/v1/lists/#{id}?temp_user_id=" + localStorage.temp_user_id
     list.fetch
       success: ->
         if list.get("list")
           @show_view = new MoviesApp.ListsShow(list: list)
           $(".js-content").html @show_view.render().el
 
+          @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
+          $(".list_items").html @show_list_items_view.render().el
+
           if list.get("list").list_type == "gallery"
-            @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
+            @edit_images_view = new MoviesApp.EditImagesGallery(images: [])
             $(".add-images-form").append @edit_images_view.render().el
             $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 

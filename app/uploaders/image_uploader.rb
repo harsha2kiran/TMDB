@@ -29,10 +29,24 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # end
 
+  process :watermark
+
+  def watermark
+    manipulate! do |img|
+      logo = Magick::Image.read("public/watermark.png").first
+      img = img.composite(logo, Magick::NorthWestGravity, 15, 0, Magick::OverCompositeOp)
+    end
+  end
+
   # Create different versions of your uploaded files:
   version :small do
     process :resize_to_fill => [250, 250]
   end
+
+  # def resize_to_fill
+  #   # small_height = JSON.parse(model.small_height)
+  #   return :height => model.small_height, :width => 250
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

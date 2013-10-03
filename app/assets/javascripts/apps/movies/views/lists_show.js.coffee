@@ -6,8 +6,6 @@ class MoviesApp.ListsShow extends Backbone.View
     _.bindAll this, "render"
 
   events:
-    "click .js-remove" : "destroy"
-    "click .js-approve" : "approve"
     "click .js-create" : "create"
     "click .follow" : "follow"
     "click .following" : "unfollow"
@@ -27,7 +25,6 @@ class MoviesApp.ListsShow extends Backbone.View
       select: (event, ui) ->
         $(show).find(".js-item-type").val(ui.item.type)
         $(show).find(".js-item-id").val(ui.item.id)
-        # window.location = root_path + "/#" + app + "/" + ui.item.id
     this
 
   create: ->
@@ -46,28 +43,18 @@ class MoviesApp.ListsShow extends Backbone.View
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-item").val("").removeClass "error"
           $(self.el).find(".js-item-id").val("")
-          list = new MoviesApp.List()
-          list.url = "/api/v1/lists/#{window.list_id}"
-          list.fetch
-            success: ->
-              @show_view = new MoviesApp.ListsShow(list: list)
-              $(".js-content").html @show_view.render().el
+          self.reload_list_items()
     else
       $(@el).find(".js-item").addClass("error")
 
-  destroy: (e) ->
-    if $(e.target).hasClass("js-remove")
-      id = $(e.target).find("input").val()
-    else
-      id = $(e.target).parents(".js-remove").find("input").val()
-    container = $(e.target).parents(".item").first()
-    $.ajax api_version + "list_items/" + id,
-      method: "DELETE"
-      data:
-        "list_item[list_id]" : window.list_id
-      success: =>
-        container.remove()
-        $(".notifications").html("Removed from list.").show().fadeOut(window.hide_delay)
+  reload_list_items: ->
+    list = new MoviesApp.List()
+    list.url = "/api/v1/lists/#{window.list_id}?temp_user_id=" + localStorage.temp_user_id
+    list.fetch
+      success: ->
+        if list.get("list")
+          @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
+          $(".list_items").html @show_list_items_view.render().el
 
   follow: (e) ->
     $self = $(e.target)
@@ -89,19 +76,3 @@ class MoviesApp.ListsShow extends Backbone.View
         followable_type: type
       success: =>
         $self.addClass("follow").removeClass("following").html("Follow")
-
-  approve: (e) ->
-    if $(e.target).hasClass("js-approve")
-      id = $(e.target).find("input").val()
-    else
-      id = $(e.target).parents(".js-approve").find("input").val()
-    container = $(e.target).parents(".item").first()
-    $.ajax api_version + "list_items/" + id,
-      method: "PUT"
-      data:
-        "list_item[id]" : id
-        "list_item[list_id]" : window.list_id
-        "list_item[approved]" : true
-      success: =>
-        $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
-        $(e.target).remove()

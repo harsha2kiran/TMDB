@@ -1,0 +1,5 @@
+.span12.dropped-image{ "data-id" => @image.id }
+  .span4
+    %img{ src: @image.image_file.small.url, alt: "" }
+  %input.js-drop-image-title{ type: "text", placeholder: "Title" }
+  %input.js-drop-image-update{ type: "button", value: "Save" }

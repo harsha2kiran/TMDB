@@ -196,6 +196,9 @@ class Api::V1::BaseController < ApplicationController
             (@controller == "follows" &&
              current_api_user.follows.where(followable_id: params[:followable_id].to_i, followable_type: params[:followable_type]).count > 0)
           )
+
+        elsif params[:temp_user_id] &&
+          (@controller == "list_items" && ListItem.where(list_id: params[:list_item][:list_id]).map(&:temp_user_id).include?(params[:temp_user_id]))
         else
           redirect_to root_path, alert: "You must have admin privileges to remove record."
         end

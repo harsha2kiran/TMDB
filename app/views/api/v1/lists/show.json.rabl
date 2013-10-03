@@ -11,22 +11,32 @@ if @list
           r.first.images
         end
       else
-        Image.where(id: item.listable_id, approved: true)
+        if @current_api_user
+          Image.where("id = ? AND (approved = true OR user_id = ?)", item.listable_id, @current_api_user.id)
+        elsif params[:temp_user_id]
+          Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
+        else
+          Image.where(id: item.listable_id, approved: true)
+        end
       end
     }
+
     node(:listable_item){ |item|
-      if item.listable_type != "Image"
+      # if item.listable_type != "Image"
         if @current_api_user
           r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
-        else
+        elsif params[:temp_user_id]
           r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
+        else
+          r = item.listable_type.classify.constantize.where("approved = true").find_all_by_id(item.listable_id)
         end
         if r.length > 0
           r.first
         end
-      else
-        Image.where(id: item.listable_id, approved: true)
-      end
+      # else
+      #   raise item.listable_id.to_yaml
+      #   Image.where(id: item.listable_id, approved: true)
+      # end
     }
   end
 
@@ -36,6 +46,9 @@ if @list
     else
       list.user.email
     end
+  }
+  node(:user_id){ |list|
+    list.user.id
   }
   node(:follows) { |list|
     if @current_api_user

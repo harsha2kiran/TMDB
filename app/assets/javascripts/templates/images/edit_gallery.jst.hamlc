@@ -1,0 +1,31 @@
+.images.span12.box
+  %p
+    Images
+  - $.each @images, (i, image) ->
+    .span12.image
+      .span2
+        %a.slimbox{ href: image.image_file.url }
+          %img{ src: image.image_file.small.url, width: 100 }
+      .span2
+        = image.title
+      .span2
+        = image.priority
+      .span2
+        - if image.is_main_image
+          = "Main image"
+      - if current_user && current_user.user_type == "admin"
+        .span2
+          %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
+  .span12
+    %p
+      Upload single image...
+    %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
+      %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
+      %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+      -# %input.js-new-image-update{ type: "button", value: "Save" }
+    .span12.js-upload-status
+
+  .span12.drop-image
+    = "...or drop images here to upload"
+
+  .dropped-images

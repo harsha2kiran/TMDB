@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
   attr_accessible :approved, :image_file, :image_type, :is_main_image, :imageable_id, :imageable_type, :title, :user_id, :priority, :temp_user_id
+  # attr_accessor :small_height
+
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 
