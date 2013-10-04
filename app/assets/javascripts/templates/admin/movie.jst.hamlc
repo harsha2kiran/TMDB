@@ -7,7 +7,7 @@
   - $.each @movie.images, (i, image) ->
     - if image.is_main_image == true
       .span4
-        %a.slimbox{ href: image.image_file.url, title: image.title }
+        %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
           %img{ src: image.image_file.small.url }
           = image.title
 
@@ -107,7 +107,7 @@
     - $.each @movie.images, (i, image) ->
       - if image.is_main_image == false
         .span4
-          %a.slimbox{ href: image.image_file.url, title: image.title }
+          %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
             %img{ src: image.image_file.small.url }
             = image.title
 

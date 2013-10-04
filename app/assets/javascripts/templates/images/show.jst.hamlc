@@ -1,5 +1,5 @@
 .span3.image
-  %a.slimbox{ href: @image.image_file.image_file.url, title: @image.title }
+  %a.slimbox{ href: @image.image_file.image_file.watermarked.url, title: @image.title }
     .image
       %img{ src: @image.image_file.image_file.small.url, alt: "no image"}
     .title

@@ -121,7 +121,7 @@
         %input.edit-item{ type: "hidden", value: image.id, "data-id" => "id", "data-model" => "Image", "data-key" => "image", "data-controller" => "images" }
         %input.js-user-temp-id{ type: "hidden", "data-user-id" => image.user_id, "data-temp-user-id" => image.temp_user_id }
         .span1
-          %a.slimbox{ href: image.image_file.url, title: image.title }
+          %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
             %img{ src: image.image_file.small.url }
         .span2
           %input.edit-item{ type: "text", value: image.title, "data-id" => "title" }

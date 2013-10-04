@@ -29,7 +29,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # end
 
-  process :watermark
+  version :watermarked do
+    process :resize_to_fit => [600, nil]
+    process :watermark
+  end
 
   def watermark
     manipulate! do |img|
