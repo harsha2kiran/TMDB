@@ -25,7 +25,7 @@ class MoviesApp.ListsNew extends Backbone.View
         success: ->
           $(".notifications").html("Successfully added new list.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").removeClass("error").val("")
-          window.MoviesApp.router.navigate("/#!/lists/#{list.id}", true)
+          window.MoviesApp.router.navigate("#!/lists/#{list.id}", true)
     else
       $container.find(".js-title").addClass("error")
 

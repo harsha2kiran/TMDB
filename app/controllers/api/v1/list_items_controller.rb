@@ -28,6 +28,13 @@ class Api::V1::ListItemsController < Api::V1::BaseController
       end
       list_item = list.list_items.find params[:id]
       if list_item.update_attributes(params[:list_item])
+        if params[:list_item][:approved]
+          if list_item.listable_type == "Image"
+            item = list_item.listable_type.classify.constantize.find(list_item.listable_id)
+            item.approved = true
+            item.save
+          end
+        end
         format.json { respond_with list_item }
       else
         format.json { render :json => "Error updating list item.", :status => :unprocessable_entity }

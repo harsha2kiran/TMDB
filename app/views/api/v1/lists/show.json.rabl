@@ -11,7 +11,9 @@ if @list
           r.first.images
         end
       else
-        if @current_api_user
+        if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+          Image.where(id: item.listable_id)
+        elsif @current_api_user && @current_api_user.user_type == "user"
           Image.where("id = ? AND (approved = true OR user_id = ?)", item.listable_id, @current_api_user.id)
         elsif params[:temp_user_id]
           Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
@@ -22,21 +24,18 @@ if @list
     }
 
     node(:listable_item){ |item|
-      # if item.listable_type != "Image"
-        if @current_api_user
-          r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
-        elsif params[:temp_user_id]
-          r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
-        else
-          r = item.listable_type.classify.constantize.where("approved = true").find_all_by_id(item.listable_id)
-        end
-        if r.length > 0
-          r.first
-        end
-      # else
-      #   raise item.listable_id.to_yaml
-      #   Image.where(id: item.listable_id, approved: true)
-      # end
+      if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+        r = item.listable_type.classify.constantize.where(id: item.listable_id)
+      elsif @current_api_user && @current_api_user.user_type == "user"
+        r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
+      elsif params[:temp_user_id]
+        r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
+      else
+        r = item.listable_type.classify.constantize.where("approved = true").find_all_by_id(item.listable_id)
+      end
+      if r.length > 0
+        r.first
+      end
     }
   end
 

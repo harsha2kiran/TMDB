@@ -21,8 +21,8 @@
       Upload single image...
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
       %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
+      %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
       %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
-      -# %input.js-new-image-update{ type: "button", value: "Save" }
     .span12.js-upload-status
 
   .span12.drop-image

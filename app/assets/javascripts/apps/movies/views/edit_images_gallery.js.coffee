@@ -10,6 +10,7 @@ class MoviesApp.EditImagesGallery extends Backbone.View
     "click .js-image-remove" : "destroy"
     "drop .drop-image" : "test"
     "dragover .drop-image" : "test"
+    "click .dropped-save-all" : "save_all_dropped"
 
   test: ->
     console.log "Test"
@@ -39,10 +40,14 @@ class MoviesApp.EditImagesGallery extends Backbone.View
           self.add_image_to_list(data.result.id)
           $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           self.reload_list_items()
-          $(".js-new-image-title").val("")
+          $(".js-new-image-title").removeClass("error").val("")
+          $(".js-new-image-description").removeClass("error").val("")
         else
           @edit_single_image_view = new MoviesApp.EditSingleImage(image: data.result)
           $(".dropped-images").append @edit_single_image_view.render().el
+          $(".div-dropped-save-all").remove()
+          if $(".dropped-image").length > 1
+            $(".dropped-images").append "<div class='div-dropped-save-all span12 text-center'><input type='button' value='Save all' class='dropped-save-all' /></div>"
         $(".js-upload-status").html("Finished uploading image.")
         console.log('done')
     this
@@ -52,17 +57,18 @@ class MoviesApp.EditImagesGallery extends Backbone.View
     self = @
     is_main_image = $(@el).find(".js-new-image-main").val()
     title = $(@el).find(".js-new-image-title").val()
-    priority = $(@el).find(".js-new-image-priority").val()
+    description = $(@el).find(".js-new-image-description").val()
     if title != "" && window.list_id
       image = new MoviesApp.Image()
       imageable_id = window.list_id
       imageable_type = "List"
-      image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
+      image.save ({ id: @image_id, image: { id: @image_id, description: description, title: title, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           if window.list_id
             self.add_image_to_list(self.image_id)
           $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-image-title").removeClass("error").val("")
+          $(self.el).find(".js-new-image-description").removeClass("error").val("")
           self.reload_items()
     else
       $(@el).find(".js-new-image-title").addClass("error").focus()
@@ -135,3 +141,12 @@ class MoviesApp.EditImagesGallery extends Backbone.View
           $(".add-images-form").append @edit_images_view.render().el
 
         $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+
+  save_all_dropped: ->
+    $(".dropped-image").each ->
+      container = $(@)
+      update = container.find(".js-drop-image-update")
+      update.click()
+    $(".div-dropped-save-all").remove()
+
+

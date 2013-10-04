@@ -187,7 +187,7 @@ class Api::V1::BaseController < ApplicationController
 
   def check_if_destroy
     if params[:action] == "destroy"
-      if current_api_user && current_api_user.user_type == "admin"
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
       else
         if current_api_user &&
           (

@@ -49,17 +49,17 @@
               .span12
                 = item.list_item.listable_item.name
 
-          - found = false
           - if item.list_item.listable_type == "Image"
-            %a{ href: "/#!/images/#{item.list_item.listable_id}" }
-              .span12
-                - $.each item.list_item.images, (i, image) ->
-                  - if found == false
-                    - if image.approved || ((current_user && current_user.id == image.user_id) || (localStorage.temp_user_id == image.temp_user_id) || ( current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")))
-                      - found = true
-                      %img{ src: image.image_file.small.url, alt: "no image" }
-                  .span12
-                    = image.title
+            - $.each item.list_item.images, (i, image) ->
+              %a{ href: "/#!/images/#{item.list_item.listable_id}" }
+                .span12
+                  - if image.approved || ((localStorage.temp_user_id == image.temp_user_id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator" || current_user.id == image.user_id)))
+                    %img{ src: image.image_file.small.url, alt: "no image" }
+                    .span12
+                      = image.title
+
+
+
 
           - if item.list_item.listable_type != "Image"
             -# if is owner, admin or mod can remove items

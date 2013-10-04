@@ -20,11 +20,12 @@ class MoviesApp.EditSingleImage extends Backbone.View
     self = @
     container = $(e.target).parent()
     title = $(@el).find(".js-drop-image-title").val()
+    description = $(@el).find(".js-drop-image-description").val()
     if title != "" && window.list_id
       image = new MoviesApp.Image()
       imageable_id = window.list_id
       imageable_type = "List"
-      image.save ({ id: @image.id, image: { id: @image.id, title: title, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
+      image.save ({ id: @image.id, image: { id: @image.id, description: description, title: title, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           if window.list_id
             self.add_image_to_list(self.image_id)
@@ -43,7 +44,6 @@ class MoviesApp.EditSingleImage extends Backbone.View
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
-          # self.reload_list()
 
   reload_list_items: ->
     list = new MoviesApp.List()
@@ -53,6 +53,8 @@ class MoviesApp.EditSingleImage extends Backbone.View
         if list.get("list")
           @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
           $(".list_items").html @show_list_items_view.render().el
+          if $(".dropped-image").length == 0
+            $(".div-dropped-save-all").remove()
 
   # reload_items: ->
   #   if window.movie_id
