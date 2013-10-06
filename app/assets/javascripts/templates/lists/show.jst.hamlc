@@ -23,6 +23,62 @@
         - desc = ""
       = type + " '#{list.title}', #{desc} from #{list.user}"
 
+    - if list.list_type == "gallery" || list.list_type == "channel"
+      .span12.list-keywords
+        %h4.span12
+          Keywords
+        .span12.js-keywords-list
+          - $.each list.keywords, (i, keyword) ->
+            .span2.keyword{ "data-id" => keyword.id }
+              .span5.keyword-keyword
+                = keyword.keyword
+
+              - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                .span5.js-remove-keyword
+                  X
+        .span12
+          %input.js-new-list-keyword{ type: "text", placeholder: "Keywords"}
+          %input.js-new-list-keyword-id{ type: "hidden" }
+          %input.js-new-list-keyword-ids{ type: "hidden", value: "[]" }
+      .span12.list-tags
+        %h4.span12
+          Tags
+        .span12.js-tags-movies-list
+          - $.each list.tags, (i, tag) ->
+            - if tag.title
+              .span2.tag{ "data-type" => "Movie", "data-id" => tag.id }
+                .span5.tag-tag
+                  = tag.title
+
+                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                  .span5.js-remove-tag
+                    X
+        .span12.js-tags-people-list
+          - $.each list.tags, (i, tag) ->
+            - if tag.name
+              .span2.tag{ "data-type" => "Person", "data-id" => tag.id }
+                .span5.tag-tag
+                  = tag.name
+
+                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                  .span5.js-remove-tag
+                    X
+        .span12.js-tags-companies-list
+          - $.each list.tags, (i, tag) ->
+            - if tag.company
+              .span2.tag{ "data-type" => "Company", "data-id" => tag.id }
+                .span5.tag-tag
+                  = tag.company
+
+                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                  .span5.js-remove-tag
+                    X
+        .span12
+          %input.js-new-list-tag{ type: "text", placeholder: "Tag people, movies or companies"}
+          %input.js-new-list-tag-id{ type: "hidden" }
+      .span12
+        %input.js-update-keywords-tags{ type: "button", value: "Update keywords and tags" }
+
   - if current_user
     - following = false
     - $.each @list.follows, (i, follow) ->

@@ -248,6 +248,7 @@ class MoviesApp.Router extends Backbone.Router
     list.fetch
       success: ->
         if list.get("list")
+          window.list_type = "List"
           @show_view = new MoviesApp.ListsShow(list: list)
           $(".js-content").html @show_view.render().el
 
@@ -255,11 +256,13 @@ class MoviesApp.Router extends Backbone.Router
           $(".list_items").html @show_list_items_view.render().el
 
           if list.get("list").list_type == "gallery"
+            window.list_type = "gallery"
             @edit_images_view = new MoviesApp.EditImagesGallery(images: [])
             $(".add-images-form").append @edit_images_view.render().el
             $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
           if list.get("list").list_type == "channel"
+            window.list_type = "channel"
             @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
             $(".add-videos-form").append @edit_videos_view.render().el
         else

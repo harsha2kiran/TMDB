@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  listable_id: 1
+  listable_type: MyString
+  taggable_id: 1
+  taggable_type: MyString
+  user_id: 1
+  temp_user_id: MyString
+
+two:
+  listable_id: 1
+  listable_type: MyString
+  taggable_id: 1
+  taggable_type: MyString
+  user_id: 1
+  temp_user_id: MyString

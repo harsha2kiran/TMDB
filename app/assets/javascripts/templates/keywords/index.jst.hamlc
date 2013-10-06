@@ -3,5 +3,7 @@
   .span2.keyword{ "data-id" => keyword[0] }
     .span5.keyword-keyword
       = keyword[1]
-    .span5.js-remove
-      X
+
+    - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+      .span5.js-remove
+        X

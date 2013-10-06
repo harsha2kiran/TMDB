@@ -3,5 +3,6 @@
   .span2.tag{ "data-id" => tag[0], "data-type" => tag[1] }
     .span5.tag-tag
       = tag[2]
-    .span5.js-remove
-      X
+    - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+      .span5.js-remove
+        X

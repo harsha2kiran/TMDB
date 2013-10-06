@@ -14,6 +14,8 @@ Movies::Application.routes.draw do
     resources :badges
     resources :media_keywords
     resources :media_tags
+    resources :list_keywords
+    resources :list_tags
     resources :casts
     resources :crews
     resources :companies do

@@ -39,6 +39,18 @@ if @list
     }
   end
 
+  node(:keywords){
+    Keyword.find_all_by_id(@keywords.map(&:keyword_id))
+  }
+
+  node(:tags){
+    r = []
+    @tags.each do |tag|
+      r << tag.taggable_type.classify.constantize.find_all_by_id(tag.taggable_id).first
+    end
+    r
+  }
+
   node(:user){ |list|
     if list.user && list.user.first_name && list.user.last_name && list.user.first_name != "" && list.user.last_name != ""
       list.user.first_name + " " + list.user.last_name
