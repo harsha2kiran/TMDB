@@ -16,16 +16,35 @@
       - if current_user && current_user.user_type == "admin"
         .span2
           %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
-  .span12
-    %p
-      Upload single image...
-    %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
-      %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
-      %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
-      %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
-    .span12.js-upload-status
 
   .span12.drop-image
-    = "...or drop images here to upload"
+    = "Drop images here to upload"
+
+  .span12
+    %p
+      = "... or upload single image"
+    %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
+      -# .span12
+      -#   %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
+      -#   %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
+      -# .span12.js-keywords-list
+      -# .span12
+      -#   %input.js-new-image-keyword{ type: "text", placeholder: "Keywords"}
+      -#   %input.js-new-image-keyword-id{ type: "hidden" }
+      -#   .js-new-item-info.hide
+      -#     This keyword does not exist. Do you want to add it?
+      -#   .js-new-item-add-form.hide
+      -#     .span1.js-new-item-add-yes
+      -#       Yes
+      -#     .span1.js-new-item-add-no
+      -#       No
+      -# .span12.js-tags-list
+      -# .span12
+      -#   %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
+      -#   %input.js-new-image-tag-id{ type: "hidden" }
+      .span12
+        %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+    .span12.js-upload-status
+
 
   .dropped-images

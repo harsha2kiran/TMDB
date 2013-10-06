@@ -17,6 +17,7 @@ class MoviesApp.EditImagesGallery extends Backbone.View
 
   render: ->
     edit = $(@el)
+    @edit = $(@el)
     images = @options.images
     gallery = true
     edit.html @template(images: images, gallery: gallery)
@@ -36,7 +37,7 @@ class MoviesApp.EditImagesGallery extends Backbone.View
         $(".js-upload-status").html("Error uploading image.")
         console.log('fail')
       done: (e, data) ->
-        if data.result.title != "" && window.list_id
+        if data.result.title && data.result.title != "" && window.list_id
           self.add_image_to_list(data.result.id)
           $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           self.reload_list_items()
@@ -126,7 +127,6 @@ class MoviesApp.EditImagesGallery extends Backbone.View
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
-          # self.reload_list()
 
   reload_list: ->
     list = new MoviesApp.List()
@@ -149,4 +149,44 @@ class MoviesApp.EditImagesGallery extends Backbone.View
       update.click()
     $(".div-dropped-save-all").remove()
 
+  add_new_item: (e) ->
+    self = @
+    value = @edit.find(".js-new-image-keyword").val()
+    if value != ""
+      model = new MoviesApp.Keyword()
+      model.save ({ keyword: { keyword: value } }),
+        success: ->
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-image-keyword").val(value).removeClass "error"
+          $(self.el).find(".js-new-image-keyword-id").val(model.id)
+          self.create()
+          self.cancel()
+        error: (model, response) ->
+          $(".notifications").html("Keyword is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-image-keyword").val("").removeClass "error"
+          $(self.el).find(".js-new-image-keyword-id").val("")
+          self.cancel()
+    else
+      @edit.find(".js-new-image-keyword").addClass("error")
+
+  create: (e) ->
+    self = @
+    keyword_id = $(@el).find(".js-new-image-keyword-id").val()
+    last_image_id = 0
+    if keyword_id != ""
+      media_keyword = new MoviesApp.MediaKeyword()
+      media_keyword.save ({ media_keyword: { keyword_id: keyword_id, mediable_id: last_image_id, mediable_type: "Image", temp_user_id: localStorage.temp_user_id } }),
+        success: ->
+          $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          self.reload_items()
+        error: (model, response) ->
+          console.log "error"
+          $(".notifications").html("Keyword already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-image-keyword").val("").removeClass "error"
+          $(self.el).find(".js-new-image-keyword-id").val("")
+    else
+      $(@el).find(".js-new-image-keyword").addClass("error").focus()
+
+  cancel: ->
+    @edit.find(".js-new-item-info, .js-new-item-add-form").hide()
 

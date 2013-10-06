@@ -12,6 +12,8 @@ Movies::Application.routes.draw do
     resources :alternative_names
     resources :alternative_titles
     resources :badges
+    resources :media_keywords
+    resources :media_tags
     resources :casts
     resources :crews
     resources :companies do
@@ -92,7 +94,11 @@ Movies::Application.routes.draw do
         get "search" => "statuses#search"
       end
     end
-    resources :tags
+    resources :tags do
+      collection do
+        get "search" => "tags#search"
+      end
+    end
     # resources :user_badges
 
     resources :videos do

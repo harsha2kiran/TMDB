@@ -1,0 +1,7 @@
+- @tags = eval(@tags)
+- $.each @tags, (i, tag) ->
+  .span2.tag{ "data-id" => tag[0], "data-type" => tag[1] }
+    .span5.tag-tag
+      = tag[2]
+    .span5.js-remove
+      X

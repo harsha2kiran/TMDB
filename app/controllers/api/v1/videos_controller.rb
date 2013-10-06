@@ -17,8 +17,8 @@ class Api::V1::VideosController < Api::V1::BaseController
     @video = Video.where(approved: true).find_all_by_id(params[:id])
     if @video != []
       @video = @video.first
-      @movies = Movie.find_all_by_id @video.tags.map(&:taggable_id)
-      @people = Person.find_all_by_id @video.tags.map(&:person_id)
+      # @movies = Movie.find_all_by_id @video.tags.map(&:taggable_id)
+      # @people = Person.find_all_by_id @video.tags.map(&:person_id)
     end
   end
 

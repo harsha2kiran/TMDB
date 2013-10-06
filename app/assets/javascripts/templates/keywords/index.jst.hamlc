@@ -1,0 +1,7 @@
+- @keywords = eval(@keywords)
+- $.each @keywords, (i, keyword) ->
+  .span2.keyword{ "data-id" => keyword[0] }
+    .span5.keyword-keyword
+      = keyword[1]
+    .span5.js-remove
+      X

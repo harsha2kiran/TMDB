@@ -19,7 +19,7 @@ class MoviesApp.EditTags extends Backbone.View
     @edit.html @template(tags: tags)
 
     self = @
-    if window.movie_id || window.image_id || window.video_id
+    if window.movie_id
       $(@el).find(".js-new-tag-person").autocomplete
         source: api_version + "people/search?temp_user_id=" + localStorage.temp_user_id
         minLength: 2
