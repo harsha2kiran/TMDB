@@ -17,8 +17,11 @@ class Api::V1::ImagesController < Api::V1::BaseController
     @image = Image.where(approved: true).find_all_by_id(params[:id])
     if @image != []
       @image = @image.first
-      # @movies = Movie.find_all_by_id @image.tags.map(&:taggable_id)
-      # @people = Person.find_all_by_id @image.tags.map(&:person_id)
+      @media_tags = @image.media_tags
+      @media_keywords = @image.media_keywords
+      if current_api_user
+        @current_api_user = current_api_user
+      end
     end
   end
 

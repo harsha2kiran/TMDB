@@ -9,7 +9,6 @@ class AdminApp.Router extends Backbone.Router
 
   initialize: ->
     @clear_values()
-    console.log "AdminApp router initialized"
 
   movies: ->
     type = "Movie"

@@ -11,7 +11,6 @@ class PeopleApp.Router extends Backbone.Router
 
   initialize: ->
     @clear_values()
-    console.log "PeopleApp router initialized"
 
   show: (id) ->
     @show_person_action(id, "show")

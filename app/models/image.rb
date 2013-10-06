@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
   belongs_to :user
 
   has_many :media_keywords, :as => :mediable, :dependent => :destroy
-  has_many :media_tags, :as => :taggable, :dependent => :destroy
+  has_many :media_tags, :as => :mediable, :dependent => :destroy
   # has_many :tags, :as => :taggable, :dependent => :destroy
   has_many :list_items, :as => :listable, :dependent => :destroy
   has_many :videos, :as => :videable, :dependent => :destroy

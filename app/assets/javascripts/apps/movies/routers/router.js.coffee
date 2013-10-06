@@ -25,7 +25,6 @@ class MoviesApp.Router extends Backbone.Router
 
   initialize: ->
     @clear_values()
-    console.log "MoviesApp router initialized"
 
   images_show: (id) ->
     console.log "images show #{id}"
@@ -39,8 +38,8 @@ class MoviesApp.Router extends Backbone.Router
           @show_view = new MoviesApp.ImagesShow(image: image)
           $(".js-content").html @show_view.render().el
 
-          @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
-          $(".tags").append @edit_tags_view.render().el
+#           @edit_tags_view = new MoviesApp.EditTags(tags: image.get("image").tags)
+#           $(".tags").append @edit_tags_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
           type = "Image"
