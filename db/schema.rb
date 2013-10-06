@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006124548) do
+ActiveRecord::Schema.define(:version => 20131006144220) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20131006124548) do
     t.string   "temp_user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "approved"
   end
 
   create_table "list_tags", :force => true do |t|
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20131006124548) do
     t.string   "temp_user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "approved"
   end
 
   create_table "lists", :force => true do |t|
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20131006124548) do
     t.string   "temp_user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "approved"
   end
 
   create_table "media_tags", :force => true do |t|
@@ -233,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20131006124548) do
     t.string   "temp_user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "approved"
   end
 
   create_table "movie_genres", :force => true do |t|

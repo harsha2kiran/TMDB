@@ -36,4 +36,26 @@ class Api::V1::ListTagsController < Api::V1::BaseController
     end
   end
 
+  def update
+    respond_to do |format|
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        list_tag = ListTag.where(taggable_id: params[:list_tag][:taggable_id], taggable_type: params[:list_tag][:taggable_type], listable_id: params[:list_tag][:listable_id], listable_type: params[:list_tag][:listable_type])
+        if list_tag.count > 0
+          list_tag = list_tag.first
+          list_tag.approved = params[:list_tag][:approved]
+          if list_tag.save
+            item = params[:list_tag][:taggable_type].classify.constantize.find(params[:list_tag][:taggable_id])
+            item.approved = true
+            item.save
+            format.json { render json: { status: "success" } }
+          else
+            format.json { render json: { status: "error" } }
+          end
+        else
+          format.json { render json: { status: "error" } }
+        end
+      end
+    end
+  end
+
 end

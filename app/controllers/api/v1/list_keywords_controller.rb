@@ -37,4 +37,27 @@ class Api::V1::ListKeywordsController < Api::V1::BaseController
     end
   end
 
+  def update
+    respond_to do |format|
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        list_keyword = ListKeyword.where(listable_id: params[:list_keyword][:listable_id], listable_type: params[:list_keyword][:listable_type], keyword_id: params[:list_keyword][:keyword_id])
+        if list_keyword.count > 0
+          list_keyword = list_keyword.first
+          list_keyword.approved = params[:list_keyword][:approved]
+          if list_keyword.save
+            keyword = Keyword.find(params[:list_keyword][:keyword_id])
+            keyword.approved = true
+            keyword.save
+            format.json { render json: { status: "success" } }
+          else
+            format.json { render json: { status: "error" } }
+          end
+        else
+          format.json { render json: { status: "error" } }
+        end
+      end
+    end
+  end
+
+
 end

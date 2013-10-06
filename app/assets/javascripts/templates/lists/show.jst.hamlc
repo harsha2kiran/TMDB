@@ -29,13 +29,21 @@
           Keywords
         .span12.js-keywords-list
           - $.each list.keywords, (i, keyword) ->
-            .span2.keyword{ "data-id" => keyword.id }
-              .span5.keyword-keyword
-                = keyword.keyword
+            - approved = false
+            - $.each list.list_keywords, (ii, list_keyword) ->
+              - if list_keyword.keyword_id == keyword.id && list_keyword.approved == true
+                - approved = true
+            - if approved || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+              .span2.keyword{ "data-id" => keyword.id }
+                .span5.keyword-keyword
+                  = keyword.keyword
 
-              - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-                .span5.js-remove-keyword
-                  X
+                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                  .span2.js-remove-keyword
+                    X
+                  - unless approved
+                    .span3.js-approve-keyword
+                      Approve
         .span12
           %input.js-new-list-keyword{ type: "text", placeholder: "Keywords"}
           %input.js-new-list-keyword-id{ type: "hidden" }
@@ -46,33 +54,57 @@
         .span12.js-tags-movies-list
           - $.each list.tags, (i, tag) ->
             - if tag.title
-              .span2.tag{ "data-type" => "Movie", "data-id" => tag.id }
-                .span5.tag-tag
-                  = tag.title
+              - approved = false
+              - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Movie" && list_tag.taggable_id == tag.id && list_tag.approved == true
+                  - approved = true
+              - if approved || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+                .span2.tag{ "data-type" => "Movie", "data-id" => tag.id }
+                  .span5.tag-tag
+                    = tag.title
 
-                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-                  .span5.js-remove-tag
-                    X
+                  - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                    .span2.js-remove-tag
+                      X
+                    - unless approved
+                      .span3.js-approve-tag
+                        Approve
         .span12.js-tags-people-list
           - $.each list.tags, (i, tag) ->
             - if tag.name
-              .span2.tag{ "data-type" => "Person", "data-id" => tag.id }
-                .span5.tag-tag
-                  = tag.name
+              - approved = false
+              - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Person" && list_tag.taggable_id == tag.id && list_tag.approved == true
+                  - approved = true
+              - if approved || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+                .span2.tag{ "data-type" => "Person", "data-id" => tag.id }
+                  .span5.tag-tag
+                    = tag.name
 
-                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-                  .span5.js-remove-tag
-                    X
+                  - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                    .span2.js-remove-tag
+                      X
+                    - unless approved
+                      .span3.js-approve-tag
+                        Approve
         .span12.js-tags-companies-list
           - $.each list.tags, (i, tag) ->
             - if tag.company
-              .span2.tag{ "data-type" => "Company", "data-id" => tag.id }
-                .span5.tag-tag
-                  = tag.company
+              - approved = false
+              - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Company" && list_tag.taggable_id == tag.id && list_tag.approved == true
+                  - approved = true
+              - if approved || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+                .span2.tag{ "data-type" => "Company", "data-id" => tag.id }
+                  .span5.tag-tag
+                    = tag.company
 
-                - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-                  .span5.js-remove-tag
-                    X
+                  - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+                    .span2.js-remove-tag
+                      X
+                    - unless approved
+                      .span3.js-approve-tag
+                        Approve
         .span12
           %input.js-new-list-tag{ type: "text", placeholder: "Tag people, movies or companies"}
           %input.js-new-list-tag-id{ type: "hidden" }

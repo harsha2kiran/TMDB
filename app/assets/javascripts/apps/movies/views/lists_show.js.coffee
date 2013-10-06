@@ -12,6 +12,8 @@ class MoviesApp.ListsShow extends Backbone.View
     "click .js-update-keywords-tags" : "update_keywords_tags"
     "click .js-remove-keyword" : "remove_keyword"
     "click .js-remove-tag" : "remove_tag"
+    "click .js-approve-keyword" : "approve_keyword"
+    "click .js-approve-tag" : "approve_tag"
 
   render: ->
     show = $(@el)
@@ -181,6 +183,7 @@ class MoviesApp.ListsShow extends Backbone.View
         success: ->
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
+          location.reload()
 
     tag_ids = []
     tag_types = []
@@ -229,4 +232,22 @@ class MoviesApp.ListsShow extends Backbone.View
         parent.remove()
         $(".notifications").html("Tag successfully removed.").show().fadeOut(window.hide_delay)
 
+  approve_keyword: (e) ->
+    parent = $(e.target).parents(".keyword").first()
+    id = parent.attr("data-id")
+    list_keyword = new MoviesApp.ListKeyword()
+    list_keyword.save ({ id: "0", list_keyword: {  listable_id: window.list_id, listable_type: window.list_type, keyword_id: id, approved: true } }),
+      success: ->
+        parent.find(".js-approve-keyword").remove()
+        $(".notifications").html("Keyword successfully approved.").show().fadeOut(window.hide_delay)
+
+  approve_tag: (e) ->
+    parent = $(e.target).parents(".tag").first()
+    id = parent.attr("data-id")
+    type = parent.attr("data-type")
+    list_tag = new MoviesApp.ListTag()
+    list_tag.save ({ id: "0", list_tag: { listable_id: window.list_id, listable_type: window.list_type, taggable_id: id, taggable_type: type, keyword_id: id, approved: true } }),
+      success: ->
+        parent.find(".js-approve-tag").remove()
+        $(".notifications").html("Tag successfully approved.").show().fadeOut(window.hide_delay)
 
