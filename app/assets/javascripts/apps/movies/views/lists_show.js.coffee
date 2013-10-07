@@ -183,7 +183,7 @@ class MoviesApp.ListsShow extends Backbone.View
         success: ->
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
-          location.reload()
+          # location.reload()
 
     tag_ids = []
     tag_types = []

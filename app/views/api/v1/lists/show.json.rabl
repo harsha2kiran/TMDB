@@ -142,6 +142,15 @@ if @list
   }
 
   node(:list_keywords){
+    if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+
+    elsif @current_api_user && @current_api_user.user_type == "user"
+      @keywords = @keywords.where("approved = true OR user_id = ?", @current_api_user.id)
+    elsif params[:temp_user_id]
+      @keywords = @keywords.where("approved = true OR temp_user_id = ?", params[:temp_user_id])
+    else
+      @keywords = @keywords.where(approved: true)
+    end
     @keywords
   }
 
@@ -154,6 +163,15 @@ if @list
   }
 
   node(:list_tags){
+    if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+
+    elsif @current_api_user && @current_api_user.user_type == "user"
+      @tags = @tags.where("approved = true OR user_id = ?", @current_api_user.id)
+    elsif params[:temp_user_id]
+      @tags = @tags.where("approved = true OR temp_user_id = ?", params[:temp_user_id])
+    else
+      @tags = @tags.where(approved: true)
+    end
     @tags
   }
 

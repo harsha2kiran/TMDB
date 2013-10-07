@@ -49,3 +49,15 @@ window.check_autocomplete = (items, term, type) ->
   if found == false
     items.push { "label" : "Missing #{type}? Add it.", "value" : "Missing #{type}? Add it.", "id" : "0" }
   items
+
+window.is_admin_or_mod = ->
+  (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+
+window.current_users_item = (item) ->
+  (current_user && item.user_id == current_user.user_id)
+
+window.current_temp_users_item = (item) ->
+  (item.temp_user_id == localStorage.temp_user_id)
+
+
+
