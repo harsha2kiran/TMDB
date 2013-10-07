@@ -49,11 +49,19 @@
               .span12
                 = item.list_item.listable_item.name
 
+
+
+
           - if item.list_item.listable_type == "Image"
             - $.each item.list_item.images, (i, image) ->
               %a{ href: "/#!/images/#{item.list_item.listable_id}" }
                 .span12
-                  - if image.approved || ((localStorage.temp_user_id == image.temp_user_id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator" || current_user.id == image.user_id)))
+
+                  - is_owner = false
+                  - if current_users_item(image) || current_temp_users_item(image)
+                    - is_owner = true
+
+                  - if is_owner || image.approved || is_admin_or_mod()
                     %img{ src: image.image_file.small.url, alt: "no image" }
                     .span12
                       = image.title
@@ -78,13 +86,13 @@
           -# load remove and approve button only if images exist
           - else
             -# if is owner, admin or mod can remove items
-            - if item.list_item.images.length > 0 && ((current_user && current_user.id == item.list_item.user_id) || (item.list_item.temp_user_id == localStorage.temp_user_id) || (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")))
+            - if item.list_item.images.length > 0 && is_admin_or_mod()
               .span.js-remove
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove
 
             -# if is owner, admin or mod can approve items
-            - if  item.list_item.images.length > 0 && ((current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")))
+            - if  item.list_item.images.length > 0 && is_admin_or_mod()
               - unless item.list_item.approved
                 .span.js-approve
                   %input{ type: "hidden", value: item.list_item.id }

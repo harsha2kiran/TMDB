@@ -37,7 +37,6 @@ class MoviesApp.EditImagesGallery extends Backbone.View
         $(".js-upload-status").html("Error uploading image.")
         console.log('fail')
       done: (e, data) ->
-        console.log data
         if data.result.title && data.result.title != "" && window.list_id
           self.add_image_to_list(data.result.id)
           $(".notifications").html("Image added. It will be active after moderation.").show().fadeOut(window.hide_delay)

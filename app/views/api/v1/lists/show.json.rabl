@@ -93,7 +93,7 @@ if @list
         elsif @current_api_user && @current_api_user.user_type == "user"
           @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) } #Image.where("id = ? AND (approved = true OR user_id = ?)", item.listable_id, @current_api_user.id)
         elsif params[:temp_user_id]
-          @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == params[:temp_user_id]) } #Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
+          @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) } #Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
         else
           @images.select{ |image| image.id == item.listable_id && image.approved == true } #Image.where(id: item.listable_id, approved: true)
         end
@@ -120,7 +120,7 @@ if @list
         elsif @current_api_user && @current_api_user.user_type == "user"
           images = @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) } #Image.where("id = ? AND (approved = true OR user_id = ?)", item.listable_id, @current_api_user.id)
         elsif params[:temp_user_id]
-          images = @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == params[:temp_user_id]) } #Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
+          images = @images.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) } #Image.where("id = ? AND (approved = true OR temp_user_id = ?)", item.listable_id, params[:temp_user_id])
         else
           images = @images.select{ |image| image.id == item.listable_id && image.approved == true } #Image.where(id: item.listable_id, approved: true)
         end

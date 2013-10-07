@@ -51,13 +51,20 @@ window.check_autocomplete = (items, term, type) ->
   items
 
 window.is_admin_or_mod = ->
-  (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+  if (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+    true
+  else
+    false
 
 window.current_users_item = (item) ->
-  (current_user && item.user_id == current_user.user_id)
+  if (current_user && item.user_id == current_user.user_id)
+    true
+  else
+    false
 
 window.current_temp_users_item = (item) ->
-  (item.temp_user_id == localStorage.temp_user_id)
-
-
+  if (item.temp_user_id == localStorage.temp_user_id)
+    true
+  else
+    false
 
