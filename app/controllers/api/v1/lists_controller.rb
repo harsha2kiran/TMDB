@@ -9,11 +9,15 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def show
     @list = List.find_by_id(params[:id], :include => [:list_items, :user, :follows])
-    image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
-    @images = Image.find_all_by_id(image_ids)
-    @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
-    @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
-    @current_api_user = current_api_user
+    unless @list.nil?
+      image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
+      @images = Image.find_all_by_id(image_ids)
+      @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
+      @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
+      @current_api_user = current_api_user
+    else
+      List.new
+    end
   end
 
   def update

@@ -14,7 +14,7 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def show
-    @image = Image.where(approved: true).find_all_by_id(params[:id])
+    @image = Image.find_all_by_id(params[:id])
     if @image != []
       @image = @image.first
       @media_tags = @image.media_tags

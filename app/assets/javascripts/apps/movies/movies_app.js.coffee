@@ -75,7 +75,7 @@ window.MoviesApp = {
   reload_media: (media_id, media_type) ->
     if media_type == "Image"
       item = new MoviesApp.Image()
-      item.url = "/api/v1/images/#{media_id}"
+      item.url = "/api/v1/images/#{media_id}?temp_user_id=" + localStorage.temp_user_id
       item.fetch
         success: ->
           if item.get("image")

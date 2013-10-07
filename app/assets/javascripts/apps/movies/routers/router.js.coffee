@@ -31,7 +31,7 @@ class MoviesApp.Router extends Backbone.Router
     @clear_values()
     window.image_id = id
     image = new MoviesApp.Image()
-    image.url = "/api/v1/images/#{id}"
+    image.url = "/api/v1/images/#{id}?temp_user_id=" + localStorage.temp_user_id
     image.fetch
       success: ->
         if image.get("image")
@@ -55,7 +55,7 @@ class MoviesApp.Router extends Backbone.Router
     @clear_values()
     window.video_id = id
     video = new MoviesApp.Video()
-    video.url = api_version + "videos/#{id}"
+    video.url = api_version + "videos/#{id}?temp_user_id=" + localStorage.temp_user_id
     video.fetch
       success: ->
         if video.get("video")

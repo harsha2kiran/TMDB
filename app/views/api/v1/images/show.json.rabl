@@ -1,9 +1,6 @@
 object @image
 attributes :id, :approved, :image_file, :image_type, :is_main_image, :imageable_id, :imageable_type, :title, :priority, :created_at, :updated_at, :description
-# node(:videos) { |image| image.videos }
-# node(:tags) { |image|
-#   partial("api/v1/tags/index", :object => image.tags.select {|s| s.approved == true } )
-# }
+
 node(:tags){
   r = []
   @media_tags.each do |tag|
@@ -14,6 +11,16 @@ node(:tags){
 
 node(:media_tags){
   @media_tags
+  # if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+
+  # elsif @current_api_user && @current_api_user.user_type == "user"
+  #   @media_tags = @media_tags.where("approved = true OR user_id = ?", @current_api_user.id)
+  # elsif params[:temp_user_id]
+  #   @media_tags = @media_tags.where("approved = true OR temp_user_id = ?", params[:temp_user_id])
+  # else
+  #   @media_tags = @media_tags.where(approved: true)
+  # end
+  # @media_tags
 }
 
 node(:keywords){

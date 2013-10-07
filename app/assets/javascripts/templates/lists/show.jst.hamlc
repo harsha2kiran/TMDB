@@ -38,7 +38,7 @@
               - if (list_keyword.keyword_id == keyword.id && list_keyword.approved == true)
                 - approved = true
 
-              - if current_users_item(list_keyword) || current_temp_users_item(list_keyword)
+              - if (current_users_item(list_keyword) || current_temp_users_item(list_keyword)) && list_keyword.keyword_id == keyword.id
                 - is_owner = true
 
             - if is_owner || approved || is_admin_or_mod()
@@ -72,7 +72,7 @@
                 - if list_tag.taggable_type == "Movie" && list_tag.taggable_id == tag.id && list_tag.approved == true
                   - approved = true
 
-                - if current_users_item(list_tag) || current_temp_users_item(list_tag)
+                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
@@ -99,7 +99,7 @@
                 - if list_tag.taggable_type == "Person" && list_tag.taggable_id == tag.id && list_tag.approved == true
                   - approved = true
 
-                - if current_users_item(list_tag) || current_temp_users_item(list_tag)
+                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
@@ -126,7 +126,7 @@
                 - if list_tag.taggable_type == "Company" && list_tag.taggable_id == tag.id && list_tag.approved == true
                   - approved = true
 
-                - if current_users_item(list_tag) || current_temp_users_item(list_tag)
+                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()

@@ -85,14 +85,14 @@
 
           -# load remove and approve button only if images exist
           - else
-            -# if is owner, admin or mod can remove items
+            -# if is admin or mod can remove items
             - if item.list_item.images.length > 0 && is_admin_or_mod()
               .span.js-remove
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove
 
-            -# if is owner, admin or mod can approve items
-            - if  item.list_item.images.length > 0 && is_admin_or_mod()
+            -# if is admin or mod can approve items
+            - if item.list_item.images.length > 0 && is_admin_or_mod()
               - unless item.list_item.approved
                 .span.js-approve
                   %input{ type: "hidden", value: item.list_item.id }
