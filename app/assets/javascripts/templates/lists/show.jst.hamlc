@@ -24,6 +24,20 @@
       = type + " '#{list.title}', #{desc} from #{list.user}"
 
     - if list.list_type == "gallery" || list.list_type == "channel"
+
+
+      -# approve and unapprove buttons
+      - if is_admin_or_mod()
+        .span12
+          - if list.approved == true
+            %button.js-approve.hide{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+          - else
+            %button.js-approve{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove.hide{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+
+
+
       .span12.list-keywords
         %h4.span12
           Keywords

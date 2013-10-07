@@ -14,6 +14,8 @@ class MoviesApp.ListsShow extends Backbone.View
     "click .js-remove-tag" : "remove_tag"
     "click .js-approve-keyword" : "approve_keyword"
     "click .js-approve-tag" : "approve_tag"
+    "click .js-approve" : "approve"
+    "click .js-unapprove" : "unapprove"
 
   render: ->
     show = $(@el)
@@ -183,7 +185,7 @@ class MoviesApp.ListsShow extends Backbone.View
         success: ->
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
-          # location.reload()
+          location.reload()
 
     tag_ids = []
     tag_types = []
@@ -249,4 +251,37 @@ class MoviesApp.ListsShow extends Backbone.View
       success: ->
         parent.find(".js-approve-tag").remove()
         $(".notifications").html("Tag successfully approved.").show().fadeOut(window.hide_delay)
+
+  approve: (e) ->
+    self = @
+    container = $(e.target)
+    id = container.attr("data-id")
+    type = container.attr("data-model")
+    $.ajax api_version + "approvals/mark",
+      method: "post"
+      data:
+        approved_id: id
+        original_id: id
+        type: type
+        mark: true
+      success: ->
+        $(".js-approve").hide()
+        $(".js-unapprove").show()
+
+  unapprove: (e) ->
+    self = @
+    container = $(e.target)
+    id = container.attr("data-id")
+    type = container.attr("data-model")
+    $.ajax api_version + "approvals/mark",
+      method: "post"
+      data:
+        approved_id: id
+        original_id: id
+        type: type
+        mark: false
+      success: ->
+        $(".js-approve").show()
+        $(".js-unapprove").hide()
+
 

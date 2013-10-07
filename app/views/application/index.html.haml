@@ -9,7 +9,6 @@
   .logo
 
   .content.js-content
-    main content
 
 .footer
   - if current_user && current_user.user_type == "admin"
@@ -22,6 +21,10 @@
       %li.span12
         %a{ href: "#admin/people" }
           Manage people
+
+      %li.span12
+        %a{ href: "#admin/galleries" }
+          Manage galleries
 
 .popup-container
   .popup

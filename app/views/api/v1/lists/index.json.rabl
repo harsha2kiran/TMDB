@@ -1,5 +1,5 @@
 object @lists
-attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_type
+attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_type, :approved
 
 child :list_items do
   attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at
@@ -31,4 +31,43 @@ node(:user){ |list|
   else
     list.user.email
   end
+}
+
+node(:pending){ |list|
+  pending = false
+
+  # if list.approved != true
+  #   pending = true
+  # end
+
+  # check if pending list item
+  if pending != true
+    list.list_items.each do |item|
+      if item.approved != true
+        pending = true
+      end
+    end
+  end
+
+  # check if pending list_keyword
+  if pending != true
+    pending_keywords = ListKeyword.where("listable_type = ?", list.list_type)
+    pending_keywords.each do |keyword|
+      if keyword.approved != true
+        pending = true
+      end
+    end
+  end
+
+  # check if pending list_keyword
+  if pending != true
+    pending_tags = ListTag.where("listable_type = ?", list.list_type)
+    pending_tags.each do |tag|
+      if tag.approved != true
+        pending = true
+      end
+    end
+  end
+
+  pending
 }

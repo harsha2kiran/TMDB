@@ -7,6 +7,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
 
   events:
     "click .js-remove" : "remove"
+    # "click .js-approve" : "approve"
     "click .js-unapprove" : "unapprove"
 
   render: ->
@@ -50,6 +51,21 @@ class AdminApp.MainItemsIndex extends Backbone.View
             type = "Person"
           self.reload_datatable(type)
 
+  # approve: (e) ->
+  #   self = @
+  #   container = $(e.target).parents("tr").first()
+  #   id = container.attr("data-id")
+  #   type = container.attr("data-model")
+  #   $.ajax api_version + "approvals/mark",
+  #     method: "post"
+  #     data:
+  #       approved_id: id
+  #       original_id: id
+  #       type: type
+  #       mark: true
+  #     success: ->
+  #       self.reload_datatable(type)
+
   unapprove: (e) ->
     self = @
     container = $(e.target).parents("tr").first()
@@ -67,7 +83,14 @@ class AdminApp.MainItemsIndex extends Backbone.View
 
   reload_datatable: (type) ->
     items = new AdminApp.MainItems()
-    items.url = api_version + "approvals/main_items"
+    if window.list_type == "gallery"
+      items.url = api_version + "lists/galleries"
+      type = "Gallery"
+    else if window.list_type == "channel"
+      items.url = api_version + "lists/channels"
+      type = "Channel"
+    else
+      items.url = api_version + "approvals/main_items"
     items.fetch
       data:
         type: type

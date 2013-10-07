@@ -76,7 +76,7 @@
 
 
 object @list
-attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_type
+attributes :id,:description, :title, :user_id, :created_at, :updated_at, :list_type, :approved
 
 if @list
   child :list_items do

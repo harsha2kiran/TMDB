@@ -36,6 +36,17 @@
           Moderate
         %th
           Delete
+  - else if type == "Gallery"
+    %thead
+      %tr
+        %th
+          Title
+        %th
+          Description
+        %th
+          Moderate
+        %th
+          Delete
   %tbody
     - @items.each (item) ->
       - if type == "Movie"
@@ -80,3 +91,18 @@
               %button.js-unapprove{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
           %td
             %button.js-remove{ "data-id" => item.id, "data-controller" => "people" }= "Delete"
+      - else if type == "Gallery"
+        - item = item.get("list")
+        %tr{ "data-id" => item.id, "data-model" => "List" }
+          %td.jeditable{ "data-id" => "title" }= item.title
+          %td.jeditable{ "data-id" => "description" }= item.description
+
+          %td.moderate
+            %a.span6{ href: "/#!/lists/#{item.id}" }
+              Moderate
+            - if item.pending || item.approved == false
+              (Pending)
+            - else
+              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "lists" }= "Unapprove"
+          %td
+            %button.js-remove{ "data-id" => item.id, "data-controller" => "lists" }= "Delete"
