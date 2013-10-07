@@ -1,0 +1,23 @@
+- item = @item
+.span12.js-keywords-list
+  - if item.keywords
+    - $.each item.keywords, (i, keyword) ->
+      - approved = false
+      - $.each item.media_keywords, (ii, media_keyword) ->
+        - if media_keyword.keyword_id == keyword.id && media_keyword.approved == true
+          - approved = true
+      - if approved || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+        .span2.keyword{ "data-id" => keyword.id }
+          .span5.keyword-keyword
+            = keyword.keyword
+
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            .span2.js-remove-keyword
+              X
+            - unless approved
+              .span3.js-approve-keyword
+                Approve
+.span12
+  %input.js-new-keyword{ type: "text", placeholder: "Keywords"}
+  %input.js-new-keyword-id{ type: "hidden" }
+  %input.js-new-keyword-ids{ type: "hidden", value: "[]" }

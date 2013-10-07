@@ -227,7 +227,6 @@ class MoviesApp.ListsShow extends Backbone.View
         listable_type: window.list_type
         taggable_id: id
         taggable_type: type
-        keyword_id: id
       success: ->
         parent.remove()
         $(".notifications").html("Tag successfully removed.").show().fadeOut(window.hide_delay)

@@ -5,15 +5,8 @@
     .span6
       %input.js-drop-image-title{ type: "text", placeholder: "Title" }
       %textarea.js-drop-image-description{ placeholder: "Description" }
-  .span12.js-keywords-list
-  .span12
-    %input.js-new-image-keyword{ type: "text", placeholder: "Keywords"}
-    %input.js-new-image-keyword-id{ type: "hidden" }
-    %input.js-new-image-keyword-ids{ type: "hidden", value: "[]" }
-  .span12.js-tags-movies-list
-  .span12.js-tags-people-list
-  .span12.js-tags-companies-list
-  .span12
-    %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
-    %input.js-new-image-tag-id{ type: "hidden" }
+
+  .single-image-keywords
+  .single-image-tags
+
   %input.js-drop-image-update{ type: "button", value: "Save" }
