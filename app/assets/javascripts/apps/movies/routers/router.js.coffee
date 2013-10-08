@@ -259,8 +259,12 @@ class MoviesApp.Router extends Backbone.Router
       success: ->
         if list.get("list")
           window.list_type = "List"
+
+          @show_view_main = new MoviesApp.ListsShowMain(list: list)
+          $(".js-content").html @show_view_main.render().el
+
           @show_view = new MoviesApp.ListsShow(list: list)
-          $(".js-content").html @show_view.render().el
+          $(".list-show-main-items").html @show_view.render().el
 
           @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
           $(".list_items").html @show_list_items_view.render().el

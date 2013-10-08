@@ -6,8 +6,8 @@
     - $.each list.list_items, (i, item) ->
       - if item.list_item.approved
         - is_empty = false
-    - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-      - is_empty = false
+  - if is_admin_or_mod() || current_users_item(list)
+    - is_empty = false
 
   - if !current_user && list.approved != true
     - is_empty = true

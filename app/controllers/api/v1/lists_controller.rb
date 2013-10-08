@@ -12,6 +12,7 @@ class Api::V1::ListsController < Api::V1::BaseController
     else
       @lists = List.where(approved: true).includes(:list_items, :user, :follows)
     end
+    @lists = @lists.where("list_type IS NULL OR list_type = ''")
     @current_api_user = current_api_user
   end
 

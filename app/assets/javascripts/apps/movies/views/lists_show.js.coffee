@@ -241,6 +241,7 @@ class MoviesApp.ListsShow extends Backbone.View
       @show.find(".js-new-list-tag").addClass("error")
 
   update_keywords_tags: (e) ->
+    self = @
     keyword_ids = []
     if $(".list-keywords").find(".keyword").length > 0
       $(".list-keywords").find(".keyword").each ->
@@ -251,6 +252,8 @@ class MoviesApp.ListsShow extends Backbone.View
         success: ->
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
+          if $(".list-tags").find(".tag").length == 0
+            self.reload_main_items()
 
     tag_ids = []
     tag_types = []
@@ -265,6 +268,22 @@ class MoviesApp.ListsShow extends Backbone.View
           success: ->
             console.log "tag success"
             $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
+            self.reload_main_items()
+
+  reload_main_items: ->
+    list = new MoviesApp.List()
+    list.url = "/api/v1/lists/#{window.list_id}?temp_user_id=" + localStorage.temp_user_id
+    list.fetch
+      success: ->
+        if list.get("list")
+          window.list_type = "List"
+          @show_view = new MoviesApp.ListsShow(list: list)
+          $(".list-show-main-items").html @show_view.render().el
+          if list.get("list").list_type == "gallery"
+            window.list_type = "gallery"
+            @edit_images_view = new MoviesApp.EditImagesGallery(images: [])
+            $(".add-images-form").append @edit_images_view.render().el
+            $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   remove_keyword: (e) ->
     parent = $(e.target).parents(".keyword").first()
