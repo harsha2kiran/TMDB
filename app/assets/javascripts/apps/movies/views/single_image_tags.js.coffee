@@ -27,8 +27,15 @@ class MoviesApp.SingleImageTags extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
-        if ui.item.id == "0"
-          self.add_new_tag(ui.item.type)
+        if ui.item.id == "-1"
+          type = "Movie"
+          self.add_new_tag(type)
+        else if ui.item.id == "-2"
+          type = "Person"
+          self.add_new_tag(type)
+        else if ui.item.id == "-3"
+          type = "Company"
+          self.add_new_tag(type)
         else
           tags = []
           tag_ids = []
@@ -39,25 +46,74 @@ class MoviesApp.SingleImageTags extends Backbone.View
           else if ui.item.type == "Company"
             tags_list_el = ".js-tags-companies-list"
           tags_list = self.container.find(tags_list_el).find(".tag")
-          tags_list.each ->
-            tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-            tag_ids.push parseInt($(@).attr("data-id"))
-          if $.inArray(parseInt(ui.item.id), tag_ids) == -1
-            tag_ids.push ui.item.id
-            tags.push [ui.item.id, ui.item.type, ui.item.label]
+          # tags_list.each ->
+          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
+          #   tag_ids.push parseInt($(@).attr("data-id"))
+          # if $.inArray(parseInt(ui.item.id), tag_ids) == -1
+          tag_ids.push ui.item.id
+          tags.push [ui.item.id, ui.item.type, ui.item.label]
           @tags_view = new MoviesApp.Tags(tags: tags)
-          self.container.find(tags_list_el).html @tags_view.render().el
+          self.container.find(tags_list_el).append @tags_view.render().el
         $(".ui-autocomplete-input").val("")
-      # response: (event, ui) ->
-      #   ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-tag-person").val()), "person")
-      #   if ui.content.length == 0
-      #     $(self.el).find(".js-new-person-info, .js-new-person-add-form").show()
-      #     $(self.el).find(".js-new-person-id").val("")
-      #   else
-      #     self.edit.find(".js-new-person-info, .js-new-person-add-form").hide()
+      response: (event, ui) ->
+        ui.content = window.check_tags_autocomplete(ui.content, $.trim($(".js-new-tag").val()))
+        if ui.content.length == 0
+          self.container.find(".js-new-item-info, .js-new-item-add-form").show()
+          self.container.find(".js-new-tag-id").val("")
+        else
+          self.container.find(".js-new-item-info, .js-new-item-add-form").hide()
 
-  add_new_item: (e) ->
-    console.log ""
+  add_new_tag: (type) ->
+    self = @
+    value = @container.find(".js-new-tag").val()
+    if value != ""
+      model = ""
+      if type == "Movie"
+        model = new MoviesApp.Movie()
+        model.set({ movie: { title: value } })
+      else if type == "Person"
+        model = new PeopleApp.Person()
+        model.set({ person: { name: value } })
+      else if type == "Company"
+        model = new MoviesApp.Company()
+        model.set({ company: { company: value } })
+      model.save null,
+        success: ->
+          $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag").val("").removeClass "error"
+          $(self.el).find(".js-new-tag-id").val("")
+          tags = []
+          tag_ids = []
+          value = ""
+          if type == "Movie"
+            tags_list_el = ".js-tags-movies-list"
+            value = model.get("title")
+          else if type == "Person"
+            tags_list_el = ".js-tags-people-list"
+            value = model.get("name")
+          else if type == "Company"
+            tags_list_el = ".js-tags-companies-list"
+            value = model.get("company")
+
+          tags_list = $(".list-tags").find(tags_list_el).find(".tag")
+
+          # tags_list.each ->
+          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
+          #   tag_ids.push parseInt($(@).attr("data-id"))
+
+          # if $.inArray(parseInt(model.id), tag_ids) == -1
+          tag_ids.push model.id
+          tags.push [model.id, type, value]
+
+          @tags_view = new MoviesApp.Tags(tags: tags)
+          self.container.find(tags_list_el).append @tags_view.render().el
+
+        error: (model, response) ->
+          $(".notifications").html("Tag is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-tag").val("").removeClass "error"
+          $(self.el).find(".js-new-tag-id").val("")
+    else
+      @container.find(".js-new-tag").addClass("error")
 
   remove_tag: (e) ->
     parent = $(e.target).parents(".tag").first()
