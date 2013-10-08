@@ -26,7 +26,6 @@
               - unless approved
                 .span3.js-approve-tag
                   Approve
-
 .span12.js-tags-people-list
   - if item.tags
     - $.each item.tags, (i, tag) ->

@@ -50,6 +50,27 @@ window.check_autocomplete = (items, term, type) ->
     items.push { "label" : "Missing #{type}? Add it.", "value" : "Missing #{type}? Add it.", "id" : "0" }
   items
 
+window.check_tags_autocomplete = (items, term, type) ->
+  found_movie = false
+  found_person = false
+  found_company = false
+  term = term.toLowerCase()
+  $.each items, (i, item) ->
+    if item.label.toLowerCase() == term
+      if item.type == "Movie"
+        found_movie = true
+      if item.type == "Person"
+        found_person = true
+      if item.type == "Company"
+        found_company = true
+  if found_movie == false
+    items.push { "label" : "Missing movie? Add it.", "value" : "Missing movie? Add it.", "id" : "-1" }
+  if found_person == false
+    items.push { "label" : "Missing person? Add it.", "value" : "Missing person? Add it.", "id" : "-2" }
+  if found_company == false
+    items.push { "label" : "Missing company? Add it.", "value" : "Missing company? Add it.", "id" : "-3" }
+  items
+
 window.is_admin_or_mod = ->
   if (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
     true

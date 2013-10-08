@@ -49,14 +49,14 @@ class MoviesApp.ListsShow extends Backbone.View
         else
           keywords = []
           keyword_ids = []
-          show.find(".keyword").each ->
-            keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
-            keyword_ids.push parseInt($(@).attr("data-id"))
-          if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
-            keyword_ids.push ui.item.id
-            keywords.push [ui.item.id, ui.item.label]
+          # show.find(".keyword").each ->
+          #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
+          #   keyword_ids.push parseInt($(@).attr("data-id"))
+          # if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
+          keyword_ids.push ui.item.id
+          keywords.push [ui.item.id, ui.item.label]
           @keywords_view = new MoviesApp.Keywords(keywords: keywords)
-          show.find(".js-keywords-list").html @keywords_view.render().el
+          show.find(".js-keywords-list").append @keywords_view.render().el
         $(".ui-autocomplete-input").val("")
       response: (event, ui) ->
         ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-list-keyword").val()), "keyword")
@@ -74,8 +74,15 @@ class MoviesApp.ListsShow extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
-        if ui.item.id == "0"
-          self.add_new_tag(ui.item.type)
+        if ui.item.id == "-1"
+          type = "Movie"
+          self.add_new_tag(type)
+        else if ui.item.id == "-2"
+          type = "Person"
+          self.add_new_tag(type)
+        else if ui.item.id == "-3"
+          type = "Company"
+          self.add_new_tag(type)
         else
           tags = []
           tag_ids = []
@@ -86,15 +93,22 @@ class MoviesApp.ListsShow extends Backbone.View
           else if ui.item.type == "Company"
             tags_list_el = ".js-tags-companies-list"
           tags_list = $(".list-tags").find(tags_list_el).find(".tag")
-          tags_list.each ->
-            tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-            tag_ids.push parseInt($(@).attr("data-id"))
-          if $.inArray(parseInt(ui.item.id), tag_ids) == -1
-            tag_ids.push ui.item.id
-            tags.push [ui.item.id, ui.item.type, ui.item.value]
+          # tags_list.each ->
+          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
+          #   tag_ids.push parseInt($(@).attr("data-id"))
+          # if $.inArray(parseInt(ui.item.id), tag_ids) == -1
+          tag_ids.push ui.item.id
+          tags.push [ui.item.id, ui.item.type, ui.item.value]
           @tags_view = new MoviesApp.Tags(tags: tags)
-          show.find(tags_list_el).html @tags_view.render().el
+          show.find(tags_list_el).append @tags_view.render().el
         $(".ui-autocomplete-input").val("")
+      response: (event, ui) ->
+        ui.content = window.check_tags_autocomplete(ui.content, $.trim($(".js-new-list-tag").val()))
+        if ui.content.length == 0
+          show.find(".js-new-item-info, .js-new-item-add-form").show()
+          show.find(".js-new-list-tag-id").val("")
+        else
+          show.find(".js-new-item-info, .js-new-item-add-form").hide()
     this
 
   create: ->
@@ -159,20 +173,72 @@ class MoviesApp.ListsShow extends Backbone.View
           $(self.el).find(".js-new-list-keyword-id").val("")
           keywords = []
           keyword_ids = []
-          self.show.find(".keyword").each ->
-            keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
-            keyword_ids.push $(@).attr("data-id")
-          if $.inArray(model.id, keyword_ids) == -1
-            keyword_ids.push model.id
-            keywords.push [model.id, model.get("keyword")]
+          # self.show.find(".keyword").each ->
+          #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
+          #   keyword_ids.push $(@).attr("data-id")
+          # if $.inArray(model.id, keyword_ids) == -1
+          keyword_ids.push model.id
+          keywords.push [model.id, model.get("keyword")]
           @keywords_view = new MoviesApp.Keywords(keywords: keywords)
-          $(".js-keywords-list").html @keywords_view.render().el
+          $(".js-keywords-list").append @keywords_view.render().el
         error: (model, response) ->
           $(".notifications").html("Keyword is currently waiting for moderation.").show().fadeOut(window.hide_delay)
           $(self.el).find(".js-new-list-keyword").val("").removeClass "error"
           $(self.el).find(".js-new-list-keyword-id").val("")
     else
       @show.find(".js-new-list-keyword").addClass("error")
+
+  add_new_tag: (type) ->
+    self = @
+    value = @show.find(".js-new-list-tag").val()
+    if value != ""
+      model = ""
+      if type == "Movie"
+        model = new MoviesApp.Movie()
+        model.set({ movie: { title: value } })
+      else if type == "Person"
+        model = new PeopleApp.Person()
+        model.set({ person: { name: value } })
+      else if type == "Company"
+        model = new MoviesApp.Company()
+        model.set({ company: { company: value } })
+      model.save null,
+        success: ->
+          $(".notifications").html("Tag added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-list-tag").val("").removeClass "error"
+          $(self.el).find(".js-new-list-tag-id").val("")
+          tags = []
+          tag_ids = []
+          value = ""
+          if type == "Movie"
+            tags_list_el = ".js-tags-movies-list"
+            value = model.get("title")
+          else if type == "Person"
+            tags_list_el = ".js-tags-people-list"
+            value = model.get("name")
+          else if type == "Company"
+            tags_list_el = ".js-tags-companies-list"
+            value = model.get("company")
+
+          tags_list = $(".list-tags").find(tags_list_el).find(".tag")
+
+          # tags_list.each ->
+          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
+          #   tag_ids.push parseInt($(@).attr("data-id"))
+
+          # if $.inArray(parseInt(model.id), tag_ids) == -1
+          tag_ids.push model.id
+          tags.push [model.id, type, value]
+
+          @tags_view = new MoviesApp.Tags(tags: tags)
+          self.show.find(tags_list_el).append @tags_view.render().el
+
+        error: (model, response) ->
+          $(".notifications").html("Tag is currently waiting for moderation.").show().fadeOut(window.hide_delay)
+          $(self.el).find(".js-new-list-tag").val("").removeClass "error"
+          $(self.el).find(".js-new-list-tag-id").val("")
+    else
+      @show.find(".js-new-list-tag").addClass("error")
 
   update_keywords_tags: (e) ->
     keyword_ids = []
@@ -186,26 +252,19 @@ class MoviesApp.ListsShow extends Backbone.View
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
 
-          tag_ids = []
-          tag_types = []
-          if $(".list-tags").find(".tag").length > 0
-            tags_list = $(".list-tags").find(".tag")
-            if tags_list.length > 0
-              tags_list.each ->
-                tag_types.push $(@).attr("data-type")
-                tag_ids.push parseInt($(@).attr("data-id"))
-              list_tag = new MoviesApp.ListTag()
-              list_tag.save ({ tag_types: tag_types, tag_ids: tag_ids, listable_id: window.list_id, listable_type: window.list_type, temp_user_id: localStorage.temp_user_id }),
-                success: ->
-                  console.log "tag success"
-                  $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
-
-                  location.reload()
-
-          # if keyword_ids.length == 1
-          #   $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          # else
-          #   $(".notifications").html("Keywords added. They will be active after moderation.").show().fadeOut(window.hide_delay)
+    tag_ids = []
+    tag_types = []
+    if $(".list-tags").find(".tag").length > 0
+      tags_list = $(".list-tags").find(".tag")
+      if tags_list.length > 0
+        tags_list.each ->
+          tag_types.push $(@).attr("data-type")
+          tag_ids.push parseInt($(@).attr("data-id"))
+        list_tag = new MoviesApp.ListTag()
+        list_tag.save ({ tag_types: tag_types, tag_ids: tag_ids, listable_id: window.list_id, listable_type: window.list_type, temp_user_id: localStorage.temp_user_id }),
+          success: ->
+            console.log "tag success"
+            $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
 
   remove_keyword: (e) ->
     parent = $(e.target).parents(".keyword").first()
