@@ -9,7 +9,10 @@
     - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
       - is_empty = false
 
-  - if !is_empty && (list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+  - if !current_user && list.approved != true
+    - is_empty = true
+
+  - if !is_empty && ((list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator") || list.approved == true))
     .span12.box
       .span8
         %a{ href: "/#!/lists/#{list.id}" }
