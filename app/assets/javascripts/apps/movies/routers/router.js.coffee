@@ -43,8 +43,10 @@ class MoviesApp.Router extends Backbone.Router
             $(".likes").html @likes_view.render().el
 
           images = new MoviesApp.Images()
-          images.url = "/api/v1/images/#{id}/related_images?temp_user_id=" + localStorage.temp_user_id
+          images.url = "/api/v1/images/0/related_images?temp_user_id=" + localStorage.temp_user_id
           images.fetch
+            data:
+              image_ids: "[488,489]"
             success: ->
               @related_images = new MoviesApp.RelatedImages(images: images)
               $(".related-images").html @related_images.render().el

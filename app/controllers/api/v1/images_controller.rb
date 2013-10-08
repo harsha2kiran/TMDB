@@ -34,18 +34,49 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def related_images
-    respond_to do |format|
-      image = Image.find params[:image_id]
-      keyword_ids = image.media_keywords.map(&:keyword_id)
-      related_images = []
-      media_keywords = MediaKeyword.all
-      media_keywords.each do |mk|
-        if keyword_ids.include?(mk.keyword_id) && mk.mediable_id != image.id && mk.mediable_type == "Image" && mk.mediable.approved == true
-          related_images.push mk.mediable
-        end
-      end
-      format.json { render json: related_images }
+    if params[:image_id] && params[:image_id] != "0"
+      @related_images = find_related_by_image_id(params[:image_id])
+    elsif params[:image_ids]
+      @related_images = find_related_by_image_ids(params[:image_ids])
     end
+    if @related_images
+      @related_images = @related_images.uniq
+    else
+      @related_images = []
+    end
+  end
+
+  private
+
+  def find_related_by_image_id(image_id)
+    image = Image.find image_id
+    keyword_ids = image.media_keywords.map(&:keyword_id)
+    related_images = []
+    media_keywords = MediaKeyword.all
+    media_keywords.each do |mk|
+      if keyword_ids.include?(mk.keyword_id) && mk.mediable_id != image.id && mk.mediable_type == "Image" && mk.mediable.approved == true
+        related_images.push mk.mediable
+      end
+    end
+    related_images
+  end
+
+  def find_related_by_image_ids(image_ids)
+    related_images = []
+    keyword_ids = []
+    images = Image.find(eval(image_ids))
+    images.each do |image|
+      keyword_ids << image.media_keywords.map(&:keyword_id)
+    end
+    keyword_ids.flatten!
+    keyword_ids.uniq!
+    media_keywords = MediaKeyword.all
+    media_keywords.each do |mk|
+      if keyword_ids.include?(mk.keyword_id) && !images.map(&:id).include?(mk.mediable_id) && mk.mediable_type == "Image" && mk.mediable.approved == true
+        related_images.push mk.mediable
+      end
+    end
+    related_images
   end
 
 end
