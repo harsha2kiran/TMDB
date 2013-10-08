@@ -42,6 +42,13 @@ class MoviesApp.Router extends Backbone.Router
             @likes_view = new MoviesApp.LikesShow(item: image.get("image"))
             $(".likes").html @likes_view.render().el
 
+          images = new MoviesApp.Images()
+          images.url = "/api/v1/images/#{id}/related_images?temp_user_id=" + localStorage.temp_user_id
+          images.fetch
+            success: ->
+              @related_images = new MoviesApp.RelatedImages(images: images)
+              $(".related-images").html @related_images.render().el
+
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
           type = "Image"

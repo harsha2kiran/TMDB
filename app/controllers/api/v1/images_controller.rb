@@ -33,4 +33,19 @@ class Api::V1::ImagesController < Api::V1::BaseController
     create!
   end
 
+  def related_images
+    respond_to do |format|
+      image = Image.find params[:image_id]
+      keyword_ids = image.media_keywords.map(&:keyword_id)
+      related_images = []
+      media_keywords = MediaKeyword.all
+      media_keywords.each do |mk|
+        if keyword_ids.include?(mk.keyword_id) && mk.mediable_id != image.id && mk.mediable_type == "Image" && mk.mediable.approved == true
+          related_images.push mk.mediable
+        end
+      end
+      format.json { render json: related_images }
+    end
+  end
+
 end

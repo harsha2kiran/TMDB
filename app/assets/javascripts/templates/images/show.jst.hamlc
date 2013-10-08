@@ -26,3 +26,6 @@
 
 .span12
   %input.js-image-update{ type: "button", value: "Save" }
+
+.span12.related-images
+

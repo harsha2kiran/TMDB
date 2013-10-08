@@ -40,7 +40,9 @@ Movies::Application.routes.draw do
         get "search" => "genres#search"
       end
     end
-    resources :images
+    resources :images do
+      get "related_images" => "images#related_images"
+    end
     resources :keywords do
       collection do
         get "search" => "keywords#search"
