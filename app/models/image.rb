@@ -14,6 +14,7 @@ class Image < ActiveRecord::Base
   has_many :views, :as => :viewable, :dependent => :destroy
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :pending_items, :as => :approvable, :dependent => :destroy
+  has_many :likes, :as => :likable, :dependent => :destroy
 
   mount_uploader :image_file, ImageUploader
 

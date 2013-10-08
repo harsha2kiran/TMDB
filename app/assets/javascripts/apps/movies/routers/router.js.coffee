@@ -38,6 +38,10 @@ class MoviesApp.Router extends Backbone.Router
           @show_view = new MoviesApp.ImagesShow(image: image)
           $(".js-content").html @show_view.render().el
 
+          if current_user
+            @likes_view = new MoviesApp.LikesShow(item: image.get("image"))
+            $(".likes").html @likes_view.render().el
+
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
           type = "Image"

@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :person_social_apps
   has_many :alternative_titles
   has_many :badges, :through => :user_badges
+  has_many :likes
 
   after_create :activate
   before_create :set_user_type

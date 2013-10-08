@@ -1,19 +1,28 @@
 - image = @image
-.span3.image
+.span12.image
   %a.slimbox{ href: image.image_file.image_file.watermarked.url, title: image.title }
     .image
       %img{ src: image.image_file.image_file.small.url, alt: "no image"}
     .title
       = image.title
 
-  .views.span12
-    %span= "Views: "
-      - if image.views
-        = image.views + 1
-      - else
-        1
+.views.span12
+  %span= "Views: "
+    - if image.views
+      = image.views + 1
+    - else
+      1
 
-.single-image-keywords
-.single-image-tags
+- if current_user
+  %h4.span12
+    Likes
+  .span12.likes
+%h4.span12
+  Keywords
+.span12.single-image-keywords
+%h4.span12
+  Tags
+.span12.single-image-tags
 
-%input.js-image-update{ type: "button", value: "Save" }
+.span12
+  %input.js-image-update{ type: "button", value: "Save" }

@@ -42,3 +42,5 @@ node(:media_keywords){
 
 node(:follows) { |image| image.follows }
 node(:views) { |image| image.views.count }
+node(:likes) { |image| image.likes.where(status: 1) }
+node(:dislikes) { |image| image.likes.where(status: 0) }
