@@ -3,21 +3,40 @@ class Api::V1::ListsController < Api::V1::BaseController
   inherit_resources
 
   def index
-    @lists = List.where("list_type = '' OR list_type IS NULL").includes(:list_items, :user)
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @lists = List.where("list_type = '' OR list_type IS NULL").includes(:list_items, :user)
+    elsif current_api_user && current_api_user.user_type == "user"
+      @lists = List.where("(list_type = '' OR list_type IS NULL) AND (approved = true OR user_id = ?)", current_api_user.id).includes(:list_items, :user)
+    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+      @lists = List.where("(list_type = '' OR list_type IS NULL) AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
+    else
+      @lists = List.where(approved: true).includes(:list_items, :user, :follows)
+    end
     @current_api_user = current_api_user
   end
 
   def show
-    @list = List.find_by_id(params[:id], :include => [:list_items, :user, :follows])
-    unless @list.nil?
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @list = List.where(id: params[:id]).includes(:list_items, :user, :follows)
+    elsif current_api_user && current_api_user.user_type == "user"
+      @list = List.where("id = ? AND (approved = true OR user_id = ?)", params[:id], current_api_user.id).includes(:list_items, :user, :follows)
+    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+      @list = List.where("id = ? AND (approved = true OR temp_user_id = ?)", params[:id], params[:temp_user_id]).includes(:list_items, :user, :follows)
+    else
+      @list = List.where(id: params[:id], approved: true).includes(:list_items, :user, :follows)
+    end
+    @list = @list.first
+    if @list
       image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
       @images = Image.find_all_by_id(image_ids)
       @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
       @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
-      @current_api_user = current_api_user
     else
-      List.new
+      @images = []
+      @keywords = []
+      @tags = []
     end
+    @current_api_user = current_api_user
   end
 
   def update

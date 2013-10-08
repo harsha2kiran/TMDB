@@ -14,8 +14,8 @@ class MoviesApp.ListsShow extends Backbone.View
     "click .js-remove-tag" : "remove_tag"
     "click .js-approve-keyword" : "approve_keyword"
     "click .js-approve-tag" : "approve_tag"
-    "click .js-approve" : "approve"
-    "click .js-unapprove" : "unapprove"
+    "click .js-approve-list" : "approve_list"
+    "click .js-unapprove-list" : "unapprove_list"
 
   render: ->
     show = $(@el)
@@ -185,21 +185,23 @@ class MoviesApp.ListsShow extends Backbone.View
         success: ->
           console.log "keywords success"
           $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
-          location.reload()
 
-    tag_ids = []
-    tag_types = []
-    if $(".list-tags").find(".tag").length > 0
-      tags_list = $(".list-tags").find(".tag")
-      if tags_list.length > 0
-        tags_list.each ->
-          tag_types.push $(@).attr("data-type")
-          tag_ids.push parseInt($(@).attr("data-id"))
-        list_tag = new MoviesApp.ListTag()
-        list_tag.save ({ tag_types: tag_types, tag_ids: tag_ids, listable_id: window.list_id, listable_type: window.list_type, temp_user_id: localStorage.temp_user_id }),
-          success: ->
-            console.log "tag success"
-            $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
+          tag_ids = []
+          tag_types = []
+          if $(".list-tags").find(".tag").length > 0
+            tags_list = $(".list-tags").find(".tag")
+            if tags_list.length > 0
+              tags_list.each ->
+                tag_types.push $(@).attr("data-type")
+                tag_ids.push parseInt($(@).attr("data-id"))
+              list_tag = new MoviesApp.ListTag()
+              list_tag.save ({ tag_types: tag_types, tag_ids: tag_ids, listable_id: window.list_id, listable_type: window.list_type, temp_user_id: localStorage.temp_user_id }),
+                success: ->
+                  console.log "tag success"
+                  $(".notifications").html("Changes successfully saved.").show().fadeOut(window.hide_delay)
+
+                  location.reload()
+
           # if keyword_ids.length == 1
           #   $(".notifications").html("Keyword added. It will be active after moderation.").show().fadeOut(window.hide_delay)
           # else
@@ -252,7 +254,7 @@ class MoviesApp.ListsShow extends Backbone.View
         parent.find(".js-approve-tag").remove()
         $(".notifications").html("Tag successfully approved.").show().fadeOut(window.hide_delay)
 
-  approve: (e) ->
+  approve_list: (e) ->
     self = @
     container = $(e.target)
     id = container.attr("data-id")
@@ -265,10 +267,10 @@ class MoviesApp.ListsShow extends Backbone.View
         type: type
         mark: true
       success: ->
-        $(".js-approve").hide()
-        $(".js-unapprove").show()
+        $(".js-approve-list").hide()
+        $(".js-unapprove-list").show()
 
-  unapprove: (e) ->
+  unapprove_list: (e) ->
     self = @
     container = $(e.target)
     id = container.attr("data-id")
@@ -281,7 +283,7 @@ class MoviesApp.ListsShow extends Backbone.View
         type: type
         mark: false
       success: ->
-        $(".js-approve").show()
-        $(".js-unapprove").hide()
+        $(".js-approve-list").show()
+        $(".js-unapprove-list").hide()
 
 

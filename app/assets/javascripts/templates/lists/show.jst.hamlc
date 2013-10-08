@@ -3,7 +3,7 @@
 - is_empty = true
 - if list && list.list_items
   - $.each list.list_items, (i, item) ->
-    - if item.list_item.approved
+    - if item.list_item.approved == true
       - is_empty = false
 
 - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator" || current_user.id == list.user_id)
@@ -30,11 +30,11 @@
       - if is_admin_or_mod()
         .span12
           - if list.approved == true
-            %button.js-approve.hide{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+            %button.js-approve-list.hide{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove-list{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
           - else
-            %button.js-approve{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove.hide{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+            %button.js-approve-list{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove-list.hide{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
 
 
 

@@ -5,7 +5,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
   def create
     respond_to do |format|
       list = List.find params[:list_item][:list_id]
-      if current_api_user && (current_api_user.id == list.user_id || ["admin", "moderator"].include?(current_api_user.user_type))
+      if current_api_user && (["admin", "moderator"].include?(current_api_user.user_type))
         params[:list_item][:approved] = true
         params[:list_item][:user_id] = current_api_user.id
       else

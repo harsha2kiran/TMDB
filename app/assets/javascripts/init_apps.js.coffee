@@ -57,7 +57,7 @@ window.is_admin_or_mod = ->
     false
 
 window.current_users_item = (item) ->
-  if (current_user && item.user_id == current_user.user_id)
+  if (current_user && item.user_id == current_user.id)
     true
   else
     false

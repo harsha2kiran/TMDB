@@ -7,7 +7,14 @@ class Api::V1::BaseController < ApplicationController
   before_filter :set_approved_false, :except => [:mark, :unmark]
   before_filter :check_if_destroy, :except => [:mark, :unmark]
   before_filter :check_if_update, :except => [:mark, :unmark]
+  before_filter :fix_temp_user_id
   after_filter :set_pending
+
+  def fix_temp_user_id
+    if params[:temp_user_id] == "undefined"
+      params[:temp_user_id] = ""
+    end
+  end
 
   def set_pending
     if ["create", "update"].include?(params[:action])
@@ -210,7 +217,7 @@ class Api::V1::BaseController < ApplicationController
   def check_if_update
     if params[:action] == "update"
       if current_api_user
-        if ["admin", "moderator"].include?(current_api_user.user_type)
+        if ["admin", "moderator"].include?(current_api_user.user_type) || @controller == "images"
         else
           redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
         end
