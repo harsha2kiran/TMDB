@@ -15,9 +15,14 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def search
-    @movies = Movie.search(params[:term])
-    @people = Person.search(params[:term])
-    @companies = Company.search(params[:term])
+
+    @movies = Movie.where("lower(title) LIKE ? AND id = original_id", "%" + params[:term].downcase + "%").order("title")
+    @people = Person.where("lower(name) LIKE ? AND id = original_id", "%" + params[:term].downcase + "%").order("name")
+    @companies = Company.where("lower(company) LIKE ?", "%" + params[:term].downcase + "%").order("company")
+
+    # @movies = Movie.search(params[:term])
+    # @people = Person.search(params[:term])
+    # @companies = Company.search(params[:term])
 
     @results = []
     @movies.each do |movie|
