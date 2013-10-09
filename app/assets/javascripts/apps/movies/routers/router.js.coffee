@@ -154,7 +154,7 @@ class MoviesApp.Router extends Backbone.Router
             success: ->
               console.log view
 
-          $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+          # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
         else
           @show_view = new MoviesApp.NotFound(type: "movie")
           $(".js-content").html @show_view.render().el
@@ -183,7 +183,7 @@ class MoviesApp.Router extends Backbone.Router
         @edit_view = new MoviesApp.Edit(movie: movie, my_movie: my_movie)
         $(".js-content").html @edit_view.render().el
 
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+        # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   new: ->
     console.log "add new movie"

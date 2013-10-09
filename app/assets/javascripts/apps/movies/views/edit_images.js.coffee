@@ -135,4 +135,4 @@ class MoviesApp.EditImages extends Backbone.View
           @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
           $(".add-images-form").append @edit_images_view.render().el
 
-        $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+        # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })

@@ -14,7 +14,6 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def show
-
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
       @image = Image.where(id: params[:id])
     elsif current_api_user && current_api_user.user_type == "user"
@@ -43,11 +42,19 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def related_images
+    # by single image
     if params[:image_id] && params[:image_id] != "0"
       @related_images = find_related_by_image_id(params[:image_id])
+
+    # by array of image ids
     elsif params[:image_ids]
       @related_images = find_related_by_image_ids(params[:image_ids])
+
+    # by movie or person id
+    elsif params[:id] && params[:type]
+      @related_images = find_related_by_movie_or_person(params[:id], params[:type])
     end
+
     if @related_images
       @related_images = @related_images.uniq
     else
@@ -85,6 +92,15 @@ class Api::V1::ImagesController < Api::V1::BaseController
         related_images.push mk.mediable
       end
     end
+    related_images
+  end
+
+  def find_related_by_movie_or_person(id, type)
+    related_images = []
+    keyword_ids = []
+    item = type.classify.constantize.find(id)
+    image_ids = item.images.map(&:id)
+    related_images = find_related_by_image_ids(image_ids.to_s)
     related_images
   end
 
