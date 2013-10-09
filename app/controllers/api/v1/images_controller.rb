@@ -14,7 +14,16 @@ class Api::V1::ImagesController < Api::V1::BaseController
   end
 
   def show
-    @image = Image.find_all_by_id(params[:id])
+
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @image = Image.where(id: params[:id])
+    elsif current_api_user && current_api_user.user_type == "user"
+      @image = Image.where("id = ? AND (approved = true OR user_id = ?)", params[:id], current_api_user.id)
+    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+      @image = Image.where("id = ? AND (approved = true OR temp_user_id = ?)", params[:id], params[:temp_user_id])
+    else
+      @image = Image.where(id: params[:id], approved: true)
+    end
     if @image != []
       @image = @image.first
       @media_tags = @image.media_tags

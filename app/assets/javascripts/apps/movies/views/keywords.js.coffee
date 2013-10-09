@@ -12,6 +12,7 @@ class MoviesApp.Keywords extends Backbone.View
     index = $(@el)
     keywords = @options.keywords
     index.html @template(keywords: keywords)
+    $(".ui-autocomplete-input").val ""
     this
 
   remove: (e) ->

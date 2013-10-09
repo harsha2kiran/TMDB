@@ -41,7 +41,8 @@ class MoviesApp.SingleImageKeywords extends Backbone.View
           keywords.push [ui.item.id, ui.item.label]
           @keywords_view = new MoviesApp.Keywords(keywords: keywords)
           self.container.find(".js-keywords-list").append @keywords_view.render().el
-        $(".ui-autocomplete-input").val("")
+        $(@).val("")
+        return false
       response: (event, ui) ->
         ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-keyword").val()), "keyword")
         if ui.content.length == 0

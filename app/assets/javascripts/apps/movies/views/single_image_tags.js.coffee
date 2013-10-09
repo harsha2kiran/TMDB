@@ -54,7 +54,8 @@ class MoviesApp.SingleImageTags extends Backbone.View
           tags.push [ui.item.id, ui.item.type, ui.item.label]
           @tags_view = new MoviesApp.Tags(tags: tags)
           self.container.find(tags_list_el).append @tags_view.render().el
-        $(".ui-autocomplete-input").val("")
+        $(@).val("")
+        return false
       response: (event, ui) ->
         ui.content = window.check_tags_autocomplete(ui.content, $.trim($(".js-new-tag").val()))
         if ui.content.length == 0
@@ -70,12 +71,15 @@ class MoviesApp.SingleImageTags extends Backbone.View
       model = ""
       if type == "Movie"
         model = new MoviesApp.Movie()
+        model.url = "/api/v1/movies?temp_user_id=" + localStorage.temp_user_id
         model.set({ movie: { title: value } })
       else if type == "Person"
         model = new PeopleApp.Person()
+        model.url = "/api/v1/people?temp_user_id=" + localStorage.temp_user_id
         model.set({ person: { name: value } })
       else if type == "Company"
         model = new MoviesApp.Company()
+        model.url = "/api/v1/companies"
         model.set({ company: { company: value } })
       model.save null,
         success: ->

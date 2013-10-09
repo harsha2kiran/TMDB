@@ -88,4 +88,3 @@ window.current_temp_users_item = (item) ->
     true
   else
     false
-

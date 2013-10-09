@@ -57,7 +57,8 @@ class MoviesApp.ListsShow extends Backbone.View
           keywords.push [ui.item.id, ui.item.label]
           @keywords_view = new MoviesApp.Keywords(keywords: keywords)
           show.find(".js-keywords-list").append @keywords_view.render().el
-        $(".ui-autocomplete-input").val("")
+        $(@).val("")
+        return false
       response: (event, ui) ->
         ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-list-keyword").val()), "keyword")
         if ui.content.length == 0
@@ -101,7 +102,8 @@ class MoviesApp.ListsShow extends Backbone.View
           tags.push [ui.item.id, ui.item.type, ui.item.value]
           @tags_view = new MoviesApp.Tags(tags: tags)
           show.find(tags_list_el).append @tags_view.render().el
-        $(".ui-autocomplete-input").val("")
+        $(@).val("")
+        return false
       response: (event, ui) ->
         ui.content = window.check_tags_autocomplete(ui.content, $.trim($(".js-new-list-tag").val()))
         if ui.content.length == 0
@@ -195,12 +197,15 @@ class MoviesApp.ListsShow extends Backbone.View
       model = ""
       if type == "Movie"
         model = new MoviesApp.Movie()
+        model.url = "/api/v1/movies?temp_user_id=" + localStorage.temp_user_id
         model.set({ movie: { title: value } })
       else if type == "Person"
         model = new PeopleApp.Person()
+        model.url = "/api/v1/people?temp_user_id=" + localStorage.temp_user_id
         model.set({ person: { name: value } })
       else if type == "Company"
         model = new MoviesApp.Company()
+        model.url = "/api/v1/companies"
         model.set({ company: { company: value } })
       model.save null,
         success: ->
