@@ -76,12 +76,32 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def galleries
-    @lists = List.where(list_type: "gallery").includes(:list_items, :user)
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @lists = List.where(list_type: "gallery").includes(:list_items, :user)
+    elsif current_api_user && current_api_user.user_type == "user"
+      @lists = List.where("(list_type = 'gallery') AND (approved = true OR user_id = ?)", current_api_user.id).includes(:list_items, :user)
+    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+      @lists = List.where("(list_type = 'gallery') AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
+    else
+      @lists = List.where(list_type: "gallery", approved: true).includes(:list_items, :user, :follows)
+    end
+    @image_ids = @lists.map(&:list_items).flatten.map(&:listable_id)
+    @images = Image.find_all_by_id(@image_ids)
+    @current_api_user = current_api_user
     render 'index'
   end
 
   def channels
-    @lists = List.where(list_type: "channel").includes(:list_items, :user)
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @lists = List.where(list_type: "channel").includes(:list_items, :user)
+    elsif current_api_user && current_api_user.user_type == "user"
+      @lists = List.where("(list_type = 'channel') AND (approved = true OR user_id = ?)", current_api_user.id).includes(:list_items, :user)
+    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+      @lists = List.where("(list_type = 'channel') AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
+    else
+      @lists = List.where(list_type: "channel", approved: true).includes(:list_items, :user, :follows)
+    end
+    @current_api_user = current_api_user
     render 'index'
   end
 
