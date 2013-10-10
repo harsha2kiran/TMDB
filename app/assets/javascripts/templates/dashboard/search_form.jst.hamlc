@@ -1,3 +1,17 @@
-%label
-  Search
-%input{ type: "text", class: "js-dashboard-search", placeholder: "Search movies and people" }
+.breadcrumb
+  %input{ type: "text", class: "js-dashboard-search form-control flat", placeholder: "Search movies and people" }
+
+  .breadcrumb-menu
+.main-menu
+  %a.col-md-2.btn.btn-primary{ href: "/#!/movies" }
+    Movies
+  %a.col-md-2.btn.btn-primary{ href: "/#!/people" }
+    People
+  %a.col-md-2.btn.btn-primary{ href: "/#!/genres" }
+    Genres
+  %a.col-md-2.btn.btn-primary{ href: "/#!/lists" }
+    Lists
+  %a.col-md-2.btn.btn-primary{ href: "/#!/galleries" }
+    Galleries
+
+

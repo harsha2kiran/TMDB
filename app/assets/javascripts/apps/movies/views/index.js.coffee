@@ -1,6 +1,6 @@
 class MoviesApp.Index extends Backbone.View
   template: JST['templates/movies/index']
-  className: "row-fluid movies-index"
+  className: "row movies-index"
 
   events:
     "click .js-load-more" : "load_more"

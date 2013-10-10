@@ -1,27 +1,27 @@
 - if @list_type  == "gallery"
-  %a{ href: "/#!/galleries", class: "span12" }
+  %a{ href: "/#!/galleries", class: "col-md-12" }
     All galleries
 - else if @list_type  == "channel"
-  %a{ href: "/#!/channels", class: "span12" }
+  %a{ href: "/#!/channels", class: "col-md-12" }
     All channels
 - else
-  %a{ href: "/#!/lists", class: "span12" }
+  %a{ href: "/#!/lists", class: "col-md-12" }
     All lists
 
-%h3.span12
+%h3.col-md-12
   - unless @list_type
     Add new list
   - else
     = "Add new " + @list_type
 
-.list.span12.box
-  %p.span12
+.list.col-md-12.box
+  %p.col-md-12
     Title
     %input.js-title{ type: "text", placeholder: "Title" }
-  %p.description.span12
+  %p.description.col-md-12
     Description
     %input.js-description{ type: "text", placeholder: "Description" }
-  %p.span12
+  %p.col-md-12
     %input.js-list-type{ type: "hidden", value: @list_type }
     %input.js-create{ type: "button", value: "Save" }
 

@@ -1,17 +1,17 @@
-.revenue-countries.span12.box
+.revenue-countries.col-md-12.box
   %p
     Revenue countries
   - if @revenue_countries
     - $.each @revenue_countries, (i, country) ->
-      .span12
-        .span4
+      .col-md-12
+        .col-md-4
           = country.country.country
-        .span4
+        .col-md-4
           = country.revenue
         - if current_user && current_user.user_type == "admin"
-          .span2
+          .col-md-2
             %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
-  .span12
+  .col-md-12
     %p
       Add new revenue country
     %input.js-new-revenue-country{ type: "text", placeholder: "Search country" }

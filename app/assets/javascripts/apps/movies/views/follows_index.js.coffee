@@ -1,6 +1,6 @@
 class MoviesApp.FollowsIndex extends Backbone.View
   template: JST['templates/follows/index']
-  className: "row-fluid follows-index"
+  className: "row follows-index"
 
   initialize: ->
     _.bindAll this, "render"

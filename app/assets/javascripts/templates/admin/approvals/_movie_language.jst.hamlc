@@ -1,10 +1,10 @@
 - item = @item.get("movie_language")
 - if item.approved == true then value = "Reject" else value = "Approve"
-.item.span12
-  .span2
+.item.col-md-12
+  .col-md-2
     = item.language.language
-  .span2
+  .col-md-2
     = item.movie.title
-  .span2
+  .col-md-2
     %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
 

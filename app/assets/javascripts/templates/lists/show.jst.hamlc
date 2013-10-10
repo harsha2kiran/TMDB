@@ -12,7 +12,7 @@
 - if !is_empty && ((list && list.list_items) || ((current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))))
 
   - if list
-    %h3.span12
+    %h3.col-md-12
       - if list.list_type
         - type = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1)
       - else
@@ -28,7 +28,7 @@
 
       -# approve and unapprove buttons
       - if is_admin_or_mod()
-        .span12
+        .col-md-12
           - if list.approved == true
             %button.js-approve-list.hide{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
             %button.js-unapprove-list{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
@@ -38,10 +38,10 @@
 
 
 
-      .span12.list-keywords
-        %h4.span12
+      .col-md-12.list-keywords
+        %h4.col-md-12
           Keywords
-        .span12.js-keywords-list
+        .col-md-12.js-keywords-list
           - $.each list.keywords, (i, keyword) ->
 
             - approved = false
@@ -56,25 +56,25 @@
                 - is_owner = true
 
             - if is_owner || approved || is_admin_or_mod()
-              .span2.keyword{ "data-id" => keyword.id }
-                .span5.keyword-keyword
+              .col-md-2.keyword{ "data-id" => keyword.id }
+                .col-md-5.keyword-keyword
                   = keyword.keyword
 
                 - if is_admin_or_mod()
-                  .span2.js-remove-keyword
+                  .col-md-2.js-remove-keyword
                     X
 
                   - unless approved
-                    .span3.js-approve-keyword
+                    .col-md-3.js-approve-keyword
                       Approve
-        .span12
+        .col-md-12
           %input.js-new-list-keyword{ type: "text", placeholder: "Keywords"}
           %input.js-new-list-keyword-id{ type: "hidden" }
           %input.js-new-list-keyword-ids{ type: "hidden", value: "[]" }
-      .span12.list-tags
-        %h4.span12
+      .col-md-12.list-tags
+        %h4.col-md-12
           Tags
-        .span12.js-tags-movies-list
+        .col-md-12.js-tags-movies-list
           - $.each list.tags, (i, tag) ->
             - if tag.title
 
@@ -90,18 +90,18 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .span2.tag{ "data-type" => "Movie", "data-id" => tag.id }
-                  .span5.tag-tag
+                .col-md-2.tag{ "data-type" => "Movie", "data-id" => tag.id }
+                  .col-md-5.tag-tag
                     = tag.title
 
                   - if is_admin_or_mod()
-                    .span2.js-remove-tag
+                    .col-md-2.js-remove-tag
                       X
 
                     - unless approved
-                      .span3.js-approve-tag
+                      .col-md-3.js-approve-tag
                         Approve
-        .span12.js-tags-people-list
+        .col-md-12.js-tags-people-list
           - $.each list.tags, (i, tag) ->
             - if tag.name
 
@@ -117,18 +117,18 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .span2.tag{ "data-type" => "Person", "data-id" => tag.id }
-                  .span5.tag-tag
+                .col-md-2.tag{ "data-type" => "Person", "data-id" => tag.id }
+                  .col-md-5.tag-tag
                     = tag.name
 
                   - if is_admin_or_mod()
-                    .span2.js-remove-tag
+                    .col-md-2.js-remove-tag
                       X
 
                     - unless approved
-                      .span3.js-approve-tag
+                      .col-md-3.js-approve-tag
                         Approve
-        .span12.js-tags-companies-list
+        .col-md-12.js-tags-companies-list
           - $.each list.tags, (i, tag) ->
             - if tag.company
 
@@ -144,22 +144,22 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .span2.tag{ "data-type" => "Company", "data-id" => tag.id }
-                  .span5.tag-tag
+                .col-md-2.tag{ "data-type" => "Company", "data-id" => tag.id }
+                  .col-md-5.tag-tag
                     = tag.company
 
                   - if is_admin_or_mod()
-                    .span2.js-remove-tag
+                    .col-md-2.js-remove-tag
                       X
 
                     - unless approved
-                      .span3.js-approve-tag
+                      .col-md-3.js-approve-tag
                         Approve
 
-        .span12
+        .col-md-12
           %input.js-new-list-tag{ type: "text", placeholder: "Tag people, movies or companies"}
           %input.js-new-list-tag-id{ type: "hidden" }
-      .span12
+      .col-md-12
         %input.js-update-keywords-tags{ type: "button", value: "Update keywords and tags" }
 
   - if current_user
@@ -168,18 +168,18 @@
       - if parseInt(follow.followable_id) == parseInt(window.list_id) && follow.followable_type == "List"
         - following = true
     - unless following
-      .follow.span12.box
+      .follow.col-md-12.box
         Follow
     - else
-      .following.span12.box
+      .following.col-md-12.box
         Already following
 
     -# -if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
   - if !list.list_type || list.list_type == ''
-    .span12
-      %p.span12
+    .col-md-12
+      %p.col-md-12
         Add movies and people to list
-      .span12
+      .col-md-12
         %input.js-item{ type: "text", placeholder: "Search" }
         %input.js-item-id{ type: "hidden" }
         %input.js-item-type{ type: "hidden" }
@@ -194,8 +194,8 @@
   -# .list_items
 
 - else
-  .span12
+  .col-md-12
     List doesn't exist
-  .span12
-    %a{ href: "/#!/lists", class: "span12" }
+  .col-md-12
+    %a{ href: "/#!/lists", class: "col-md-12" }
       Go back to index lists

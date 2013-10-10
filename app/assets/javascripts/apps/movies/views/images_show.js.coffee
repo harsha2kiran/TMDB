@@ -1,6 +1,6 @@
 class MoviesApp.ImagesShow extends Backbone.View
   template: JST['templates/images/show']
-  className: "row-fluid images-show"
+  className: "row images-show"
 
   initialize: ->
     _.bindAll this, "render"

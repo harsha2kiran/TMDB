@@ -36,9 +36,11 @@ $(document).ready ->
       $(".js-new-person-info, .js-new-person-add-form").hide()
 
   $('.datatable').dataTable({
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    "sDom": "<'row'<'col-md-6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     "sPaginationType": "bootstrap"
   })
+
+  $(".alert").fadeOut(window.hide_delay)
 
 window.check_autocomplete = (items, term, type) ->
   found = false
@@ -88,3 +90,4 @@ window.current_temp_users_item = (item) ->
     true
   else
     false
+

@@ -1,6 +1,6 @@
 class PeopleApp.EditAlternativeNames extends Backbone.View
   template: JST['templates/alternative_names/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -46,7 +46,7 @@ class PeopleApp.EditAlternativeNames extends Backbone.View
         $(".alternative-names").html @edit_alternative_names_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "alternative_names/" + id,
       method: "DELETE"

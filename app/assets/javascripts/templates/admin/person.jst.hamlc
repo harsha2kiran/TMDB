@@ -3,10 +3,10 @@
 %h2
   Manage person
 
-.span12
+.col-md-12
   - $.each @person.images, (i, image) ->
     - if image.is_main_image == true
-      .span4
+      .col-md-4
         %a.slimbox{ href: image.image_file.watermarked.url }
           %img{ src: image.image_file.small.url }
           = image.title
@@ -17,42 +17,42 @@
     - if parseInt(follow.followable_id) == parseInt(window.person_id) && follow.followable_type == "Person"
       - following = true
   - unless following
-    .follow.span12.box
+    .follow.col-md-12.box
       Follow
   - else
-    .following.span12.box
+    .following.col-md-12.box
       Already following
 
-.person.span12.box
-  %h2.name.span12
+.person.col-md-12.box
+  %h2.name.col-md-12
     = @person.name
   - if @person.biography
-    .biography.span12
+    .biography.col-md-12
       %span= "Biography: "
       = @person.biography
   - if @person.homepage
-    .homepage.span12
+    .homepage.col-md-12
       %span= "Homepage: "
       %a{ href: @person.homepage, target: "_blank" }
         = @person.homepage
   - if @person.birthday
-    .birthday.span12
+    .birthday.col-md-12
       %span= "Birthday: "
       = @person.birthday
   - if @person.place_of_birth
-    .place-of-birth.span12
+    .place-of-birth.col-md-12
       %span= "Place of birth: "
       = @person.place_of_birth
   - if @person.day_of_death
-    .day-of-death.span12
+    .day-of-death.col-md-12
       %span= "Day of death: "
       = @person.day_of_death
   - if @person.imdb_id
-    .imdb-id.span12
+    .imdb-id.col-md-12
       %span= "IMDB ID: "
       = @person.imdb_id
 
-  .views.span12
+  .views.col-md-12
     %span= "Views: "
       - if @person.views.length > 0
         - $.each @person.views, (i, view) ->
@@ -61,64 +61,64 @@
         1
 
 - if @person.alternative_names.length > 0
-  .alternative-titles.span12.box
+  .alternative-titles.col-md-12.box
     %p
       Alternative names
     - $.each @person.alternative_names, (i, name) ->
-      .span4
+      .col-md-4
         = name.alternative_name
 
 - if @person.crews.length > 0
-  .crews.span12.box
+  .crews.col-md-12.box
     %p
       Crew
     - $.each @person.crews, (i, crew) ->
-      .span4
+      .col-md-4
         = crew.job
-      .span4
+      .col-md-4
         = crew.movie.title
 
 - if @person.casts.length > 0
-  .casts.span12.box
+  .casts.col-md-12.box
     %p
       Cast
     - $.each @person.casts, (i, cast) ->
-      .span4
+      .col-md-4
         = cast.character
-      .span4
+      .col-md-4
         = cast.movie.title
 
 - if @person.images.length > 0
-  .images.span12.box
+  .images.col-md-12.box
     - $.each @person.images, (i, image) ->
       - if image.is_main_image == false
-        .span4
+        .col-md-4
           %a.slimbox{ href: image.image_file.watermarked.url }
             %img{ src: image.image_file.small.url }
             = image.title
 
 - if @person.videos.length > 0
-  .videos.span12.box
+  .videos.col-md-12.box
     - $.each @person.videos, (i, video) ->
-      .span4
+      .col-md-4
         %a{ href: video.link }
           = video.video_type + " " + video.quality
 
 - if @person.person_social_apps.length > 0
-  .social-apps.box.span12
+  .social-apps.box.col-md-12
     - $.each @person.person_social_apps, (i, social_app) ->
-      .span12
-        .span4
+      .col-md-12
+        .col-md-4
           = social_app.social_app.social_app
-        .span4
+        .col-md-4
           %a{ href: social_app.profile_link, target: "_blank" }
             = social_app.profile_link
 
 - if @person.tags.length > 0
-  .tags.box.span12
+  .tags.box.col-md-12
     - $.each @person.tags, (i, tag) ->
-      .span12
-        .span4
+      .col-md-12
+        .col-md-4
           %a{ href: "#movies/#{tag.movie.id}" }
             = tag.movie.title
 

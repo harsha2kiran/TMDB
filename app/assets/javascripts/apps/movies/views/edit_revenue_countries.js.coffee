@@ -1,6 +1,6 @@
 class MoviesApp.EditRevenueCountries extends Backbone.View
   template: JST['templates/revenue_countries/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -66,7 +66,7 @@ class MoviesApp.EditRevenueCountries extends Backbone.View
         $(".revenue-countries").html @edit_revenue_countries_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "revenue_countries/" + id,
       method: "DELETE"

@@ -1,6 +1,6 @@
 class MoviesApp.Tags extends Backbone.View
   template: JST['templates/tags/index']
-  className: "row-fluid tags-index"
+  className: "row tags-index"
 
   events:
     "click .js-remove" : "remove"

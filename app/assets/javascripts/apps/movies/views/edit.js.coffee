@@ -1,6 +1,6 @@
 class MoviesApp.Edit extends Backbone.View
   template: JST['templates/movies/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"

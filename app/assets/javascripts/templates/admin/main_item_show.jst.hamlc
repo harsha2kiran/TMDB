@@ -2,72 +2,72 @@
   = "Main #{@type} info"
 - type = @type
 - @items.each (item) ->
-  .span12.box
+  .col-md-12.box
     - if type == "Movie"
       - item = item.get("movie")
-      %p.title.span12
+      %p.title.col-md-12
         = item.title
         - if item.approved
           = " (Approved) "
         - else
           = " (Pending) "
       - if item.tagline != ""
-        %p.tagline.span12
+        %p.tagline.col-md-12
           = item.tagline
       - if item.overview != ""
-        %p.overview.span12
+        %p.overview.col-md-12
           %span= "Overview"
           = item.overview
       - if item.content_score
-        %p.content-score.span12
+        %p.content-score.col-md-12
           %span= "Content Score: "
           = item.content_score
 
     - else if type == "Person"
       - item = item.get("person")
 
-      %p.name.span12
+      %p.name.col-md-12
         = item.name
         - if item.approved
           = " (Approved) "
         - else
           = " (Pending) "
       - if item.biography
-        .biography.span12
+        .biography.col-md-12
           %span= "Biography: "
           = item.biography
       - if item.homepage
-        .homepage.span12
+        .homepage.col-md-12
           %span= "Homepage: "
           %a{ href: item.homepage, target: "_blank" }
             = item.homepage
       - if item.birthday
-        .birthday.span12
+        .birthday.col-md-12
           %span= "Birthday: "
           = item.birthday
       - if item.place_of_birth
-        .place-of-birth.span12
+        .place-of-birth.col-md-12
           %span= "Place of birth: "
           = item.place_of_birth
       - if item.day_of_death
-        .day-of-death.span12
+        .day-of-death.col-md-12
           %span= "Day of death: "
           = item.day_of_death
       - if item.imdb_id
-        .imdb-id.span12
+        .imdb-id.col-md-12
           %span= "IMDB ID: "
           = item.imdb_id
-    .span12
+    .col-md-12
       %input.item-id{ type: "hidden", value: item.id }
       %input.approved{ type: "hidden", value: item.approved.toString() }
       - if item.approved
         %input.js-approve{ type: "button", value: "Unapprove", "data-value" => "false", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
       - else
         %input.js-approve{ type: "button", value: "Approve", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
-    .span12.popular
-      .span12
+    .col-md-12.popular
+      .col-md-12
         Mark as popular or remove from main gallery (set position to 0)
-      .span12
+      .col-md-12
         %input.js-popular{ type: "text", placeholder: "Position", value: item.popular }
         %input.js-add-popular{ type: "button", value: "Set position", "data-id" => item.id, "data-type" => type }
 

@@ -1,6 +1,6 @@
 - window.person = @person
 
-.edit-menu.span2
+.edit-menu.col-md-2
   #goto-person.edit-menu-item
     Person
   #goto-images.edit-menu-item
@@ -18,20 +18,20 @@
   #goto-tags.edit-menu-item
     Tags
 
-.edit-content.span10
+.edit-content.col-md-10
 
-  .span12
+  .col-md-12
     - if @my_person == "my_person"
-      %a.span2.show-person{ href: "/#!/people/#{window.person_id}/my_person"}
+      %a.col-md-2.show-person{ href: "/#!/people/#{window.person_id}/my_person"}
         Show
     - else
-      %a.span2.show-person{ href: "/#!/people/#{window.person_id}"}
+      %a.col-md-2.show-person{ href: "/#!/people/#{window.person_id}"}
         Show
-    %a.span2{ href: "/#!/people" }
+    %a.col-md-2{ href: "/#!/people" }
       Index
 
-  .person.span12.box.tab.hide
-    %p.name.span12
+  .person.col-md-12.box.tab.hide
+    %p.name.col-md-12
       Name
       - if $.inArray("name", @locked) > -1
         %input.js-name{ readonly: "readonly", type: "text", value: @person.name, placeholder: "Name" }
@@ -43,7 +43,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "name", action: "mark" } }
             Lock
-    %p.biography.span12
+    %p.biography.col-md-12
       Biography
       - if $.inArray("biography", @locked) > -1
         %textarea.js-biography{ readonly: "readonly", type: "text", placeholder: "Biography" }
@@ -57,7 +57,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "biography", action: "mark" } }
             Lock
-    %p.homepage.span12
+    %p.homepage.col-md-12
       Homepage
       - if $.inArray("homepage", @locked) > -1
         %input.js-homepage{ readonly: "readonly", type: "text", value: @person.homepage, placeholder: "Homepage" }
@@ -69,7 +69,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "homepage", action: "mark" } }
             Lock
-    %p.birthday.span12
+    %p.birthday.col-md-12
       Birthday
       - if @person.birthday
         - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
@@ -83,7 +83,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "birthday", action: "mark" } }
             Lock
-    %p.place-of-birth.span12
+    %p.place-of-birth.col-md-12
       Place of birth
       - if $.inArray("place_of_birth", @locked) > -1
         %input.js-place-of-birth{ readonly: "readonly", type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
@@ -95,7 +95,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "place_of_birth", action: "mark" } }
             Lock
-    %p.day-of-death.span12
+    %p.day-of-death.col-md-12
       Day of death
       - if $.inArray("day_of_death", @locked) > -1
         %input.js-day-of-death{ readonly: "readonly", type: "text", value: @person.day_of_death, placeholder: "Day of death" }
@@ -107,7 +107,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "day_of_death", action: "mark" } }
             Lock
-    %p.imdb-id.span12
+    %p.imdb-id.col-md-12
       IMDB ID
       - if $.inArray("imdb_id", @locked) > -1
         %input.js-imdb-id{ readonly: "readonly", type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
@@ -119,7 +119,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "imdb_id", action: "mark" } }
             Lock
-    %p.span12
+    %p.col-md-12
       %input.js-approved{ type: "hidden", value: @person.approved.toString() }
       %input.js-original-id{ type: "hidden", value: @person.original_id }
       %input.js-update{ type: "button", value: "Update" }

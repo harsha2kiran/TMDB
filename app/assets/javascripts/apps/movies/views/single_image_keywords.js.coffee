@@ -1,6 +1,6 @@
 class MoviesApp.SingleImageKeywords extends Backbone.View
   template: JST['templates/keywords/edit_single_image_keywords']
-  className: "row-fluid edit-single-image-keywords"
+  className: "row edit-single-image-keywords"
 
   events:
     "click .js-remove-keyword" : "remove_keyword"

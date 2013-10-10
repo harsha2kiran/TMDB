@@ -1,6 +1,6 @@
 class PeopleApp.Index extends Backbone.View
   template: JST['templates/people/index']
-  className: "row-fluid people-index"
+  className: "row people-index"
 
   events:
     "click .js-load-more" : "load_more"

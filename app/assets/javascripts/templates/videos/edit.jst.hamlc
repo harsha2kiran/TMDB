@@ -1,73 +1,73 @@
-.videos.span12.box
+.videos.col-md-12.box
   %p
     Videos
   - $.each @videos, (i, video) ->
-    .span12.video
-      .span2
+    .col-md-12.video
+      .col-md-2
         %a{ href: video.link, target: "_blank" }
           %img{ src: video.thumbnail, alt: "no image" }
           = video.title
-      .span2
+      .col-md-2
         = video.priority
-      .span2
+      .col-md-2
         = video.quality
-      -# .span2
+      -# .col-md-2
       -#   = video.video_type
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
-  .span12
+  .col-md-12
     %p
       Add new video
-    .span12
-      .span2
+    .col-md-12
+      .col-md-2
         Link
-      .span2
+      .col-md-2
         %input.js-new-video-link{ type: "text", placeholder: "Link" }
-      .span2
+      .col-md-2
         %input.js-new-video-check{ type: "button", value: "Check" }
-    .span12.video-info.hide
-      .span12
-        .span2
+    .col-md-12.video-info.hide
+      .col-md-12
+        .col-md-2
           Title
-        .span3
+        .col-md-3
           %input.js-new-video-title{ type: "text", placeholder: "Title" }
-      .span12
-        .span2
+      .col-md-12
+        .col-md-2
           Description
-        .span3
+        .col-md-3
           %textarea.js-new-video-description
-      .span12
-        .span2
+      .col-md-12
+        .col-md-2
           Thumbnail
-        .span3
+        .col-md-3
           %img.js-new-video-thumbnail.hide{ src: "" }
-      -# .span12
-      -#   .span2
+      -# .col-md-12
+      -#   .col-md-2
       -#     Comments allowed?
-      -#   .span3
+      -#   .col-md-3
       -#     %select.js-new-video-comments
       -#       %option{ value: "allowed" }= "Allowed"
       -#       %option{ value: "denied" }= "Denied"
-      .span12
-        .span2
+      .col-md-12
+        .col-md-2
           Priority
-        .span3
+        .col-md-3
           %input.js-new-video-priority{ type: "text", placeholder: "Priority", value: "0.0" }
-      .span12
-        .span2
+      .col-md-12
+        .col-md-2
           Quality
-        .span3
+        .col-md-3
           %input.js-new-video-quality{ type: "text", placeholder: "Quality" }
-      -# .span12
-      -#   .span2
+      -# .col-md-12
+      -#   .col-md-2
       -#     Category
-      -#   .span3
+      -#   .col-md-3
       -#     %input.js-new-video-category{ type: "text", placeholder: "Category" }
-      .span12.hide
-        .span2
+      .col-md-12.hide
+        .col-md-2
           Duration
-        .span3
+        .col-md-3
           %input.js-new-video-duration{ type: "text", placeholder: "Duration" }
-      .span12
+      .col-md-12
         %input.js-new-video-save{ type: "button", value: "Save" }

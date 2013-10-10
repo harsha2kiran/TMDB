@@ -1,6 +1,6 @@
 class MoviesApp.ListsIndex extends Backbone.View
   template: JST['templates/lists/index']
-  className: "row-fluid lists-index"
+  className: "row lists-index"
 
   initialize: ->
     _.bindAll this, "render"
@@ -16,7 +16,7 @@ class MoviesApp.ListsIndex extends Backbone.View
 
   destroy: (e) ->
     id = $(@el).find(".js-remove input").val()
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     if confirm("Remove list?") == true
       $.ajax api_version + "lists/" + id,
         method: "DELETE"

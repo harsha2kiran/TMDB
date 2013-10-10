@@ -1,17 +1,17 @@
-.person-social-apps.span12.box
+.person-social-apps.col-md-12.box
   %p
     Social Apps
   - $.each @person_social_apps, (i, social_app) ->
-    .span12
-      .span4
+    .col-md-12
+      .col-md-4
         = social_app.social_app.social_app
-      .span4
+      .col-md-4
         %a{ href: social_app.profile_link, target: "_blank" }
           = social_app.profile_link
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-person-social-app-remove{ type: "button", value: "Remove", data: { id: social_app.id } }
-  .span12
+  .col-md-12
     %p
       Add new social app profile
     %input.js-new-person-social-apps-link{ type: "text", placeholder: "Link" }
@@ -22,7 +22,7 @@
     .js-new-item-info.hide
       This social app does not exist. Do you want to add it? (Don't forget to add a link)
     .js-new-item-add-form.hide
-      .span1.js-new-item-add-yes
+      .col-md-1.js-new-item-add-yes
         Yes
-      .span1.js-new-item-add-no
+      .col-md-1.js-new-item-add-no
         No

@@ -2,7 +2,7 @@
   - @images.each (image) ->
     - image = image.get("image")
     %a{ href: "/#!/images/#{image.id}" }
-      .span3.image
+      .col-md-3.image
         .image
           %img{ src: image.image_file.image_file.small.url, alt: "no image"}
         .title

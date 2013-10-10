@@ -1,18 +1,18 @@
-.tags.span12.box
+.tags.col-md-12.box
   %p
     Tag
   - $.each @tags, (i, tag) ->
     - if tag.movie && tag.person
-      .span12
-        .span4
+      .col-md-12
+        .col-md-4
           - if window.movie_id || window.image_id || window.video_id
             = tag.person.name
           - else if window.person_id
             = tag.movie.title
         - if current_user && current_user.user_type == "admin"
-          .span2
+          .col-md-2
             %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
-  .span12
+  .col-md-12
     %p
       Add new tag member
     - if window.movie_id
@@ -29,16 +29,16 @@
     .js-new-person-info.hide
       This person does not exist. Do you want to add it?
     .js-new-person-add-form.hide
-      .span1.js-new-person-add-yes
+      .col-md-1.js-new-person-add-yes
         Yes
-      .span1.js-new-person-add-no
+      .col-md-1.js-new-person-add-no
         No
 
     .js-new-movie-info.hide
       This movie does not exist. Do you want to add it?
     .js-new-movie-add-form.hide
-      .span1.js-new-movie-add-yes
+      .col-md-1.js-new-movie-add-yes
         Yes
-      .span1.js-new-movie-add-no
+      .col-md-1.js-new-movie-add-no
         No
 

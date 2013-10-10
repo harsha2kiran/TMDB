@@ -13,8 +13,8 @@
     - is_empty = true
 
   - if !is_empty && ((list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator") || list.approved == true))
-    .span12.box
-      .span8
+    .col-md-12.box
+      .col-md-8
         %a{ href: "/#!/lists/#{list.id}" }
           - if list.description
             - desc = list.description
@@ -24,7 +24,7 @@
             = "'#{list.title}', #{desc} from #{list.user}"
           - else
             = "'#{list.title}', #{desc}"
-      .span2
+      .col-md-2
         - if (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
           .js-remove
             %input{ type: "hidden", value: list.id }

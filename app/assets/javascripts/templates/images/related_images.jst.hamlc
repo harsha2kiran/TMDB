@@ -1,8 +1,8 @@
 %h4
   Related images
-.span12
+.col-md-12
   - @images.each (image) ->
-    %a.span3{ href: "/#!/images/#{image.get('id')}" }
+    %a.col-md-3{ href: "/#!/images/#{image.get('id')}" }
       .image
         %img{ src: image.get("image_file").small.url, alt: "no image"}
       .title

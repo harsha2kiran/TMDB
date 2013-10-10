@@ -1,12 +1,12 @@
 - @tags = eval(@tags)
 - $.each @tags, (i, tag) ->
-  .span2.tag{ "data-id" => tag[0], "data-type" => tag[1] }
-    .span5.tag-tag
+  .col-md-2.tag{ "data-id" => tag[0], "data-type" => tag[1] }
+    .col-md-5.tag-tag
       = tag[2]
     - if is_admin_or_mod()
-      .span5.js-remove
+      .col-md-5.js-remove
         X
 
       -# - unless approved && is_admin_or_mod()
-      -#   .span3.js-approve-keyword
+      -#   .col-md-3.js-approve-keyword
       -#     Approve

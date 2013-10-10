@@ -6,6 +6,6 @@
     = f.password_field :password, :autofocus => true, class: "input-block-level", placeholder: "Password"
   %div
     = f.password_field :password_confirmation, class: "input-block-level", placeholder: "Confirm password"
-  %div= f.submit "Change password", class: "btn btn-large btn-primary"
+  %div= f.submit "Change password", class: "btn btn-default btn-lg btn-primary"
 .form-signin
   = render "devise/shared/links"

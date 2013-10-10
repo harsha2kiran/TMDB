@@ -1,6 +1,6 @@
 - window.movie = @movie
 
-.edit-menu.span2
+.edit-menu.col-md-2
   #goto-movie.edit-menu-item
     Movie
   #goto-movie-metadata.edit-menu-item
@@ -30,20 +30,20 @@
   #goto-revenue-countries.edit-menu-item
     Revenue countries
 
-.edit-content.span10
+.edit-content.col-md-10
 
-  .span12
+  .col-md-12
     - if @my_movie == "my_movie"
-      %a.span2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
+      %a.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
         Show
     - else
-      %a.span2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
+      %a.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
         Show
-    %a.span2{ href: "/#!/movies" }
+    %a.col-md-2{ href: "/#!/movies" }
       Index
 
-  .movie.span12.box.tab.hide
-    %p.title.span12
+  .movie.col-md-12.box.tab.hide
+    %p.title.col-md-12
       Title
       - if $.inArray("title", @locked) > -1
         %input.js-title{ readonly: "readonly", type: "text", value: @movie.title, placeholder: "Title" }
@@ -55,7 +55,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "movies", field: "title", action: "mark" } }
             Lock
-    %p.tagline.span12
+    %p.tagline.col-md-12
       Tagline
       - if $.inArray("tagline", @locked) > -1
         %input.js-tagline{ readonly: "readonly", type: "text", value: @movie.tagline, placeholder: "Tagline" }
@@ -67,7 +67,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "movies", field: "tagline", action: "mark" } }
             Lock
-    %p.overview.span12
+    %p.overview.col-md-12
       Overview
       - if $.inArray("overview", @locked) > -1
         %input.js-overview{ readonly: "readonly", type: "text", value: @movie.overview, placeholder: "Overview" }
@@ -79,7 +79,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "movies", field: "overview", action: "mark" } }
             Lock
-    %p.content-score.span12
+    %p.content-score.col-md-12
       Content Score
       - if $.inArray("content_score", @locked) > -1
         %input.js-content-score{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
@@ -91,7 +91,7 @@
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "movies", field: "content_score", action: "mark" } }
             Lock
-    %p.span12
+    %p.col-md-12
       %input.js-original-id{ type: "hidden", value: @movie.original_id }
       %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
       %input.js-update{ type: "button", value: "Update" }

@@ -1,6 +1,6 @@
 class MoviesApp.SingleImageTags extends Backbone.View
   template: JST['templates/tags/edit_single_image_tags']
-  className: "row-fluid edit-single-image-tags"
+  className: "row edit-single-image-tags"
 
   events:
     "click .js-remove-tag" : "remove_tag"

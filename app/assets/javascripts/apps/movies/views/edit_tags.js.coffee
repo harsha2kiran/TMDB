@@ -1,6 +1,6 @@
 class MoviesApp.EditTags extends Backbone.View
   template: JST['templates/tags/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -136,7 +136,7 @@ class MoviesApp.EditTags extends Backbone.View
           $(".tags").html @edit_tags_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "tags/" + id,
       method: "DELETE"

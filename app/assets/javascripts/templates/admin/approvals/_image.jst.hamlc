@@ -1,15 +1,15 @@
 - item = @item.get("image")
 - if item.approved == true then value = "Reject" else value = "Approve"
-.item.span12
-  .span2
+.item.col-md-12
+  .col-md-2
     = item.title
-  .span2
+  .col-md-2
     = item.is_main_image.toString()
-  .span2
+  .col-md-2
     - if item.imageable_item.title
       = item.imageable_item.title
     - else if item.imageable_item.name
       = item.imageable_item.name
-  .span2
+  .col-md-2
     %input.js-approve-item{ type: "button", value: value, "data-id" => item.id }
 

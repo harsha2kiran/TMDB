@@ -2,8 +2,8 @@
   - follow = follow.get("follow")
   - if follow.followed_content
     - followed_content = follow.followed_content
-    .span12.follow
-      .follow-title.span3
+    .col-md-12.follow
+      .follow-title.col-md-3
         - if follow.followable_type == "Movie"
           - path = "movies"
         - else if follow.followable_type == "Person"
@@ -19,6 +19,6 @@
             = followed_content.genre
           - else
             = followed_content.name
-      .unfollow.span2{ data: { followable_id: follow.followable_id, followable_type: follow.followable_type } }
+      .unfollow.col-md-2{ data: { followable_id: follow.followable_id, followable_type: follow.followable_type } }
         Unfollow
 

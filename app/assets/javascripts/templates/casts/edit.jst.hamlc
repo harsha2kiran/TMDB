@@ -1,20 +1,20 @@
-.casts.span12.box
+.casts.col-md-12.box
   %p
     Cast
   - $.each @casts, (i, cast) ->
-    .span12
-      .span4
+    .col-md-12
+      .col-md-4
         = cast.character
       - if window.movie_id && cast.person
-        .span4
+        .col-md-4
           = cast.person.name
       - else if window.person_id && cast.movie
-        .span4
+        .col-md-4
           = cast.movie.title
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-cast-remove{ type: "button", value: "Remove", data: { id: cast.id } }
-  .span12
+  .col-md-12
     %p
       Add new cast member
     %input.js-new-cast-character{ type: "text", placeholder: "Character" }
@@ -29,16 +29,16 @@
     .js-new-person-info.hide
       This person does not exist. Do you want to add it?
     .js-new-person-add-form.hide
-      .span1.js-new-person-add-yes
+      .col-md-1.js-new-person-add-yes
         Yes
-      .span1.js-new-person-add-no
+      .col-md-1.js-new-person-add-no
         No
 
     .js-new-movie-info.hide
       This movie does not exist. Do you want to add it?
     .js-new-movie-add-form.hide
-      .span1.js-new-movie-add-yes
+      .col-md-1.js-new-movie-add-yes
         Yes
-      .span1.js-new-movie-add-no
+      .col-md-1.js-new-movie-add-no
         No
 

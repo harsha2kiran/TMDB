@@ -1,6 +1,6 @@
 class MoviesApp.EditMovieGenres extends Backbone.View
   template: JST['templates/movie_genres/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -70,7 +70,7 @@ class MoviesApp.EditMovieGenres extends Backbone.View
         $(".genres").html @edit_movie_genres_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "movie_genres/" + id,
       method: "DELETE"

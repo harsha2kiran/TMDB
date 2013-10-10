@@ -1,6 +1,0 @@
-.menu-item
-  %a{ href: "/#!/movies" }
-    Movies
-.menu-item
-  %a{ href: "/#!/people" }
-    People

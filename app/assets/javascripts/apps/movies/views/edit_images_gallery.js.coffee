@@ -1,6 +1,6 @@
 class MoviesApp.EditImagesGallery extends Backbone.View
   template: JST['templates/images/edit_gallery']
-  className: "row-fluid edit-images-gallery"
+  className: "row edit-images-gallery"
 
   initialize: ->
     _.bindAll this, "render"
@@ -48,7 +48,7 @@ class MoviesApp.EditImagesGallery extends Backbone.View
           $(".dropped-images").append @edit_single_image_view.render().el
           $(".div-dropped-save-all").remove()
           if $(".dropped-image").length > 1
-            $(".dropped-images").append "<div class='div-dropped-save-all span12 text-center'><input type='button' value='Save all' class='dropped-save-all' /></div>"
+            $(".dropped-images").append "<div class='div-dropped-save-all col-md-12 text-center'><input type='button' value='Save all' class='dropped-save-all' /></div>"
         $(".js-upload-status").html("Finished uploading image.")
         console.log('done')
     this

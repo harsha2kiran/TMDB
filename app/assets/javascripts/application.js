@@ -16,7 +16,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require ../../../vendor/assets/javascripts/jquery.jeditable.mini.js
 //= require hamlcoffee
-//= require ../../../vendor/assets/javascripts/bootstrap
+//= require ../../../vendor/assets/javascripts/bootstrap3
 //= require ejs
 //= require underscore
 //= require jcarousel.min
@@ -26,6 +26,13 @@
 //= require underscore.string.min
 //= require ../../../vendor/assets/javascripts/slimbox2
 //= require_tree ./templates/
+
+//= require ../../../vendor/assets/javascripts/bootstrap-select
+//= require ../../../vendor/assets/javascripts/bootstrap-switch
+//= require ../../../vendor/assets/javascripts/flatui-checkbox
+//= require ../../../vendor/assets/javascripts/flatui-radio
+//= require ../../../vendor/assets/javascripts/jquery.tagsinput
+//= require ../../../vendor/assets/javascripts/jquery.placeholder
 
 //= require apps/admin/admin_app
 //= require_tree ./apps/admin/models/

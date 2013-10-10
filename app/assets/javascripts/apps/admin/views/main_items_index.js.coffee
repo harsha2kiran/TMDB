@@ -1,6 +1,6 @@
 class AdminApp.MainItemsIndex extends Backbone.View
   template: JST['templates/admin/main_items_index']
-  className: "row-fluid main-items-index"
+  className: "row main-items-index"
 
   initialize: ->
     _.bindAll this, "render"
@@ -19,7 +19,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
 
     oTable = $(@el).find(".datatable").dataTable
       bJQueryUI: true
-      sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
+      sDom: "<'row'<'col-md-6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
       sPaginationType: "bootstrap"
 
     oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",

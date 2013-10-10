@@ -1,6 +1,6 @@
 class MoviesApp.LikesShow extends Backbone.View
   template: JST['templates/likes/show']
-  className: "row-fluid likes-show"
+  className: "row likes-show"
 
   events:
     "click .js-like" : "like_dislike"

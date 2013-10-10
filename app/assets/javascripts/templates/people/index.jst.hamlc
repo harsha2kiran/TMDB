@@ -19,7 +19,7 @@
       - class_name = "pending"
 
     %a{ href: link }
-      %div{ class: "span3 person #{class_name}" }
+      %div{ class: "col-md-3 person #{class_name}" }
         .image
           - person.images = eval(person.images)
           - if person.images.length > 0
@@ -37,5 +37,5 @@
             = person.name
           - else
             = person.name + " (Pending)"
-.span12.text-center.js-load-more
+.col-md-12.text-center.js-load-more
   Load more

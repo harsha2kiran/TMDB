@@ -1,9 +1,9 @@
 - @keywords = eval(@keywords)
 - $.each @keywords, (i, keyword) ->
-  .span2.keyword{ "data-id" => keyword[0] }
-    .span5.keyword-keyword
+  .col-md-2.keyword{ "data-id" => keyword[0] }
+    .col-md-5.keyword-keyword
       = keyword[1]
 
     - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-      .span5.js-remove
+      .col-md-5.js-remove
         X

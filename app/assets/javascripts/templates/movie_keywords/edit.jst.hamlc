@@ -1,15 +1,15 @@
-.movie-keywords.span12.box
+.movie-keywords.col-md-12.box
   %p
     Keywords
   - if @movie_keywords
     - $.each @movie_keywords, (i, keyword) ->
-      .span12
-        .span4
+      .col-md-12
+        .col-md-4
           = keyword.keyword.keyword
         - if current_user && current_user.user_type == "admin"
-          .span2
+          .col-md-2
             %input.js-keyword-remove{ type: "button", value: "Remove", data: { id: keyword.id } }
-  .span12
+  .col-md-12
     %p
       Add new keyword
     %input.js-new-keyword{ type: "text", placeholder: "Search keyword" }
@@ -19,9 +19,9 @@
     .js-new-item-info.hide
       This keyword does not exist. Do you want to add it?
     .js-new-item-add-form.hide
-      .span1.js-new-item-add-yes
+      .col-md-1.js-new-item-add-yes
         Yes
-      .span1.js-new-item-add-no
+      .col-md-1.js-new-item-add-no
         No
 
 

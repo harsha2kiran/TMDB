@@ -1,6 +1,6 @@
 class AdminApp.ItemsIndex extends Backbone.View
   template: JST['templates/admin/items_index']
-  className: "row-fluid items-index"
+  className: "row items-index"
 
   events:
     "click .js-update" : "update"

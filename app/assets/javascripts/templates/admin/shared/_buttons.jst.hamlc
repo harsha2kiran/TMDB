@@ -1,8 +1,8 @@
-.span1
+.col-md-1
   %button.js-update= "Update"
-.span1
+.col-md-1
   %button.js-remove= "Remove"
-.span1
+.col-md-1
   - if @approved
     %button.js-approve= "Unapprove"
   - else

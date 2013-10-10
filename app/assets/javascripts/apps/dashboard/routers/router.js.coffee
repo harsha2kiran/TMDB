@@ -11,8 +11,8 @@ class DashboardApp.Router extends Backbone.Router
     @search_form = new DashboardApp.SearchForm()
     $(".js-content").html @search_form.render().el
 
-    @menu = new DashboardApp.Menu()
-    $(".js-content").append @menu.render().el
+    # @menu = new DashboardApp.Menu()
+    # $(".js-content").append @menu.render().el
 
     gallery = new DashboardApp.GalleryCollection()
     gallery.fetch

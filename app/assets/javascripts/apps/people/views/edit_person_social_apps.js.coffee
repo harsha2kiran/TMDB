@@ -1,6 +1,6 @@
 class PeopleApp.EditPersonSocialApps extends Backbone.View
   template: JST['templates/person_social_apps/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -76,7 +76,7 @@ class PeopleApp.EditPersonSocialApps extends Backbone.View
         $(".person-social-apps").html @edit_person_social_apps_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "person_social_apps/" + id,
       method: "DELETE"

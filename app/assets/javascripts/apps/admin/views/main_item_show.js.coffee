@@ -1,6 +1,6 @@
 class AdminApp.MainItemShow extends Backbone.View
   template: JST['templates/admin/main_item_show']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"

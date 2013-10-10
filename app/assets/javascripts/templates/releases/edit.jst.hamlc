@@ -1,28 +1,28 @@
-.releases.span12.box
+.releases.col-md-12.box
   %p
     Release
   - $.each @releases, (i, release) ->
-    .span12.release
+    .col-md-12.release
       %p
         Release date
-      .span12
+      .col-md-12
         = moment(release.release_date).format("YYYY-MM-DD")
       %p
         Country
-      .span12
+      .col-md-12
         = release.country.country
       %p
         Confirmed
-      .span12
+      .col-md-12
         = if release.confirmed then "Yes" else "No"
       -# %p
       -#   Primary
-      -# .span12
+      -# .col-md-12
       -#   = if release.primary then "Yes" else "No"
       - if current_user && current_user.user_type == "admin"
-        .span12
+        .col-md-12
           %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
-  .span12
+  .col-md-12
     %p
       Add new release
     %input.js-new-release-release-date{ type: "text", placeholder: "Release date" }

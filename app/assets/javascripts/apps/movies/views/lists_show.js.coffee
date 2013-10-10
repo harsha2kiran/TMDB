@@ -1,6 +1,6 @@
 class MoviesApp.ListsShow extends Backbone.View
   template: JST['templates/lists/show']
-  className: "row-fluid show-lists"
+  className: "row show-lists"
 
   initialize: ->
     _.bindAll this, "render"

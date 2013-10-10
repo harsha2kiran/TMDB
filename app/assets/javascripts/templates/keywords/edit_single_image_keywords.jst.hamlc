@@ -1,5 +1,5 @@
 - item = @item
-.span12.js-keywords-list
+.col-md-12.js-keywords-list
   - if item.keywords
     - $.each item.keywords, (i, keyword) ->
 
@@ -14,18 +14,18 @@
           - is_owner = true
 
       - if approved || is_admin_or_mod() || is_owner
-        .span2.keyword{ "data-id" => keyword.id }
-          .span5.keyword-keyword
+        .col-md-2.keyword{ "data-id" => keyword.id }
+          .col-md-5.keyword-keyword
             = keyword.keyword
 
           - if is_admin_or_mod()
-            .span2.js-remove-keyword
+            .col-md-2.js-remove-keyword
               X
             - unless approved
-              .span3.js-approve-keyword
+              .col-md-3.js-approve-keyword
                 Approve
 
-.span12
+.col-md-12
   %input.js-new-keyword{ type: "text", placeholder: "Keywords"}
   %input.js-new-keyword-id{ type: "hidden" }
   %input.js-new-keyword-ids{ type: "hidden", value: "[]" }

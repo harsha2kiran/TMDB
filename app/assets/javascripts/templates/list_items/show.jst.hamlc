@@ -1,11 +1,11 @@
 - list = @list.get("list")
-.span12
+.col-md-12
   - if list.list_items
     - $.each list.list_items, (i, item) ->
 
       -# if is admin or mod or owner or list item is approved
       - if item.list_item.approved || item.list_item.temp_user_id == localStorage.temp_user_id || (current_user && item.list_item.user_id == current_user.id)  || ((current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")))
-        .span2.item
+        .col-md-2.item
 
           - found = false
           - if item.list_item.listable_type == "Movie" && item.list_item.listable_item
@@ -14,7 +14,7 @@
             - else
               - my_item = "/my_movie"
             %a{ href: "/#!/movies/#{item.list_item.listable_id}#{my_item}" }
-              .span12
+              .col-md-12
                 - if item.list_item.images && item.list_item.images.length > 0
                   - $.each item.list_item.images, (i, image) ->
                     - if found == false
@@ -25,7 +25,7 @@
                     %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
                 - else
                   %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-              .span12
+              .col-md-12
                 = item.list_item.listable_item.title
 
           - found = false
@@ -35,7 +35,7 @@
             - else
               - my_item = "/my_person"
             %a{ href: "/#!/people/#{item.list_item.listable_id}#{my_item}" }
-              .span12
+              .col-md-12
                 - if item.list_item.images && item.list_item.images.length > 0
                   - $.each item.list_item.images, (i, image) ->
                     - if found == false
@@ -46,7 +46,7 @@
                     %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
                 - else
                   %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-              .span12
+              .col-md-12
                 = item.list_item.listable_item.name
 
 
@@ -55,7 +55,7 @@
           - if item.list_item.listable_type == "Image"
             - $.each item.list_item.images, (i, image) ->
               %a{ href: "/#!/images/#{item.list_item.listable_id}" }
-                .span12
+                .col-md-12
 
                   - is_owner = false
                   - if current_users_item(image) || current_temp_users_item(image)
@@ -63,7 +63,7 @@
 
                   - if is_owner || image.approved || is_admin_or_mod()
                     %img{ src: image.image_file.small.url, alt: "no image" }
-                    .span12
+                    .col-md-12
                       = image.title
 
 
@@ -101,13 +101,13 @@
 -#           - found = false
 -#           - if item.list_item.listable_type == "Image"
 -#             %a{ href: "/#!/images/#{item.list_item.listable_id}" }
--#               .span12
+-#               .col-md-12
 -#                 - $.each item.list_item.images, (i, image) ->
 -#                   - if found == false
 -#                     - if image && image.approved
 -#                       - found = true
 -#                       %img{ src: image.image_file.small.url, alt: "no image" }
--#                   .span12
+-#                   .col-md-12
 -#                     = image.title
 -#                 - if found == false
 -#                   %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
@@ -115,9 +115,9 @@
 -#           - found = false
 -#           - if item.list_item.listable_type == "Video"
 -#             %a{ href: "/#!/videos/#{item.list_item.listable_id}" }
--#               .span12
+-#               .col-md-12
 -#                 - if item.list_item.listable_item && item.list_item.listable_item.approved
 -#                   - found = true
 -#                   %img{ src: item.list_item.listable_item.thumbnail, alt: "no image" }
--#                 .span12
+-#                 .col-md-12
 -#                   = item.list_item.listable_item.title

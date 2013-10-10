@@ -1,6 +1,6 @@
 class MoviesApp.GenresShow extends Backbone.View
   template: JST['templates/genres/show']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"

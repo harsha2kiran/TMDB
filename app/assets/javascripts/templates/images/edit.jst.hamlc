@@ -1,23 +1,23 @@
-.images.span12.box
+.images.col-md-12.box
   %p
     Images
   - $.each @images, (i, image) ->
-    .span12.image
-      .span2
+    .col-md-12.image
+      .col-md-2
         %a{ href: "/#!/images/#{image.id}" }
           -# %a.slimbox{ href: image.image_file.watermarked.url }
           %img{ src: image.image_file.small.url, width: 100 }
-      .span2
+      .col-md-2
         = image.title
-      .span2
+      .col-md-2
         = image.priority
-      .span2
+      .col-md-2
         - if image.is_main_image
           = "Main image"
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
-  .span12
+  .col-md-12
     %p
       Add new image
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
@@ -30,5 +30,5 @@
           %option{ value: "0" }= "No"
         %input.js-new-image-priority{ type: "text", name: "image[priority]", placeholder: "Priority", value: "0.0" }
       %input.js-new-image-update{ type: "button", value: "Save" }
-    .span12.js-upload-status
+    .col-md-12.js-upload-status
 

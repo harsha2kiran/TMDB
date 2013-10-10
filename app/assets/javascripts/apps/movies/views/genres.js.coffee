@@ -1,6 +1,6 @@
 class MoviesApp.GenresIndex extends Backbone.View
   template: JST['templates/movies/index']
-  className: "row-fluid movies-index"
+  className: "row movies-index"
 
   initialize: ->
     _.bindAll this, "render"

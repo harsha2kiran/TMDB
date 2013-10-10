@@ -1,8 +1,8 @@
-.span12.dropped-image{ "data-id" => @image.id }
-  .span12
-    .span2
+.col-md-12.dropped-image{ "data-id" => @image.id }
+  .col-md-12
+    .col-md-2
       %img{ src: @image.image_file.small.url, alt: "" }
-    .span6
+    .col-md-6
       %input.js-drop-image-title{ type: "text", placeholder: "Title" }
       %textarea.js-drop-image-description{ placeholder: "Description" }
 

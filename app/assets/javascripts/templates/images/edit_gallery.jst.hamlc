@@ -1,50 +1,50 @@
-.images.span12.box
+.images.col-md-12.box
   %p
     Images
   - $.each @images, (i, image) ->
-    .span12.image
-      .span2
+    .col-md-12.image
+      .col-md-2
         %a.slimbox{ href: image.image_file.watermarked.url }
           %img{ src: image.image_file.small.url, width: 100 }
-      .span2
+      .col-md-2
         = image.title
-      .span2
+      .col-md-2
         = image.priority
-      .span2
+      .col-md-2
         - if image.is_main_image
           = "Main image"
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
 
-  .span12.drop-image
+  .col-md-12.drop-image
     = "Drop images here to upload"
 
-  .span12
+  .col-md-12
     %p
       = "... or upload single image"
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
-      -# .span12
+      -# .col-md-12
       -#   %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
       -#   %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
-      -# .span12.js-keywords-list
-      -# .span12
+      -# .col-md-12.js-keywords-list
+      -# .col-md-12
       -#   %input.js-new-image-keyword{ type: "text", placeholder: "Keywords"}
       -#   %input.js-new-image-keyword-id{ type: "hidden" }
       -#   .js-new-item-info.hide
       -#     This keyword does not exist. Do you want to add it?
       -#   .js-new-item-add-form.hide
-      -#     .span1.js-new-item-add-yes
+      -#     .col-md-1.js-new-item-add-yes
       -#       Yes
-      -#     .span1.js-new-item-add-no
+      -#     .col-md-1.js-new-item-add-no
       -#       No
-      -# .span12.js-tags-list
-      -# .span12
+      -# .col-md-12.js-tags-list
+      -# .col-md-12
       -#   %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
       -#   %input.js-new-image-tag-id{ type: "hidden" }
-      .span12
+      .col-md-12
         %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
-    .span12.js-upload-status
+    .col-md-12.js-upload-status
 
 
   .dropped-images

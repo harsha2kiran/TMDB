@@ -7,19 +7,19 @@
     - if parseInt(follow.followable_id) == parseInt(window.genre_id) && follow.followable_type == "Genre"
       - following = true
   - unless following
-    .follow.span12.box
+    .follow.col-md-12.box
       Follow
   - else
-    .following.span12.box
+    .following.col-md-12.box
       Already following
 
 - if @genre.movies && @genre.movies != [] && @genre.movies.length > 0
   - $.each @genre.movies, (i, movie) ->
-    .movie.span3
+    .movie.col-md-3
       %a{ href: "/#!/movies/#{movie.movie.id}" }
-        .span12
+        .col-md-12
           - if movie.movie.images
             %img{ src: movie.movie.images.image_file.small.url, alt: "no image" }
-        .span12
+        .col-md-12
           = movie.movie.title
 

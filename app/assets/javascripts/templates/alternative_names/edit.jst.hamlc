@@ -1,14 +1,14 @@
-.alternative-names.span12.box
+.alternative-names.col-md-12.box
   %p
     Alternative Names
   - $.each @alternative_names, (i, name) ->
-    .span12
-      .span3
+    .col-md-12
+      .col-md-3
         = name.alternative_name
       - if current_user && current_user.user_type == "admin"
-        .span2
+        .col-md-2
           %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
-  .span12
+  .col-md-12
     %p
       Add new alternative name
     %input.js-new-alternative-name{ type: "text", placeholder: "Alternative name" }

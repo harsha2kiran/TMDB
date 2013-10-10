@@ -1,6 +1,6 @@
 class MoviesApp.EditProductionCompanies extends Backbone.View
   template: JST['templates/production_companies/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -69,7 +69,7 @@ class MoviesApp.EditProductionCompanies extends Backbone.View
         $(".production-companies").html @edit_production_companies_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "production_companies/" + id,
       method: "DELETE"

@@ -1,6 +1,6 @@
 class PeopleApp.New extends Backbone.View
   template: JST['templates/people/new']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"

@@ -1,29 +1,29 @@
-%a{ href: "/#!/people", class: "span12" }
+%a{ href: "/#!/people", class: "col-md-12" }
   Index
 
 
-.person.span12.box
-  %p.name.span12
+.person.col-md-12.box
+  %p.name.col-md-12
     Name
     %input.js-name{ type: "text", placeholder: "Name" }
-  %p.biography.span12
+  %p.biography.col-md-12
     Biography
     %textarea.js-biography{ type: "text", placeholder: "Biography" }
-  %p.homepage.span12
+  %p.homepage.col-md-12
     Homepage
     %input.js-homepage{ type: "text", placeholder: "Homepage" }
-  %p.birthday.span12
+  %p.birthday.col-md-12
     Birthday
     %input.js-birthday{ type: "text", placeholder: "Birthday" }
-  %p.place-of-birth.span12
+  %p.place-of-birth.col-md-12
     Place of birth
     %input.js-place-of-birth{ type: "text", placeholder: "Place of birth" }
-  %p.day-of-death.span12
+  %p.day-of-death.col-md-12
     Day of death
     %input.js-day-of-death{ type: "text", placeholder: "Day of death" }
-  %p.imdb-id.span12
+  %p.imdb-id.col-md-12
     IMDB ID
     %input.js-imdb-id{ type: "text", placeholder: "IMDB ID" }
-  %p.span12
+  %p.col-md-12
     %input.js-create{ type: "button", value: "Save" }
 

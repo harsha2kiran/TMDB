@@ -1,6 +1,6 @@
 class MoviesApp.EditMovieKeywords extends Backbone.View
   template: JST['templates/movie_keywords/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -69,7 +69,7 @@ class MoviesApp.EditMovieKeywords extends Backbone.View
         $(".keywords").html @edit_movie_keywords_view.render().el
 
   destroy: (e) ->
-    container = $(e.target).parents(".span12").first()
+    container = $(e.target).parents(".col-md-12").first()
     id = $(e.target).attr("data-id")
     $.ajax api_version + "movie_keywords/" + id,
       method: "DELETE"

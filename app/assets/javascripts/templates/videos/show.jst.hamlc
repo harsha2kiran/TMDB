@@ -1,19 +1,19 @@
-.span12.video
+.col-md-12.video
   %a{ href: @video.link, target: "_blank" }
-    .span12
+    .col-md-12
       %img{ src: @video.thumbnail, alt: "no image" }
-    .span12
+    .col-md-12
       = @video.title
-  .span12
+  .col-md-12
     = "Quality: " + @video.quality
-  .span12.hide
+  .col-md-12.hide
     = "Duration: " + @video.duration
-  -# .span12
+  -# .col-md-12
   -#   = "Category: " + @video.category
-  .span12
+  .col-md-12
     = "Description: " + @video.description
 
-  .views.span12
+  .views.col-md-12
     %span= "Views: "
       - if @video.views
         = @video.views + 1

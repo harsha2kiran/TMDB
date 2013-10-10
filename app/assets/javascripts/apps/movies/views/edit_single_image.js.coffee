@@ -1,6 +1,6 @@
 class MoviesApp.EditSingleImage extends Backbone.View
   template: JST['templates/images/edit_single_image']
-  className: "row-fluid edit-single-image"
+  className: "row edit-single-image"
 
   events:
     "click .js-drop-image-update" : "update"

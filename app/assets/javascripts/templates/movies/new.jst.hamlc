@@ -1,19 +1,19 @@
-%a{ href: "/#!/movies", class: "span12" }
+%a{ href: "/#!/movies", class: "col-md-12" }
   Index
 
-.movie.span12.box
-  %p.span12
+.movie.col-md-12.box
+  %p.col-md-12
     Title
     %input.js-title{ type: "text", placeholder: "Title" }
-  %p.tagline.span12
+  %p.tagline.col-md-12
     Tagline
     %input.js-tagline{ type: "text", placeholder: "Tagline" }
-  %p.overview.span12
+  %p.overview.col-md-12
     Overview
     %input.js-overview{ type: "text", placeholder: "Overview" }
-  %p.content-score.span12
+  %p.content-score.col-md-12
     Content Score
     %input.js-content-score{ type: "text", placeholder: "Content score" }
-  %p.span12
+  %p.col-md-12
     %input.js-create{ type: "button", value: "Save" }
 

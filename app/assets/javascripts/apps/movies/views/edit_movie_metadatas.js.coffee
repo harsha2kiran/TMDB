@@ -1,6 +1,6 @@
 class MoviesApp.EditMovieMetadatas extends Backbone.View
   template: JST['templates/movie_metadatas/edit']
-  className: "row-fluid"
+  className: "row"
 
   initialize: ->
     _.bindAll this, "render"
