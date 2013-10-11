@@ -1,6 +1,6 @@
 class MoviesApp.Show extends Backbone.View
   template: JST['templates/movies/show']
-  className: "row"
+  className: "movies-show row"
 
   initialize: ->
     _.bindAll this, "render"
@@ -39,7 +39,7 @@ class MoviesApp.Show extends Backbone.View
         $self.addClass("follow").removeClass("following").html("Follow")
 
   add_item: (e) ->
-    id = $(e.target).attr("id")
+    id = $(e.target).parent().attr("id")
     tab = id.replace("add-", "")
     localStorage.tab = tab
     window.MoviesApp.router.navigate("/#!/movies/#{window.movie_id}/edit/my_movie", true)

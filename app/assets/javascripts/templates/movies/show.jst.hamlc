@@ -1,27 +1,10 @@
 - window.movie = @movie
 
-.col-md-12
-  %a.col-md-2{ href: "/#!/movies/#{window.movie_id}/edit/my_movie" }
+.col-md-12.navigation-links
+  %a.col-md-2.btn.btn-embossed.btn-primary{ href: "/#!/movies/#{window.movie_id}/edit/my_movie" }
     Edit
-  %a.col-md-2{ href: "/#!/movies" }
+  %a.col-md-2.btn.btn-embossed.btn-primary{ href: "/#!/movies" }
     Index
-
-.col-md-12
-  - if @movie.images && @movie.images.length > 0
-    - $.each @movie.images, (i, image) ->
-      - if image.is_main_image == true
-        .col-md-4
-          %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
-            %img{ src: image.image_file.small.url }
-            = image.title
-  - else
-    .col-md-4
-      - if @my_movie == "my_movie"
-        %a{ href: "/#!/movies/#{@movie.id}/edit/my_movie" }
-          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-      - else
-        %a{ href: "/#!/movies/#{@movie.id}/edit" }
-          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
 
 - if current_user && @movie.approved
   - following = false
@@ -34,33 +17,51 @@
   - else
     .following.col-md-12.box
       Already following
+.col-md-12.movies-show-main
+  .col-md-6
+    - if @movie.images && @movie.images.length > 0
+      - $.each @movie.images, (i, image) ->
+        - if image.is_main_image == true
+          .col-md-4
+            %a.slimbox{ href: "/#!/images/#{image.id}", title: image.title }
+              %img{ src: image.image_file.medium.url }
+              = image.title
+    - else
+      .col-md-4
+        - if @my_movie == "my_movie"
+          %a{ href: "/#!/movies/#{@movie.id}/edit/my_movie" }
+            %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+        - else
+          %a{ href: "/#!/movies/#{@movie.id}/edit" }
+            %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
 
-.movie.col-md-12.box
-  %h2.title.col-md-12
-    = @movie.title
-  - if @movie.tagline != ""
-    %h3.tagline.lead.col-md-12
-      = @movie.tagline
-  - if @movie.overview != ""
-    %p.overview.col-md-12
-      %span= "Overview"
-      = @movie.overview
-  - if @movie.content_score
-    %p.content-score.col-md-12
-      %span= "Content Score: "
-      = @movie.content_score
+  .movie.col-md-6
+    %h2.title.col-md-12
+      = @movie.title
+    - if @movie.tagline != ""
+      %h3.tagline.lead.col-md-12
+        = @movie.tagline
+    - if @movie.overview && @movie.overview != ""
+      %p.overview.col-md-12
+        %span= "Overview"
+        = @movie.overview
+    - if @movie.content_score
+      %p.content-score.col-md-12
+        %span= "Content Score: "
+        = @movie.content_score
 
-  %p.views.col-md-12
-    %span= "Views: "
-      - if @movie.views
-        = @movie.views + 1
-      - else
-        1
+    %p.views.col-md-12
+      %span= "Views: "
+        - if @movie.views
+          = @movie.views + 1
+        - else
+          1
 
 .add-to-list
 
-#add-alternative-titles.show-add-item
-  Add alternative titles
+#add-alternative-titles.show-add-item.col-md-12
+  .btn.btn-primary
+    Add alternative titles
 - if @movie.alternative_titles.length > 0
   .alternative-titles.col-md-12.box
     %p
@@ -72,8 +73,9 @@
         .col-md-4
           = title.language.language
 
-#add-movie-metadata.show-add-item
-  Add metadata
+#add-movie-metadata.show-add-item.col-md-12
+  .btn.btn-primary
+    Add metadata
 - if @movie.movie_metadatas.length > 0
   .movie-metadatas.col-md-12.box
     %p
@@ -101,8 +103,9 @@
       .col-md-5
         = metadata.status.status
 
-#add-crew.show-add-item
-  Add crew
+#add-crew.show-add-item.col-md-12
+  .btn.btn-primary
+    Add crew
 - if @movie.crews.length > 0
   .crews.col-md-12.box
     %p
@@ -114,8 +117,9 @@
         .col-md-4
           = crew.person.name
 
-#add-cast.show-add-item
-  Add cast
+#add-cast.show-add-item.col-md-12
+  .btn.btn-primary
+    Add cast
 - if @movie.casts.length > 0
   .casts.col-md-12.box
     %p
@@ -127,8 +131,9 @@
         .col-md-4
           = cast.person.name
 
-#add-images.show-add-item
-  Add images
+#add-images.show-add-item.col-md-12
+  .btn.btn-primary
+    Add images
 - if @movie.images.length > 0
   .images.col-md-12.box
     - $.each @movie.images, (i, image) ->
@@ -138,8 +143,9 @@
             %img{ src: image.image_file.small.url }
             = image.title
 
-#add-videos.show-add-item
-  Add videos
+#add-videos.show-add-item.col-md-12
+  .btn.btn-primary
+    Add videos
 - if @movie.videos.length > 0
   .videos.col-md-12.box
     - $.each @movie.videos, (i, video) ->
@@ -158,8 +164,9 @@
         .col-md-12
           = "Description: " + video.description
 
-#add-genres.show-add-item
-  Add genres
+#add-genres.show-add-item.col-md-12
+  .btn.btn-primary
+    Add genres
 - if @movie.movie_genres.length > 0
   .movie-genres.col-md-12.box
     %p
@@ -169,8 +176,9 @@
         .col-md-2
           = genre.genre.genre
 
-#add-keywords.show-add-item
-  Add keywords
+#add-keywords.show-add-item.col-md-12
+  .btn.btn-primary
+    Add keywords
 - if @movie.movie_keywords.length > 0
   .movie-keywords.col-md-12.box
     %p
@@ -180,8 +188,9 @@
         .col-md-2
           = keyword.keyword.keyword
 
-#add-languages.show-add-item
-  Add languages
+#add-languages.show-add-item.col-md-12
+  .btn.btn-primary
+    Add languages
 - if @movie.movie_languages.length > 0
   .movie-languages.col-md-12.box
     %p
@@ -191,8 +200,9 @@
         .col-md-2
           = language.language.language
 
-#add-revenue-countries.show-add-item
-  Add revenue countries
+#add-revenue-countries.show-add-item.col-md-12
+  .btn.btn-primary
+    Add revenue countries
 - if @movie.revenue_countries.length > 0
   .revenue-countries.col-md-12.box
     %p
@@ -202,8 +212,9 @@
         .col-md-2
           = country.country.country
 
-#add-production-companies.show-add-item
-  Add production companies
+#add-production-companies.show-add-item.col-md-12
+  .btn.btn-primary
+    Add production companies
 - if @movie.production_companies.length > 0
   .production-companies.col-md-12.box
     %p
@@ -213,8 +224,9 @@
         .col-md-2
           = company.company.company
 
-#add-tags.show-add-item
-  Add tags
+#add-tags.show-add-item.col-md-12
+  .btn.btn-primary
+    Add tags
 - if @movie.tags.length > 0
   .tags.col-md-12.box
     %p
@@ -224,8 +236,9 @@
         .col-md-2
           = tag.person.name
 
-#add-releases.show-add-item
-  Add releases
+#add-releases.show-add-item.col-md-12
+  .btn.btn-primary
+    Add releases
 - if @movie.releases.length > 0
   .releases.col-md-12.box
     %p
@@ -249,3 +262,4 @@
         -# .col-md-12
         -#   = if release.primary then "Yes" else "No"
 
+.clear

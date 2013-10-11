@@ -18,8 +18,8 @@
     - if (movie.pending == true || movie.approved == false) && my_movie == true
       - class_name = "pending"
 
-    %a{ href: link }
-      %div{ class: "col-md-3 movie #{class_name}" }
+    %a.col-md-3{ href: link }
+      %div{ class: "movie #{class_name}" }
         .image
           - movie.images = eval(movie.images)
           - if movie.images.length > 0

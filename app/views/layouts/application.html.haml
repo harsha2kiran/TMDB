@@ -57,23 +57,77 @@
 
     -#   %ul.col-md-12
     -#     %li.col-md-2
-    -#       %a{:href => "/#!/my_movies"} My Movies
+    -#       %a{:href => "/#!/my_movies"} my movies
     -#     %li.col-md-2
-    -#       %a{:href => "/#!/my_people"} My People
+    -#       %a{:href => "/#!/my_people"} my people
     -#     - if user_signed_in?
     -#       %li.col-md-2
     -#         %a{ href: "/#!/following" }
-    -#           My follows
+    -#           my follows
     -#       %li.login-info.col-md-5
-    -#         Signed in as #{current_user.email}. Not you?
-    -#         \#{link_to "Sign out", destroy_user_session_path, :method => :delete, class: "sign-out" }
+    -#         signed in as #{current_user.email}. not you?
+    -#         \#{link_to "sign out", destroy_user_session_path, :method => :delete, class: "sign-out" }
     -#     - else
     -#       %li.col-md-2
-    -#         = link_to "Sign up", new_user_registration_path
+    -#         = link_to "sign up", new_user_registration_path
     -#       %li.login-info.col-md-2
     -#         or
     -#       %li.col-md-2
-    -#         \#{link_to "Sign in", new_user_session_path}
+    -#         \#{link_to "sign in", new_user_session_path}
 
 
     = yield
+    .bottom-menu.bottom-menu-inverse
+      .container
+        %ul.bottom-icons.col-md-4
+          %li
+            %a{:href => "/#!/movies"} Movies
+          %li
+            %a{:href => "/#!/people"} People
+          %li
+            %a{:href => "/#!/genres"} Genres
+          %li
+            %a{:href => "/#!/lists"} Lists
+          %li
+            %a{:href => "/#!/galleries"} Galleries
+          %li
+            %a{:href => "/#!/channels"} Channels
+        %ul.bottom-icons.col-md-4
+          %li
+            %a{:href => "/#!/movies/new"} Add movie
+          %li
+            %a{:href => "/#!/people/new"} Add person
+          - if user_signed_in?
+            %li
+              %a{:href => "/#!/lists/new"} Add list
+            %li
+              %a{:href => "/#!/galleries/new"} Add gallery
+            %li
+              %a{:href => "/#!/channels/new"} Add channel
+          - else
+            %li
+              %a{:href => new_user_session_path} Add list
+            %li
+              %a{:href => new_user_session_path} Add gallery
+            %li
+              %a{:href => new_user_session_path} Add channel
+        %ul.bottom-icons.col-md-4
+          - if user_signed_in?
+            %li
+              %a{:href => "/#!/my_movies"} My movies
+            %li
+              %a{:href => "/#!/my_people"} My people
+            %li
+              %a{ href: "/#!/following" }
+                My follows
+            %li.login-info
+              Signed in as #{current_user.email}. Not you?
+              \#{link_to "Sign out", destroy_user_session_path, :method => :delete, class: "sign-out" }
+          - else
+            %li
+              = link_to "Sign up", new_user_registration_path
+            %li.login-info
+              or
+            %li
+              \#{link_to "Sign in", new_user_session_path}
+

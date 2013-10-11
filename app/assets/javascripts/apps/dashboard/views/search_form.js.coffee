@@ -1,6 +1,6 @@
 class DashboardApp.SearchForm extends Backbone.View
   template: JST['templates/dashboard/search_form']
-  className: "dashboard-search"
+  className: "dashboard-search row"
 
   initialize: ->
     _.bindAll this, "render"
