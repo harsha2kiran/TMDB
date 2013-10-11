@@ -72,7 +72,7 @@
           - if item.list_item.listable_type != "Image"
             -# if is owner, admin or mod can remove items
             - if (current_user && current_user.id == item.list_item.user_id) || (item.list_item.temp_user_id == localStorage.temp_user_id) || (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-              .span.js-remove
+              .span.js-remove.btn
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove
 
@@ -87,7 +87,7 @@
           - else
             -# if is admin or mod can remove items
             - if item.list_item.images.length > 0 && is_admin_or_mod()
-              .span.js-remove
+              .span.js-remove.btn
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove
 

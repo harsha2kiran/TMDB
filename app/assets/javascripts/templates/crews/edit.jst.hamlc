@@ -1,30 +1,36 @@
 .crews.col-md-12.box
-  %p
-    Crew
   - $.each @crews, (i, crew) ->
     .col-md-12
-      .col-md-4
+      .col-md-4.input-label
         = crew.job
       - if window.movie_id && crew.person
-        .col-md-4
+        .col-md-4.input-label
           = crew.person.name
       - else if window.person_id && crew.movie
-        .col-md-4
+        .col-md-4.input-label
           = crew.movie.title
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-crew-remove{ type: "button", value: "Remove", data: { id: crew.id } }
+          %input.js-crew-remove.btn{ type: "button", value: "Remove", data: { id: crew.id } }
   .col-md-12
-    %p
-      Add new crew member
-    %input.js-new-crew-job{ type: "text", placeholder: "Job" }
+    .col-md-12
+      .col-md-2.input-label
+        Crew
+      %input.js-new-crew-job.form-control.flat.col-md-6{ type: "text", placeholder: "Job" }
     - if window.movie_id
-      %input.js-new-crew-person{ type: "text", placeholder: "Search people" }
-      %input.js-new-crew-person-id{ type: "hidden" }
+      .col-md-12
+        .col-md-2.input-label
+          Person
+        %input.js-new-crew-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
+        %input.js-new-crew-person-id{ type: "hidden" }
     - else if window.person_id
-      %input.js-new-crew-movie{ type: "text", placeholder: "Search movies" }
-      %input.js-new-crew-movie-id{ type: "hidden" }
-    %input.js-new-crew-save{ type: "button", value: "Save" }
+      .col-md-12
+        .col-md-2.input-label
+          Movie
+        %input.js-new-crew-movie.form-control.flat{ type: "text", placeholder: "Search movies" }
+        %input.js-new-crew-movie-id{ type: "hidden" }
+    .col-md-6.text-right
+      %input.js-new-crew-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 
     .js-new-person-info.hide
       This person does not exist. Do you want to add it?

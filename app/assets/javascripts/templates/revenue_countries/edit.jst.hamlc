@@ -4,17 +4,26 @@
   - if @revenue_countries
     - $.each @revenue_countries, (i, country) ->
       .col-md-12
-        .col-md-4
+        .col-md-4.input-label
           = country.country.country
-        .col-md-4
+        .col-md-4.input-label
           = country.revenue
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-revenue-country-remove{ type: "button", value: "Remove", data: { id: country.id } }
+            %input.js-revenue-country-remove.btn{ type: "button", value: "Remove", data: { id: country.id } }
   .col-md-12
-    %p
+    .col-md-12.input-label
       Add new revenue country
-    %input.js-new-revenue-country{ type: "text", placeholder: "Search country" }
-    %input.js-new-revenue-country-id{ type: "hidden" }
-    %input.js-new-revenue{ type: "text", placeholder: "Revenue" }
-    %input.js-new-revenue-country-save{ type: "button", value: "Save" }
+    .col-md-12
+      .col-md-12
+        .col-md-2
+          Country
+        %input.js-new-revenue-country.form-control.flat.col-md-6{ type: "text", placeholder: "Search country" }
+        %input.js-new-revenue-country-id{ type: "hidden" }
+      .col-md-12
+        .col-md-2
+          Revenue
+        %input.js-new-revenue.form-control.flat.col-md-6{ type: "text", placeholder: "Revenue" }
+      .col-md-8.text-right
+        %input.js-new-revenue-country-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
+

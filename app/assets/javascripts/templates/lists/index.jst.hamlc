@@ -26,6 +26,6 @@
             = "'#{list.title}', #{desc}"
       .col-md-2
         - if (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
-          .js-remove
+          .js-remove.btn
             %input{ type: "hidden", value: list.id }
             Remove

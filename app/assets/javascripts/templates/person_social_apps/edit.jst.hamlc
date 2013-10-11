@@ -10,14 +10,14 @@
           = social_app.profile_link
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-person-social-app-remove{ type: "button", value: "Remove", data: { id: social_app.id } }
+          %input.js-person-social-app-remove.btn{ type: "button", value: "Remove", data: { id: social_app.id } }
   .col-md-12
     %p
       Add new social app profile
-    %input.js-new-person-social-apps-link{ type: "text", placeholder: "Link" }
-    %input.js-new-person-social-apps-app{ type: "text", placeholder: "Social app" }
+    %input.js-new-person-social-apps-link.form-control.flat{ type: "text", placeholder: "Link" }
+    %input.js-new-person-social-apps-app.form-control.flat{ type: "text", placeholder: "Social app" }
     %input.js-new-person-social-apps-id{ type: "hidden" }
-    %input.js-new-person-social-app-save{ type: "button", value: "Save" }
+    %input.js-new-person-social-app-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This social app does not exist. Do you want to add it? (Don't forget to add a link)

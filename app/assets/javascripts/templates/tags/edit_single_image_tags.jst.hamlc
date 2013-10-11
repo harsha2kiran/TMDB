@@ -83,5 +83,5 @@
                   Approve
 
 .col-md-12
-  %input.js-new-tag{ type: "text", placeholder: "Tag people, movies or companies"}
+  %input.js-new-tag.form-control.flat{ type: "text", placeholder: "Tag people, movies or companies"}
   %input.js-new-tag-id{ type: "hidden" }

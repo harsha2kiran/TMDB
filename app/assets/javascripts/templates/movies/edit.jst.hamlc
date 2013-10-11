@@ -1,113 +1,118 @@
 - window.movie = @movie
 
-.edit-menu.col-md-2
-  #goto-movie.edit-menu-item
-    Movie
-  #goto-movie-metadata.edit-menu-item
-    Metadata
-  #goto-videos.edit-menu-item
-    Videos
-  #goto-images.edit-menu-item
-    Images
-  #goto-genres.edit-menu-item
-    Genres
-  #goto-cast.edit-menu-item
-    Cast
-  #goto-crew.edit-menu-item
-    Crew
-  #goto-keywords.edit-menu-item
-    Keywords
-  #goto-alternative-titles.edit-menu-item
-    Alternative titles
-  #goto-languages.edit-menu-item
-    Languages
-  #goto-tags.edit-menu-item
-    Tags
-  #goto-releases.edit-menu-item
-    Releases
-  #goto-production-companies.edit-menu-item
-    Production companies
-  #goto-revenue-countries.edit-menu-item
-    Revenue countries
-
-.edit-content.col-md-10
-
-  .col-md-12
-    - if @my_movie == "my_movie"
-      %a.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
-        Show
-    - else
-      %a.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
-        Show
-    %a.col-md-2{ href: "/#!/movies" }
-      Index
-
-  .movie.col-md-12.box.tab.hide
-    %p.title.col-md-12
-      Title
-      - if $.inArray("title", @locked) > -1
-        %input.js-title{ readonly: "readonly", type: "text", value: @movie.title, placeholder: "Title" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "title", action: "unmark" } }
-            Unlock
-      - else
-        %input.js-title{ type: "text", value: @movie.title, placeholder: "Title" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "title", action: "mark" } }
-            Lock
-    %p.tagline.col-md-12
-      Tagline
-      - if $.inArray("tagline", @locked) > -1
-        %input.js-tagline{ readonly: "readonly", type: "text", value: @movie.tagline, placeholder: "Tagline" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "tagline", action: "unmark" } }
-            Unlock
-      - else
-        %input.js-tagline{ type: "text", value: @movie.tagline, placeholder: "Tagline" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "tagline", action: "mark" } }
-            Lock
-    %p.overview.col-md-12
-      Overview
-      - if $.inArray("overview", @locked) > -1
-        %input.js-overview{ readonly: "readonly", type: "text", value: @movie.overview, placeholder: "Overview" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "overview", action: "unmark" } }
-            Unlock
-      - else
-        %input.js-overview{ type: "text", value: @movie.overview, placeholder: "Overview" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "overview", action: "mark" } }
-            Lock
-    %p.content-score.col-md-12
-      Content Score
-      - if $.inArray("content_score", @locked) > -1
-        %input.js-content-score{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "content_score", action: "unmark" } }
-            Unlock
-      - else
-        %input.js-content-score{ type: "text", value: @movie.content_score, placeholder: "Content score", pattern: "\\d*" }
-        - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-          %span.lock{ data: { controller: "movies", field: "content_score", action: "mark" } }
-            Lock
-    %p.col-md-12
-      %input.js-original-id{ type: "hidden", value: @movie.original_id }
-      %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
-      %input.js-update{ type: "button", value: "Update" }
+.col-md-12.navigation-links
+  - if @my_movie == "my_movie"
+    %a.btn.btn-embossed.btn-primary.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
+      Show
+  - else
+    %a.btn.btn-embossed.btn-primary.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
+      Show
+  %a.btn.btn-embossed.btn-primary.col-md-2{ href: "/#!/movies" }
+    Index
 
 
-  .tab.movie-metadata.hide
-  .tab.videos.hide
-  .tab.images.hide
-  .tab.genres.hide
-  .tab.cast.hide
-  .tab.crew.hide
-  .tab.keywords.hide
-  .tab.alternative-titles.hide
-  .tab.languages.hide
-  .tab.tags.hide
-  .tab.releases.hide
-  .tab.production-companies.hide
-  .tab.revenue-countries.hide
+.col-md-12
+  .edit-menu.col-md-2
+    #goto-movie.edit-menu-item.btn.btn-embossed.btn-primary
+      Movie
+    #goto-movie-metadata.edit-menu-item.btn.btn-embossed.btn-primary
+      Metadata
+    #goto-videos.edit-menu-item.btn.btn-embossed.btn-primary
+      Videos
+    #goto-images.edit-menu-item.btn.btn-embossed.btn-primary
+      Images
+    #goto-genres.edit-menu-item.btn.btn-embossed.btn-primary
+      Genres
+    #goto-cast.edit-menu-item.btn.btn-embossed.btn-primary
+      Cast
+    #goto-crew.edit-menu-item.btn.btn-embossed.btn-primary
+      Crew
+    #goto-keywords.edit-menu-item.btn.btn-embossed.btn-primary
+      Keywords
+    #goto-alternative-titles.edit-menu-item.btn.btn-embossed.btn-primary
+      Alternative titles
+    #goto-languages.edit-menu-item.btn.btn-embossed.btn-primary
+      Languages
+    #goto-tags.edit-menu-item.btn.btn-embossed.btn-primary
+      Tags
+    #goto-releases.edit-menu-item.btn.btn-embossed.btn-primary
+      Releases
+    #goto-production-companies.edit-menu-item.btn.btn-embossed.btn-primary
+      Production companies
+    #goto-revenue-countries.edit-menu-item.btn.btn-embossed.btn-primary
+      Revenue countries
+
+  .edit-content.col-md-10
+    .movie.col-md-12.box.tab
+      .title.col-md-12
+        .col-md-2.input-label
+          Title
+        - if $.inArray("title", @locked) > -1
+          %input.js-title.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.title, placeholder: "Title" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "title", action: "unmark" } }
+              Unlock
+        - else
+          %input.js-title.form-control.flat.col-md-6{ type: "text", value: @movie.title, placeholder: "Title" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "title", action: "mark" } }
+              Lock
+      .tagline.col-md-12
+        .col-md-2.input-label
+          Tagline
+        - if $.inArray("tagline", @locked) > -1
+          %input.js-tagline.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.tagline, placeholder: "Tagline" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "tagline", action: "unmark" } }
+              Unlock
+        - else
+          %input.js-tagline.form-control.flat.col-md-6{ type: "text", value: @movie.tagline, placeholder: "Tagline" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "tagline", action: "mark" } }
+              Lock
+      .overview.col-md-12
+        .col-md-2.input-label
+          Overview
+        - if $.inArray("overview", @locked) > -1
+          %input.js-overview.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.overview, placeholder: "Overview" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "overview", action: "unmark" } }
+              Unlock
+        - else
+          %input.js-overview.form-control.flat.col-md-6{ type: "text", value: @movie.overview, placeholder: "Overview" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "overview", action: "mark" } }
+              Lock
+      .content-score.col-md-12
+        .col-md-2.input-label
+          Content Score
+        - if $.inArray("content_score", @locked) > -1
+          %input.js-content-score.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "unmark" } }
+              Unlock
+        - else
+          %input.js-content-score.form-control.flat.col-md-6{ type: "text", value: @movie.content_score, placeholder: "Content score", pattern: "\\d*" }
+          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+            %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "mark" } }
+              Lock
+      .col-md-7.text-right
+        %input.js-original-id{ type: "hidden", value: @movie.original_id }
+        %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
+        %input.js-update.btn.btn-embossed.btn-primary.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Update" }
+
+
+    .tab.movie-metadata.hide
+    .tab.videos.hide
+    .tab.images.hide
+    .tab.genres.hide
+    .tab.cast.hide
+    .tab.crew.hide
+    .tab.keywords.hide
+    .tab.alternative-titles.hide
+    .tab.languages.hide
+    .tab.tags.hide
+    .tab.releases.hide
+    .tab.production-companies.hide
+    .tab.revenue-countries.hide
 

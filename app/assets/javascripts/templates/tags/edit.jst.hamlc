@@ -1,30 +1,36 @@
 .tags.col-md-12.box
-  %p
-    Tag
   - $.each @tags, (i, tag) ->
     - if tag.movie && tag.person
       .col-md-12
-        .col-md-4
+        .col-md-4.input-label
           - if window.movie_id || window.image_id || window.video_id
             = tag.person.name
           - else if window.person_id
             = tag.movie.title
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-tag-remove{ type: "button", value: "Remove", data: { id: tag.id } }
+            %input.js-tag-remove.btn{ type: "button", value: "Remove", data: { id: tag.id } }
   .col-md-12
-    %p
-      Add new tag member
     - if window.movie_id
-      %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
-      %input.js-new-tag-person-id{ type: "hidden" }
+      .col-md-12
+        .col-md-2.input-label
+          Person
+        %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
+        %input.js-new-tag-person-id{ type: "hidden" }
     - else if window.person_id
-      %input.js-new-tag-movie{ type: "text", placeholder: "Search movies" }
-      %input.js-new-tag-movie-id{ type: "hidden" }
+      .col-md-12
+        .col-md-2.input-label
+          Movie
+        %input.js-new-tag-movie.form-control.flat.col-md-6{ type: "text", placeholder: "Search movies" }
+        %input.js-new-tag-movie-id{ type: "hidden" }
     - else if (window.image_id || window.video_id)
-      %input.js-new-tag-person{ type: "text", placeholder: "Search people" }
-      %input.js-new-tag-person-id{ type: "hidden" }
-    %input.js-new-tag-save{ type: "button", value: "Save" }
+      .col-md-12
+        .col-md-2.input-label
+          People
+        %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
+        %input.js-new-tag-person-id{ type: "hidden" }
+    .col-md-6.text-right
+      %input.js-new-tag-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 
     .js-new-person-info.hide
       This person does not exist. Do you want to add it?

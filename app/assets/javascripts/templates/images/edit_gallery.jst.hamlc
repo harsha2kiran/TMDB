@@ -15,7 +15,7 @@
           = "Main image"
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
+          %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
 
   .col-md-12.drop-image
     = "Drop images here to upload"
@@ -43,7 +43,7 @@
       -#   %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
       -#   %input.js-new-image-tag-id{ type: "hidden" }
       .col-md-12
-        %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+        %input.js-new-image-file.form-control.flat{ type: "file", name: "image[image_file]", placeholder: "Image file" }
     .col-md-12.js-upload-status
 
 

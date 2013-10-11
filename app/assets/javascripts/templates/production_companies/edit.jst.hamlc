@@ -1,20 +1,21 @@
 .production-companies.col-md-12.box
-  %p
-    Production companies
   - if @production_companies
     - $.each @production_companies, (i, company) ->
       .col-md-12
-        .col-md-4
+        .col-md-4.input-label
           = company.company.company
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-production-company-remove{ type: "button", value: "Remove", data: { id: company.id } }
+            %input.js-production-company-remove.btn{ type: "button", value: "Remove", data: { id: company.id } }
   .col-md-12
-    %p
+    .col-md-12.input-label
       Add new production company
-    %input.js-new-production-company{ type: "text", placeholder: "Search company" }
-    %input.js-new-production-company-id{ type: "hidden" }
-    %input.js-new-production-company-save{ type: "button", value: "Save" }
+    .col-md-12
+      .col-md-2.input-label
+        Company
+      %input.js-new-production-company.form-control.flat.col-md-6{ type: "text", placeholder: "Search company" }
+      %input.js-new-production-company-id{ type: "hidden" }
+      %input.js-new-production-company-save.btn.btn-embossed.btn-primary.col-md-2{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This company does not exist. Do you want to add it?

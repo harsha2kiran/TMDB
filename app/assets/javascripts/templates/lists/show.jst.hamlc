@@ -68,7 +68,7 @@
                     .col-md-3.js-approve-keyword
                       Approve
         .col-md-12
-          %input.js-new-list-keyword{ type: "text", placeholder: "Keywords"}
+          %input.js-new-list-keyword.form-control.flat{ type: "text", placeholder: "Keywords"}
           %input.js-new-list-keyword-id{ type: "hidden" }
           %input.js-new-list-keyword-ids{ type: "hidden", value: "[]" }
       .col-md-12.list-tags
@@ -157,10 +157,10 @@
                         Approve
 
         .col-md-12
-          %input.js-new-list-tag{ type: "text", placeholder: "Tag people, movies or companies"}
+          %input.js-new-list-tag.form-control.flat{ type: "text", placeholder: "Tag people, movies or companies"}
           %input.js-new-list-tag-id{ type: "hidden" }
       .col-md-12
-        %input.js-update-keywords-tags{ type: "button", value: "Update keywords and tags" }
+        %input.js-update-keywords-tags.btn.btn-embossed.btn-primary{ type: "button", value: "Update keywords and tags" }
 
   - if current_user
     - following = false
@@ -180,7 +180,7 @@
       %p.col-md-12
         Add movies and people to list
       .col-md-12
-        %input.js-item{ type: "text", placeholder: "Search" }
+        %input.js-item.form-control.flat{ type: "text", placeholder: "Search" }
         %input.js-item-id{ type: "hidden" }
         %input.js-item-type{ type: "hidden" }
         %input.js-create{ type: "button", value: "Add to list" }

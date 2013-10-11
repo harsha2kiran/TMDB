@@ -4,16 +4,16 @@
 .movie.col-md-12.box
   %p.col-md-12
     Title
-    %input.js-title{ type: "text", placeholder: "Title" }
+    %input.js-title.form-control.flat{ type: "text", placeholder: "Title" }
   %p.tagline.col-md-12
     Tagline
-    %input.js-tagline{ type: "text", placeholder: "Tagline" }
+    %input.js-tagline.form-control.flat{ type: "text", placeholder: "Tagline" }
   %p.overview.col-md-12
     Overview
-    %input.js-overview{ type: "text", placeholder: "Overview" }
+    %input.js-overview.form-control.flat{ type: "text", placeholder: "Overview" }
   %p.content-score.col-md-12
     Content Score
-    %input.js-content-score{ type: "text", placeholder: "Content score" }
+    %input.js-content-score.form-control.flat{ type: "text", placeholder: "Content score" }
   %p.col-md-12
-    %input.js-create{ type: "button", value: "Save" }
+    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

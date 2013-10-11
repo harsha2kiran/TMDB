@@ -37,6 +37,7 @@ class MoviesApp.EditImages extends Backbone.View
         self.image_id = data.result.id
         $(".js-new-image-save").removeAttr("disabled")
         $(".js-upload-status").html("Successfully uploaded image. Make sure you insert title and click save to confirm upload.")
+    $("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'})
     this
 
   update: (e) ->

@@ -25,7 +25,7 @@
 .col-md-12.single-image-tags
 
 .col-md-12
-  %input.js-image-update{ type: "button", value: "Save" }
+  %input.js-image-update.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 
 .col-md-12.related-images
 

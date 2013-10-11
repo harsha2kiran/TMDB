@@ -34,25 +34,25 @@
     %p.name.col-md-12
       Name
       - if $.inArray("name", @locked) > -1
-        %input.js-name{ readonly: "readonly", type: "text", value: @person.name, placeholder: "Name" }
+        %input.js-name.form-control.flat{ readonly: "readonly", type: "text", value: @person.name, placeholder: "Name" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "name", action: "unmark" } }
             Unlock
       - else
-        %input.js-name{ type: "text", value: @person.name, placeholder: "Name" }
+        %input.js-name.form-control.flat{ type: "text", value: @person.name, placeholder: "Name" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "name", action: "mark" } }
             Lock
     %p.biography.col-md-12
       Biography
       - if $.inArray("biography", @locked) > -1
-        %textarea.js-biography{ readonly: "readonly", type: "text", placeholder: "Biography" }
+        %textarea.js-biography.form-control.flat{ readonly: "readonly", type: "text", placeholder: "Biography" }
           = @person.biography
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "biography", action: "unmark" } }
             Unlock
       - else
-        %textarea.js-biography{ type: "text", placeholder: "Biography" }
+        %textarea.js-biography.form-control.flat{ type: "text", placeholder: "Biography" }
           = @person.biography
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "biography", action: "mark" } }
@@ -60,12 +60,12 @@
     %p.homepage.col-md-12
       Homepage
       - if $.inArray("homepage", @locked) > -1
-        %input.js-homepage{ readonly: "readonly", type: "text", value: @person.homepage, placeholder: "Homepage" }
+        %input.js-homepage.form-control.flat{ readonly: "readonly", type: "text", value: @person.homepage, placeholder: "Homepage" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "homepage", action: "unmark" } }
             Unlock
       - else
-        %input.js-homepage{ type: "text", value: @person.homepage, placeholder: "Homepage" }
+        %input.js-homepage.form-control.flat{ type: "text", value: @person.homepage, placeholder: "Homepage" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "homepage", action: "mark" } }
             Lock
@@ -74,55 +74,55 @@
       - if @person.birthday
         - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
       - if $.inArray("birthday", @locked) > -1
-        %input.js-birthday{ readonly: "readonly", type: "text", value: @person.birthday, placeholder: "Birthday" }
+        %input.js-birthday.form-control.flat{ readonly: "readonly", type: "text", value: @person.birthday, placeholder: "Birthday" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "birthday", action: "unmark" } }
             Unlock
       - else
-        %input.js-birthday{ type: "text", value: @person.birthday, placeholder: "Birthday" }
+        %input.js-birthday.form-control.flat{ type: "text", value: @person.birthday, placeholder: "Birthday" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "birthday", action: "mark" } }
             Lock
     %p.place-of-birth.col-md-12
       Place of birth
       - if $.inArray("place_of_birth", @locked) > -1
-        %input.js-place-of-birth{ readonly: "readonly", type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
+        %input.js-place-of-birth.form-control.flat{ readonly: "readonly", type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "place_of_birth", action: "unmark" } }
             Unlock
       - else
-        %input.js-place-of-birth{ type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
+        %input.js-place-of-birth.form-control.flat{ type: "text", value: @person.place_of_birth, placeholder: "Place of birth" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "place_of_birth", action: "mark" } }
             Lock
     %p.day-of-death.col-md-12
       Day of death
       - if $.inArray("day_of_death", @locked) > -1
-        %input.js-day-of-death{ readonly: "readonly", type: "text", value: @person.day_of_death, placeholder: "Day of death" }
+        %input.js-day-of-death.form-control.flat{ readonly: "readonly", type: "text", value: @person.day_of_death, placeholder: "Day of death" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "day_of_death", action: "unmark" } }
             Unlock
       - else
-        %input.js-day-of-death{ type: "text", value: @person.day_of_death, placeholder: "Day of death" }
+        %input.js-day-of-death.form-control.flat{ type: "text", value: @person.day_of_death, placeholder: "Day of death" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "day_of_death", action: "mark" } }
             Lock
     %p.imdb-id.col-md-12
       IMDB ID
       - if $.inArray("imdb_id", @locked) > -1
-        %input.js-imdb-id{ readonly: "readonly", type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
+        %input.js-imdb-id.form-control.flat{ readonly: "readonly", type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "imdb_id", action: "unmark" } }
             Unlock
       - else
-        %input.js-imdb-id{ type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
+        %input.js-imdb-id.form-control.flat{ type: "text", value: @person.imdb_id, placeholder: "IMDB ID" }
         - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
           %span.lock{ data: { controller: "people", field: "imdb_id", action: "mark" } }
             Lock
     %p.col-md-12
       %input.js-approved{ type: "hidden", value: @person.approved.toString() }
       %input.js-original-id{ type: "hidden", value: @person.original_id }
-      %input.js-update{ type: "button", value: "Update" }
+      %input.js-update.btn.btn-embossed.btn-primary{ type: "button", value: "Update" }
 
   .images.tab.hide
   .videos.tab.hide

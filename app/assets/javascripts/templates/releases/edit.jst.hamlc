@@ -1,40 +1,44 @@
 .releases.col-md-12.box
-  %p
+  .col-md-12.input-label
     Release
   - $.each @releases, (i, release) ->
     .col-md-12.release
-      %p
-        Release date
       .col-md-12
-        = moment(release.release_date).format("YYYY-MM-DD")
-      %p
-        Country
+        .col-md-2.input-label
+          Release date
+        .col-md-8
+          = moment(release.release_date).format("YYYY-MM-DD")
       .col-md-12
-        = release.country.country
-      %p
-        Confirmed
+        .col-md-2.input-label
+          Country
+        .col-md-10
+          = release.country.country
       .col-md-12
-        = if release.confirmed then "Yes" else "No"
-      -# %p
-      -#   Primary
-      -# .col-md-12
-      -#   = if release.primary then "Yes" else "No"
-      - if current_user && current_user.user_type == "admin"
-        .col-md-12
-          %input.js-release-remove{ type: "button", value: "Remove", data: { id: release.id } }
+        .col-md-2.input-label
+          Confirmed
+        .col-md-10
+          = if release.confirmed then "Yes" else "No"
+        - if current_user && current_user.user_type == "admin"
+          .col-md-12
+            %input.js-release-remove.btn{ type: "button", value: "Remove", data: { id: release.id } }
   .col-md-12
-    %p
+    .col-md-12.input-label
       Add new release
-    %input.js-new-release-release-date{ type: "text", placeholder: "Release date" }
-    %input.js-new-release-country{ type: "text", placeholder: "Search country" }
-    %input.js-new-release-country-id{ type: "hidden" }
-    %select.js-new-release-confirmed
-      %option{ value: 0 }= "Confirmed?"
-      %option{ value: "true" }= "Yes"
-      %option{ value: "false" }= "No"
-    -# %input.js-new-release-certification{ type: "text", placeholder: "Certification" }
-    -# %select.js-new-release-primary
-    -#   %option{ value: 0 }= "Primary?"
-    -#   %option{ value: "true" }= "Yes"
-    -#   %option{ value: "false" }= "No"
-    %input.js-new-release-save{ type: "button", value: "Save" }
+    .col-md-12
+      .col-md-2
+        Release date
+      %input.js-new-release-release-date.form-control.flat.col-md-6{ type: "text", placeholder: "Release date" }
+    .col-md-12
+      .col-md-2
+        Country
+      %input.js-new-release-country.form-control.flat.col-md-6{ type: "text", placeholder: "Search country" }
+      %input.js-new-release-country-id{ type: "hidden" }
+    .col-md-12
+      .col-md-2
+        Confirmed?
+      %select.js-new-release-confirmed.col-md-6.btn.form-control.flat
+        %option{ value: 0 }= "Confirmed?"
+        %option{ value: "true" }= "Yes"
+        %option{ value: "false" }= "No"
+    .col-md-8.text-right
+      %input.js-new-release-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }

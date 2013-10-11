@@ -1,5 +1,5 @@
 .breadcrumb
-  %input{ type: "text", class: "js-dashboard-search form-control flat", placeholder: "Search movies and people" }
+  %input.form-control.flat.col-md-12{ type: "text", class: "js-dashboard-search form-control flat", placeholder: "Search movies and people" }
 
 .main-menu
   %a.col-md-2{ href: "/#!/movies" }

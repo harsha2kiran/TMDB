@@ -8,13 +8,13 @@
           = language.language.language
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-language-remove{ type: "button", value: "Remove", data: { id: language.id } }
+            %input.js-language-remove.btn{ type: "button", value: "Remove", data: { id: language.id } }
   .col-md-12
     %p
       Add new language
-    %input.js-new-language{ type: "text", placeholder: "Search language" }
+    %input.js-new-language.form-control.flat{ type: "text", placeholder: "Search language" }
     %input.js-new-language-id{ type: "hidden" }
-    %input.js-new-language-save{ type: "button", value: "Save" }
+    %input.js-new-language-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This language does not exist. Do you want to add it?

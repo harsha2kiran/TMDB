@@ -1,11 +1,11 @@
 - if current_user
   .lists.col-md-12.box
-    %p.col-md-12
+    .col-md-2.input-label
       Add to list
-    .col-md-12
-      %input.js-list{ type: "text", placeholder: "Search list" }
+    .col-md-10
+      %input.js-list.form-control.flat.col-md-4{ type: "text", placeholder: "Search list" }
       %input.js-list-id{ type: "hidden" }
-      %input.js-create{ type: "button", value: "Save" }
+      %input.js-create.btn.btn-embossed.btn-primary.col-md-1{ type: "button", value: "Save" }
 
       .js-new-item-info.hide
         This list does not exist. Do you want to add it?

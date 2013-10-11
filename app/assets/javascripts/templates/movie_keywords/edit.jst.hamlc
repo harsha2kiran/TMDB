@@ -1,20 +1,19 @@
 .movie-keywords.col-md-12.box
-  %p
-    Keywords
   - if @movie_keywords
     - $.each @movie_keywords, (i, keyword) ->
       .col-md-12
-        .col-md-4
+        .col-md-2.input-label
           = keyword.keyword.keyword
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-keyword-remove{ type: "button", value: "Remove", data: { id: keyword.id } }
+            %input.js-keyword-remove.btn{ type: "button", value: "Remove", data: { id: keyword.id } }
   .col-md-12
-    %p
+    .col-md-3.input-label
       Add new keyword
-    %input.js-new-keyword{ type: "text", placeholder: "Search keyword" }
+    %input.js-new-keyword.form-control.flat.col-md-6{ type: "text", placeholder: "Search keyword" }
     %input.js-new-keyword-id{ type: "hidden" }
-    %input.js-new-keyword-save{ type: "button", value: "Save" }
+    .col-md-1.text-right
+      %input.js-new-keyword-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This keyword does not exist. Do you want to add it?

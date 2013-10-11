@@ -26,6 +26,6 @@
                 Approve
 
 .col-md-12
-  %input.js-new-keyword{ type: "text", placeholder: "Keywords"}
+  %input.js-new-keyword.form-control.flat{ type: "text", placeholder: "Keywords"}
   %input.js-new-keyword-id{ type: "hidden" }
   %input.js-new-keyword-ids{ type: "hidden", value: "[]" }

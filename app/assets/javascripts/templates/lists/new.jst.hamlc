@@ -17,11 +17,11 @@
 .list.col-md-12.box
   %p.col-md-12
     Title
-    %input.js-title{ type: "text", placeholder: "Title" }
+    %input.js-title.form-control.flat{ type: "text", placeholder: "Title" }
   %p.description.col-md-12
     Description
-    %input.js-description{ type: "text", placeholder: "Description" }
+    %input.js-description.form-control.flat{ type: "text", placeholder: "Description" }
   %p.col-md-12
     %input.js-list-type{ type: "hidden", value: @list_type }
-    %input.js-create{ type: "button", value: "Save" }
+    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

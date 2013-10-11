@@ -1,6 +1,6 @@
 class MoviesApp.Edit extends Backbone.View
   template: JST['templates/movies/edit']
-  className: "row"
+  className: "row movies-edit"
 
   initialize: ->
     _.bindAll this, "render"
@@ -99,12 +99,18 @@ class MoviesApp.Edit extends Backbone.View
       $container.find(".js-title").addClass("error")
 
   goto_tab_from_show: ->
-    $(".tab").hide()
-    $(@el).find("." + localStorage.tab).show()
+    $(".movie").hide().addClass("hide")
+    $(@el).find(".tab").hide().addClass("hide")
+    $(@el).find("." + localStorage.tab).show().removeClass("hide")
     localStorage.tab = ""
 
   goto: (e) ->
     id = $(e.target).attr("id")
     tab = id.replace("goto-", "")
-    $(".tab").hide()
-    $("." + tab).show()
+    $(".tab").hide().addClass("hide")
+    $("." + tab).show().removeClass("hide")
+
+
+
+
+

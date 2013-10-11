@@ -18,9 +18,9 @@
           = '"' + item.get("title") + '"'
         .popular
           %label= "Position in gallery:"
-          %input.js-popular{ type: "text", value: item.get("popular") }
+          %input.js-popular.form-control.flat{ type: "text", value: item.get("popular") }
         .save
           %input.js-popular-id{ type: "hidden", value: item.get("id"), "data-type" => item.get("type") }
-          %input.js-popular-save{ type: "button", value: "Save" }
+          %input.js-popular-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 %a.js-close-edit-gallery.link{ href: "#" }
   Back

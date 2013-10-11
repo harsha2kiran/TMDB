@@ -1,75 +1,73 @@
 .movie-metadatas.col-md-12.box
-  %p
-    Metadata
   - if @movie_metadatas.length > 0
     - metadata = @movie_metadatas[0]
   - else
     - metadata = { budget: "", homepage: "", imdb_id: "", runtime: "", status: "" }
-  .col-md-5
-    Budget
-  .col-md-5
+  .col-md-12
+    .col-md-2.input-label
+      Budget
     - if $.inArray("budget", @locked) > -1
-      %input.js-metadata-budget{ readonly: "readonly", type: "text", value: metadata.budget, placeholder: "Budget" }
+      %input.js-metadata-budget.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: metadata.budget, placeholder: "Budget" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "budget", action: "unmark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "budget", action: "unmark" } }
           Unlock
     - else
-      %input.js-metadata-budget{ type: "text", value: metadata.budget, placeholder: "Budget" }
+      %input.js-metadata-budget.form-control.flat.col-md-6{ type: "text", value: metadata.budget, placeholder: "Budget" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "budget", action: "mark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "budget", action: "mark" } }
           Lock
-  .col-md-5
-    Homepage
-  .col-md-5
+  .col-md-12
+    .col-md-2.input-label
+      Homepage
     - if $.inArray("homepage", @locked) > -1
-      %input.js-metadata-homepage{ readonly: "readonly", type: "text", value: metadata.homepage, placeholder: "Homepage" }
+      %input.js-metadata-homepage.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: metadata.homepage, placeholder: "Homepage" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "homepage", action: "unmark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "homepage", action: "unmark" } }
           Unlock
     - else
-      %input.js-metadata-homepage{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
+      %input.js-metadata-homepage.form-control.flat.col-md-6{ type: "text", value: metadata.homepage, placeholder: "Homepage" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "homepage", action: "mark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "homepage", action: "mark" } }
           Lock
-  .col-md-5
-    IMDB id
-  .col-md-5
+  .col-md-12
+    .col-md-2.input-label
+      IMDB id
     - if $.inArray("imdb_id", @locked) > -1
-      %input.js-metadata-imdb-id{ readonly: "readonly", type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+      %input.js-metadata-imdb-id.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "imdb_id", action: "unmark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "imdb_id", action: "unmark" } }
           Unlock
     - else
-      %input.js-metadata-imdb-id{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
+      %input.js-metadata-imdb-id.form-control.flat.col-md-6{ type: "text", value: metadata.imdb_id, placeholder: "IMDB ID" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "imdb_id", action: "mark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "imdb_id", action: "mark" } }
           Lock
-  .col-md-5
-    Runtime
-  .col-md-5
+  .col-md-12
+    .col-md-2.input-label
+      Runtime
     - if $.inArray("runtime", @locked) > -1
-      %input.js-metadata-runtime{ readonly: "readonly", type: "text", value: metadata.runtime, placeholder: "Runtime" }
+      %input.js-metadata-runtime.form-control.flat.col-md-2{ readonly: "readonly", type: "text", value: metadata.runtime, placeholder: "Runtime" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "runtime", action: "unmark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "runtime", action: "unmark" } }
           Unlock
     - else
-      %input.js-metadata-runtime{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
+      %input.js-metadata-runtime.form-control.flat.col-md-6{ type: "text", value: metadata.runtime, placeholder: "Runtime" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "runtime", action: "mark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "runtime", action: "mark" } }
           Lock
-  .col-md-5
-    Status
-  .col-md-5
+  .col-md-12
+    .col-md-2.input-label
+      Status
     - if $.inArray("status", @locked) > -1
-      %input.js-metadata-status{ readonly: "readonly", type: "text", value: metadata.status.status, placeholder: "Status" }
+      %input.js-metadata-status.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: metadata.status.status, placeholder: "Status" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "status", action: "unmark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "status", action: "unmark" } }
           Unlock
     - else
-      %input.js-metadata-status{ type: "text", value: metadata.status.status, placeholder: "Status" }
+      %input.js-metadata-status.form-control.flat.col-md-6{ type: "text", value: metadata.status.status, placeholder: "Status" }
       - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-        %span.lock{ data: { controller: "movies", field: "status", action: "mark" } }
+        %span.lock.btn{ data: { controller: "movies", field: "status", action: "mark" } }
           Lock
     %input.js-metadata-status-id{ type: "hidden", value: metadata.status.id }
-  .col-md-5
-    %input.js-metadata-update{ type: "button", value: "Update metadata" }
+  .col-md-7.text-right
+    %input.js-metadata-update.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Update metadata" }

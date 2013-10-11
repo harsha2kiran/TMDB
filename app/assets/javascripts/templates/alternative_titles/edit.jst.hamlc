@@ -9,14 +9,14 @@
         = title.language.language
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-alternative-title-remove{ type: "button", value: "Remove", data: { id: title.id } }
+          %input.js-alternative-title-remove.btn{ type: "button", value: "Remove", data: { id: title.id } }
   .col-md-12
     %p
       Add new alternative title
-    %input.js-new-alternative-title{ type: "text", placeholder: "Title" }
-    %input.js-new-alternative-title-language{ type: "text", placeholder: "Language" }
+    %input.js-new-alternative-title.form-control.flat.col-md-5{ type: "text", placeholder: "Title" }
+    %input.js-new-alternative-title-language.form-control.flat.col-md-5{ type: "text", placeholder: "Language" }
     %input.js-new-alternative-title-language-id{ type: "hidden" }
-    %input.js-new-alternative-title-save{ type: "button", value: "Save" }
+    %input.js-new-alternative-title-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This language does not exist. Do you want to add it?

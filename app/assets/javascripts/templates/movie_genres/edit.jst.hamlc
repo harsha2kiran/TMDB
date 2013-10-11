@@ -1,20 +1,19 @@
 .movie-genres.col-md-12.box
-  %p
-    Genres
   - if @movie_genres
     - $.each @movie_genres, (i, genre) ->
       .col-md-12
-        .col-md-4
+        .col-md-2.input-label
           = genre.genre.genre
         - if current_user && current_user.user_type == "admin"
           .col-md-2
-            %input.js-genre-remove{ type: "button", value: "Remove", data: { id: genre.id } }
+            %input.js-genre-remove.btn{ type: "button", value: "Remove", data: { id: genre.id } }
   .col-md-12
-    %p
+    .col-md-2.input-label
       Add new genre
-    %input.js-new-genre{ type: "text", placeholder: "Search genre" }
+    %input.js-new-genre.form-control.flat.col-md-6{ type: "text", placeholder: "Search genre" }
     %input.js-new-genre-id{ type: "hidden" }
-    %input.js-new-genre-save{ type: "button", value: "Save" }
+    .col-md-1.text-right
+      %input.js-new-genre-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This genre does not exist. Do you want to add it?

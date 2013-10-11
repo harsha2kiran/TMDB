@@ -1,34 +1,46 @@
 .images.col-md-12.box
-  %p
-    Images
   - $.each @images, (i, image) ->
     .col-md-12.image
       .col-md-2
         %a{ href: "/#!/images/#{image.id}" }
           -# %a.slimbox{ href: image.image_file.watermarked.url }
           %img{ src: image.image_file.small.url, width: 100 }
-      .col-md-2
+      .col-md-2.input-label
         = image.title
-      .col-md-2
+      .col-md-2.input-label
         = image.priority
-      .col-md-2
+      .col-md-2.input-label
         - if image.is_main_image
           = "Main image"
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-image-remove{ type: "button", value: "Remove", data: { id: image.id } }
+          %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
+  %br
   .col-md-12
     %p
       Add new image
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
-      %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
-      %input.js-new-image-file{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+      .col-md-12
+        .col-md-2.input-label
+          Title
+        %input.js-new-image-title.form-control.flat.col-md-6{ type: "text", name: "image[title]", placeholder: "Title" }
+      .col-md-12
+        .col-md-2.input-label
+          Upload
+        %input.js-new-image-file.btn.flat.col-md-6{ title: "Select image", type: "file", name: "image[image_file]", placeholder: "Image file" }
       - unless @gallery
-        %select.js-new-image-main{ name: "image[is_main_image]" }
-          %option{ value: "" }= "Main image?"
-          %option{ value: "1" }= "Yes"
-          %option{ value: "0" }= "No"
-        %input.js-new-image-priority{ type: "text", name: "image[priority]", placeholder: "Priority", value: "0.0" }
-      %input.js-new-image-update{ type: "button", value: "Save" }
+        .col-md-12
+          .col-md-2.input-label
+            Main image?
+          %select.js-new-image-main.col-md-6.flat.btn.form-control{ name: "image[is_main_image]" }
+            %option{ value: "" }= "Main image?"
+            %option{ value: "1" }= "Yes"
+            %option{ value: "0" }= "No"
+        .col-md-12
+          .col-md-2.input-label
+            Priority
+          %input.js-new-image-priority.form-control.flat.col-md-6{ type: "text", name: "image[priority]", placeholder: "Priority", value: "0.0" }
+      .col-md-6.text-right
+        %input.js-new-image-update.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
     .col-md-12.js-upload-status
 

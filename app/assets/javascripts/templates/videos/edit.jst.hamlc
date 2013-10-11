@@ -1,6 +1,4 @@
 .videos.col-md-12.box
-  %p
-    Videos
   - $.each @videos, (i, video) ->
     .col-md-12.video
       .col-md-2
@@ -15,59 +13,41 @@
       -#   = video.video_type
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-video-remove{ type: "button", value: "Remove", data: { id: video.id } }
+          %input.js-video-remove.btn{ type: "button", value: "Remove", data: { id: video.id } }
   .col-md-12
     %p
       Add new video
     .col-md-12
-      .col-md-2
+      .col-md-2.input-label
         Link
+      %input.js-new-video-link.form-control.flat.col-md-6{ type: "text", placeholder: "Link" }
       .col-md-2
-        %input.js-new-video-link{ type: "text", placeholder: "Link" }
-      .col-md-2
-        %input.js-new-video-check{ type: "button", value: "Check" }
+        %input.js-new-video-check.btn{ type: "button", value: "Check" }
     .col-md-12.video-info.hide
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Title
-        .col-md-3
-          %input.js-new-video-title{ type: "text", placeholder: "Title" }
+        %input.js-new-video-title.form-control.flat.col-md-6{ type: "text", placeholder: "Title" }
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Description
-        .col-md-3
-          %textarea.js-new-video-description
+        %textarea.js-new-video-description.col-md-6.form-control.flat.col-md-6
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Thumbnail
-        .col-md-3
-          %img.js-new-video-thumbnail.hide{ src: "" }
-      -# .col-md-12
-      -#   .col-md-2
-      -#     Comments allowed?
-      -#   .col-md-3
-      -#     %select.js-new-video-comments
-      -#       %option{ value: "allowed" }= "Allowed"
-      -#       %option{ value: "denied" }= "Denied"
+        %img.js-new-video-thumbnail.hide.col-md-6{ src: "" }
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Priority
-        .col-md-3
-          %input.js-new-video-priority{ type: "text", placeholder: "Priority", value: "0.0" }
+        %input.js-new-video-priority.form-control.flat.col-md-6{ type: "text", placeholder: "Priority", value: "0.0" }
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Quality
-        .col-md-3
-          %input.js-new-video-quality{ type: "text", placeholder: "Quality" }
-      -# .col-md-12
-      -#   .col-md-2
-      -#     Category
-      -#   .col-md-3
-      -#     %input.js-new-video-category{ type: "text", placeholder: "Category" }
+        %input.js-new-video-quality.form-control.flat.col-md-6{ type: "text", placeholder: "Quality" }
       .col-md-12.hide
         .col-md-2
           Duration
         .col-md-3
-          %input.js-new-video-duration{ type: "text", placeholder: "Duration" }
-      .col-md-12
-        %input.js-new-video-save{ type: "button", value: "Save" }
+          %input.js-new-video-duration.form-control.flat{ type: "text", placeholder: "Duration" }
+      .col-md-6.text-right
+        %input.js-new-video-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }

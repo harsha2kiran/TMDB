@@ -5,25 +5,25 @@
 .person.col-md-12.box
   %p.name.col-md-12
     Name
-    %input.js-name{ type: "text", placeholder: "Name" }
+    %input.js-name.form-control.flat{ type: "text", placeholder: "Name" }
   %p.biography.col-md-12
     Biography
-    %textarea.js-biography{ type: "text", placeholder: "Biography" }
+    %textarea.js-biography.form-control.flat{ type: "text", placeholder: "Biography" }
   %p.homepage.col-md-12
     Homepage
-    %input.js-homepage{ type: "text", placeholder: "Homepage" }
+    %input.js-homepage.form-control.flat{ type: "text", placeholder: "Homepage" }
   %p.birthday.col-md-12
     Birthday
-    %input.js-birthday{ type: "text", placeholder: "Birthday" }
+    %input.js-birthday.form-control.flat{ type: "text", placeholder: "Birthday" }
   %p.place-of-birth.col-md-12
     Place of birth
-    %input.js-place-of-birth{ type: "text", placeholder: "Place of birth" }
+    %input.js-place-of-birth.form-control.flat{ type: "text", placeholder: "Place of birth" }
   %p.day-of-death.col-md-12
     Day of death
-    %input.js-day-of-death{ type: "text", placeholder: "Day of death" }
+    %input.js-day-of-death.form-control.flat{ type: "text", placeholder: "Day of death" }
   %p.imdb-id.col-md-12
     IMDB ID
-    %input.js-imdb-id{ type: "text", placeholder: "IMDB ID" }
+    %input.js-imdb-id.form-control.flat{ type: "text", placeholder: "IMDB ID" }
   %p.col-md-12
-    %input.js-create{ type: "button", value: "Save" }
+    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

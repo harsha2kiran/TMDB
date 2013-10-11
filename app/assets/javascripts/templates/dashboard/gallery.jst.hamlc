@@ -11,6 +11,6 @@
 
 
 - if current_user && current_user.user_type == "admin"
-  .bottom-nav
-    %a.col-md-2.btn.btn-primary.js-edit-popular.link{ href: "/#!/dashboard/edit_popular" }
+  .bottom-nav.col-md-12.text-right
+    %a.js-edit-popular.link{ href: "/#!/dashboard/edit_popular" }
       Edit Popular

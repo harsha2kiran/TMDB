@@ -4,13 +4,13 @@
     .alert
       = flash[:alert]
   %div
-    = f.email_field :email, :autofocus => true, class: "input-block-level", placeholder: "Email"
+    = f.email_field :email, :autofocus => true, class: "input-block-level form-control flat", placeholder: "Email"
   %div
-    = f.password_field :password, class: "input-block-level", placeholder: "Password"
+    = f.password_field :password, class: "input-block-level form-control flat", placeholder: "Password"
   - if devise_mapping.rememberable?
     %label.checkbox
       = f.check_box :remember_me
       = "Remember me"
-  %div= f.submit "Sign in", class: "btn btn-default btn-lg btn-primary"
+  %div= f.submit "Sign in", class: "btn btn-lg btn-primary flat"
 .form-signin
   = render "devise/shared/links"
