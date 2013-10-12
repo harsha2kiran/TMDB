@@ -17,8 +17,6 @@
           %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
   %br
   .col-md-12
-    %p
-      Add new image
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
       .col-md-12
         .col-md-2.input-label

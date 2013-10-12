@@ -27,7 +27,7 @@
       .col-md-12
         .col-md-2.input-label
           Movie
-        %input.js-new-crew-movie.form-control.flat{ type: "text", placeholder: "Search movies" }
+        %input.js-new-crew-movie.form-control.flat.col-md-6{ type: "text", placeholder: "Search movies" }
         %input.js-new-crew-movie-id{ type: "hidden" }
     .col-md-6.text-right
       %input.js-new-crew-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }

@@ -12,23 +12,20 @@
             %input.js-tag-remove.btn{ type: "button", value: "Remove", data: { id: tag.id } }
   .col-md-12
     - if window.movie_id
-      .col-md-12
-        .col-md-2.input-label
-          Person
-        %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
-        %input.js-new-tag-person-id{ type: "hidden" }
+      .col-md-2.input-label
+        Person
+      %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
+      %input.js-new-tag-person-id{ type: "hidden" }
     - else if window.person_id
-      .col-md-12
-        .col-md-2.input-label
-          Movie
-        %input.js-new-tag-movie.form-control.flat.col-md-6{ type: "text", placeholder: "Search movies" }
-        %input.js-new-tag-movie-id{ type: "hidden" }
+      .col-md-2.input-label
+        Movie
+      %input.js-new-tag-movie.form-control.flat.col-md-6{ type: "text", placeholder: "Search movies" }
+      %input.js-new-tag-movie-id{ type: "hidden" }
     - else if (window.image_id || window.video_id)
-      .col-md-12
-        .col-md-2.input-label
-          People
-        %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
-        %input.js-new-tag-person-id{ type: "hidden" }
+      .col-md-2.input-label
+        People
+      %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
+      %input.js-new-tag-person-id{ type: "hidden" }
     %input.js-new-tag-save.btn.btn-embossed.btn-primary.update-btn.col-md-2{ type: "button", value: "Save" }
 
     .js-new-person-info.hide

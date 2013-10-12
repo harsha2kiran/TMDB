@@ -13,7 +13,7 @@
         - if image.is_main_image == true
           .col-md-4
             %a.slimbox{ href: image.image_file.watermarked.url }
-              %img{ src: image.image_file.small.url }
+              %img{ src: image.image_file.medium.url }
               = image.title
     - else
       .col-md-4
@@ -80,11 +80,11 @@
   .btn.btn-primary
     Add alternative names
 - if @person.alternative_names.length > 0
-  .alternative-titles.col-md-12
+  .alternative-names.col-md-12
     %p
       Alternative names
     - $.each @person.alternative_names, (i, name) ->
-      .col-md-4
+      .col-md-12.alternative-name
         = name.alternative_name
 
 #add-crew.show-add-item.col-md-12
@@ -96,10 +96,11 @@
       Crew
     - $.each @person.crews, (i, crew) ->
       - if crew.movie && crew.movie.title
-        .col-md-4
-          = crew.job
-        .col-md-4
-          = crew.movie.title
+        .col-md-12
+          .col-md-4
+            = crew.job
+          .col-md-4
+            = crew.movie.title
 
 #add-cast.show-add-item.col-md-12
   .btn.btn-primary
@@ -110,10 +111,11 @@
       Cast
     - $.each @person.casts, (i, cast) ->
       - if cast.movie && cast.movie.title
-        .col-md-4
-          = cast.character
-        .col-md-4
-          = cast.movie.title
+        .col-md-12
+          .col-md-4
+            = cast.character
+          .col-md-4
+            = cast.movie.title
 
 #add-images.show-add-item.col-md-12
   .btn.btn-primary
@@ -122,7 +124,7 @@
   .images.col-md-12
     - $.each @person.images, (i, image) ->
       - if image.is_main_image == false
-        .col-md-4
+        .col-md-12.image
           %a.slimbox{ href: image.image_file.watermarked.url }
             %img{ src: image.image_file.small.url }
             = image.title
@@ -131,7 +133,7 @@
   .btn.btn-primary
     Add videos
 - if @person.videos.length > 0
-  .videos.col-md-12
+  .videos.col-md-12.box
     - $.each @person.videos, (i, video) ->
       .col-md-4
         %a{ href: video.link }
@@ -145,6 +147,8 @@
     Add social apps
 - if @person.person_social_apps.length > 0
   .social-apps.col-md-12
+    %p
+      Social Apps
     - $.each @person.person_social_apps, (i, social_app) ->
       - if social_app.social_app
         .col-md-12
@@ -159,6 +163,8 @@
     Add tags
 - if @person.tags.length > 0
   .tags.col-md-12
+    %p
+      Tags
     - $.each @person.tags, (i, tag) ->
       - if tag.movie && tag.movie.title
         .col-md-12

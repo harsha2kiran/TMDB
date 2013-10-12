@@ -1,23 +1,23 @@
 .person-social-apps.col-md-12.box
-  %p
-    Social Apps
   - $.each @person_social_apps, (i, social_app) ->
-    .col-md-12
-      .col-md-4
-        = social_app.social_app.social_app
+    .col-md-12.person-social-app
       .col-md-4
         %a{ href: social_app.profile_link, target: "_blank" }
           = social_app.profile_link
+      .col-md-4
+        = social_app.social_app.social_app
       - if current_user && current_user.user_type == "admin"
         .col-md-2
           %input.js-person-social-app-remove.btn{ type: "button", value: "Remove", data: { id: social_app.id } }
   .col-md-12
-    %p
+    .col-md-3.input-label
       Add new social app profile
-    %input.js-new-person-social-apps-link.form-control.flat{ type: "text", placeholder: "Link" }
-    %input.js-new-person-social-apps-app.form-control.flat{ type: "text", placeholder: "Social app" }
-    %input.js-new-person-social-apps-id{ type: "hidden" }
-    %input.js-new-person-social-app-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+    .col-md-12
+      %input.js-new-person-social-apps-link.form-control.flat.col-md-5{ type: "text", placeholder: "Link" }
+      %input.js-new-person-social-apps-app.form-control.flat.col-md-5{ type: "text", placeholder: "Social app" }
+      %input.js-new-person-social-apps-id{ type: "hidden" }
+    .col-md-12
+      %input.js-new-person-social-app-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 
     .js-new-item-info.hide
       This social app does not exist. Do you want to add it? (Don't forget to add a link)

@@ -40,7 +40,7 @@ class PeopleApp.Show extends Backbone.View
         $self.addClass("follow").removeClass("following").html("Follow")
 
   add_item: (e) ->
-    id = $(e.target).attr("id")
+    id = $(e.target).parent().attr("id")
     tab = id.replace("add-", "")
     localStorage.tab = tab
     window.PeopleApp.router.navigate("/#!/people/#{window.person_id}/edit/my_person", true)
