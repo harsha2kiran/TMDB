@@ -9,7 +9,7 @@
         .col-md-2
           %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
   .col-md-12
-    %p
+    .col-md-2.input-label
       Add new alternative name
     %input.js-new-alternative-name.form-control.flat{ type: "text", placeholder: "Alternative name" }
-    %input.js-new-alternative-name-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+    %input.js-new-alternative-name-save.btn.btn-embossed.btn-primary.col-md-1{ type: "button", value: "Save" }

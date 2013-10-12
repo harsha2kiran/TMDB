@@ -1,8 +1,6 @@
 .alternative-titles.col-md-12.box
-  %p
-    Alternative Titles
   - $.each @alternative_titles, (i, title) ->
-    .col-md-12
+    .col-md-12.alternative-title
       .col-md-3
         = title.alternative_title
       .col-md-3

@@ -32,7 +32,7 @@
         = @movie.tagline
     - if @movie.overview && @movie.overview != ""
       %p.overview.col-md-12
-        %span= "Overview"
+        %span= "Overview: "
         = @movie.overview
     - if @movie.content_score
       %p.content-score.col-md-12
@@ -65,82 +65,91 @@
   .btn.btn-primary
     Add alternative titles
 - if @movie.alternative_titles.length > 0
-  .alternative-titles.col-md-12.box
+  .alternative-titles.col-md-12
     %p
       Alternative Titles
     - $.each @movie.alternative_titles, (i, title) ->
       - if title.language
-        .col-md-4
-          = title.alternative_title
-        .col-md-4
-          = title.language.language
+        .col-md-12.alternative-title
+          .col-md-2
+            = title.alternative_title
+          .col-md-2
+            = title.language.language
 
 #add-movie-metadata.show-add-item.col-md-12
   .btn.btn-primary
     Add metadata
   - if @movie.movie_metadatas.length > 0
-    .movie-metadatas.col-md-12.box
+    .movie-metadatas.col-md-12
       %p
         Metadata
       - $.each @movie.movie_metadatas, (i, metadata) ->
-        .col-md-5
-          Budget
-        .col-md-5
-          = metadata.budget
-        .col-md-5
-          Homepage
-        .col-md-5
-          %a{ href: metadata.homepage, target: "_blank" }
-            = metadata.homepage
-        .col-md-5
-          IMDB id
-        .col-md-5
-          = metadata.imdb_id
-        .col-md-5
-          Runtime
-        .col-md-5
-          = metadata.runtime
-        .col-md-5
-          Status
-        .col-md-5
-          = metadata.status.status
+        .col-md-12
+          .col-md-2
+            Budget
+          .col-md-5
+            = metadata.budget
+        .col-md-12
+          .col-md-2
+            Homepage
+          .col-md-5
+            %a{ href: metadata.homepage, target: "_blank" }
+              = metadata.homepage
+        .col-md-12
+          .col-md-2
+            IMDB id
+          .col-md-5
+            = metadata.imdb_id
+        .col-md-12
+          .col-md-2
+            Runtime
+          .col-md-5
+            = metadata.runtime
+        .col-md-12
+          .col-md-2
+            Status
+          .col-md-5
+            = metadata.status.status
+        .col-md-12
 
 #add-crew.show-add-item.col-md-12
   .btn.btn-primary
     Add crew
   - if @movie.crews.length > 0
-    .crews.col-md-12.box
+    .crews.col-md-12
       %p
         Crew
       - $.each @movie.crews, (i, crew) ->
         - if crew.person && crew.person.name
-          .col-md-4
-            = crew.job
-          .col-md-4
-            = crew.person.name
+          .col-md-12
+            .col-md-2
+              = crew.job
+            .col-md-2
+              = crew.person.name
 
 #add-cast.show-add-item.col-md-12
   .btn.btn-primary
     Add cast
   - if @movie.casts.length > 0
-    .casts.col-md-12.box
+    .casts.col-md-12
       %p
         Cast
       - $.each @movie.casts, (i, cast) ->
         - if cast.person && cast.person.name
-          .col-md-4
-            = cast.character
-          .col-md-4
-            = cast.person.name
+          .col-md-12
+            .col-md-2
+              = cast.character
+            .col-md-2
+              = cast.person.name
 
 #add-images.show-add-item.col-md-12
   .btn.btn-primary
     Add images
   - if @movie.images.length > 0
-    .images.col-md-12.box
+    .images.col-md-12
       - $.each @movie.images, (i, image) ->
         - if image.is_main_image == false
-          .col-md-4
+          .col-md-12.image
             %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
               %img{ src: image.image_file.small.url }
               = image.title
@@ -170,98 +179,97 @@
   .btn.btn-primary
     Add genres
   - if @movie.movie_genres.length > 0
-    .movie-genres.col-md-12.box
+    .movie-genres.col-md-12
       %p
         Genres
       - $.each @movie.movie_genres, (i, genre) ->
         - if genre.genre
-          .col-md-2
+          .col-md-2.movie-genre
             = genre.genre.genre
 
 #add-keywords.show-add-item.col-md-12
   .btn.btn-primary
     Add keywords
   - if @movie.movie_keywords.length > 0
-    .movie-keywords.col-md-12.box
+    .movie-keywords.col-md-12
       %p
         Keywords
       - $.each @movie.movie_keywords, (i, keyword) ->
         - if keyword.keyword
-          .col-md-2
+          .col-md-2.movie-keyword
             = keyword.keyword.keyword
 
 #add-languages.show-add-item.col-md-12
   .btn.btn-primary
     Add languages
   - if @movie.movie_languages.length > 0
-    .movie-languages.col-md-12.box
+    .movie-languages.col-md-12
       %p
         Languages
       - $.each @movie.movie_languages, (i, language) ->
         - if language.language
-          .col-md-2
+          .col-md-2.movie-language
             = language.language.language
 
 #add-revenue-countries.show-add-item.col-md-12
   .btn.btn-primary
     Add revenue countries
   - if @movie.revenue_countries.length > 0
-    .revenue-countries.col-md-12.box
+    .revenue-countries.col-md-12
       %p
         Revenue countries
       - $.each @movie.revenue_countries, (i, country) ->
         - if country.country
-          .col-md-2
+          .col-md-2.revenue-country
             = country.country.country
 
 #add-production-companies.show-add-item.col-md-12
   .btn.btn-primary
     Add production companies
   - if @movie.production_companies.length > 0
-    .production-companies.col-md-12.box
+    .production-companies.col-md-12
       %p
         Production companies
       - $.each @movie.production_companies, (i, company) ->
         - if company.company
-          .col-md-2
+          .col-md-2.production-company
             = company.company.company
 
 #add-tags.show-add-item.col-md-12
   .btn.btn-primary
     Add tags
   - if @movie.tags.length > 0
-    .tags.col-md-12.box
+    .tags.col-md-12
       %p
         Tagged people
       - $.each @movie.tags, (i, tag) ->
         - if tag.person
-          .col-md-2
+          .col-md-2.tag
             = tag.person.name
 
 #add-releases.show-add-item.col-md-12
   .btn.btn-primary
     Add releases
   - if @movie.releases.length > 0
-    .releases.col-md-12.box
+    .releases.col-md-12
       %p
         Releases
       - $.each @movie.releases, (i, release) ->
         - if release.country
-          %p
-            Release date
           .col-md-12
-            = moment(release.release_date).format("YYYY-MM-DD")
-          %p
-            Country
+            .col-md-2
+              Release date
+            .col-md-6
+              = moment(release.release_date).format("YYYY-MM-DD")
           .col-md-12
-            = release.country.country
-          %p
-            Confirmed
+            .col-md-2
+              Country
+            .col-md-6
+              = release.country.country
           .col-md-12
-            = if release.confirmed then "Yes" else "No"
-          -# %p
-          -#   Primary
-          -# .col-md-12
-          -#   = if release.primary then "Yes" else "No"
+            .col-md-2
+              Confirmed
+            .col-md-6
+              = if release.confirmed then "Yes" else "No"
 
 .clear

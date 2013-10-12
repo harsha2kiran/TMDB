@@ -1,7 +1,7 @@
 .videos.col-md-12.box
   - $.each @videos, (i, video) ->
     .col-md-12.video
-      .col-md-2
+      .col-md-4
         %a{ href: video.link, target: "_blank" }
           %img{ src: video.thumbnail, alt: "no image" }
           = video.title

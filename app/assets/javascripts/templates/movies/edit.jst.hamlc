@@ -2,12 +2,12 @@
 
 .col-md-12.navigation-links
   - if @my_movie == "my_movie"
-    %a.btn.btn-embossed.btn-primary.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
+    %a.btn.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}/my_movie"}
       Show
   - else
-    %a.btn.btn-embossed.btn-primary.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
+    %a.btn.col-md-2.show-movie{ href: "/#!/movies/#{window.movie_id}"}
       Show
-  %a.btn.btn-embossed.btn-primary.col-md-2{ href: "/#!/movies" }
+  %a.btn.col-md-2{ href: "/#!/movies" }
     Index
 
 
@@ -96,7 +96,7 @@
           - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
             %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "mark" } }
               Lock
-      .col-md-7.text-right
+      .col-md-6.text-right
         %input.js-original-id{ type: "hidden", value: @movie.original_id }
         %input.js-approved{ type: "hidden", value: @movie.approved.toString() }
         %input.js-update.btn.btn-embossed.btn-primary.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Update" }

@@ -16,12 +16,12 @@
       Add new revenue country
     .col-md-12
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Country
         %input.js-new-revenue-country.form-control.flat.col-md-6{ type: "text", placeholder: "Search country" }
         %input.js-new-revenue-country-id{ type: "hidden" }
       .col-md-12
-        .col-md-2
+        .col-md-2.input-label
           Revenue
         %input.js-new-revenue.form-control.flat.col-md-6{ type: "text", placeholder: "Revenue" }
       .col-md-8.text-right

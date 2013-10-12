@@ -29,8 +29,7 @@
           People
         %input.js-new-tag-person.form-control.flat.col-md-6{ type: "text", placeholder: "Search people" }
         %input.js-new-tag-person-id{ type: "hidden" }
-    .col-md-6.text-right
-      %input.js-new-tag-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
+    %input.js-new-tag-save.btn.btn-embossed.btn-primary.update-btn.col-md-2{ type: "button", value: "Save" }
 
     .js-new-person-info.hide
       This person does not exist. Do you want to add it?
