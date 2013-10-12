@@ -111,6 +111,3 @@ class MoviesApp.Edit extends Backbone.View
     $("." + tab).show().removeClass("hide")
 
 
-
-
-

@@ -1,6 +1,6 @@
 class PeopleApp.Show extends Backbone.View
   template: JST['templates/people/show']
-  className: "row"
+  className: "row people-show"
 
   initialize: ->
     _.bindAll this, "render"

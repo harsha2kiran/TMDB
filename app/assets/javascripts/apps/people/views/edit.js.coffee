@@ -1,6 +1,6 @@
 class PeopleApp.Edit extends Backbone.View
   template: JST['templates/people/edit']
-  className: "row"
+  className: "row people-edit"
 
   initialize: ->
     _.bindAll this, "render"
@@ -82,12 +82,13 @@ class PeopleApp.Edit extends Backbone.View
       $container.find(".js-name").addClass("error")
 
   goto_tab_from_show: ->
-    $(".tab").hide()
-    $(@el).find("." + localStorage.tab).show()
+    $(".person").hide().addClass("hide")
+    $(@el).find(".tab").hide().addClass("hide")
+    $(@el).find("." + localStorage.tab).show().removeClass("hide")
     localStorage.tab = ""
 
   goto: (e) ->
     id = $(e.target).attr("id")
     tab = id.replace("goto-", "")
-    $(".tab").hide()
-    $("." + tab).show()
+    $(".tab").hide().addClass("hide")
+    $("." + tab).show().removeClass("hide")

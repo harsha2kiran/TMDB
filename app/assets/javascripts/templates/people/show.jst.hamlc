@@ -1,93 +1,97 @@
 - window.person = @person
 
-.col-md-12
-  %a.col-md-2{ href: "/#!/people/#{window.person_id}/edit/my_person" }
+.col-md-12.navigation-links
+  %a.col-md-2.btn{ href: "/#!/people/#{window.person_id}/edit/my_person" }
     Edit
-  %a.col-md-2{ href: "/#!/people" }
+  %a.col-md-2.btn{ href: "/#!/people" }
     Index
 
-.col-md-12
-  - if @person.images && @person.images.length > 0
-    - $.each @person.images, (i, image) ->
-      - if image.is_main_image == true
-        .col-md-4
-          %a.slimbox{ href: image.image_file.watermarked.url }
-            %img{ src: image.image_file.small.url }
-            = image.title
-  - else
-    .col-md-4
-      - if @my_person == "my_person"
-        %a{ href: "/#!/people/#{@person.id}/edit/my_person" }
-          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
-      - else
-        %a{ href: "/#!/people/#{@person.id}/edit" }
-          %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+.col-md-12.people-show-main
+  .col-md-6
+    - if @person.images && @person.images.length > 0
+      - $.each @person.images, (i, image) ->
+        - if image.is_main_image == true
+          .col-md-4
+            %a.slimbox{ href: image.image_file.watermarked.url }
+              %img{ src: image.image_file.small.url }
+              = image.title
+    - else
+      .col-md-4
+        - if @my_person == "my_person"
+          %a{ href: "/#!/people/#{@person.id}/edit/my_person" }
+            %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+        - else
+          %a{ href: "/#!/people/#{@person.id}/edit" }
+            %img{ src: "https://d3a8mw37cqal2z.cloudfront.net/assets/f996aa2014d2ffd/images/no-poster-w185.jpg" }
+
+  .person.col-md-6
+    %h2.name.col-md-12
+      = @person.name
+    - if @person.biography
+      .biography.col-md-12
+        %span= "Biography: "
+        = @person.biography
+    - if @person.homepage
+      .homepage.col-md-12
+        %span= "Homepage: "
+        %a{ href: @person.homepage, target: "_blank" }
+          = @person.homepage
+    - if @person.birthday
+      - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
+      .birthday.col-md-12
+        %span= "Birthday: "
+        = @person.birthday
+    - if @person.place_of_birth
+      .place-of-birth.col-md-12
+        %span= "Place of birth: "
+        = @person.place_of_birth
+    - if @person.day_of_death
+      .day-of-death.col-md-12
+        %span= "Day of death: "
+        = @person.day_of_death
+    - if @person.imdb_id
+      .imdb-id.col-md-12
+        %span= "IMDB ID: "
+        = @person.imdb_id
+
+    .views.col-md-12
+      %span= "Views: "
+        - if @person.views
+          = @person.views + 1
+        - else
+          1
 
 - if current_user && @person.approved
-  - following = false
-  - $.each @person.follows, (i, follow) ->
-    - if parseInt(follow.followable_id) == parseInt(window.person_id) && follow.followable_type == "Person"
-      - following = true
-  - unless following
-    .follow.col-md-12.box
-      Follow
-  - else
-    .following.col-md-12.box
-      Already following
-
-.person.col-md-12.box
-  %h2.name.col-md-12
-    = @person.name
-  - if @person.biography
-    .biography.col-md-12
-      %span= "Biography: "
-      = @person.biography
-  - if @person.homepage
-    .homepage.col-md-12
-      %span= "Homepage: "
-      %a{ href: @person.homepage, target: "_blank" }
-        = @person.homepage
-  - if @person.birthday
-    - @person.birthday = moment(@person.birthday).format("YYYY-MM-DD")
-    .birthday.col-md-12
-      %span= "Birthday: "
-      = @person.birthday
-  - if @person.place_of_birth
-    .place-of-birth.col-md-12
-      %span= "Place of birth: "
-      = @person.place_of_birth
-  - if @person.day_of_death
-    .day-of-death.col-md-12
-      %span= "Day of death: "
-      = @person.day_of_death
-  - if @person.imdb_id
-    .imdb-id.col-md-12
-      %span= "IMDB ID: "
-      = @person.imdb_id
-
-  .views.col-md-12
-    %span= "Views: "
-      - if @person.views
-        = @person.views + 1
-      - else
-        1
+  .col-md-12.show-add-item
+    - following = false
+    - $.each @person.follows, (i, follow) ->
+      - if parseInt(follow.followable_id) == parseInt(window.person_id) && follow.followable_type == "Person"
+        - following = true
+    - unless following
+      .follow.col-md-12.btn.btn-primary
+        Follow
+    - else
+      .following.col-md-12.btn.btn-primary
+        Already following
 
 .add-to-list
 
-#add-alternative-names.show-add-item
-  Add alternative names
+#add-alternative-names.show-add-item.col-md-12
+  .btn.btn-primary
+    Add alternative names
 - if @person.alternative_names.length > 0
-  .alternative-titles.col-md-12.box
+  .alternative-titles.col-md-12
     %p
       Alternative names
     - $.each @person.alternative_names, (i, name) ->
       .col-md-4
         = name.alternative_name
 
-#add-crew.show-add-item
-  Add crew
+#add-crew.show-add-item.col-md-12
+  .btn.btn-primary
+    Add crew
 - if @person.crews.length > 0
-  .crews.col-md-12.box
+  .crews.col-md-12
     %p
       Crew
     - $.each @person.crews, (i, crew) ->
@@ -97,10 +101,11 @@
         .col-md-4
           = crew.movie.title
 
-#add-cast.show-add-item
-  Add cast
+#add-cast.show-add-item.col-md-12
+  .btn.btn-primary
+    Add cast
 - if @person.casts.length > 0
-  .casts.col-md-12.box
+  .casts.col-md-12
     %p
       Cast
     - $.each @person.casts, (i, cast) ->
@@ -110,10 +115,11 @@
         .col-md-4
           = cast.movie.title
 
-#add-images.show-add-item
-  Add images
+#add-images.show-add-item.col-md-12
+  .btn.btn-primary
+    Add images
 - if @person.images.length > 0
-  .images.col-md-12.box
+  .images.col-md-12
     - $.each @person.images, (i, image) ->
       - if image.is_main_image == false
         .col-md-4
@@ -121,10 +127,11 @@
             %img{ src: image.image_file.small.url }
             = image.title
 
-#add-videos.show-add-item
-  Add videos
+#add-videos.show-add-item.col-md-12
+  .btn.btn-primary
+    Add videos
 - if @person.videos.length > 0
-  .videos.col-md-12.box
+  .videos.col-md-12
     - $.each @person.videos, (i, video) ->
       .col-md-4
         %a{ href: video.link }
@@ -133,10 +140,11 @@
           .col-md-12
             = video.title
 
-#add-person-social-apps.show-add-item
-  Add social apps
+#add-person-social-apps.show-add-item.col-md-12
+  .btn.btn-primary
+    Add social apps
 - if @person.person_social_apps.length > 0
-  .social-apps.box.col-md-12
+  .social-apps.col-md-12
     - $.each @person.person_social_apps, (i, social_app) ->
       - if social_app.social_app
         .col-md-12
@@ -146,10 +154,11 @@
             %a{ href: social_app.profile_link, target: "_blank" }
               = social_app.profile_link
 
-#add-tags.show-add-item
-  Add tags
+#add-tags.show-add-item.col-md-12
+  .btn.btn-primary
+    Add tags
 - if @person.tags.length > 0
-  .tags.box.col-md-12
+  .tags.col-md-12
     - $.each @person.tags, (i, tag) ->
       - if tag.movie && tag.movie.title
         .col-md-12
