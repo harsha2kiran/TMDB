@@ -350,8 +350,8 @@ class MoviesApp.ListsShow extends Backbone.View
         type: type
         mark: true
       success: ->
-        $(".js-approve-list").hide()
-        $(".js-unapprove-list").show()
+        $(".js-approve-list").hide().addClass("hide")
+        $(".js-unapprove-list").show().removeClass("hide")
 
   unapprove_list: (e) ->
     self = @
@@ -366,7 +366,7 @@ class MoviesApp.ListsShow extends Backbone.View
         type: type
         mark: false
       success: ->
-        $(".js-approve-list").show()
-        $(".js-unapprove-list").hide()
+        $(".js-approve-list").show().removeClass("hide")
+        $(".js-unapprove-list").hide().addClass("hide")
 
 

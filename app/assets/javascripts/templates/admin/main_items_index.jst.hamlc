@@ -88,9 +88,9 @@
             - if item.pending || item.approved == false
               (Pending)
             - else
-              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
+              %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
           %td
-            %button.js-remove{ "data-id" => item.id, "data-controller" => "people" }= "Delete"
+            %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "people" }= "Delete"
       - else if type == "Gallery"
         - item = item.get("list")
         %tr{ "data-id" => item.id, "data-model" => "List" }
@@ -103,6 +103,6 @@
             - if item.pending || item.approved == false
               (Pending)
             - else
-              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "lists" }= "Unapprove"
+              %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Unapprove"
           %td
-            %button.js-remove{ "data-id" => item.id, "data-controller" => "lists" }= "Delete"
+            %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Delete"
