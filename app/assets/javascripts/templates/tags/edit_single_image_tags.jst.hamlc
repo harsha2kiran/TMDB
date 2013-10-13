@@ -1,5 +1,9 @@
 - item = @item
+.col-md-12.input-label
+  %strong= "List of tags: "
 .col-md-12.js-tags-movies-list
+  .col-md-12.input-label
+    Movies:
   - if item.tags
     - $.each item.tags, (i, tag) ->
       - if tag.title
@@ -16,17 +20,19 @@
             - is_owner = true
 
         - if approved || is_admin_or_mod() || is_owner
-          .col-md-2.tag{ "data-type" => "Movie", "data-id" => tag.id }
-            .col-md-5.tag-tag
+          .col-md-4.tag{ "data-type" => "Movie", "data-id" => tag.id }
+            .col-md-5.tag-tag.input-label
               = tag.title
 
             - if is_admin_or_mod()
-              .col-md-2.js-remove-tag
+              .col-md-2.js-remove-tag.btn
                 X
               - unless approved
-                .col-md-3.js-approve-tag
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
                   Approve
 .col-md-12.js-tags-people-list
+  .col-md-12.input-label
+    People:
   - if item.tags
     - $.each item.tags, (i, tag) ->
       - if tag.name
@@ -43,18 +49,20 @@
             - is_owner = true
 
         - if approved || is_admin_or_mod() || is_owner
-          .col-md-2.tag{ "data-type" => "Person", "data-id" => tag.id }
-            .col-md-5.tag-tag
+          .col-md-4.tag{ "data-type" => "Person", "data-id" => tag.id }
+            .col-md-5.tag-tag.input-label
               = tag.name
 
             - if is_admin_or_mod()
-              .col-md-2.js-remove-tag
+              .col-md-2.js-remove-tag.btn
                 X
               - unless approved
-                .col-md-3.js-approve-tag
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
                   Approve
 
 .col-md-12.js-tags-companies-list
+  .col-md-12.input-label
+    Tags:
   - if item.tags
     - $.each item.tags, (i, tag) ->
       - if tag.company
@@ -71,17 +79,19 @@
             - is_owner = true
 
         - if approved || is_admin_or_mod() || is_owner
-          .col-md-2.tag{ "data-type" => "Company", "data-id" => tag.id }
-            .col-md-5.tag-tag
+          .col-md-4.tag{ "data-type" => "Company", "data-id" => tag.id }
+            .col-md-5.tag-tag.input-label
               = tag.company
 
             - if is_admin_or_mod()
-              .col-md-2.js-remove-tag
+              .col-md-2.js-remove-tag.btn
                 X
               - unless approved
-                .col-md-3.js-approve-tag
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
                   Approve
 
 .col-md-12
-  %input.js-new-tag.form-control.flat{ type: "text", placeholder: "Tag people, movies or companies"}
+  .col-md-2.input-label
+    Add tags
+  %input.js-new-tag.form-control.flat.col-md-4{ type: "text", placeholder: "Tag people, movies or companies"}
   %input.js-new-tag-id{ type: "hidden" }

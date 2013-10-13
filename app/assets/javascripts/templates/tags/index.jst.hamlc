@@ -1,10 +1,10 @@
 - @tags = eval(@tags)
 - $.each @tags, (i, tag) ->
-  .col-md-2.tag{ "data-id" => tag[0], "data-type" => tag[1] }
-    .col-md-5.tag-tag
+  .col-md-3.tag{ "data-id" => tag[0], "data-type" => tag[1] }
+    .col-md-7.tag-tag.input-label
       = tag[2]
     - if is_admin_or_mod()
-      .col-md-5.js-remove
+      .col-md-3.js-remove.btn
         X
 
       -# - unless approved && is_admin_or_mod()

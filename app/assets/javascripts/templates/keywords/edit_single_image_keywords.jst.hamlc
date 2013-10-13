@@ -1,4 +1,6 @@
 - item = @item
+.col-md-12.input-label
+  %strong= "List of keywords: "
 .col-md-12.js-keywords-list
   - if item.keywords
     - $.each item.keywords, (i, keyword) ->
@@ -15,17 +17,19 @@
 
       - if approved || is_admin_or_mod() || is_owner
         .col-md-2.keyword{ "data-id" => keyword.id }
-          .col-md-5.keyword-keyword
+          .col-md-5.keyword-keyword.input-label
             = keyword.keyword
 
           - if is_admin_or_mod()
-            .col-md-2.js-remove-keyword
+            .col-md-2.js-remove-keyword.btn
               X
             - unless approved
-              .col-md-3.js-approve-keyword
+              .col-md-3.js-approve-keyword.btn.btn-primary.flat
                 Approve
 
 .col-md-12
-  %input.js-new-keyword.form-control.flat{ type: "text", placeholder: "Keywords"}
+  .col-md-2.input-label
+    Add keywords
+  %input.js-new-keyword.form-control.flat.col-md-4{ type: "text", placeholder: "Keywords"}
   %input.js-new-keyword-id{ type: "hidden" }
   %input.js-new-keyword-ids{ type: "hidden", value: "[]" }

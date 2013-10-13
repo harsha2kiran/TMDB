@@ -12,7 +12,7 @@
 - if !is_empty && ((list && list.list_items) || ((current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))))
 
   - if list
-    %h3.col-md-12
+    %h5.col-md-12
       - if list.list_type
         - type = list.list_type.charAt(0).toUpperCase() + list.list_type.slice(1)
       - else
@@ -28,19 +28,19 @@
 
       -# approve and unapprove buttons
       - if is_admin_or_mod()
-        .col-md-12
+        .col-md-12.approve-unapprove-btn
           - if list.approved == true
-            %button.js-approve-list.hide{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove-list{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+            %button.js-approve-list.hide.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove-list.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
           - else
-            %button.js-approve-list{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove-list.hide{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+            %button.js-approve-list.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
+            %button.js-unapprove-list.hide.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
 
 
 
       .col-md-12.list-keywords
-        %h4.col-md-12
-          Keywords
+        .col-md-12
+          %strong= "Keywords"
         .col-md-12.js-keywords-list
           - $.each list.keywords, (i, keyword) ->
 
@@ -56,24 +56,26 @@
                 - is_owner = true
 
             - if is_owner || approved || is_admin_or_mod()
-              .col-md-2.keyword{ "data-id" => keyword.id }
-                .col-md-5.keyword-keyword
+              .col-md-4.keyword{ "data-id" => keyword.id }
+                .col-md-5.keyword-keyword.input-label
                   = keyword.keyword
 
                 - if is_admin_or_mod()
-                  .col-md-2.js-remove-keyword
+                  .col-md-2.js-remove-keyword.btn
                     X
 
                   - unless approved
-                    .col-md-3.js-approve-keyword
+                    .col-md-3.js-approve-keyword.btn.btn-primary.flat
                       Approve
         .col-md-12
-          %input.js-new-list-keyword.form-control.flat{ type: "text", placeholder: "Keywords"}
+          .col-md-2.input-label
+            Add keywords
+          %input.js-new-list-keyword.form-control.flat.col-md-6{ type: "text", placeholder: "Keywords"}
           %input.js-new-list-keyword-id{ type: "hidden" }
           %input.js-new-list-keyword-ids{ type: "hidden", value: "[]" }
       .col-md-12.list-tags
-        %h4.col-md-12
-          Tags
+        .col-md-12
+          %strong= "Tags"
         .col-md-12.js-tags-movies-list
           - $.each list.tags, (i, tag) ->
             - if tag.title
@@ -90,16 +92,16 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .col-md-2.tag{ "data-type" => "Movie", "data-id" => tag.id }
-                  .col-md-5.tag-tag
+                .col-md-4.tag{ "data-type" => "Movie", "data-id" => tag.id }
+                  .col-md-5.tag-tag.input-label
                     = tag.title
 
                   - if is_admin_or_mod()
-                    .col-md-2.js-remove-tag
+                    .col-md-2.js-remove-tag.btn
                       X
 
                     - unless approved
-                      .col-md-3.js-approve-tag
+                      .col-md-3.js-approve-tag.btn.btn-primary.flag
                         Approve
         .col-md-12.js-tags-people-list
           - $.each list.tags, (i, tag) ->
@@ -117,16 +119,16 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .col-md-2.tag{ "data-type" => "Person", "data-id" => tag.id }
-                  .col-md-5.tag-tag
+                .col-md-4.tag{ "data-type" => "Person", "data-id" => tag.id }
+                  .col-md-5.tag-tag.input-label
                     = tag.name
 
                   - if is_admin_or_mod()
-                    .col-md-2.js-remove-tag
+                    .col-md-2.js-remove-tag.btn
                       X
 
                     - unless approved
-                      .col-md-3.js-approve-tag
+                      .col-md-3.js-approve-tag.btn.btn-primary.flag
                         Approve
         .col-md-12.js-tags-companies-list
           - $.each list.tags, (i, tag) ->
@@ -144,46 +146,49 @@
                   - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
-                .col-md-2.tag{ "data-type" => "Company", "data-id" => tag.id }
-                  .col-md-5.tag-tag
+                .col-md-4.tag{ "data-type" => "Company", "data-id" => tag.id }
+                  .col-md-5.tag-tag.input-label
                     = tag.company
 
                   - if is_admin_or_mod()
-                    .col-md-2.js-remove-tag
+                    .col-md-2.js-remove-tag.btn
                       X
 
                     - unless approved
-                      .col-md-3.js-approve-tag
+                      .col-md-3.js-approve-tag.btn.btn-primary.flag
                         Approve
 
         .col-md-12
-          %input.js-new-list-tag.form-control.flat{ type: "text", placeholder: "Tag people, movies or companies"}
+          .col-md-2.input-label
+            Add tags
+          %input.js-new-list-tag.form-control.flat.col-md-6{ type: "text", placeholder: "Tag people, movies or companies"}
           %input.js-new-list-tag-id{ type: "hidden" }
       .col-md-12
         %input.js-update-keywords-tags.btn.btn-embossed.btn-primary{ type: "button", value: "Update keywords and tags" }
 
   - if current_user
-    - following = false
-    - $.each @list.follows, (i, follow) ->
-      - if parseInt(follow.followable_id) == parseInt(window.list_id) && follow.followable_type == "List"
-        - following = true
-    - unless following
-      .follow.col-md-12.box
-        Follow
-    - else
-      .following.col-md-12.box
-        Already following
+    .col-md-12.list-show-follow
+      - following = false
+      - $.each @list.follows, (i, follow) ->
+        - if parseInt(follow.followable_id) == parseInt(window.list_id) && follow.followable_type == "List"
+          - following = true
+      - unless following
+        .follow.btn.btn-primary.flat
+          Follow
+      - else
+        .following.btn.btn-primary.flat
+          Already following
 
     -# -if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
   - if !list.list_type || list.list_type == ''
-    .col-md-12
-      %p.col-md-12
+    .col-md-12.add-items-to-list
+      .col-md-3.input-label
         Add movies and people to list
-      .col-md-12
-        %input.js-item.form-control.flat{ type: "text", placeholder: "Search" }
+      .col-md-4
+        %input.js-item.form-control.col-md-12.flat{ type: "text", placeholder: "Search" }
         %input.js-item-id{ type: "hidden" }
         %input.js-item-type{ type: "hidden" }
-        %input.js-create{ type: "button", value: "Add to list" }
+      %input.js-create.col-md-2.btn.btn-primary.flat{ type: "button", value: "Add to list" }
 
   - if list.list_type == "gallery"
     .add-images-form

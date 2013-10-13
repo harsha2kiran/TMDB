@@ -1,50 +1,49 @@
-.images.col-md-12.box
-  %p
-    Images
-  - $.each @images, (i, image) ->
-    .col-md-12.image
-      .col-md-2
-        %a.slimbox{ href: image.image_file.watermarked.url }
-          %img{ src: image.image_file.small.url, width: 100 }
-      .col-md-2
-        = image.title
-      .col-md-2
-        = image.priority
-      .col-md-2
-        - if image.is_main_image
-          = "Main image"
-      - if current_user && current_user.user_type == "admin"
-        .col-md-2
-          %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
+.images.col-md-12
+  %strong= "Images"
 
-  .col-md-12.drop-image
-    = "Drop images here to upload"
+- $.each @images, (i, image) ->
+  .col-md-12.image
+    .col-md-2
+      %a.slimbox{ href: image.image_file.watermarked.url }
+        %img{ src: image.image_file.small.url, width: 100 }
+    .col-md-2
+      = image.title
+    .col-md-2
+      = image.priority
+    .col-md-2
+      - if image.is_main_image
+        = "Main image"
+    - if current_user && current_user.user_type == "admin"
+      .col-md-2
+        %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
 
+.col-md-11.drop-image
+  = "Drop images here to upload"
+
+.col-md-12.input-label
+  %strong= "... or upload single image"
+%form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
+  -# .col-md-12
+  -#   %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
+  -#   %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
+  -# .col-md-12.js-keywords-list
+  -# .col-md-12
+  -#   %input.js-new-image-keyword{ type: "text", placeholder: "Keywords"}
+  -#   %input.js-new-image-keyword-id{ type: "hidden" }
+  -#   .js-new-item-info.hide
+  -#     This keyword does not exist. Do you want to add it?
+  -#   .js-new-item-add-form.hide
+  -#     .col-md-1.js-new-item-add-yes
+  -#       Yes
+  -#     .col-md-1.js-new-item-add-no
+  -#       No
+  -# .col-md-12.js-tags-list
+  -# .col-md-12
+  -#   %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
+  -#   %input.js-new-image-tag-id{ type: "hidden" }
   .col-md-12
-    %p
-      = "... or upload single image"
-    %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }
-      -# .col-md-12
-      -#   %input.js-new-image-title{ type: "text", name: "image[title]", placeholder: "Title" }
-      -#   %textarea.js-new-image-description{ name: "image[description]", placeholder: "Description" }
-      -# .col-md-12.js-keywords-list
-      -# .col-md-12
-      -#   %input.js-new-image-keyword{ type: "text", placeholder: "Keywords"}
-      -#   %input.js-new-image-keyword-id{ type: "hidden" }
-      -#   .js-new-item-info.hide
-      -#     This keyword does not exist. Do you want to add it?
-      -#   .js-new-item-add-form.hide
-      -#     .col-md-1.js-new-item-add-yes
-      -#       Yes
-      -#     .col-md-1.js-new-item-add-no
-      -#       No
-      -# .col-md-12.js-tags-list
-      -# .col-md-12
-      -#   %input.js-new-image-tag{ type: "text", placeholder: "Tag people, movies or companies"}
-      -#   %input.js-new-image-tag-id{ type: "hidden" }
-      .col-md-12
-        %input.js-new-image-file.form-control.flat{ type: "file", name: "image[image_file]", placeholder: "Image file" }
-    .col-md-12.js-upload-status
+    %input.js-new-image-file.btn.flat.col-md-3{ type: "file", name: "image[image_file]", placeholder: "Image file" }
+.col-md-12.js-upload-status.input-label
 
 
-  .dropped-images
+.dropped-images

@@ -3,10 +3,11 @@
     .col-md-2
       %img{ src: @image.image_file.small.url, alt: "" }
     .col-md-6
-      %input.js-drop-image-title.form-control.flat{ type: "text", placeholder: "Title" }
-      %textarea.js-drop-image-description.form-control.flat{ placeholder: "Description" }
+      %input.js-drop-image-title.form-control.flat.col-md-10{ type: "text", placeholder: "Title" }
+      %textarea.js-drop-image-description.form-control.flat.col-md-10{ placeholder: "Description" }
 
   .single-image-keywords
   .single-image-tags
 
-  %input.js-drop-image-update.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+  .col-md-10.text-right
+    %input.js-drop-image-update.btn.btn-embossed.btn-primary.col-md-2.drop-image-update{ type: "button", value: "Save" }

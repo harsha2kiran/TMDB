@@ -40,5 +40,5 @@
           %input.js-new-image-priority.form-control.flat.col-md-6{ type: "text", name: "image[priority]", placeholder: "Priority", value: "0.0" }
       .col-md-6.text-right
         %input.js-new-image-update.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
-    .col-md-12.js-upload-status
+    .col-md-12.js-upload-status.input-label
 
