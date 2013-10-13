@@ -57,14 +57,14 @@
           %td.jeditable{ "data-id" => "tagline" }= item.tagline
           %td.jeditable{ "data-id" => "content_score" }= item.content_score
           %td
-            %a.col-md-6{ href: "#admin/movies/#{item.id}" }
+            %a.col-md-6.btn.btn-primary.flat{ href: "#admin/movies/#{item.id}" }
               Moderate
             - if item.pending || item.approved == false
               (Pending)
             - else
-              %button.js-unapprove{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
+              %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
           %td
-            %button.js-remove{ "data-id" => item.id, "data-controller" => "movies" }= "Delete"
+            %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "movies" }= "Delete"
 
       - else if type == "Person"
         - item = item.get("person")
