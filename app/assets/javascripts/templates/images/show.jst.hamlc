@@ -2,11 +2,15 @@
 .col-md-12.image
   %a.slimbox{ href: image.image_file.image_file.watermarked.url, title: image.title }
     .image
-      %img{ src: image.image_file.image_file.small.url, alt: "no image"}
+      %img{ src: image.image_file.image_file.medium.url, alt: "no image"}
     .title
       = image.title
 
-.views.col-md-12
+- if image.description && image.description != ""
+  .col-md-12
+    = image.description
+
+.views.col-md-12.input-label
   %span= "Views: "
     - if image.views
       = image.views + 1
@@ -14,14 +18,10 @@
       1
 
 - if current_user
-  %h4.col-md-12
+  %strong.col-md-12
     Likes
   .col-md-12.likes
-%h4.col-md-12
-  Keywords
 .col-md-12.single-image-keywords
-%h4.col-md-12
-  Tags
 .col-md-12.single-image-tags
 
 .col-md-12

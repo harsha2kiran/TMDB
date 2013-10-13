@@ -16,7 +16,7 @@
           - is_owner = true
 
       - if approved || is_admin_or_mod() || is_owner
-        .col-md-2.keyword{ "data-id" => keyword.id }
+        .col-md-3.keyword{ "data-id" => keyword.id }
           .col-md-5.keyword-keyword.input-label
             = keyword.keyword
 
@@ -24,7 +24,7 @@
             .col-md-2.js-remove-keyword.btn
               X
             - unless approved
-              .col-md-3.js-approve-keyword.btn.btn-primary.flat
+              .col-md-4.js-approve-keyword.btn.btn-primary.flat
                 Approve
 
 .col-md-12

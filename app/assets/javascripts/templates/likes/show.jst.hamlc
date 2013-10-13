@@ -1,13 +1,13 @@
 .col-md-12
-  .col-md-1.likes-count
+  .col-md-2.likes-count
     Likes:
     = @likes
 
-  .col-md-1.dislikes-count
+  .col-md-2.dislikes-count
     Dislikes:
     = @dislikes
 
 .col-md-12
-  .col-md-1
-    %input.js-like.btn.btn-embossed.btn-primary{ class: "#{@liked}", type: "button", value: "Like" }
-    %input.js-dislike{ class: "#{@disliked}", type: "button", value: "Dislike" }
+  .col-md-2
+    %input.js-like.btn.btn-primary.flat{ class: "#{@liked}", type: "button", value: "Like" }
+    %input.js-dislike.btn{ class: "#{@disliked}", type: "button", value: "Dislike" }

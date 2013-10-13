@@ -62,7 +62,7 @@
 
 .col-md-12.js-tags-companies-list
   .col-md-12.input-label
-    Tags:
+    Companies:
   - if item.tags
     - $.each item.tags, (i, tag) ->
       - if tag.company
