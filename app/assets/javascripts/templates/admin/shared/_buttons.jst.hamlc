@@ -1,9 +1,9 @@
 .col-md-1
-  %button.js-update= "Update"
+  %button.js-update.btn.btn-primary.flat= "Update"
 .col-md-1
-  %button.js-remove= "Remove"
+  %button.js-remove.btn= "Remove"
 .col-md-1
   - if @approved
-    %button.js-approve= "Unapprove"
+    %button.js-approve.btn.btn-primary.flat= "Unapprove"
   - else
-    %button.js-approve= "Approve"
+    %button.js-approve.btn.btn-primary.flat= "Approve"

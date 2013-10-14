@@ -36,12 +36,39 @@ class MoviesApp.ListItemsShow extends Backbone.View
     else
       id = $(e.target).parents(".js-approve").find("input").val()
     container = $(e.target).parents(".item").first()
-    $.ajax api_version + "list_items/" + id,
-      method: "PUT"
+
+#     $.ajax api_version + "list_items/" + id,
+#       method: "PUT"
+#       data:
+#         "list_item[id]" : id
+#         "list_item[list_id]" : window.list_id
+#         "list_item[approved]" : true
+
+    $.ajax api_version + "approvals/mark",
+      method: "post"
       data:
-        "list_item[id]" : id
-        "list_item[list_id]" : window.list_id
-        "list_item[approved]" : true
+        approved_id: id
+        type: "ListItem"
+        mark: true
       success: =>
+        console.log "mark success"
         $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
         $(e.target).remove()
+
+#         user_id = parent.find(".js-user-temp-id").attr("data-user-id")
+#         temp_user_id = parent.find(".js-user-temp-id").attr("data-temp-user-id")
+#         $.ajax api_version + "approvals/add_remove_pending",
+#           method: "post"
+#           data:
+#             pendable_id: id
+#             pendable_type: "ListItem"
+#             user_id: user_id
+#             temp_user_id: temp_user_id
+#             approvable_id: image_id
+#             approvable_type: "Image"
+#             approval_type: "approve"
+#           success: (response) ->
+#             console.log response
+#             $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
+#             $(e.target).remove()
+

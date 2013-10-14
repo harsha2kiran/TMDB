@@ -1,27 +1,31 @@
-- if @list_type  == "gallery"
-  %a{ href: "/#!/galleries", class: "col-md-12" }
-    All galleries
-- else if @list_type  == "channel"
-  %a{ href: "/#!/channels", class: "col-md-12" }
-    All channels
-- else
-  %a{ href: "/#!/lists", class: "col-md-12" }
-    All lists
+.col-md-12.input-label
+  - if @list_type  == "gallery"
+    %a.btn.btn-primary{ href: "/#!/galleries", class: "col-md-2" }
+      All galleries
+  - else if @list_type  == "channel"
+    %a.btn.btn-primary{ href: "/#!/channels", class: "col-md-2" }
+      All channels
+  - else
+    %a.btn.btn-primary{ href: "/#!/lists", class: "col-md-2" }
+      All lists
 
-%h3.col-md-12
+%h5.col-md-12.input-label
   - unless @list_type
     Add new list
   - else
     = "Add new " + @list_type
 
 .list.col-md-12.box
-  %p.col-md-12
-    Title
-    %input.js-title.form-control.flat{ type: "text", placeholder: "Title" }
-  %p.description.col-md-12
-    Description
-    %input.js-description.form-control.flat{ type: "text", placeholder: "Description" }
-  %p.col-md-12
-    %input.js-list-type{ type: "hidden", value: @list_type }
-    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+  .col-md-12
+    .col-md-2.input-label
+      Title
+    %input.js-title.form-control.flat.col-md-4{ type: "text", placeholder: "Title" }
+  .col-md-12
+    .description.col-md-2.input-label
+      Description
+    %input.js-description.form-control.flat.col-md-4{ type: "text", placeholder: "Description" }
+  .col-md-12
+    .col-md-6.text-right
+      %input.js-list-type{ type: "hidden", value: @list_type }
+      %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

@@ -1,29 +1,37 @@
-%a{ href: "/#!/people", class: "col-md-12" }
-  Index
-
+.col-md-12
+  %a.btn.btn-primary.flat{ href: "/#!/people", class: "col-md-1" }
+    Index
 
 .person.col-md-12.box
-  %p.name.col-md-12
-    Name
-    %input.js-name.form-control.flat{ type: "text", placeholder: "Name" }
-  %p.biography.col-md-12
-    Biography
-    %textarea.js-biography.form-control.flat{ type: "text", placeholder: "Biography" }
-  %p.homepage.col-md-12
-    Homepage
-    %input.js-homepage.form-control.flat{ type: "text", placeholder: "Homepage" }
-  %p.birthday.col-md-12
-    Birthday
-    %input.js-birthday.form-control.flat{ type: "text", placeholder: "Birthday" }
-  %p.place-of-birth.col-md-12
-    Place of birth
-    %input.js-place-of-birth.form-control.flat{ type: "text", placeholder: "Place of birth" }
-  %p.day-of-death.col-md-12
-    Day of death
-    %input.js-day-of-death.form-control.flat{ type: "text", placeholder: "Day of death" }
-  %p.imdb-id.col-md-12
-    IMDB ID
-    %input.js-imdb-id.form-control.flat{ type: "text", placeholder: "IMDB ID" }
-  %p.col-md-12
-    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+  .name.col-md-12
+    .col-md-2.input-label
+      Name
+    %input.js-name.form-control.flat.col-md-4{ type: "text", placeholder: "Name" }
+  .biography.col-md-12
+    .col-md-2.input-label
+      Biography
+    %textarea.js-biography.form-control.flat.col-md-4{ type: "text", placeholder: "Biography" }
+  .homepage.col-md-12
+    .col-md-2.input-label
+      Homepage
+    %input.js-homepage.form-control.flat.col-md-4{ type: "text", placeholder: "Homepage" }
+  .birthday.col-md-12
+    .col-md-2.input-label
+      Birthday
+    %input.js-birthday.form-control.flat.col-md-4{ type: "text", placeholder: "Birthday" }
+  .place-of-birth.col-md-12
+    .col-md-2.input-label
+      Place of birth
+    %input.js-place-of-birth.form-control.flat.col-md-4{ type: "text", placeholder: "Place of birth" }
+  .day-of-death.col-md-12
+    .col-md-2.input-label
+      Day of death
+    %input.js-day-of-death.form-control.flat.col-md-4{ type: "text", placeholder: "Day of death" }
+  .imdb-id.col-md-12
+    .col-md-2.input-label
+      IMDB ID
+    %input.js-imdb-id.form-control.flat.col-md-4{ type: "text", placeholder: "IMDB ID" }
+  .col-md-12
+    .col-md-6.text-right
+      %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

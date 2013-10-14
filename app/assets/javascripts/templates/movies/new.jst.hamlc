@@ -1,19 +1,25 @@
-%a{ href: "/#!/movies", class: "col-md-12" }
-  Index
+.col-md-12
+  %a.col-md-1.btn.btn-primary.flat{ href: "/#!/movies" }
+    Index
 
 .movie.col-md-12.box
-  %p.col-md-12
-    Title
-    %input.js-title.form-control.flat{ type: "text", placeholder: "Title" }
-  %p.tagline.col-md-12
-    Tagline
-    %input.js-tagline.form-control.flat{ type: "text", placeholder: "Tagline" }
-  %p.overview.col-md-12
-    Overview
-    %input.js-overview.form-control.flat{ type: "text", placeholder: "Overview" }
-  %p.content-score.col-md-12
-    Content Score
-    %input.js-content-score.form-control.flat{ type: "text", placeholder: "Content score" }
-  %p.col-md-12
-    %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+  .col-md-12
+    .col-md-2.input-label
+      Title
+    %input.js-title.form-control.flat.col-md-4{ type: "text", placeholder: "Title" }
+  .col-md-12.tagline
+    .col-md-2.input-label
+      Tagline
+    %input.js-tagline.form-control.flat.col-md-4{ type: "text", placeholder: "Tagline" }
+  .col-md-12
+    .overview.col-md-2.input-label
+      Overview
+    %input.js-overview.form-control.flat.col-md-4{ type: "text", placeholder: "Overview" }
+  .col-md-12
+    .content-score.col-md-2.input-label
+      Content Score
+    %input.js-content-score.form-control.flat.col-md-4{ type: "text", placeholder: "Content score" }
+  .col-md-12
+    .col-md-6.text-right
+      %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 

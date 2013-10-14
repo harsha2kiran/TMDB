@@ -9,35 +9,35 @@
 
 - if item.alternative_titles && item.alternative_titles.length > 0
   .alternative-titles.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Alternative Titles
     - $.each item.alternative_titles, (i, title) ->
       - if title.language
         .col-md-12.js-edit-item
-          %input.edit-item{ type: "hidden", value: title.id, "data-id" => "id", "data-model" => "AlternativeTitle", "data-key" => "alternative_title", "data-controller" => "alternative_titles" }
+          %input.edit-item.form-control{ type: "hidden", value: title.id, "data-id" => "id", "data-model" => "AlternativeTitle", "data-key" => "alternative_title", "data-controller" => "alternative_titles" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => title.user_id, "data-temp-user-id" => title.temp_user_id }
-          .col-md-2
-            %input.edit-item{ type: "text", value: title.alternative_title, "data-id" => "alternative_title" }
-          .col-md-2
-            %input.edit-item.js-alternative-title-language{ type: "text", placeholder: "Language", value: title.language.language }
+          .col-md-3
+            %input.edit-item.form-control{ type: "text", value: title.alternative_title, "data-id" => "alternative_title" }
+          .col-md-3
+            %input.edit-item.js-alternative-title-language.form-control{ type: "text", placeholder: "Language", value: title.language.language }
             %input.edit-item{ type: "hidden", value: title.language_id, "data-id" => "language_id" }
           != JST['templates/admin/shared/_buttons'](approved: title.approved)
 
 - if item.alternative_names && item.alternative_names.length > 0
   .alternative-titles.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Alternative Names
     - $.each item.alternative_names, (i, name) ->
       .col-md-12.js-edit-item
         %input.edit-item{ type: "hidden", value: name.id, "data-id" => "id", "data-model" => "AlternativeName", "data-key" => "alternative_name", "data-controller" => "alternative_names" }
         %input.js-user-temp-id{ type: "hidden", "data-user-id" => name.user_id, "data-temp-user-id" => name.temp_user_id }
-        .col-md-2
-          %input.edit-item{ type: "text", value: name.alternative_name, "data-id" => "alternative_name" }
+        .col-md-3
+          %input.edit-item.form-control{ type: "text", value: name.alternative_name, "data-id" => "alternative_name" }
         != JST['templates/admin/shared/_buttons'](approved: name.approved)
 
 - if item.movie_metadatas && item.movie_metadatas.length > 0
   .movie-metadatas.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Metadata
     - $.each item.movie_metadatas, (i, metadata) ->
       .col-md-12.js-edit-item
@@ -46,29 +46,29 @@
         .col-md-1
           Budget
         .col-md-12
-          %input.edit-item{ type: "text", value: metadata.budget, "data-id" => "budget" }
+          %input.edit-item.form-control{ type: "text", value: metadata.budget, "data-id" => "budget" }
         .col-md-1
           Homepage
         .col-md-12
-          %input.edit-item{ type: "text", value: metadata.homepage, "data-id" => "homepage" }
+          %input.edit-item.form-control{ type: "text", value: metadata.homepage, "data-id" => "homepage" }
         .col-md-1
           IMDB id
         .col-md-12
-          %input.edit-item{ type: "text", value: metadata.imdb_id, "data-id" => "imdb_id" }
+          %input.edit-item.form-control{ type: "text", value: metadata.imdb_id, "data-id" => "imdb_id" }
         .col-md-1
           Runtime
         .col-md-12
-          %input.edit-item{ type: "text", value: metadata.runtime, "data-id" => "runtime" }
+          %input.edit-item.form-control{ type: "text", value: metadata.runtime, "data-id" => "runtime" }
         .col-md-1
           Status
         .col-md-12
-          %input.js-metadata-status.edit-item{ type: "text", value: metadata.status.status }
+          %input.js-metadata-status.edit-item.form-control{ type: "text", value: metadata.status.status }
           %input.edit-item{ type: "hidden", value: metadata.status_id, "data-id" => "status_id" }
         != JST['templates/admin/shared/_buttons'](approved: metadata.approved)
 
 - if item.crews && item.crews.length > 0
   .crews.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Crew
     - $.each item.crews, (i, crew) ->
       - if (crew.person && crew.person.name) || (crew.movie && crew.movie.title)
@@ -79,20 +79,20 @@
             %input.js-additional{ type: "hidden", "data-id" => crew.person_id, "data-type" => "Person" }
           - else if type == "Person"
             %input.js-additional{ type: "hidden", "data-id" => crew.movie_id, "data-type" => "Movie" }
-          .col-md-2
-            %input.edit-item{ type: "text", value: crew.job, "data-id" => "job" }
-          .col-md-2
+          .col-md-3
+            %input.edit-item.form-control{ type: "text", value: crew.job, "data-id" => "job" }
+          .col-md-3
             - if crew.person
-              %input.js-crew-person.edit-item{ type: "text", value: crew.person.name }
+              %input.js-crew-person.edit-item.form-control{ type: "text", value: crew.person.name }
               %input.edit-item{ type: "hidden", value: crew.person_id, "data-id" => "person_id" }
             - else if crew.movie
-              %input.js-crew-movie.edit-item{ type: "text", value: crew.movie.title }
+              %input.js-crew-movie.edit-item.form-control{ type: "text", value: crew.movie.title }
               %input.edit-item{ type: "hidden", value: crew.movie_id, "data-id" => "movie_id" }
           != JST['templates/admin/shared/_buttons'](approved: crew.approved)
 
 - if item.casts && item.casts.length > 0
   .casts.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Cast
     - $.each item.casts, (i, cast) ->
       - if (cast.person && cast.person.name) || (cast.movie && cast.movie.title)
@@ -103,42 +103,45 @@
             %input.js-additional{ type: "hidden", "data-id" => cast.person_id, "data-type" => "Person" }
           - else if type == "Person"
             %input.js-additional{ type: "hidden", "data-id" => cast.movie_id, "data-type" => "Movie" }
-          .col-md-2
-            %input.edit-item{ type: "text", value: cast.character, "data-id" => "character" }
-          .col-md-2
+          .col-md-3
+            %input.edit-item.form-control{ type: "text", value: cast.character, "data-id" => "character" }
+          .col-md-3
             - if cast.person
-              %input.js-cast-person.edit-item{ type: "text", value: cast.person.name }
+              %input.js-cast-person.edit-item.form-control{ type: "text", value: cast.person.name }
               %input.edit-item{ type: "hidden", value: cast.person_id, "data-id" => "person_id" }
             - else if cast.movie
-              %input.js-cast-movie.edit-item{ type: "text", value: cast.movie.title }
+              %input.js-cast-movie.edit-item.form-control{ type: "text", value: cast.movie.title }
               %input.edit-item{ type: "hidden", value: cast.movie_id, "data-id" => "movie_id" }
           != JST['templates/admin/shared/_buttons'](approved: cast.approved)
 
 - if item.images && item.images.length > 0
   .images.col-md-12.box
+    %strong.input-label.col-md-12
+      Images
     - $.each item.images, (i, image) ->
       .col-md-12.js-edit-item
         %input.edit-item{ type: "hidden", value: image.id, "data-id" => "id", "data-model" => "Image", "data-key" => "image", "data-controller" => "images" }
         %input.js-user-temp-id{ type: "hidden", "data-user-id" => image.user_id, "data-temp-user-id" => image.temp_user_id }
-        .col-md-1
+        .col-md-2
           %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
             %img{ src: image.image_file.small.url }
-        .col-md-2
-          %input.edit-item{ type: "text", value: image.title, "data-id" => "title" }
-        .col-md-2
-          %select.edit-item{ "data-id" => "is_main_image" }
+        .col-md-3
+          %input.edit-item.form-control{ type: "text", value: image.title, "data-id" => "title" }
+        .col-md-1
+          %select.edit-item.form-control{ "data-id" => "is_main_image" }
             - if image.is_main_image
               %option{ value: "true", selected: "selected" }= "Yes"
               %option{ value: "false" }= "No"
             - else
               %option{ value: "true" }= "Yes"
               %option{ value: "false", selected: "selected" }= "No"
-        .col-md-2
-          %input.edit-item{ type: "text", value: image.priority, "data-id" => "priority" }
+        %input.edit-item.form-control.col-md-1{ type: "text", value: image.priority, "data-id" => "priority" }
         != JST['templates/admin/shared/_buttons'](approved: image.approved)
 
 - if item.videos && item.videos.length > 0
   .videos.col-md-12.box
+    %strong.input-label.col-md-12
+      Videos
     - $.each item.videos, (i, video) ->
       .col-md-12.js-edit-item
         %input.edit-item{ type: "hidden", value: video.id, "data-id" => "id", "data-model" => "Video", "data-key" => "video", "data-controller" => "videos" }
@@ -147,102 +150,102 @@
           .col-md-12
             %img{ src: video.thumbnail, alt: "no image" }
           .col-md-12
-            %input.edit-item{ type: "text", value: video.title, "data-id" => "title" }
+            %input.edit-item.form-control{ type: "text", value: video.title, "data-id" => "title" }
         .col-md-12
-          %input.edit-item{ type: "text", value: video.quality, "data-id" => "quality" }
+          %input.edit-item.form-control{ type: "text", value: video.quality, "data-id" => "quality" }
         .col-md-12
-          %input.edit-item{ type: "text", value: video.description, "data-id" => "description" }
+          %input.edit-item.form-control{ type: "text", value: video.description, "data-id" => "description" }
         != JST['templates/admin/shared/_buttons'](approved: video.approved)
 
 - if item.movie_genres && item.movie_genres.length > 0
   .movie-genres.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Genres
     - $.each item.movie_genres, (i, genre) ->
       - if genre.genre
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: genre.id, "data-id" => "id", "data-model" => "MovieGenre", "data-key" => "movie_genre", "data-controller" => "movie_genres" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => genre.user_id, "data-temp-user-id" => genre.temp_user_id }
-          .col-md-2
-            %input.js-genre.edit-item{ type: "text", value: genre.genre.genre }
+          .col-md-3
+            %input.js-genre.edit-item.form-control{ type: "text", value: genre.genre.genre }
             %input.edit-item{ type: "hidden", value: genre.genre_id, "data-id" => "genre_id" }
           != JST['templates/admin/shared/_buttons'](approved: genre.approved)
 
 - if item.movie_keywords && item.movie_keywords.length > 0
   .movie-keywords.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Keywords
     - $.each item.movie_keywords, (i, keyword) ->
       - if keyword.keyword
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: keyword.id, "data-id" => "id", "data-model" => "MovieKeyword", "data-key" => "movie_keyword", "data-controller" => "movie_keywords" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => keyword.user_id, "data-temp-user-id" => keyword.temp_user_id }
-          .col-md-2
-            %input.js-keyword.edit-item{ type: "text", value: keyword.keyword.keyword }
+          .col-md-3
+            %input.js-keyword.edit-item.form-control{ type: "text", value: keyword.keyword.keyword }
             %input.edit-item{ type: "hidden", value: keyword.keyword_id, "data-id" => "keyword_id" }
           != JST['templates/admin/shared/_buttons'](approved: keyword.approved)
 
 - if item.movie_languages && item.movie_languages.length > 0
   .movie-languages.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Languages
     - $.each item.movie_languages, (i, language) ->
       - if language.language
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: language.id, "data-id" => "id", "data-model" => "MovieLanguage", "data-key" => "movie_language", "data-controller" => "movie_languages" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => language.user_id, "data-temp-user-id" => language.temp_user_id }
-          .col-md-2
-            %input.js-language.edit-item{ type: "text", value: language.language.language }
+          .col-md-3
+            %input.js-language.edit-item.form-control{ type: "text", value: language.language.language }
             %input.edit-item{ type: "hidden", value: language.language_id, "data-id" => "language_id" }
           != JST['templates/admin/shared/_buttons'](approved: language.approved)
 
 - if item.revenue_countries && item.revenue_countries.length > 0
   .revenue-countries.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Revenue countries
     - $.each item.revenue_countries, (i, country) ->
       - if country.country
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: country.id, "data-id" => "id", "data-model" => "RevenueCountry", "data-key" => "revenue_country", "data-controller" => "revenue_countries" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => country.user_id, "data-temp-user-id" => country.temp_user_id }
-          .col-md-2
-            %input.js-country.edit-item{ type: "text", value: country.country.country }
+          .col-md-3
+            %input.js-country.edit-item.form-control{ type: "text", value: country.country.country }
             %input.edit-item{ type: "hidden", value: country.country_id, "data-id" => "country_id" }
           != JST['templates/admin/shared/_buttons'](approved: country.approved)
 
 - if item.production_companies && item.production_companies.length > 0
   .production-companies.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Production companies
     - $.each item.production_companies, (i, company) ->
       - if company.company
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: company.id, "data-id" => "id", "data-model" => "ProductionCompany", "data-key" => "production_company", "data-controller" => "production_companies" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => company.user_id, "data-temp-user-id" => company.temp_user_id }
-          .col-md-2
-            %input.js-company.edit-item{ type: "text", value: company.company.company }
+          .col-md-3
+            %input.js-company.edit-item.form-control{ type: "text", value: company.company.company }
             %input.edit-item{ type: "hidden", value: company.company_id, "data-id" => "company_id" }
           != JST['templates/admin/shared/_buttons'](approved: company.approved)
 
 - if item.person_social_apps && item.person_social_apps.length > 0
   .movie-languages.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Social Apps
     - $.each item.person_social_apps, (i, app) ->
       - if app.social_app
         .col-md-12.js-edit-item
           %input.edit-item{ type: "hidden", value: app.id, "data-id" => "id", "data-model" => "PersonSocialApp", "data-key" => "person_social_app", "data-controller" => "person_social_apps" }
           %input.js-user-temp-id{ type: "hidden", "data-user-id" => app.user_id, "data-temp-user-id" => app.temp_user_id }
-          .col-md-2
-            %input.js-social-app.edit-item{ type: "text", value: app.social_app.social_app }
+          .col-md-3
+            %input.js-social-app.edit-item.form-control{ type: "text", value: app.social_app.social_app }
             %input.edit-item{ type: "hidden", value: app.social_app_id, "data-id" => "social_app_id" }
-          .col-md-2
-            %input.edit-item{ type: "text", value: app.profile_link, "data-id" => "profile_link" }
+          .col-md-3
+            %input.edit-item.form-control{ type: "text", value: app.profile_link, "data-id" => "profile_link" }
           != JST['templates/admin/shared/_buttons'](approved: app.approved)
 
 - if item.tags && item.tags.length > 0
   .tags.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Tagged people
     - $.each item.tags, (i, tag) ->
       .col-md-12.js-edit-item
@@ -252,19 +255,19 @@
           %input.js-additional{ type: "hidden", "data-id" => tag.person_id, "data-type" => "Person" }
         - else if type == "Person"
           %input.js-additional{ type: "hidden", "data-id" => tag.taggable_id, "data-type" => "Movie" }
-        .col-md-2
+        .col-md-3
           - if tag.person
-            %input.js-tag-people.edit-item{ type: "text", value: tag.person.name }
+            %input.js-tag-people.edit-item.form-control{ type: "text", value: tag.person.name }
             %input.edit-item{ type: "hidden", value: tag.person_id, "data-id" => "person_id" }
           - else if tag.movie
-            %input.js-tag-movie.edit-item{ type: "text", value: tag.movie.title }
+            %input.js-tag-movie.edit-item.form-control{ type: "text", value: tag.movie.title }
             %input.edit-item{ type: "hidden", value: tag.movie_id, "data-id" => "taggable_id" }
             %input.edit-item{ type: "hidden", value: "Movie", "data-id" => "taggable_type" }
         != JST['templates/admin/shared/_buttons'](approved: tag.approved)
 
 - if item.releases && item.releases.length > 0
   .releases.col-md-12.box
-    %p
+    %strong.input-label.col-md-12
       Releases
     - $.each item.releases, (i, release) ->
       - if release.country
@@ -274,16 +277,16 @@
           %p
             Release date
           .col-md-12
-            %input.js-datepicker.edit-item{ type: "text", value: moment(release.release_date).format("YYYY-MM-DD"), "data-id" => "release_date" }
+            %input.js-datepicker.edit-item.form-control{ type: "text", value: moment(release.release_date).format("YYYY-MM-DD"), "data-id" => "release_date" }
           %p
             Country
           .col-md-12
-            %input.js-release-country.edit-item{ type: "text", value: release.country.country }
+            %input.js-release-country.edit-item.form-control{ type: "text", value: release.country.country }
             %input.edit-item{ type: "hidden", value: release.country_id, "data-id" => "country_id" }
           %p
             Confirmed
           .col-md-12
-            %select.edit-item{ "data-id" => "confirmed" }
+            %select.edit-item.form-control{ "data-id" => "confirmed" }
               - if release.confirmed
                 %option{ value: "true", selected: "selected" }= "Yes"
                 %option{ value: "false" }= "No"

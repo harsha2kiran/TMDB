@@ -79,7 +79,7 @@
             -# if is owner, admin or mod can approve items
             - if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
               - unless item.list_item.approved
-                .span.js-approve
+                .span.js-approve.btn.btn-primary.flat
                   %input{ type: "hidden", value: item.list_item.id }
                   Approve
 
@@ -94,7 +94,7 @@
             -# if is admin or mod can approve items
             - if item.list_item.images.length > 0 && is_admin_or_mod()
               - unless item.list_item.approved
-                .span.js-approve
+                .span.js-approve.btn.btn-primary.flat
                   %input{ type: "hidden", value: item.list_item.id }
                   Approve
 

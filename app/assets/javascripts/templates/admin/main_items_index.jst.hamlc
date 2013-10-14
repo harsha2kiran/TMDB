@@ -83,7 +83,7 @@
           %td.jeditable{ "data-id" => "homepage" }= item.homepage
           %td.jeditable{ "data-id" => "imdb_id" }= item.imdb_id
           %td.moderate
-            %a.col-md-6{ href: "#admin/people/#{item.id}" }
+            %a.col-md-6.btn.btn-primary.flat{ href: "#admin/people/#{item.id}" }
               Moderate
             - if item.pending || item.approved == false
               (Pending)
@@ -98,7 +98,7 @@
           %td.jeditable{ "data-id" => "description" }= item.description
 
           %td.moderate
-            %a.col-md-6{ href: "/#!/lists/#{item.id}" }
+            %a.col-md-6.btn.btn-primary.flat{ href: "/#!/lists/#{item.id}" }
               Moderate
             - if item.pending || item.approved == false
               (Pending)

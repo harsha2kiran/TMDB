@@ -6,7 +6,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
     respond_to do |format|
       list = List.find params[:list_item][:list_id]
       if current_api_user && (["admin", "moderator"].include?(current_api_user.user_type))
-        params[:list_item][:approved] = true
+        # params[:list_item][:approved] = true
         params[:list_item][:user_id] = current_api_user.id
       else
         params[:list_item][:approved] = false
@@ -32,7 +32,8 @@ class Api::V1::ListItemsController < Api::V1::BaseController
           if list_item.listable_type == "Image"
             item = list_item.listable_type.classify.constantize.find(list_item.listable_id)
             item.approved = true
-            item.save
+            pending = PendingItem.where(pendable_id: list.id, pendable_type: "List", approvable_id: item.id, approvable_type: "Image")
+            pending.destroy_all
           end
         end
         format.json { respond_with list_item }

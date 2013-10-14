@@ -51,7 +51,7 @@ node(:pending){ |list|
 
   # check if pending list_keyword
   if pending != true
-    pending_keywords = ListKeyword.where("listable_type = ?", list.list_type)
+    pending_keywords = ListKeyword.where("listable_id = ? AND listable_type = ?", list.id, list.list_type)
     pending_keywords.each do |keyword|
       if keyword.approved != true
         pending = true
@@ -61,7 +61,7 @@ node(:pending){ |list|
 
   # check if pending list_keyword
   if pending != true
-    pending_tags = ListTag.where("listable_type = ?", list.list_type)
+    pending_tags = ListTag.where("listable_id = ? AND listable_type = ?", list.id, list.list_type)
     pending_tags.each do |tag|
       if tag.approved != true
         pending = true
