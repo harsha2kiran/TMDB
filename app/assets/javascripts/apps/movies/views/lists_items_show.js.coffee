@@ -8,12 +8,31 @@ class MoviesApp.ListItemsShow extends Backbone.View
   events:
     "click .js-remove" : "destroy"
     "click .js-approve" : "approve"
+    "click .js-edit-gallery-image-update" : "update"
 
   render: ->
     show = $(@el)
     list = @options.list
     show.html @template(list: list)
     this
+
+  update: (e) ->
+    parent = $(e.target).parents(".js-edit-gallery-image").first()
+    id = parent.attr("data-id")
+    title = parent.find(".js-edit-gallery-image-title").val()
+    description = parent.find(".js-edit-gallery-image-description").val()
+    priority = parent.find(".js-edit-gallery-image-priority").val()
+    if title != ""
+      parent.find(".js-edit-gallery-image-title").removeClass("error")
+      image = new MoviesApp.Image()
+      image.url = api_version + "images/" + id
+      image.set({ title: title, description: description, priority: priority, id: id })
+      image.save null,
+        success: ->
+          console.log image
+    else
+      parent.find(".js-edit-gallery-image-title").addClass("error")
+
 
   destroy: (e) ->
     if $(e.target).hasClass("js-remove")
@@ -37,38 +56,13 @@ class MoviesApp.ListItemsShow extends Backbone.View
       id = $(e.target).parents(".js-approve").find("input").val()
     container = $(e.target).parents(".item").first()
 
-#     $.ajax api_version + "list_items/" + id,
-#       method: "PUT"
-#       data:
-#         "list_item[id]" : id
-#         "list_item[list_id]" : window.list_id
-#         "list_item[approved]" : true
-
-    $.ajax api_version + "approvals/mark",
-      method: "post"
+    $.ajax api_version + "list_items/" + id,
+      method: "PUT"
       data:
-        approved_id: id
-        type: "ListItem"
-        mark: true
-      success: =>
-        console.log "mark success"
+        "list_item[id]" : id
+        "list_item[list_id]" : window.list_id
+        "list_item[approved]" : true
+      success: ->
         $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
         $(e.target).remove()
-
-#         user_id = parent.find(".js-user-temp-id").attr("data-user-id")
-#         temp_user_id = parent.find(".js-user-temp-id").attr("data-temp-user-id")
-#         $.ajax api_version + "approvals/add_remove_pending",
-#           method: "post"
-#           data:
-#             pendable_id: id
-#             pendable_type: "ListItem"
-#             user_id: user_id
-#             temp_user_id: temp_user_id
-#             approvable_id: image_id
-#             approvable_type: "Image"
-#             approval_type: "approve"
-#           success: (response) ->
-#             console.log response
-#             $(".notifications").html("Successfully approved list item.").show().fadeOut(window.hide_delay)
-#             $(e.target).remove()
 

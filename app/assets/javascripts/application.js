@@ -25,6 +25,7 @@
 //= require backbone-mediator
 //= require underscore.string.min
 //= require ../../../vendor/assets/javascripts/slimbox2
+//= require ../../../vendor/assets/javascripts/backbone-fetch-cache
 //= require_tree ./templates/
 
 //= require ../../../vendor/assets/javascripts/bootstrap-select
