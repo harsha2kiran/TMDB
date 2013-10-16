@@ -21,17 +21,36 @@ class AdminApp.MainItemsIndex extends Backbone.View
       bJQueryUI: true
       sDom: "<'dataTableTopMenu'<'col-md-6'l><'span6'f>r>t<''<'span6'i><'span6'p>>"
       sPaginationType: "bootstrap"
+      bJQueryUI: true
+      bProcessing: true
+      bServerSide: true
+      sAjaxSource: api_version + "approvals/main_items?type=" + type
+      fnCreatedRow: ( nRow, aData, iDataIndex ) ->
+        $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
+        $('td:eq(1)', nRow).attr("data-id", "overview").addClass("jeditable").html(aData[2])
+        $('td:eq(2)', nRow).attr("data-id", "tagline").addClass("jeditable").html(aData[3])
+        $('td:eq(3)', nRow).attr("data-id", "content_score").addClass("jeditable").html(aData[4])
 
-    oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",
-      callback: (sValue, y) ->
-        aPos = oTable.fnGetPosition(this)
-        oTable.fnUpdate sValue, aPos[0], aPos[1]
-      submitdata: (value, settings) ->
-        id: @parentNode.getAttribute("data-id")
-        model: @parentNode.getAttribute("data-model")
-        column: this.getAttribute("data-id")
-      height: "14px"
-      width: "100%"
+        $('td:eq(4)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='#admin/movies/" + aData[0] + "'>Moderate</a>"
+        if aData[6] || aData[7] == false
+          $('td:eq(4)', nRow).append "(Pending)"
+        else
+          $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='movies'>Unapprove</button>"
+        $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='movies'>Delete</button>"
+      fnDrawCallback: ->
+        oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",
+          callback: (sValue, y) ->
+            aPos = oTable.fnGetPosition(this)
+            oTable.fnUpdate sValue, aPos[0], aPos[1]
+          submitdata: (value, settings) ->
+            id: @parentNode.getAttribute("data-id")
+            model: @parentNode.getAttribute("data-model")
+            column: this.getAttribute("data-id")
+          height: "14px"
+          width: "100%"
+      # fnRowCallback: (nRow, aData, iDisplayIndex) ->
+      #   $(nRow).find("td").addClass('jeditable')
+      #   return nRow
     this
 
   remove: (e) ->

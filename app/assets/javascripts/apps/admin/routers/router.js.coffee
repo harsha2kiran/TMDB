@@ -38,14 +38,14 @@ class AdminApp.Router extends Backbone.Router
     if current_user && current_user.user_type == "admin"
       console.log "admin main items index"
       @clear_values()
-      items = new AdminApp.MainItems()
-      items.url = api_version + "approvals/main_items"
-      items.fetch
-        data:
-          type: type
-        success: ->
-          @index_view = new AdminApp.MainItemsIndex(items: items, type: type)
-          $(".js-content").html @index_view.render().el
+      # items = new AdminApp.MainItems()
+      # items.url = api_version + "approvals/main_items"
+      # items.fetch
+      #   data:
+      #     type: type
+      #   success: ->
+      @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
+      $(".js-content").html @index_view.render().el
 
   movie: (id) ->
     type = "Movie"

@@ -164,8 +164,15 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
 
   def main_items
     @type = params[:type]
-    @items = @type.classify.constantize.where("id = original_id").includes(:pending_items).order("created_at")
-    render "main_items"
+    # page = params[:page] ? params[:page] : 1
+    # per = params[:per] ? params[:per] : 10
+    # @items = @type.classify.constantize.where("id = original_id").includes(:pending_items).order("created_at") #.page(page).per(per)
+    # @items = { "aaData" => @items }
+    # render json: @items
+    respond_to do |format|
+      format.html
+      format.json { render json: MoviesDatatable.new(view_context) }
+    end
   end
 
   def main_item
