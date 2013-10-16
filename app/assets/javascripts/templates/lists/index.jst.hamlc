@@ -29,3 +29,5 @@
           .js-remove.btn
             %input{ type: "hidden", value: list.id }
             Remove
+.col-md-12.text-center.js-load-more
+  Load more

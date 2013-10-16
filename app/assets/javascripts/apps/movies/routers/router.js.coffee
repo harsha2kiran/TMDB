@@ -95,6 +95,7 @@ class MoviesApp.Router extends Backbone.Router
     lists.url = api_version + "lists/galleries"
     lists.fetch
       success: ->
+        window.list_type = "gallery"
         @index_view = new MoviesApp.ListsIndex(lists: lists)
         $(".js-content").html @index_view.render().el
 
@@ -111,6 +112,7 @@ class MoviesApp.Router extends Backbone.Router
     lists.url = api_version + "lists/channels"
     lists.fetch
       success: ->
+        window.list_type = "channel"
         @index_view = new MoviesApp.ListsIndex(lists: lists)
         $(".js-content").html @index_view.render().el
 
@@ -246,6 +248,7 @@ class MoviesApp.Router extends Backbone.Router
     lists = new MoviesApp.Lists()
     lists.fetch
       success: ->
+        window.list_type = "List"
         @index_view = new MoviesApp.ListsIndex(lists: lists)
         $(".js-content").html @index_view.render().el
 

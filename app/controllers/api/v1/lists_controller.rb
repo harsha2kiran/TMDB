@@ -3,6 +3,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   inherit_resources
 
   def index
+    page = params[:page] ? params[:page] : 1
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
       @lists = List.where("list_type = '' OR list_type IS NULL").includes(:list_items, :user)
     elsif current_api_user && current_api_user.user_type == "user"
@@ -12,7 +13,7 @@ class Api::V1::ListsController < Api::V1::BaseController
     else
       @lists = List.where(approved: true).includes(:list_items, :user, :follows)
     end
-    @lists = @lists.where("list_type IS NULL OR list_type = ''")
+    @lists = @lists.page(page).per(20)
     @current_api_user = current_api_user
   end
 
@@ -76,6 +77,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def galleries
+    page = params[:page] ? params[:page] : 1
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
       @lists = List.where(list_type: "gallery").includes(:list_items, :user)
     elsif current_api_user && current_api_user.user_type == "user"
@@ -85,6 +87,7 @@ class Api::V1::ListsController < Api::V1::BaseController
     else
       @lists = List.where(list_type: "gallery", approved: true).includes(:list_items, :user, :follows)
     end
+    @lists = @lists.page(page).per(20)
     @image_ids = @lists.map(&:list_items).flatten.map(&:listable_id)
     @images = Image.find_all_by_id(@image_ids)
     @current_api_user = current_api_user

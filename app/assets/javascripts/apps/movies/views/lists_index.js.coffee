@@ -6,6 +6,7 @@ class MoviesApp.ListsIndex extends Backbone.View
     _.bindAll this, "render"
 
   events:
+    "click .js-load-more" : "load_more"
     "click .js-remove" : "destroy"
 
   render: ->
@@ -23,3 +24,24 @@ class MoviesApp.ListsIndex extends Backbone.View
         success: =>
           container.remove()
           $(".notifications").html("List removed.").show().fadeOut(window.hide_delay)
+
+  load_more: ->
+    console.log "load_more"
+    window.current_page = window.current_page + 1
+    lists = new MoviesApp.Lists()
+    if window.list_type == "List"
+      lists.url = api_version + "lists"
+    else if window.list_type == "gallery"
+      lists.url = api_version + "lists/galleries"
+    else if window.list_type == "channel"
+      lists.url = api_version + "lists/channels"
+    lists.fetch
+      data:
+        page: window.current_page
+      success: ->
+        $(".js-load-more").remove()
+        @index_view = new MoviesApp.ListsIndex(lists: lists)
+        $(".js-content").append @index_view.render().el
+        if lists.models.length < 20
+          $(".js-load-more").remove()
+
