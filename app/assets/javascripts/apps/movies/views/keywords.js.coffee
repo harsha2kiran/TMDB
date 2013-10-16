@@ -1,6 +1,6 @@
 class MoviesApp.Keywords extends Backbone.View
   template: JST['templates/keywords/index']
-  className: "row keywords-index"
+  className: "col-md-11 keywords-index"
 
   events:
     "click .js-remove" : "remove"

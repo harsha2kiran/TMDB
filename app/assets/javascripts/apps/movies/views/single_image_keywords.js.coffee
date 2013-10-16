@@ -28,20 +28,28 @@ class MoviesApp.SingleImageKeywords extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
-        if ui.item.id == "0"
-          self.add_new_item()
+        found = false
+        $(self.el).find(".keyword-keyword").each ->
+          if $.trim($(@).html()) == ui.item.label
+            found = true
+        if found
+          $(".notifications").html("Keyword already added.").show().fadeOut(window.hide_delay)
+          $(@).val("")
         else
-          keywords = []
-          keyword_ids = []
-          # self.container.find(".keyword").each ->
-          #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
-          #   keyword_ids.push parseInt($(@).attr("data-id"))
-          # if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
-          keyword_ids.push ui.item.id
-          keywords.push [ui.item.id, ui.item.label]
-          @keywords_view = new MoviesApp.Keywords(keywords: keywords)
-          self.container.find(".js-keywords-list").append @keywords_view.render().el
-        $(@).val("")
+          if ui.item.id == "0"
+            self.add_new_item()
+          else
+            keywords = []
+            keyword_ids = []
+            # self.container.find(".keyword").each ->
+            #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
+            #   keyword_ids.push parseInt($(@).attr("data-id"))
+            # if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
+            keyword_ids.push ui.item.id
+            keywords.push [ui.item.id, ui.item.label]
+            @keywords_view = new MoviesApp.Keywords(keywords: keywords)
+            self.container.find(".js-keywords-list").append @keywords_view.render().el
+          $(@).val("")
         return false
       response: (event, ui) ->
         ui.content = window.check_autocomplete(ui.content, $.trim($(".js-new-keyword").val()), "keyword")

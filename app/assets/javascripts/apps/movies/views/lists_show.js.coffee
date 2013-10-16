@@ -47,16 +47,24 @@ class MoviesApp.ListsShow extends Backbone.View
         if ui.item.id == "0"
           self.add_new_item()
         else
-          keywords = []
-          keyword_ids = []
-          # show.find(".keyword").each ->
-          #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
-          #   keyword_ids.push parseInt($(@).attr("data-id"))
-          # if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
-          keyword_ids.push ui.item.id
-          keywords.push [ui.item.id, ui.item.label]
-          @keywords_view = new MoviesApp.Keywords(keywords: keywords)
-          show.find(".js-keywords-list").append @keywords_view.render().el
+          found = false
+          $(self.el).find(".js-keywords-list .keyword-keyword").each ->
+            if $.trim($(@).html()) == ui.item.label
+              found = true
+          if found
+            $(".notifications").html("Keyword already added.").show().fadeOut(window.hide_delay)
+            $(@).val("")
+          else
+            keywords = []
+            keyword_ids = []
+            # show.find(".keyword").each ->
+            #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
+            #   keyword_ids.push parseInt($(@).attr("data-id"))
+            # if $.inArray(parseInt(ui.item.id), keyword_ids) == -1
+            keyword_ids.push ui.item.id
+            keywords.push [ui.item.id, ui.item.label]
+            @keywords_view = new MoviesApp.Keywords(keywords: keywords)
+            show.find(".js-keywords-list").append @keywords_view.render().el
         $(@).val("")
         return false
       response: (event, ui) ->
@@ -75,6 +83,7 @@ class MoviesApp.ListsShow extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        found = false
         if ui.item.id == "-1"
           type = "Movie"
           self.add_new_tag(type)
@@ -94,14 +103,21 @@ class MoviesApp.ListsShow extends Backbone.View
           else if ui.item.type == "Company"
             tags_list_el = ".js-tags-companies-list"
           tags_list = $(".list-tags").find(tags_list_el).find(".tag")
+          $(self.el).find(tags_list_el + " .tag-tag").each ->
+            if $.trim($(@).html()) == ui.item.label
+              found = true
           # tags_list.each ->
           #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
           #   tag_ids.push parseInt($(@).attr("data-id"))
           # if $.inArray(parseInt(ui.item.id), tag_ids) == -1
-          tag_ids.push ui.item.id
-          tags.push [ui.item.id, ui.item.type, ui.item.value]
-          @tags_view = new MoviesApp.Tags(tags: tags)
-          show.find(tags_list_el).append @tags_view.render().el
+          if found
+            $(".notifications").html("Tag already added.").show().fadeOut(window.hide_delay)
+            $(@).val("")
+          else
+            tag_ids.push ui.item.id
+            tags.push [ui.item.id, ui.item.type, ui.item.value]
+            @tags_view = new MoviesApp.Tags(tags: tags)
+            show.find(tags_list_el).append @tags_view.render().el
         $(@).val("")
         return false
       response: (event, ui) ->

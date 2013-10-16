@@ -27,6 +27,7 @@ class MoviesApp.SingleImageTags extends Backbone.View
         results: ->
           ''
       select: (event, ui) ->
+        found = false
         if ui.item.id == "-1"
           type = "Movie"
           self.add_new_tag(type)
@@ -41,19 +42,28 @@ class MoviesApp.SingleImageTags extends Backbone.View
           tag_ids = []
           if ui.item.type == "Movie"
             tags_list_el = ".js-tags-movies-list"
+            $(self.el).find(".js-tags-movies-list .tag-tag").each ->
+              if $.trim($(@).html()) == ui.item.label
+                found = true
           else if ui.item.type == "Person"
             tags_list_el = ".js-tags-people-list"
+            $(self.el).find(".js-tags-people-list .tag-tag").each ->
+              if $.trim($(@).html()) == ui.item.label
+                found = true
           else if ui.item.type == "Company"
             tags_list_el = ".js-tags-companies-list"
-          tags_list = self.container.find(tags_list_el).find(".tag")
-          # tags_list.each ->
-          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-          #   tag_ids.push parseInt($(@).attr("data-id"))
-          # if $.inArray(parseInt(ui.item.id), tag_ids) == -1
-          tag_ids.push ui.item.id
-          tags.push [ui.item.id, ui.item.type, ui.item.label]
-          @tags_view = new MoviesApp.Tags(tags: tags)
-          self.container.find(tags_list_el).append @tags_view.render().el
+            $(self.el).find(".js-tags-companies-list .tag-tag").each ->
+              if $.trim($(@).html()) == ui.item.label
+                found = true
+          if found
+            $(".notifications").html("Tag already added.").show().fadeOut(window.hide_delay)
+            $(@).val("")
+          else
+            tags_list = self.container.find(tags_list_el).find(".tag")
+            tag_ids.push ui.item.id
+            tags.push [ui.item.id, ui.item.type, ui.item.label]
+            @tags_view = new MoviesApp.Tags(tags: tags)
+            self.container.find(tags_list_el).append @tags_view.render().el
         $(@).val("")
         return false
       response: (event, ui) ->

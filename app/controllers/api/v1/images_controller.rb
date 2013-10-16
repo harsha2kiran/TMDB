@@ -80,7 +80,7 @@ class Api::V1::ImagesController < Api::V1::BaseController
   def find_related_by_image_ids(image_ids)
     related_images = []
     keyword_ids = []
-    images = Image.find(eval(image_ids))
+    images = Image.find_all_by_id(eval(image_ids))
     images.each do |image|
       keyword_ids << image.media_keywords.map(&:keyword_id)
     end

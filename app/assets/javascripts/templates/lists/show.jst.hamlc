@@ -76,6 +76,8 @@
       .col-md-12.list-tags
         .col-md-12
           %strong= "Tags"
+        .col-md-11
+          Movies:
         .col-md-12.js-tags-movies-list
           - $.each list.tags, (i, tag) ->
             - if tag.title
@@ -103,6 +105,8 @@
                     - unless approved
                       .col-md-3.js-approve-tag.btn.btn-primary.flag
                         Approve
+        .col-md-11
+          People:
         .col-md-12.js-tags-people-list
           - $.each list.tags, (i, tag) ->
             - if tag.name
@@ -130,6 +134,8 @@
                     - unless approved
                       .col-md-3.js-approve-tag.btn.btn-primary.flag
                         Approve
+        .col-md-11
+          Companies:
         .col-md-12.js-tags-companies-list
           - $.each list.tags, (i, tag) ->
             - if tag.company
