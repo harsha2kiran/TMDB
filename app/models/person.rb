@@ -37,26 +37,26 @@ class Person < ActiveRecord::Base
     self.select("id, name, popular").where("approved = TRUE AND popular != 0 AND popular IS NOT NULL").includes(:images).order("popular ASC")
   end
 
-  def self.find_all_and_include
+  def self.find_all_and_include(page)
     # self.find(:all, :includes => [:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags])
-    self.find(:all, :includes => [:images, :pending_items])
+    self.find(:all, :includes => [:images]).page(page).per(40)
   end
 
-  def self.find_all_approved_includes
+  def self.find_all_approved_includes(page)
     # self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-    self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:images, :pending_items)
+    self.where(approved: true).order("people.approved DESC, people.updated_at DESC").includes(:images).page(page).per(40)
   end
 
-  def self.all_by_user_or_temp(user_id, temp_id)
-    self.where("user_id = ? OR temp_user_id = ?", user_id, temp_id)
+  def self.all_by_user_or_temp(user_id, temp_id, page)
+    self.where("user_id = ? OR temp_user_id = ?", user_id, temp_id).page(page).per(40)
   end
 
-  def self.all_by_temp(temp_id)
-    self.where("temp_user_id = ?", temp_id)
+  def self.all_by_temp(temp_id, page)
+    self.where("temp_user_id = ?", temp_id).page(page).per(40)
   end
 
-  def self.order_include_my_people
-    self.order("people.approved DESC, people.updated_at DESC").includes(:images, :pending_items)
+  def self.order_include_my_people(page)
+    self.order("people.approved DESC, people.updated_at DESC").includes(:images, :pending_items).page(page).per(40)
   end
 
   def self.find_and_include_by_id(id)

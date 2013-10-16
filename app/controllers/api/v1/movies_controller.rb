@@ -5,37 +5,72 @@ class Api::V1::MoviesController < Api::V1::BaseController
   include MoviesHelper
 
   def index
+
+#     expires_in 1.minute
+#     sleep 3
+
+    page = params[:page] ? params[:page] : 1
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Movie.find_all_includes
+      all_items = Movie.find_all_includes(page)
       @items_count = all_items.count
-      @movies = all_items.page(params[:page]).order('title ASC')
+      @movies = all_items #all_items.page(params[:page]).order('title ASC')
       @all = true
     else
-      all_items = Movie.find_all_approved_includes
+      all_items = Movie.find_all_approved_includes(page)
       @movies = all_items
       @movies = filter_results(@movies)
-      page = params[:page] ? params[:page] : 1
-      @movies = @movies.page(page).per(40)
+      # @movies = @movies.page(page).per(40)
       @all = false
     end
     @current_api_user = current_api_user
     load_additional_values(@movies, "index")
   end
 
-  def my_movies
-    if current_api_user
-      all_items = Movie.all_by_user_or_temp(current_api_user.id, params[:temp_user_id])
+  def expire
+    Rails.cache.clear
+    # expire_action(url_for(:controller => "api/v1/movies", :action => "index"))
+    # expire_fragment /.*movies.*/
+
+    # Rails.cache.delete('http://localhost:3000/api/v1/movies')
+    # a = ActiveSupport::Cache::DalliStore.new
+    # a.clear
+    # a = ActiveSupport::Cache::MemoryStore.new
+    # a.clear
+    # dc = Dalli::Client.new
+    # dc.delete("http://localhost:3000/api/v1/movies?")
+    # dc.reset
+    # Rails.cache.clear
+    render nothing: true
+  end
+
+  def edit_popular
+    if current_api_user && current_api_user.user_type == "admin"
+      @items = fetch_popular
     else
-      all_items = Movie.all_by_temp(params[:temp_user_id])
+      @movies = []
     end
-    all_items = all_items.order_include_my_movies
+    render 'popular'
+  end
+
+  def get_popular
+    @items = fetch_popular
+    render 'popular'
+  end
+
+  def my_movies
+    page = params[:page] ? params[:page] : 1
+    if current_api_user
+      all_items = Movie.all_by_user_or_temp(current_api_user.id, params[:temp_user_id], page)
+    else
+      all_items = Movie.all_by_temp(params[:temp_user_id], page)
+    end
+    all_items = all_items.order_include_my_movies(page)
     @items_count = all_items.count
     @movies = all_items
     @movies = filter_results(@movies)
     @all = false
     load_additional_values(@movies, "index")
-    page = params[:page] ? params[:page] : 1
-    @movies = @movies.page(page).per(40)
+    # @movies = @movies.page(page).per(40)
     @current_api_user = current_api_user
     render "my_movies"
   end
@@ -89,20 +124,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
     load_additional_values(@movie, "show")
     @current_api_user = current_api_user
     render "my_movie"
-  end
-
-  def edit_popular
-    if current_api_user && current_api_user.user_type == "admin"
-      @items = fetch_popular
-    else
-      @movies = []
-    end
-    render 'popular'
-  end
-
-  def get_popular
-    @items = fetch_popular
-    render 'popular'
   end
 
   def search

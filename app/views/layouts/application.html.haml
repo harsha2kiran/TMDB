@@ -111,11 +111,11 @@
             %li
               %a{:href => new_user_session_path} Add channel
         %ul.bottom-icons.col-md-4
+          %li
+            %a{:href => "/#!/my_movies"} My movies
+          %li
+            %a{:href => "/#!/my_people"} My people
           - if user_signed_in?
-            %li
-              %a{:href => "/#!/my_movies"} My movies
-            %li
-              %a{:href => "/#!/my_people"} My people
             %li
               %a{ href: "/#!/following" }
                 My follows

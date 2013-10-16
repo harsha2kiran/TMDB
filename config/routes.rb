@@ -134,6 +134,7 @@ Movies::Application.routes.draw do
       end
     end
     get '/search' => 'search#search', :as => :search
+    get '/expire' => 'movies#expire', :as => :expire
     resources :locks, only: [:show] do
       collection do
         post "mark" => "locks#mark"

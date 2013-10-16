@@ -5,18 +5,17 @@ class Api::V1::PeopleController < Api::V1::BaseController
   include PeopleHelper
 
   def index
+    page = params[:page] ? params[:page] : 1
     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Person.find_all_and_include
+      all_items = Person.find_all_and_include(page)
       @items_count = all_items.count
       @people = all_items.page(params[:page]).order('name ASC')
       @all = true
     else
-      all_items = Person.find_all_approved_includes
+      all_items = Person.find_all_approved_includes(page)
       @items_count = all_items.count
       @people = all_items
       @people = filter_results(@people)
-      page = params[:page] ? params[:page] : 1
-      @people = @people.page(page).per(40)
       @all = false
     end
     @current_api_user = current_api_user
@@ -24,18 +23,17 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def my_people
+    page = params[:page] ? params[:page] : 1
     if current_api_user
-      all_items = Person.all_by_user_or_temp(current_api_user.id, params[:temp_user_id])
+      all_items = Person.all_by_user_or_temp(current_api_user.id, params[:temp_user_id], page)
     else
-      all_items = Person.all_by_temp(params[:temp_user_id])
+      all_items = Person.all_by_temp(params[:temp_user_id], page)
     end
-    all_items = all_items.order_include_my_people
+    all_items = all_items.order_include_my_people(page)
     @people = all_items
     @people = filter_results(@people)
     @all = false
     load_additional_values(@people, "index")
-    page = params[:page] ? params[:page] : 1
-    @people = @people.page(page).per(40)
     @current_api_user = current_api_user
     render "my_people"
   end

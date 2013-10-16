@@ -16,14 +16,18 @@ Movies::Application.configure do
      :enable_starttls_auto => true
   }
   config.cache_classes = false
-  config.static_cache_control = "public, max-age=3600"
+  # config.static_cache_control = "public, max-age=3600"
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.perform_caching = false
   config.action_controller.perform_caching = false
+  config.consider_all_requests_local       = true
+
+  config.cache_store = :mem_cache_store, "127.0.0.1:11211"
+  # config.cache_store = :dalli_store, '127.0.0.1:11211'
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

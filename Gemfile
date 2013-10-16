@@ -12,9 +12,9 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
-  gem 'haml_coffee_assets'
   gem 'turbo-sprockets-rails3'
 end
+gem 'haml_coffee_assets'
 gem 'jquery-rails', '~> 2.3.0'
 gem 'jquery-ui-rails'
 gem 'jquery-timepicker-rails'
@@ -57,4 +57,5 @@ gem "youtube_it"
 gem 'momentjs-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'puma'
-
+gem "dalli"
+gem "memcache-client"
