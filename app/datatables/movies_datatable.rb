@@ -21,8 +21,8 @@ private
       [
         h(movie.id),
         h(movie.title),
-        h(movie.tagline),
         h(movie.overview),
+        h(movie.tagline),
         h(movie.content_score),
         "",
         ( (movie.pending_items.length > 0) ? true : false ),

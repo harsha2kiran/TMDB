@@ -37,6 +37,10 @@ class AdminApp.MainItemsIndex extends Backbone.View
         else
           $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='movies'>Unapprove</button>"
         $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='movies'>Delete</button>"
+      fnRowCallback: (nRow, aData, iDisplayIndex) ->
+        $(nRow).attr("data-id", aData[0])
+        $(nRow).attr("data-model", "Movie")
+        return nRow
       fnDrawCallback: ->
         oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",
           callback: (sValue, y) ->
@@ -48,9 +52,6 @@ class AdminApp.MainItemsIndex extends Backbone.View
             column: this.getAttribute("data-id")
           height: "14px"
           width: "100%"
-      # fnRowCallback: (nRow, aData, iDisplayIndex) ->
-      #   $(nRow).find("td").addClass('jeditable')
-      #   return nRow
     this
 
   remove: (e) ->
