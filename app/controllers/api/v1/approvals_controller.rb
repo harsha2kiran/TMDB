@@ -169,9 +169,14 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     # @items = @type.classify.constantize.where("id = original_id").includes(:pending_items).order("created_at") #.page(page).per(per)
     # @items = { "aaData" => @items }
     # render json: @items
+    if @type == "Movie"
+      value = MoviesDatatable.new(view_context)
+    elsif @type == "Person"
+      value = PeopleDatatable.new(view_context)
+    end
     respond_to do |format|
       format.html
-      format.json { render json: MoviesDatatable.new(view_context) }
+      format.json { render json: value }
     end
   end
 

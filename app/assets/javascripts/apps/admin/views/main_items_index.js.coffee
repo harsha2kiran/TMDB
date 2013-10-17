@@ -26,20 +26,31 @@ class AdminApp.MainItemsIndex extends Backbone.View
       bServerSide: true
       sAjaxSource: api_version + "approvals/main_items?type=" + type
       fnCreatedRow: ( nRow, aData, iDataIndex ) ->
-        $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
-        $('td:eq(1)', nRow).attr("data-id", "overview").addClass("jeditable").html(aData[2])
-        $('td:eq(2)', nRow).attr("data-id", "tagline").addClass("jeditable").html(aData[3])
-        $('td:eq(3)', nRow).attr("data-id", "content_score").addClass("jeditable").html(aData[4])
-
-        $('td:eq(4)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='#admin/movies/" + aData[0] + "'>Moderate</a>"
-        if aData[6] || aData[7] == false
-          $('td:eq(4)', nRow).append "(Pending)"
-        else
-          $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='movies'>Unapprove</button>"
-        $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='movies'>Delete</button>"
+        if type == "Movie"
+          $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
+          $('td:eq(1)', nRow).attr("data-id", "overview").addClass("jeditable").html(aData[2])
+          $('td:eq(2)', nRow).attr("data-id", "tagline").addClass("jeditable").html(aData[3])
+          $('td:eq(3)', nRow).attr("data-id", "content_score").addClass("jeditable").html(aData[4])
+          $('td:eq(4)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='#admin/movies/" + aData[0] + "'>Moderate</a>"
+          if aData[6] || aData[7] == false
+            $('td:eq(4)', nRow).append "(Pending)"
+          else
+            $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='movies'>Unapprove</button>"
+          $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='movies'>Delete</button>"
+        else if type == "Person"
+          $('td:eq(0)', nRow).attr("data-id", "name").addClass("jeditable").html(aData[1])
+          $('td:eq(1)', nRow).attr("data-id", "birthday").addClass("jeditable").html(aData[2])
+          $('td:eq(2)', nRow).attr("data-id", "place_of_birth").addClass("jeditable").html(aData[3])
+          $('td:eq(3)', nRow).attr("data-id", "imdb_id").addClass("jeditable").html(aData[4])
+          $('td:eq(4)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='#admin/people/" + aData[0] + "'>Moderate</a>"
+          if aData[6] || aData[7] == false
+            $('td:eq(4)', nRow).append "(Pending)"
+          else
+            $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='people'>Unapprove</button>"
+          $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='people'>Delete</button>"
       fnRowCallback: (nRow, aData, iDisplayIndex) ->
         $(nRow).attr("data-id", aData[0])
-        $(nRow).attr("data-model", "Movie")
+        $(nRow).attr("data-model", type)
         return nRow
       fnDrawCallback: ->
         oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",

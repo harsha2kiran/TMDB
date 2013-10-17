@@ -21,15 +21,9 @@
         %th
           Name
         %th
-          Biography
-        %th
           Birthday
         %th
           Place of birth
-        %th
-          Day of death
-        %th
-          Homepage
         %th
           Imdb ID
         %th
