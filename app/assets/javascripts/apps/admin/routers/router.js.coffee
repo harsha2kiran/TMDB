@@ -25,14 +25,14 @@ class AdminApp.Router extends Backbone.Router
     if current_user && current_user.user_type == "admin"
       console.log "admin galleries index"
       @clear_values()
-      items = new MoviesApp.Lists()
-      items.url = api_version + "lists/galleries"
-      items.fetch
-        data:
-          type: type
-        success: ->
-          @index_view = new AdminApp.MainItemsIndex(items: items, type: type)
-          $(".js-content").html @index_view.render().el
+      # items = new MoviesApp.Lists()
+      # items.url = api_version + "lists/galleries"
+      # items.fetch
+      #   data:
+      #     type: type
+      #   success: ->
+      @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
+      $(".js-content").html @index_view.render().el
 
   index_main_items: (type) ->
     if current_user && current_user.user_type == "admin"

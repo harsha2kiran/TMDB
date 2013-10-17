@@ -173,6 +173,8 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
       value = MoviesDatatable.new(view_context)
     elsif @type == "Person"
       value = PeopleDatatable.new(view_context)
+    elsif @type == "Gallery"
+      value = ListsDatatable.new(view_context)
     end
     respond_to do |format|
       format.html
