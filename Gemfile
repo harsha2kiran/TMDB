@@ -57,5 +57,5 @@ gem "youtube_it"
 gem 'momentjs-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'puma'
-gem "dalli"
-gem "memcache-client"
+# gem "dalli"
+gem "memcached"

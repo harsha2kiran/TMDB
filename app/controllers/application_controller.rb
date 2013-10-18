@@ -2,9 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :catch_escaped_fragment
+  before_filter :init_cache
 
   def index
 
+  end
+
+  def init_cache
+    @cache = Memcached.new("localhost:11211")
   end
 
   def authenticate_admin_user!

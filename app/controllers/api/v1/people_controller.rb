@@ -6,20 +6,28 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   def index
     page = params[:page] ? params[:page] : 1
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Person.find_all_and_include(page)
-      @items_count = all_items.count
-      @people = all_items.page(params[:page]).order('name ASC')
-      @all = true
-    else
-      all_items = Person.find_all_approved_includes(page)
-      @items_count = all_items.count
-      @people = all_items
-      @people = filter_results(@people)
-      @all = false
+    begin
+      cached_content = @cache.get "people?page=#{page}"
+      if cached_content
+        @people = cached_content
+      end
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        all_items = Person.find_all_and_include(page)
+        @items_count = all_items.count
+        @people = all_items.page(params[:page]).order('name ASC')
+        @all = true
+      else
+        all_items = Person.find_all_approved_includes(page)
+        @items_count = all_items.count
+        @people = all_items
+        @people = filter_results(@people)
+        @all = false
+      end
+      @current_api_user = current_api_user
+      load_additional_values(@people, "index")
+      @cache.set "people?page=#{page}", @people.all
     end
-    @current_api_user = current_api_user
-    load_additional_values(@people, "index")
   end
 
   def my_people

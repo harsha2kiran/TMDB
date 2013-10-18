@@ -15,18 +15,32 @@ Movies::Application.configure do
      :authentication       => :plain,
      :enable_starttls_auto => true
   }
-  config.cache_classes = false
+  config.cache_classes = true
   # config.static_cache_control = "public, max-age=3600"
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.perform_caching = false
-  config.action_controller.perform_caching = false
+  # config.perform_caching = false
+  # config.action_controller.perform_caching = false
   config.consider_all_requests_local       = true
 
-  config.cache_store = :mem_cache_store, "127.0.0.1:11211"
+
+  config.perform_caching = true
+  config.action_controller.perform_caching = true
+  require "memcached/rails"
+  config.cache_store = Memcached::Rails.new(:servers => ['127.0.0.1:11211'])
+
+
+
+
+  # config.cache_store = :dalli_store, "localhost:11211", { :namespace => Movies, :compress => true }
+
+
+
+
+  # config.cache_store = :mem_cache_store, "127.0.0.1:11211"
   # config.cache_store = :dalli_store, '127.0.0.1:11211'
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

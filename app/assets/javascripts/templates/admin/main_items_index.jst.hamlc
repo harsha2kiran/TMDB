@@ -15,6 +15,8 @@
           Moderate
         %th
           Delete
+        %th
+          Cache
   - else if type == "Person"
     %thead
       %tr
@@ -30,6 +32,8 @@
           Moderate
         %th
           Delete
+        %th
+          Cache
   - else if type == "Gallery"
     %thead
       %tr
@@ -100,3 +104,4 @@
       -#         %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Unapprove"
       -#     %td
       -#       %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Delete"
+%button.js-clear-cache.btn= "Clear all cache"

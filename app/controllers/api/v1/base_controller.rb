@@ -9,10 +9,17 @@ class Api::V1::BaseController < ApplicationController
   before_filter :check_if_update, :except => [:mark, :unmark]
   before_filter :fix_temp_user_id
   after_filter :set_pending
+  after_filter :clear_cache
 
   def fix_temp_user_id
     if params[:temp_user_id] == "undefined"
       params[:temp_user_id] = ""
+    end
+  end
+
+  def clear_cache
+    if ["update", "create", "destroy"].include?(params[:action]) && @controller != "views"
+      @cache.flush
     end
   end
 

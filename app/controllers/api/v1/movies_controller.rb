@@ -5,42 +5,28 @@ class Api::V1::MoviesController < Api::V1::BaseController
   include MoviesHelper
 
   def index
-
-#     expires_in 1.minute
-#     sleep 3
-
     page = params[:page] ? params[:page] : 1
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      all_items = Movie.find_all_includes(page)
-      @items_count = all_items.count
-      @movies = all_items #all_items.page(params[:page]).order('title ASC')
-      @all = true
-    else
-      all_items = Movie.find_all_approved_includes(page)
-      @movies = all_items
-      @movies = filter_results(@movies)
-      # @movies = @movies.page(page).per(40)
-      @all = false
+    begin
+      cached_content = @cache.get "movies?page=#{page}"
+      if cached_content
+        @movies = cached_content
+      end
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        all_items = Movie.find_all_includes(page)
+        @items_count = all_items.count
+        @movies = all_items
+        @all = true
+      else
+        all_items = Movie.find_all_approved_includes(page)
+        @movies = all_items
+        @movies = filter_results(@movies)
+        @all = false
+      end
+      @current_api_user = current_api_user
+      load_additional_values(@movies, "index")
+      @cache.set "movies?page=#{page}", @movies.all
     end
-    @current_api_user = current_api_user
-    load_additional_values(@movies, "index")
-  end
-
-  def expire
-    Rails.cache.clear
-    # expire_action(url_for(:controller => "api/v1/movies", :action => "index"))
-    # expire_fragment /.*movies.*/
-
-    # Rails.cache.delete('http://localhost:3000/api/v1/movies')
-    # a = ActiveSupport::Cache::DalliStore.new
-    # a.clear
-    # a = ActiveSupport::Cache::MemoryStore.new
-    # a.clear
-    # dc = Dalli::Client.new
-    # dc.delete("http://localhost:3000/api/v1/movies?")
-    # dc.reset
-    # Rails.cache.clear
-    render nothing: true
   end
 
   def edit_popular

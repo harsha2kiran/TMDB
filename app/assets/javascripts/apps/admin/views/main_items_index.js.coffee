@@ -9,6 +9,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
     "click .js-remove" : "remove"
     # "click .js-approve" : "approve"
     "click .js-unapprove" : "unapprove"
+    "click .js-clear-cache" : "clear_cache"
 
   render: ->
     self = @
@@ -37,6 +38,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
           else
             $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='movies'>Unapprove</button>"
           $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='movies'>Delete</button>"
+          $('td:eq(6)', nRow).html "<button class='js-clear-cache btn' data-key='movies/#{aData[0]}'>Clear cache</button>"
         else if type == "Person"
           $('td:eq(0)', nRow).attr("data-id", "name").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "birthday").addClass("jeditable").html(aData[2])
@@ -48,6 +50,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
           else
             $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='people'>Unapprove</button>"
           $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='people'>Delete</button>"
+          $('td:eq(6)', nRow).html "<button class='js-clear-cache btn' data-key='people/#{aData[0]}'>Clear cache</button>"
         else if type == "Gallery"
           $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
@@ -77,6 +80,22 @@ class AdminApp.MainItemsIndex extends Backbone.View
           height: "14px"
           width: "100%"
     this
+
+  clear_cache: (e) ->
+    console.log "clear cache"
+    key = $(e.target).attr("data-key")
+    if key && key != ""
+      type = "key"
+    else
+      type = "all"
+      key = ""
+    $.ajax api_version + "cache/expire",
+      method: "POST"
+      data:
+        key: key
+        type: type
+      success: (response) ->
+        $(".notifications").html(response.status).show().fadeOut(window.hide_delay)
 
   remove: (e) ->
     self = @
