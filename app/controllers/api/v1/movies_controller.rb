@@ -82,7 +82,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
       add_default_cached(@movie)
       load_additional_cached(@movie, "show")
     rescue
-      sleep 2
       if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
         @movie = Movie.find_and_include_by_id(params[:id])
         @movie = @movie.first

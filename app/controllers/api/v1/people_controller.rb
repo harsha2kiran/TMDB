@@ -47,32 +47,47 @@ class Api::V1::PeopleController < Api::V1::BaseController
   end
 
   def show
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @person = Person.find_and_include_by_id(params[:id])
-      @person = @person.first
-      @original_person = @person
-      @all = true
-    else
-      @people = Person.find_and_include_all_approved
-      @person = @people.find_by_id(params[:id])
-      @all = false
+    begin
+      cached_content = @cache.get "person/#{params[:id]}"
+      @person = cached_content
+      add_default_cached(@person)
+      load_additional_cached(@person, "show")
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        @person = Person.find_and_include_by_id(params[:id])
+        @person = @person.first
+        @original_person = @person
+        @all = true
+      else
+        people = Person.find_and_include_all_approved
+        @person = people.find_by_id(params[:id])
+        @all = false
+      end
+      add_default_values(@person)
+      load_additional_values(@person, "show")
+      @cache.set "person/#{params[:id]}", @person
+    ensure
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        @all = true
+        @original_person = @person
+      else
+        @all = false
+      end
+      @current_api_user = current_api_user
     end
-    add_default_values(@person)
-    load_additional_values(@person, "show")
-    @current_api_user = current_api_user
   end
 
   def my_person
     if current_api_user
-      @people = Person.my_person_by_user(current_api_user.id)
+      people = Person.my_person_by_user(current_api_user.id)
     elsif params[:temp_user_id] && !current_api_user
-      @people = Person.my_person_by_temp(params[:temp_user_id])
+      people = Person.my_person_by_temp(params[:temp_user_id])
     else
-      @people = Person.where(approved: true)
+      people = Person.where(approved: true)
     end
-    @people = @people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
-    @person = @people.where(original_id: params[:person_id]).order("updated_at DESC").first
-    @original_person = @people.where(id: params[:person_id]).first
+    people = people.includes(:alternative_names, :casts, :crews, :images, :videos, :views, :follows, :person_social_apps, :tags)
+    @person = people.where(original_id: params[:person_id]).order("updated_at DESC").first
+    @original_person = people.where(id: params[:person_id]).first
     @all = false
     if @person.id != @original_person.id
       add_original_values(@person, @original_person)
@@ -108,6 +123,11 @@ class Api::V1::PeopleController < Api::V1::BaseController
 
   private
 
+  def load_additional_cached(item, action)
+    @movies = @cache.get "person/#{item.id}/movies"
+    @social_apps = @cache.get "person/#{item.id}/social_apps"
+  end
+
   def load_additional_values(items, action)
     movie_ids = []
     social_app_ids = []
@@ -125,6 +145,11 @@ class Api::V1::PeopleController < Api::V1::BaseController
     social_app_ids = social_app_ids.flatten.uniq
     @movies = movie_ids.count > 0 ? Movie.find_all_by_id(movie_ids) : []
     @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
+    if action == "show"
+      item = items.first
+      @cache.set "person/#{item.id}/movies", @movies
+      @cache.set "person/#{item.id}/social_apps", @social_apps
+    end
   end
 
   def add_original_values(person, original_person)
@@ -145,6 +170,23 @@ class Api::V1::PeopleController < Api::V1::BaseController
     @tags = person.tags.to_a
     @alternative_names = person.alternative_names.to_a
     @person_social_apps = person.person_social_apps.to_a
+    @cache.set "person/#{person.id}/images", @images
+    @cache.set "person/#{person.id}/videos", @videos
+    @cache.set "person/#{person.id}/casts", @casts
+    @cache.set "person/#{person.id}/crews", @crews
+    @cache.set "person/#{person.id}/tags", @tags
+    @cache.set "person/#{person.id}/alternative_names", @alternative_names
+    @cache.set "person/#{person.id}/person_social_apps", @person_social_apps
+  end
+
+  def add_default_cached(item)
+    @images = @cache.get "person/#{item.id}/images"
+    @videos = @cache.get "person/#{item.id}/videos"
+    @casts = @cache.get "person/#{item.id}/casts"
+    @crews = @cache.get "person/#{item.id}/crews"
+    @tags = @cache.get "person/#{item.id}/tags"
+    @alternative_names = @cache.get "person/#{item.id}/alternative_names"
+    @person_social_apps = @cache.get "person/#{item.id}/person_social_apps"
   end
 
 end
