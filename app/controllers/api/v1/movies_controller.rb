@@ -74,33 +74,67 @@ class Api::V1::MoviesController < Api::V1::BaseController
     end
   end
 
+
   def show
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-      @movie = Movie.find_and_include_by_id(params[:id])
-      @movie = @movie.first
-      @original_movie = @movie
-      @all = true
-    else
-      @movies = Movie.find_and_include_all_approved
-      @movie = @movies.find_by_id(params[:id])
-      @all = false
+    begin
+      cached_content = @cache.get "movie/#{params[:id]}"
+      @movie = cached_content
+      add_default_cached(@movie)
+      load_additional_cached(@movie, "show")
+    rescue
+      sleep 2
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        @movie = Movie.find_and_include_by_id(params[:id])
+        @movie = @movie.first
+        @original_movie = @movie
+        @all = true
+      else
+        movies = Movie.find_and_include_all_approved
+        @movie = movies.find(params[:id], :include => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas])
+        @all = false
+      end
+      add_default_values(@movie)
+      load_additional_values(@movie, "show")
+      @cache.set "movie/#{params[:id]}", @movie
+    ensure
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+        @all = true
+        @original_movie = @movie
+      else
+        @all = false
+      end
+      @current_api_user = current_api_user
     end
-    add_default_values(@movie)
-    load_additional_values(@movie, "show")
-    @current_api_user = current_api_user
   end
+
+
+#   def show
+#     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
+#       @movie = Movie.find_and_include_by_id(params[:id])
+#       @movie = @movie.first
+#       @original_movie = @movie
+#       @all = true
+#     else
+#       movies = Movie.find_and_include_all_approved
+#       @movie = movies.find_by_id(params[:id])
+#       @all = false
+#     end
+#     add_default_values(@movie)
+#     load_additional_values(@movie, "show")
+#     @current_api_user = current_api_user
+#   end
 
   def my_movie
     if current_api_user
-      @movies = Movie.my_movie_by_user(current_api_user.id)
+      movies = Movie.my_movie_by_user(current_api_user.id)
     elsif params[:temp_user_id] && !current_api_user
-      @movies = Movie.my_movie_by_temp(params[:temp_user_id])
+      movies = Movie.my_movie_by_temp(params[:temp_user_id])
     else
-      @movies = Movie.where(approved: true)
+      movies = Movie.where(approved: true)
     end
-    @movies = @movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
-    @movie = @movies.where(original_id: params[:movie_id]).order("updated_at DESC").first
-    @original_movie = @movies.where(id: params[:movie_id]).first
+    movies = movies.includes(:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas)
+    @movie = movies.where(original_id: params[:movie_id]).order("updated_at DESC").first
+    @original_movie = movies.where(id: params[:movie_id]).first
     @all = false
     if @movie.id != @original_movie.id
       add_original_values(@movie, @original_movie)
@@ -127,6 +161,16 @@ class Api::V1::MoviesController < Api::V1::BaseController
     movies = Movie.find_popular
     people = Person.find_popular
     items = collect_popular(movies, people)
+  end
+
+  def load_additional_cached(item, action)
+    @languages = @cache.get "movie/#{item.id}/languages"
+    @people = @cache.get "movie/#{item.id}/people"
+    @genres = @cache.get "movie/#{item.id}/genres"
+    @keywords = @cache.get "movie/#{item.id}/keywords"
+    @countries = @cache.get "movie/#{item.id}/countries"
+    @companies = @cache.get "movie/#{item.id}/companies"
+    @statuses = @cache.get "movie/#{item.id}/statuses"
   end
 
   def load_additional_values(items, action)
@@ -165,6 +209,16 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @countries = country_ids.count > 0 ? Country.find_all_by_id(country_ids) : []
     @companies = company_ids.count > 0 ? Company.find_all_by_id(company_ids) : []
     @statuses = Status.all
+    if action == "show"
+      item = items.first
+      @cache.set "movie/#{item.id}/languages", @languages
+      @cache.set "movie/#{item.id}/people", @people
+      @cache.set "movie/#{item.id}/genres", @genres
+      @cache.set "movie/#{item.id}/keywords", @keywords
+      @cache.set "movie/#{item.id}/countries", @countries
+      @cache.set "movie/#{item.id}/companies", @companies
+      @cache.set "movie/#{item.id}/statuses", @statuses
+    end
   end
 
   def add_original_values(movie, original_movie)
@@ -197,5 +251,35 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @releases = movie.releases.to_a
     @production_companies = movie.production_companies.to_a
     @revenue_countries = movie.revenue_countries.to_a
+    @cache.set "movie/#{movie.id}/movie_metadatas", @movie_metadatas
+    @cache.set "movie/#{movie.id}/images", @images
+    @cache.set "movie/#{movie.id}/videos", @videos
+    @cache.set "movie/#{movie.id}/movie_genres", @movie_genres
+    @cache.set "movie/#{movie.id}/casts", @casts
+    @cache.set "movie/#{movie.id}/crews", @crews
+    @cache.set "movie/#{movie.id}/movie_keywords", @movie_keywords
+    @cache.set "movie/#{movie.id}/alternative_titles", @alternative_titles
+    @cache.set "movie/#{movie.id}/movie_languages", @movie_languages
+    @cache.set "movie/#{movie.id}/tags", @tags
+    @cache.set "movie/#{movie.id}/releases", @releases
+    @cache.set "movie/#{movie.id}/production_companies", @production_companies
+    @cache.set "movie/#{movie.id}/revenue_countries", @revenue_countries
   end
+
+  def add_default_cached(item)
+    @movie_metadatas = @cache.get "movie/#{item.id}/movie_metadatas"
+    @images = @cache.get "movie/#{item.id}/images"
+    @videos = @cache.get "movie/#{item.id}/videos"
+    @movie_genres = @cache.get "movie/#{item.id}/movie_genres"
+    @casts = @cache.get "movie/#{item.id}/casts"
+    @crews = @cache.get "movie/#{item.id}/crews"
+    @movie_keywords = @cache.get "movie/#{item.id}/movie_keywords"
+    @alternative_titles = @cache.get "movie/#{item.id}/alternative_titles"
+    @movie_languages = @cache.get "movie/#{item.id}/movie_languages"
+    @tags = @cache.get "movie/#{item.id}/tags"
+    @releases = @cache.get "movie/#{item.id}/releases"
+    @production_companies = @cache.get "movie/#{item.id}/production_companies"
+    @revenue_countries = @cache.get "movie/#{item.id}/revenue_countries"
+  end
+
 end

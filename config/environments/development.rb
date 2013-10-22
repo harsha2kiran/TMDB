@@ -15,7 +15,7 @@ Movies::Application.configure do
      :authentication       => :plain,
      :enable_starttls_auto => true
   }
-  config.cache_classes = true
+  config.cache_classes = false
   # config.static_cache_control = "public, max-age=3600"
 
   # Log error messages when you accidentally call methods on nil.

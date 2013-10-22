@@ -40,6 +40,7 @@ class MoviesApp.Show extends Backbone.View
 
   add_item: (e) ->
     id = $(e.target).parent().attr("id")
-    tab = id.replace("add-", "")
-    localStorage.tab = tab
-    window.MoviesApp.router.navigate("/#!/movies/#{window.movie_id}/edit/my_movie", true)
+    if id && id != ""
+      tab = id.replace("add-", "")
+      localStorage.tab = tab
+      window.MoviesApp.router.navigate("/#!/movies/#{window.movie_id}/edit/my_movie", true)

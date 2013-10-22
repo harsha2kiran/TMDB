@@ -18,7 +18,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def clear_cache
-    if ["update", "create", "destroy"].include?(params[:action]) && @controller != "views"
+    if ["update", "create", "destroy", "mark"].include?(params[:action]) && @controller != "views"
       @cache.flush
     end
   end
