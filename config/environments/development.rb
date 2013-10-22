@@ -22,26 +22,12 @@ Movies::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  # config.perform_caching = false
-  # config.action_controller.perform_caching = false
   config.consider_all_requests_local       = true
 
-
-  config.perform_caching = true
-  config.action_controller.perform_caching = true
-  require "memcached/rails"
-  config.cache_store = Memcached::Rails.new(:servers => ['127.0.0.1:11211'])
-
-
-
-
-  # config.cache_store = :dalli_store, "localhost:11211", { :namespace => Movies, :compress => true }
-
-
-
-
-  # config.cache_store = :mem_cache_store, "127.0.0.1:11211"
-  # config.cache_store = :dalli_store, '127.0.0.1:11211'
+  config.perform_caching = false
+  config.action_controller.perform_caching = false
+  # require "memcached/rails"
+  # config.cache_store = Memcached::Rails.new(:servers => ['127.0.0.1:11211'])
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 

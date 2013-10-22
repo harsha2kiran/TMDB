@@ -20,31 +20,46 @@ class Api::V1::ListsController < Api::V1::BaseController
         @lists = List.where(approved: true).includes(:list_items, :user, :follows)
       end
       @lists = @lists.page(page).per(20)
-      @cache.set "lists?page=#{page}", @lists.all
+      if Rails.env.to_s == "production"
+        @cache.set "lists?page=#{page}", @lists.all
+      end
     end
     @current_api_user = current_api_user
   end
 
   def show
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-      @list = List.where(id: params[:id]).includes(:list_items, :user, :follows)
-    elsif current_api_user && current_api_user.user_type == "user"
-      @list = List.where("id = ? AND (approved = true OR user_id = ?)", params[:id], current_api_user.id).includes(:list_items, :user, :follows)
-    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
-      @list = List.where("id = ? AND (approved = true OR temp_user_id = ?)", params[:id], params[:temp_user_id]).includes(:list_items, :user, :follows)
-    else
-      @list = List.where(id: params[:id], approved: true).includes(:list_items, :user, :follows)
-    end
-    @list = @list.first
-    if @list
-      image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
-      @images = Image.find_all_by_id(image_ids)
-      @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
-      @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
-    else
-      @images = []
-      @keywords = []
-      @tags = []
+    begin
+      @list = @cache.get "list/#{params[:id]}"
+      @images = @cache.get "list/#{params[:id]}/images"
+      @keywords = @cache.get "list/#{params[:id]}/keywords"
+      @tags =  @cache.get "list/#{params[:id]}/tags"
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        @list = List.where(id: params[:id]).includes(:list_items, :user, :follows)
+      elsif current_api_user && current_api_user.user_type == "user"
+        @list = List.where("id = ? AND (approved = true OR user_id = ?)", params[:id], current_api_user.id).includes(:list_items, :user, :follows)
+      elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+        @list = List.where("id = ? AND (approved = true OR temp_user_id = ?)", params[:id], params[:temp_user_id]).includes(:list_items, :user, :follows)
+      else
+        @list = List.where(id: params[:id], approved: true).includes(:list_items, :user, :follows)
+      end
+      @list = @list.first
+      if @list
+        image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
+        @images = Image.find_all_by_id(image_ids)
+        @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
+        @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
+      else
+        @images = []
+        @keywords = []
+        @tags = []
+      end
+      if Rails.env.to_s == "production"
+        @cache.set "list/#{params[:id]}", @list
+        @cache.set "list/#{params[:id]}/images", @images
+        @cache.set "list/#{params[:id]}/keywords", @keywords
+        @cache.set "list/#{params[:id]}/tags", @tags
+      end
     end
     @current_api_user = current_api_user
   end
@@ -102,7 +117,9 @@ class Api::V1::ListsController < Api::V1::BaseController
         @lists = List.where(list_type: "gallery", approved: true).includes(:list_items, :user, :follows)
       end
       @lists = @lists.page(page).per(20)
-      @cache.set "galleries?page=#{page}", @lists.all
+      if Rails.env.to_s == "production"
+        @cache.set "galleries?page=#{page}", @lists.all
+      end
     end
     @image_ids = @lists.map(&:list_items).flatten.map(&:listable_id)
     @images = Image.find_all_by_id(@image_ids)

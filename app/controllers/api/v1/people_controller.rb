@@ -26,7 +26,9 @@ class Api::V1::PeopleController < Api::V1::BaseController
       end
       @current_api_user = current_api_user
       load_additional_values(@people, "index")
-      @cache.set "people?page=#{page}", @people.all
+      if Rails.env.to_s == "production"
+        @cache.set "people?page=#{page}", @people.all
+      end
     end
   end
 
@@ -65,7 +67,9 @@ class Api::V1::PeopleController < Api::V1::BaseController
       end
       add_default_values(@person)
       load_additional_values(@person, "show")
-      @cache.set "person/#{params[:id]}", @person
+      if Rails.env.to_s == "production"
+        @cache.set "person/#{params[:id]}", @person
+      end
     ensure
       if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
         @all = true
@@ -147,8 +151,10 @@ class Api::V1::PeopleController < Api::V1::BaseController
     @social_apps = social_app_ids.count > 0 ? SocialApp.find_all_by_id(social_app_ids) : []
     if action == "show"
       item = items.first
-      @cache.set "person/#{item.id}/movies", @movies
-      @cache.set "person/#{item.id}/social_apps", @social_apps
+      if Rails.env.to_s == "production"
+        @cache.set "person/#{item.id}/movies", @movies
+        @cache.set "person/#{item.id}/social_apps", @social_apps
+      end
     end
   end
 
@@ -170,13 +176,15 @@ class Api::V1::PeopleController < Api::V1::BaseController
     @tags = person.tags.to_a
     @alternative_names = person.alternative_names.to_a
     @person_social_apps = person.person_social_apps.to_a
-    @cache.set "person/#{person.id}/images", @images
-    @cache.set "person/#{person.id}/videos", @videos
-    @cache.set "person/#{person.id}/casts", @casts
-    @cache.set "person/#{person.id}/crews", @crews
-    @cache.set "person/#{person.id}/tags", @tags
-    @cache.set "person/#{person.id}/alternative_names", @alternative_names
-    @cache.set "person/#{person.id}/person_social_apps", @person_social_apps
+    if Rails.env.to_s == "production"
+      @cache.set "person/#{person.id}/images", @images
+      @cache.set "person/#{person.id}/videos", @videos
+      @cache.set "person/#{person.id}/casts", @casts
+      @cache.set "person/#{person.id}/crews", @crews
+      @cache.set "person/#{person.id}/tags", @tags
+      @cache.set "person/#{person.id}/alternative_names", @alternative_names
+      @cache.set "person/#{person.id}/person_social_apps", @person_social_apps
+    end
   end
 
   def add_default_cached(item)

@@ -9,20 +9,6 @@ node(:tags){
   r
 }
 
-node(:media_tags){
-  @media_tags
-  # if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
-
-  # elsif @current_api_user && @current_api_user.user_type == "user"
-  #   @media_tags = @media_tags.where("approved = true OR user_id = ?", @current_api_user.id)
-  # elsif params[:temp_user_id]
-  #   @media_tags = @media_tags.where("approved = true OR temp_user_id = ?", params[:temp_user_id])
-  # else
-  #   @media_tags = @media_tags.where(approved: true)
-  # end
-  # @media_tags
-}
-
 node(:keywords){
   if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
     keywords = Keyword.find_all_by_id(@media_keywords.map(&:keyword_id))
@@ -34,6 +20,10 @@ node(:keywords){
     keywords = Keyword.find_all_by_id(@media_keywords.where(approved: true).map(&:keyword_id))
   end
   keywords
+}
+
+node(:media_tags){
+  @media_tags
 }
 
 node(:media_keywords){

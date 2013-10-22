@@ -8,7 +8,7 @@ Movies::Application.configure do
   config.consider_all_requests_local       = false
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -42,18 +42,10 @@ Movies::Application.configure do
   # config.cache_store = :mem_cache_store
   # config.cache_store = :dalli_store
 
-  # config.perform_caching = true
-  # config.action_controller.perform_caching = true
-  # config.cache_store = :dalli_store, "localhost:11211", { :namespace => Movies, :compress => true }
-
-
-
   config.perform_caching = true
   config.action_controller.perform_caching = true
   require "memcached/rails"
   config.cache_store = Memcached::Rails.new(:servers => ['127.0.0.1:11211'])
-
-
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

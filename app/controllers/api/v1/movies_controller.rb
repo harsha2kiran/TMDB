@@ -25,7 +25,9 @@ class Api::V1::MoviesController < Api::V1::BaseController
       end
       @current_api_user = current_api_user
       load_additional_values(@movies, "index")
-      @cache.set "movies?page=#{page}", @movies.all
+      if Rails.env.to_s == "production"
+        @cache.set "movies?page=#{page}", @movies.all
+      end
     end
   end
 
@@ -94,7 +96,9 @@ class Api::V1::MoviesController < Api::V1::BaseController
       end
       add_default_values(@movie)
       load_additional_values(@movie, "show")
-      @cache.set "movie/#{params[:id]}", @movie
+      if Rails.env.to_s == "production"
+        @cache.set "movie/#{params[:id]}", @movie
+      end
     ensure
       if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
         @all = true
@@ -208,7 +212,7 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @countries = country_ids.count > 0 ? Country.find_all_by_id(country_ids) : []
     @companies = company_ids.count > 0 ? Company.find_all_by_id(company_ids) : []
     @statuses = Status.all
-    if action == "show"
+    if action == "show" && Rails.env.to_s == "production"
       item = items.first
       @cache.set "movie/#{item.id}/languages", @languages
       @cache.set "movie/#{item.id}/people", @people
@@ -250,19 +254,21 @@ class Api::V1::MoviesController < Api::V1::BaseController
     @releases = movie.releases.to_a
     @production_companies = movie.production_companies.to_a
     @revenue_countries = movie.revenue_countries.to_a
-    @cache.set "movie/#{movie.id}/movie_metadatas", @movie_metadatas
-    @cache.set "movie/#{movie.id}/images", @images
-    @cache.set "movie/#{movie.id}/videos", @videos
-    @cache.set "movie/#{movie.id}/movie_genres", @movie_genres
-    @cache.set "movie/#{movie.id}/casts", @casts
-    @cache.set "movie/#{movie.id}/crews", @crews
-    @cache.set "movie/#{movie.id}/movie_keywords", @movie_keywords
-    @cache.set "movie/#{movie.id}/alternative_titles", @alternative_titles
-    @cache.set "movie/#{movie.id}/movie_languages", @movie_languages
-    @cache.set "movie/#{movie.id}/tags", @tags
-    @cache.set "movie/#{movie.id}/releases", @releases
-    @cache.set "movie/#{movie.id}/production_companies", @production_companies
-    @cache.set "movie/#{movie.id}/revenue_countries", @revenue_countries
+    if Rails.env.to_s == "production"
+      @cache.set "movie/#{movie.id}/movie_metadatas", @movie_metadatas
+      @cache.set "movie/#{movie.id}/images", @images
+      @cache.set "movie/#{movie.id}/videos", @videos
+      @cache.set "movie/#{movie.id}/movie_genres", @movie_genres
+      @cache.set "movie/#{movie.id}/casts", @casts
+      @cache.set "movie/#{movie.id}/crews", @crews
+      @cache.set "movie/#{movie.id}/movie_keywords", @movie_keywords
+      @cache.set "movie/#{movie.id}/alternative_titles", @alternative_titles
+      @cache.set "movie/#{movie.id}/movie_languages", @movie_languages
+      @cache.set "movie/#{movie.id}/tags", @tags
+      @cache.set "movie/#{movie.id}/releases", @releases
+      @cache.set "movie/#{movie.id}/production_companies", @production_companies
+      @cache.set "movie/#{movie.id}/revenue_countries", @revenue_countries
+    end
   end
 
   def add_default_cached(item)
