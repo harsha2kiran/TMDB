@@ -7,6 +7,7 @@ class MoviesApp.ImagesShow extends Backbone.View
 
   events:
     "click .js-image-update" : "update"
+    "click .js-image-update-main" : "update_main"
 
   render: ->
     self = @
@@ -23,6 +24,24 @@ class MoviesApp.ImagesShow extends Backbone.View
     container.find(".single-image-tags").html @tags_view.render().el
 
     this
+
+  update_main: (e) ->
+    console.log "update_main"
+    id = window.image_id
+    self = @
+    parent = $(self.el)
+    title = parent.find(".js-image-title").val()
+    description = parent.find(".js-image-description").val()
+    if title != ""
+      parent.find(".js-image-title").removeClass("error")
+      image = new MoviesApp.Image()
+      image.url = api_version + "images/" + id
+      image.set( id: id, image: { title: title, description: description, id: id })
+      image.save null,
+        success: ->
+          $(".notifications").html("Successfully updated.").show().fadeOut(window.hide_delay)
+    else
+      parent.find(".js-image-title").addClass("error")
 
   update: (e) ->
     console.log "update"

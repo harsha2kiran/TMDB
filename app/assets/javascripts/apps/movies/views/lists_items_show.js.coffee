@@ -29,7 +29,7 @@ class MoviesApp.ListItemsShow extends Backbone.View
       image.set({ title: title, description: description, priority: priority, id: id })
       image.save null,
         success: ->
-          console.log image
+          $(".notifications").html("Successfully updated.").show().fadeOut(window.hide_delay)
     else
       parent.find(".js-edit-gallery-image-title").addClass("error")
 

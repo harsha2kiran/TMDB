@@ -91,3 +91,7 @@ window.current_temp_users_item = (item) ->
   else
     false
 
+window.sort_priority = (a, b) ->
+  return -1  if a.list_item.images[0].priority < b.list_item.images[0].priority
+  return 1  if a.list_item.images[0].priority > b.list_item.images[0].priority
+  0

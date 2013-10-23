@@ -46,7 +46,7 @@ class Api::V1::ListsController < Api::V1::BaseController
       @list = @list.first
       if @list
         image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
-        @images = Image.find_all_by_id(image_ids)
+        @images = Image.where("id IN (?)", image_ids).order("priority ASC")
         @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
         @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
       else

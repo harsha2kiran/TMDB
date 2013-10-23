@@ -3,12 +3,22 @@
   %a.slimbox{ href: image.image_file.image_file.watermarked.url, title: image.title }
     .image
       %img{ src: image.image_file.image_file.medium.url, alt: "no image"}
-    .title
+  .title
+    - is_owner = false
+    - if current_users_item(image) || current_temp_users_item(image)
+      - is_owner = true
+
+    - if is_owner || is_admin_or_mod()
+      %input.js-image-title.form-control.flat{ type: "text", value: image.title }
+      - if image.description && image.description != ""
+        %textarea.js-image-description.form-control.flat= image.description
+      %button.js-image-update-main.btn.btn-primary.flat= "Update"
+    - else
       = image.title
 
-- if image.description && image.description != ""
-  .col-md-12
-    = image.description
+      - if image.description && image.description != ""
+        .col-md-12
+          = image.description
 
 .views.col-md-12.input-label
   %span= "Views: "
