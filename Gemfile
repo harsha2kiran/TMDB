@@ -59,3 +59,7 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'puma'
 # gem "dalli"
 gem "memcached"
+
+gem 'capistrano'
+gem 'capistrano-ext'
+gem 'rvm-capistrano'
