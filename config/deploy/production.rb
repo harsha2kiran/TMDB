@@ -1,5 +1,5 @@
-set :domain, '' # ip address
-set :application, '' # app name
+set :domain, '192.34.60.14' # ip address
+set :application, 'movies' # app name
 set :deploy_to, "/home/rails/apps/#{application}"
 set :branch, 'master'
 set :rails_env, "production"

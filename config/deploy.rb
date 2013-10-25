@@ -9,11 +9,18 @@ set :stages, %w(production)
 set :default_stage, 'production'
 
 set :application, "movies"
-set :scm, :git
-set :repository, "git@github.com:trajkovvlatko/movies.git"
+# set :scm, :git
+# set :repository, "git@github.com:trajkovvlatko/movies.git"
+
+set :deploy_via, :copy
+set :use_sudo, false
+set :scm, "git"
+set :repository, "."
+set :local_repository, "."
+set :branch, "master"
 
 set :deploy_to, "/home/rails/apps/#{application}"
-set :deploy_via, :remote_cache
+# set :deploy_via, :remote_cache
 set :copy_exclude, [ '.git' ]
 
 set :user, "rails"
