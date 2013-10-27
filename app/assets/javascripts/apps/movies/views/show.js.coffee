@@ -15,6 +15,9 @@ class MoviesApp.Show extends Backbone.View
     movie = @options.movie.get("movie")
     my_movie = @options.my_movie
     show.html @template(movie: movie, my_movie: my_movie)
+    $("title").html(movie.meta_title)
+    $("meta[name='description']").attr("content", movie.meta_description)
+    $("meta[name='keywords']").attr("content", movie.meta_keywords)
     this
 
   follow: (e) ->

@@ -74,3 +74,7 @@
 %h5
   Details
 .js-item-details
+
+%h5
+  Meta tags
+.js-item-meta-tags

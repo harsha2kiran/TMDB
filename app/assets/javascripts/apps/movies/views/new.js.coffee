@@ -27,13 +27,15 @@ class MoviesApp.New extends Backbone.View
 
   create: (e) ->
     $container = $(e.target).parents(".movie")
-    title = $container.find(".js-title").val()
-    tagline = $container.find(".js-tagline").val()
-    overview = $container.find(".js-overview").val()
+    title = $.trim($container.find(".js-title").val())
+    tagline = $.trim($container.find(".js-tagline").val())
+    overview = $.trim($container.find(".js-overview").val())
     content_score = $container.find(".js-content-score").val()
     if title != ""
+      values = [title, tagline, overview]
+      meta_tags = window.generate_meta_tags("Movie", values)
       movie = new MoviesApp.Movie()
-      movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, temp_user_id: localStorage.temp_user_id } }),
+      movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, temp_user_id: localStorage.temp_user_id, meta_title: meta_tags.meta_title, meta_keywords: meta_tags.meta_keywords, meta_description: meta_tags.meta_description } }),
         error: ->
           $(".notifications").html("Movie already exist.").show().fadeOut(window.hide_delay)
           $container.find(".js-title").addClass("error")

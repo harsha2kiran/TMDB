@@ -28,7 +28,7 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
               if approved_record.count > 0
                 approved_record = approved_record.first
                 approved_values = approved_record.attributes
-                approved_values  = approved_values.except("id", "created_at", "updated_at")
+                approved_values  = approved_values.except("id", "created_at", "updated_at", "meta_title", "meta_keywords", "meta_description")
                 approved_values["approved"] = mark
                 unless approved_values["user_id"]
                   approved_values["user_id"] = current_api_user.id

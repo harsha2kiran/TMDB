@@ -1,5 +1,5 @@
 object @movie
-attributes :id, :original_id, :user_id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at
+attributes :id, :original_id, :user_id, :approved, :content_score, :locked, :overview, :tagline, :title, :created_at, :updated_at, :meta_title, :meta_description, :meta_keywords
 
 if @movie
   if @all

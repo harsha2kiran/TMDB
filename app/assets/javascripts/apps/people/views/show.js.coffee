@@ -15,6 +15,9 @@ class PeopleApp.Show extends Backbone.View
     person = @options.person.get("person")
     my_person = @options.my_person
     show.html @template(person: person, my_person: my_person)
+    $("title").html(person.meta_title)
+    $("meta[name='description']").attr("content", person.meta_description)
+    $("meta[name='keywords']").attr("content", person.meta_keywords)
     this
 
   follow: (e) ->

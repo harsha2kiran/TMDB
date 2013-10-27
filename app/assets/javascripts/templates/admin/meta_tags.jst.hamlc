@@ -1,0 +1,23 @@
+- if @type == "Movie"
+  - item = @items.models[0].get("movie")
+- else if @type == "Person"
+  - item = @items.models[0].get("person")
+.col-md-12
+  .col-md-2.input-label
+    Title
+  .col-md-8
+    %input.js-meta-title.col-md-4.form-control.flat{ value: item.meta_title }
+.col-md-12
+  .col-md-2.input-label
+    Keywords
+  .col-md-8
+    %input.js-meta-keywords.col-md-4.form-control.flat{ value: item.meta_keywords }
+.col-md-12
+  .col-md-2.input-label
+    Description
+  .col-md-8
+    %input.js-meta-description.col-md-4.form-control.flat{ value: item.meta_description }
+.col-md-12
+  .col-md-8
+    %button.js-meta-update.col-md-3.btn.btn-primary.flat= "Update"
+

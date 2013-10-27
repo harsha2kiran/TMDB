@@ -84,6 +84,10 @@ class AdminApp.Router extends Backbone.Router
               $(".js-item-details").html @details_view.render().el
           $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
+          if type == "Movie" || type == "Person"
+            @meta_tags_view = new AdminApp.MetaTags(id: id, items: items, type: type)
+            $(".js-item-meta-tags").html @meta_tags_view.render().el
+
   items_index: (type) ->
     if current_user && current_user.user_type == "admin"
       console.log "admin items index"

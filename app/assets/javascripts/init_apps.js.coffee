@@ -1,6 +1,10 @@
 window.root_path = "http://localhost:3000"
 window.api_version = "/api/v1/"
 window.hide_delay = 5000
+window.global_meta_title = "Movie Database"
+window.global_meta_keywords = "movie database, keywords"
+window.global_meta_description = "Movie database description"
+
 $(document).ready ->
 
   $.ajax "/api/v1/users/get_current_user",
@@ -26,6 +30,9 @@ $(document).ready ->
     localStorage.removeItem("temp_user_id")
 
   $("body").on "click", "a", (e) ->
+    $("title").html(window.global_meta_title)
+    $("meta[name='description']").attr("content", window.global_meta_description)
+    $("meta[name='keywords']").attr("content", window.global_meta_keywords)
     unless $(e.target).hasClass("ui-corner-all")
       $(window).scrollTop(0)
 
@@ -95,3 +102,28 @@ window.sort_priority = (a, b) ->
   return -1  if a.list_item.images[0].priority < b.list_item.images[0].priority
   return 1  if a.list_item.images[0].priority > b.list_item.images[0].priority
   0
+
+window.generate_meta_tags = (type, values) ->
+  meta_title = values[0]
+  meta_description = values[0] + " " + values[1] + " " + values[2]
+  if meta_description.length > 160
+    meta_description = meta_description.substring(0, 160)
+  words = window.extract_words(values)
+  words = words.join(" ").removeStopWords()
+  words = $.unique(words.split(" "))
+  words = words.join(", ")
+  if words.length > 255
+    words = words.substring(0, 255)
+  meta_keywords = words
+  values = { meta_title: meta_title, meta_keywords: meta_keywords, meta_description: meta_description }
+
+window.extract_words = (values) ->
+  words = []
+  $.each values, (i, item) ->
+    arr_words = item.split(" ")
+    $.each arr_words, (i1, word) ->
+      word = $.trim(word)
+      if word != ""
+        words.push word.replace(",", "")
+  words
+

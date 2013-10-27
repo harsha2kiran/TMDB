@@ -2,12 +2,15 @@
 %html
   %head
     %title Movies
+    %meta{ content: "", name: "description" }
+    %meta{ content: "", name: "keywords" }
     = stylesheet_link_tag    "application", :media => "all"
     = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css"
     = stylesheet_link_tag "/assets/slimbox2.css"
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{ name: "fragment", content: "!" }
+
   %body.container{:id => body_id}
     .notifications
 

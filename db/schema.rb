@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008002836) do
+ActiveRecord::Schema.define(:version => 20131027185057) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -302,12 +302,15 @@ ActiveRecord::Schema.define(:version => 20131008002836) do
     t.integer  "content_score"
     t.boolean  "approved"
     t.hstore   "locked"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "user_id"
     t.integer  "original_id"
-    t.decimal  "popular",       :precision => 8, :scale => 2
+    t.decimal  "popular",          :precision => 8, :scale => 2
     t.string   "temp_user_id"
+    t.string   "meta_title"
+    t.string   "meta_description"
+    t.string   "meta_keywords"
   end
 
   create_table "oauth_access_grants", :force => true do |t|
@@ -370,12 +373,15 @@ ActiveRecord::Schema.define(:version => 20131008002836) do
     t.string   "imdb_id"
     t.boolean  "approved"
     t.hstore   "locked"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "user_id"
     t.integer  "original_id"
     t.string   "temp_user_id"
-    t.decimal  "popular",        :precision => 8, :scale => 2
+    t.decimal  "popular",          :precision => 8, :scale => 2
+    t.string   "meta_title"
+    t.string   "meta_description"
+    t.string   "meta_keywords"
   end
 
   create_table "person_social_apps", :force => true do |t|
