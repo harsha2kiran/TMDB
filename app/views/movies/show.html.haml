@@ -1,0 +1,19 @@
+%a{ href: "/#!/movies/#{@movie.id}" }
+  %h1.col-md-12
+    = @movie.title
+.col-md-12
+  .col-md-2
+    Tagline
+  .col-md-10
+    = @movie.tagline
+.col-md-12
+  .col-md-2
+    Overview
+  .col-md-10
+    = @movie.overview
+
+.col-md-12
+  .col-md-1
+    = link_to "List of all movies", movies_path
+  .col-md-1
+    = link_to "List of all people", people_path

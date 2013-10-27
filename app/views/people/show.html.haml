@@ -1,0 +1,40 @@
+%a.col-md-12{ href: "/#!/people/#{@person.id}" }
+  %h1
+    = @person.name
+.col-md-12
+  .col-md-2
+    Biography
+  .col-md-10
+    = @person.biography
+.col-md-12
+  .col-md-2
+    Birthday
+  .col-md-10
+    = @person.birthday
+.col-md-12
+  .col-md-2
+    Day of death
+  .col-md-10
+    = @person.day_of_death
+.col-md-12
+  .col-md-2
+    Place of birth
+  .col-md-10
+    = @person.place_of_birth
+.col-md-12
+  .col-md-2
+    Homepage
+  .col-md-10
+    %a{ target: "_blank", href: @person.homepage }
+      = @person.homepage
+.col-md-12
+  .col-md-2
+    IMDB ID
+  .col-md-10
+    = @person.imdb_id
+
+.col-md-12
+  .col-md-1
+    = link_to "List of all people", people_path
+  .col-md-1
+    = link_to "List of all movies", movies_path

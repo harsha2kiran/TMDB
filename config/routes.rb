@@ -144,4 +144,6 @@ Movies::Application.routes.draw do
     end
   end
   root :to => 'application#index'
+  resources :movies
+  resources :people
 end
