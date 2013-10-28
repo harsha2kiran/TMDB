@@ -1,0 +1,35 @@
+.user.col-md-12.box
+  .col-md-12
+    %input.js-user-id{ type: "hidden", value: current_user.id, "data-id" => "id", "data-model" => "User", "data-key" => "user", "data-controller" => "users" }
+    %input.js-user-temp-id{ type: "hidden", "data-user-id" => "", "data-temp-user-id" => "" }
+    .col-md-12
+      .col-md-2.input-label
+        Email
+      .col-md-3.input-label
+        = current_user.email
+    .col-md-12
+      .col-md-2.input-label
+        First name
+      .col-md-3
+        %input.js-first-name.form-control{ type: "text", value: current_user.first_name, "data-id" => "first_name" }
+    .col-md-12
+      .col-md-2.input-label
+        Last name
+      .col-md-3
+        %input.js-last-name.form-control{ type: "text", value: current_user.last_name, "data-id" => "last_name" }
+    .col-md-12
+      .col-md-2.input-label
+        Biography
+      .col-md-3
+        %textarea.js-biography.form-control{ type: "text", "data-id" => "biography" }= current_user.biography
+    .col-md-12
+      .col-md-2.input-label
+        Points
+      .col-md-3.input-label
+        - if current_user.points == null
+          0
+        - else
+          = current_user.points
+    .col-md-12
+      .col-md-2.input-label
+        %button.js-update.btn.btn-primary.flat= "Update"

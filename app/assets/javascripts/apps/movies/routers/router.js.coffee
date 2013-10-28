@@ -22,6 +22,7 @@ class MoviesApp.Router extends Backbone.Router
     "!/movies/:id/edit/my_movie" : "edit_my_movie"
     "!/movies/:id/edit" : "edit"
     "!/following" : "following"
+    "!/profile" : "profile"
 
   initialize: ->
     @clear_values()
@@ -326,6 +327,14 @@ class MoviesApp.Router extends Backbone.Router
         @index_view = new MoviesApp.FollowsIndex(follows: follows)
         $(".js-content").html @index_view.render().el
 
+  profile: ->
+    if current_user
+      user = new MoviesApp.User()
+      user.url = api_version + "users/" + current_user.id
+      user.fetch
+        success: ->
+      @index_view = new MoviesApp.Profile()
+      $(".js-content").html @index_view.render().el
 
 
 

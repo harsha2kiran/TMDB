@@ -52,7 +52,7 @@ class AdminApp.Router extends Backbone.Router
   user: (id) ->
     if current_user && current_user.user_type == "admin"
       type = "User"
-      user = new AdminApp.Item()
+      user = new MoviesApp.User()
       user.url = api_version + "users/#{id}?moderate=true"
       user.fetch
         success: ->
