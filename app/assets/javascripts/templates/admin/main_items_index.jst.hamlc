@@ -45,63 +45,18 @@
           Moderate
         %th
           Delete
+  - else if type == "User"
+    %thead
+      %tr
+        %th
+          First name
+        %th
+          Last name
+        %th
+          User type
+        %th
+          Moderate
+        %th
+          Delete
   %tbody
-    -# - @items.each (item) ->
-      -# - if type == "Movie"
-      -#   - item = item.get("movie")
-      -#   %tr{ "data-id" => item.id, "data-model" => "Movie" }
-      -#     %td.jeditable{ "data-id" => "title" }= item.title
-      -#     %td.jeditable{ "data-id" => "overview" }= item.overview
-      -#     %td.jeditable{ "data-id" => "tagline" }= item.tagline
-      -#     %td.jeditable{ "data-id" => "content_score" }= item.content_score
-      -#     %td
-      -#       %a.col-md-6.btn.btn-primary.flat{ href: "#admin/movies/#{item.id}" }
-      -#         Moderate
-      -#       - if item.pending || item.approved == false
-      -#         (Pending)
-      -#       - else
-      -#         %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "movies" }= "Unapprove"
-      -#     %td
-      -#       %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "movies" }= "Delete"
-
-      -# - else if type == "Person"
-      -#   - item = item.get("person")
-      -#   %tr{ "data-id" => item.id, "data-model" => "Person" }
-      -#     %td.jeditable{ "data-id" => "name" }= item.name
-      -#     %td.jeditable{ "data-id" => "biography" }= item.biography
-      -#     - if item.birthday
-      -#       %td.jeditable{ "data-id" => "birthday" }= moment(item.birthday).format("YYYY-MM-DD")
-      -#     - else
-      -#       %td.jeditable{ "data-id" => "birthday" }= item.birthday
-      -#     %td.jeditable{ "data-id" => "place_of_birth" }= item.place_of_birth
-      -#     - if item.day_of_death
-      -#       %td.jeditable{ "data-id" => "day_of_death" }= moment(item.day_of_death).format("YYYY-MM-DD")
-      -#     - else
-      -#       %td.jeditable{ "data-id" => "day_of_death" }= item.day_of_death
-      -#     %td.jeditable{ "data-id" => "homepage" }= item.homepage
-      -#     %td.jeditable{ "data-id" => "imdb_id" }= item.imdb_id
-      -#     %td.moderate
-      -#       %a.col-md-6.btn.btn-primary.flat{ href: "#admin/people/#{item.id}" }
-      -#         Moderate
-      -#       - if item.pending || item.approved == false
-      -#         (Pending)
-      -#       - else
-      -#         %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "people" }= "Unapprove"
-      -#     %td
-      -#       %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "people" }= "Delete"
-      -# - else if type == "Gallery"
-      -#   - item = item.get("list")
-      -#   %tr{ "data-id" => item.id, "data-model" => "List" }
-      -#     %td.jeditable{ "data-id" => "title" }= item.title
-      -#     %td.jeditable{ "data-id" => "description" }= item.description
-
-      -#     %td.moderate
-      -#       %a.col-md-6.btn.btn-primary.flat{ href: "/#!/lists/#{item.id}" }
-      -#         Moderate
-      -#       - if item.pending || item.approved == false
-      -#         (Pending)
-      -#       - else
-      -#         %button.js-unapprove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Unapprove"
-      -#     %td
-      -#       %button.js-remove.btn{ "data-id" => item.id, "data-controller" => "lists" }= "Delete"
 %button.js-clear-cache.btn= "Clear all cache"

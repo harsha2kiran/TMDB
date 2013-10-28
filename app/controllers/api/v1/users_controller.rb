@@ -16,7 +16,24 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show
-    @user = User.where(active: 1).find(params[:id])
+    if params[:moderate] && params[:moderate] == "true"
+      @user = User.find(params[:id])
+    else
+      @user = User.where(active: 1).find(params[:id])
+    end
+  end
+
+  def update
+    if current_api_user && current_api_user.user_type == "admin"
+      @user = User.find(params[:id])
+      respond_to do |format|
+        if @user.update_attributes(params[:user])
+          format.json { respond_with @user }
+        else
+          format.json { render :json => "Error updating user.", :status => :unprocessable_entity }
+        end
+      end
+    end
   end
 
   def get_current_user

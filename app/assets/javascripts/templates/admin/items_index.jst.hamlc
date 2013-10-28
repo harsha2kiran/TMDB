@@ -1,8 +1,12 @@
-- if @items.models[0].attributes.movie
+- if @items.get("user")
+  - item = @items.get("user")
+  - type = "User"
+  .span.js-main-item{ "data-id" => item.id, "data-type" => "User" }
+- else if @items.models[0].attributes.movie
   - item = @items.models[0].attributes.movie
   - type = "Movie"
   .span.js-main-item{ "data-id" => item.id, "data-type" => "Movie" }
-- else
+- else if @items.models[0].attributes.person
   - item = @items.models[0].attributes.person
   - type = "Person"
   .span.js-main-item{ "data-id" => item.id, "data-type" => "Person" }
@@ -294,4 +298,78 @@
                 %option{ value: "true" }= "Yes"
                 %option{ value: "false", selected: "selected" }= "No"
           != JST['templates/admin/shared/_buttons'](approved: release.approved)
+
+- if item.email && item.email != ""
+  .user.col-md-12.box
+    .col-md-12.js-edit-item
+      %input.edit-item{ type: "hidden", value: item.id, "data-id" => "id", "data-model" => "User", "data-key" => "user", "data-controller" => "users" }
+      %input.js-user-temp-id{ type: "hidden", "data-user-id" => "", "data-temp-user-id" => "" }
+      .col-md-12
+        .col-md-2.input-label
+          Email
+        .col-md-3
+          %input.js-email.edit-item.form-control{ type: "text", value: item.email, "data-id" => "email" }
+      .col-md-12
+        .col-md-2.input-label
+          First name
+        .col-md-3
+          %input.js-first-name.edit-item.form-control{ type: "text", value: item.first_name, "data-id" => "first_name" }
+      .col-md-12
+        .col-md-2.input-label
+          Last name
+        .col-md-3
+          %input.js-last-name.edit-item.form-control{ type: "text", value: item.last_name, "data-id" => "last_name" }
+      .col-md-12
+        .col-md-2.input-label
+          Biography
+        .col-md-3
+          %input.js-last-name.edit-item.form-control{ type: "text", value: item.biography, "data-id" => "biography" }
+      .col-md-12
+        .col-md-2.input-label
+          Points
+        .col-md-3
+          %input.js-points.edit-item.form-control{ type: "text", value: item.points, "data-id" => "points" }
+      .col-md-12
+        .col-md-2.input-label
+          User type
+        .col-md-3
+          %select.edit-item.form-control{ "data-id" => "user_type" }
+            - if item.user_type == "admin"
+              %option{ value: "admin", selected: "selected" }= "Admin"
+              %option{ value: "moderator" }= "Moderator"
+              %option{ value: "user" }= "User"
+            - else if item.user_type == "moderator"
+              %option{ value: "admin" }= "Admin"
+              %option{ value: "moderator", selected: "selected" }= "Moderator"
+              %option{ value: "user" }= "User"
+            - else
+              %option{ value: "admin" }= "Admin"
+              %option{ value: "moderator" }= "Moderator"
+              %option{ value: "user", selected: "selected" }= "User"
+      .col-md-12
+        .col-md-2.input-label
+          Confirmed
+        .col-md-3
+          %select.edit-item.form-control{ "data-id" => "confirmed_at" }
+            - if item.confirmed_at != null
+              %option{ value: item.confirmed_at, selected: "selected" }= "Yes"
+              %option{ value: "" }= "No"
+            - else
+              %option{ value: moment(Date.now()).format("YYYY-MM-DD") }= "Yes"
+              %option{ value: "", selected: "selected" }= "No"
+      .col-md-12
+        .col-md-2.input-label
+          Active
+        .col-md-3
+          %select.edit-item.form-control{ "data-id" => "active" }
+            - if item.active != null
+              %option{ value: "true", selected: "selected" }= "Yes"
+              %option{ value: "false" }= "No"
+            - else
+              %option{ value: "true" }= "Yes"
+              %option{ value: "false", selected: "selected" }= "No"
+      .col-md-12
+        .col-md-2.input-label
+          %button.js-update.btn.btn-primary.flat= "Update"
+
 

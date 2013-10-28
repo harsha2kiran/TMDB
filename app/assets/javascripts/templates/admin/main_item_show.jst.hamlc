@@ -1,80 +1,82 @@
-%h5
-  = "Main #{@type} info"
 - type = @type
-- @items.each (item) ->
-  .col-md-12.box
-    - if type == "Movie"
-      - item = item.get("movie")
-      %p.title.col-md-12
-        = item.title
-        - if item.approved
-          = " (Approved) "
-        - else
-          = " (Pending) "
-      - if item.tagline != ""
-        %p.tagline.col-md-12
-          = item.tagline
-      - if item.overview != ""
-        %p.overview.col-md-12
-          %span= "Overview"
-          = item.overview
-      - if item.content_score
-        %p.content-score.col-md-12
-          %span= "Content Score: "
-          = item.content_score
+- if type == "Movie" || type == "Person"
+  %h5
+    = "Main #{@type} info"
+  - @items.each (item) ->
+    .col-md-12.box
+      - if type == "Movie"
+        - item = item.get("movie")
+        %p.title.col-md-12
+          = item.title
+          - if item.approved
+            = " (Approved) "
+          - else
+            = " (Pending) "
+        - if item.tagline != ""
+          %p.tagline.col-md-12
+            = item.tagline
+        - if item.overview != ""
+          %p.overview.col-md-12
+            %span= "Overview"
+            = item.overview
+        - if item.content_score
+          %p.content-score.col-md-12
+            %span= "Content Score: "
+            = item.content_score
 
-    - else if type == "Person"
-      - item = item.get("person")
+      - else if type == "Person"
+        - item = item.get("person")
+        %p.name.col-md-12
+          = item.name
+          - if item.approved
+            = " (Approved) "
+          - else
+            = " (Pending) "
+        - if item.biography
+          .biography.col-md-12
+            %span= "Biography: "
+            = item.biography
+        - if item.homepage
+          .homepage.col-md-12
+            %span= "Homepage: "
+            %a{ href: item.homepage, target: "_blank" }
+              = item.homepage
+        - if item.birthday
+          .birthday.col-md-12
+            %span= "Birthday: "
+            = item.birthday
+        - if item.place_of_birth
+          .place-of-birth.col-md-12
+            %span= "Place of birth: "
+            = item.place_of_birth
+        - if item.day_of_death
+          .day-of-death.col-md-12
+            %span= "Day of death: "
+            = item.day_of_death
+        - if item.imdb_id
+          .imdb-id.col-md-12
+            %span= "IMDB ID: "
+            = item.imdb_id
 
-      %p.name.col-md-12
-        = item.name
-        - if item.approved
-          = " (Approved) "
-        - else
-          = " (Pending) "
-      - if item.biography
-        .biography.col-md-12
-          %span= "Biography: "
-          = item.biography
-      - if item.homepage
-        .homepage.col-md-12
-          %span= "Homepage: "
-          %a{ href: item.homepage, target: "_blank" }
-            = item.homepage
-      - if item.birthday
-        .birthday.col-md-12
-          %span= "Birthday: "
-          = item.birthday
-      - if item.place_of_birth
-        .place-of-birth.col-md-12
-          %span= "Place of birth: "
-          = item.place_of_birth
-      - if item.day_of_death
-        .day-of-death.col-md-12
-          %span= "Day of death: "
-          = item.day_of_death
-      - if item.imdb_id
-        .imdb-id.col-md-12
-          %span= "IMDB ID: "
-          = item.imdb_id
-    .col-md-12
-      %input.item-id{ type: "hidden", value: item.id }
-      %input.approved{ type: "hidden", value: item.approved.toString() }
-      - if item.approved
-        %input.js-approve.btn{ type: "button", value: "Unapprove", "data-value" => "false", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
-      - else
-        %input.js-approve.btn.btn-primary.flat{ type: "button", value: "Approve", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
-    .col-md-12.popular
-      .col-md-12.input-label
-        Mark as popular or remove from main gallery (set position to 0)
       .col-md-12
-        %input.js-popular.form-control.col-md-2{ type: "text", placeholder: "Position", value: item.popular }
-        %input.js-add-popular.btn.btn-primary.flat.col-md-2{ type: "button", value: "Set position", "data-id" => item.id, "data-type" => type }
+        %input.item-id{ type: "hidden", value: item.id }
+        %input.approved{ type: "hidden", value: item.approved.toString() }
+        - if item.approved
+          %input.js-approve.btn{ type: "button", value: "Unapprove", "data-value" => "false", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
+        - else
+          %input.js-approve.btn.btn-primary.flat{ type: "button", value: "Approve", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
+      .col-md-12.popular
+        .col-md-12.input-label
+          Mark as popular or remove from main gallery (set position to 0)
+        .col-md-12
+          %input.js-popular.form-control.col-md-2{ type: "text", placeholder: "Position", value: item.popular }
+          %input.js-add-popular.btn.btn-primary.flat.col-md-2{ type: "button", value: "Set position", "data-id" => item.id, "data-type" => type }
 
 %h5
   Details
 .js-item-details
 
-%h5
-  Meta tags
-.js-item-meta-tags
+- if type == "Movie" || type == "Person"
+  %h5
+    Meta tags
+  .js-item-meta-tags

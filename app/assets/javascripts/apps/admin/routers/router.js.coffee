@@ -5,8 +5,10 @@ class AdminApp.Router extends Backbone.Router
     "admin/movies" : "movies"
     "admin/people" : "people"
     "admin/galleries" : "galleries"
+    "admin/users" : "users"
     "admin/movies/:id" : "movie"
     "admin/people/:id" : "person"
+    "admin/users/:id" : "user"
 
   initialize: ->
     @clear_values()
@@ -19,18 +21,16 @@ class AdminApp.Router extends Backbone.Router
     type = "Person"
     @index_main_items(type)
 
+  users: ->
+    type = "User"
+    @index_main_items(type)
+
   galleries: ->
     window.list_type = "gallery"
     type = "Gallery"
     if current_user && current_user.user_type == "admin"
       console.log "admin galleries index"
       @clear_values()
-      # items = new MoviesApp.Lists()
-      # items.url = api_version + "lists/galleries"
-      # items.fetch
-      #   data:
-      #     type: type
-      #   success: ->
       @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
       $(".js-content").html @index_view.render().el
 
@@ -38,12 +38,6 @@ class AdminApp.Router extends Backbone.Router
     if current_user && current_user.user_type == "admin"
       console.log "admin main items index"
       @clear_values()
-      # items = new AdminApp.MainItems()
-      # items.url = api_version + "approvals/main_items"
-      # items.fetch
-      #   data:
-      #     type: type
-      #   success: ->
       @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
       $(".js-content").html @index_view.render().el
 
@@ -54,6 +48,18 @@ class AdminApp.Router extends Backbone.Router
   person: (id) ->
     type = "Person"
     @show_main_item(id, type)
+
+  user: (id) ->
+    if current_user && current_user.user_type == "admin"
+      type = "User"
+      user = new AdminApp.Item()
+      user.url = api_version + "users/#{id}?moderate=true"
+      user.fetch
+        success: ->
+          @show_view = new AdminApp.MainItemShow(id: id, items: user, type: type)
+          $(".js-content").html @show_view.render().el
+          @details_view = new AdminApp.ItemsIndex(items: user, type: type)
+          $(".js-item-details").html @details_view.render().el
 
   show_main_item: (id, type) ->
     if current_user && current_user.user_type == "admin"

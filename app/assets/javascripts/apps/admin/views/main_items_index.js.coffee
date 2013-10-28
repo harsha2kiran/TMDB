@@ -7,7 +7,6 @@ class AdminApp.MainItemsIndex extends Backbone.View
 
   events:
     "click .js-remove" : "remove"
-    # "click .js-approve" : "approve"
     "click .js-unapprove" : "unapprove"
     "click .js-clear-cache" : "clear_cache"
 
@@ -60,6 +59,12 @@ class AdminApp.MainItemsIndex extends Backbone.View
           else
             $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"
           $('td:eq(3)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='lists'>Delete</button>"
+        else if type == "User"
+          $('td:eq(0)', nRow).attr("data-id", "first_name").addClass("jeditable").html(aData[1])
+          $('td:eq(1)', nRow).attr("data-id", "last_name").addClass("jeditable").html(aData[2])
+          $('td:eq(2)', nRow).attr("data-id", "user_type").addClass("jeditable").html(aData[3])
+          $('td:eq(3)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='#admin/users/" + aData[0] + "'>Moderate</a>"
+          $('td:eq(4)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='users'>Delete</button>"
       fnRowCallback: (nRow, aData, iDisplayIndex) ->
         if type == "Movie" || type == "Person"
           $(nRow).attr("data-id", aData[0])
@@ -67,6 +72,9 @@ class AdminApp.MainItemsIndex extends Backbone.View
         else if type == "Gallery"
           $(nRow).attr("data-id", aData[0])
           $(nRow).attr("data-model", "List")
+        else if type == "User"
+          $(nRow).attr("data-id", aData[0])
+          $(nRow).attr("data-model", "User")
         return nRow
       fnDrawCallback: ->
         oTable.$("td.jeditable").editable api_version + "approvals/inline_edit",
@@ -113,21 +121,6 @@ class AdminApp.MainItemsIndex extends Backbone.View
           else
             type = "Person"
           self.reload_datatable(type)
-
-  # approve: (e) ->
-  #   self = @
-  #   container = $(e.target).parents("tr").first()
-  #   id = container.attr("data-id")
-  #   type = container.attr("data-model")
-  #   $.ajax api_version + "approvals/mark",
-  #     method: "post"
-  #     data:
-  #       approved_id: id
-  #       original_id: id
-  #       type: type
-  #       mark: true
-  #     success: ->
-  #       self.reload_datatable(type)
 
   unapprove: (e) ->
     self = @
