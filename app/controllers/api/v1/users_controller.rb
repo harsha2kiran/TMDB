@@ -24,7 +24,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
-    if current_api_user && (current_api_user.user_type == "admin" || current_api_user.id == params[:id])
+    if current_api_user && (current_api_user.user_type == "admin" || current_api_user.id.to_s == params[:id].to_s)
       @user = User.find(params[:id])
       respond_to do |format|
         if @user.update_attributes(params[:user])

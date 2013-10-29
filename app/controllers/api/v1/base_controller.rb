@@ -225,6 +225,7 @@ class Api::V1::BaseController < ApplicationController
     if params[:action] == "update"
       if current_api_user
         if ["admin", "moderator"].include?(current_api_user.user_type) || @controller == "images"
+        elsif @controller == "users" && params[:id].to_s == current_api_user.id.to_s
         else
           redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
         end
