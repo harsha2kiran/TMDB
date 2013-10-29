@@ -1,3 +1,9 @@
+.col-md-12
+  .col-md-1
+    = link_to "List of all people", people_path
+  .col-md-1
+    = link_to "List of all movies", movies_path
+
 %a.col-md-12{ href: "/#!/people/#{@person.id}" }
   %h1
     = @person.name
@@ -32,6 +38,90 @@
     IMDB ID
   .col-md-10
     = @person.imdb_id
+
+.col-md-12
+  %h6
+    Videos
+  - @person.videos.each do |item|
+    - if item.approved
+      .col-md-12
+        .col-md-3
+          %a{ href: item.link, target: "_blank" }
+            %img{ src: item.thumbnail, alt: "" }
+        .col-md-3
+          = item.title
+        .col-md-3
+          = item.description
+
+.col-md-12
+  %h6
+    Image
+  - @person.images.each do |item|
+    - if item.approved
+      .col-md-12
+        .col-md-3
+          %a{ href: item.image_file.watermarked.url, target: "_blank" }
+            %img{ src: item.image_file.small.url, alt: "" }
+        .col-md-3
+          = item.title
+        .col-md-3
+          = item.description
+
+.col-md-12
+  %h6
+    Cast
+  - @person.casts.each do |item|
+    - movie = item.movie
+    - if item.approved && movie.approved
+      .col-md-12
+        .col-md-3
+          = item.character
+        .col-md-3
+          %a{ href: "/#!/movies/#{movie.id}" }
+            = movie.title
+
+.col-md-12
+  %h6
+    Crew
+  - @person.crews.each do |item|
+    - movie = item.movie
+    - if item.approved && movie.approved
+      .col-md-12
+        .col-md-3
+          = item.job
+        .col-md-3
+          %a{ href: "/#!/movies/#{movie.id}" }
+            = movie.title
+
+.col-md-12
+  %h6
+    Alternative Names
+  - @person.alternative_names.each do |alt_name|
+    - if alt_name.approved
+      .col-md-12
+        = alt_name.alternative_name
+
+.col-md-12
+  %h6
+    Social Apps
+  - @person.person_social_apps.each do |item|
+    - if item.approved
+      .col-md-12
+        .col-md-3
+          = item.social_app.social_app
+        .col-md-3
+          %a{ href: item.profile_link, target: "_blank" }
+            = item.profile_link
+
+.col-md-12
+  %h6
+    Tagged movies
+  - @person.tags.each do |item|
+    - movie = item.taggable
+    - if item.approved && movie.approved
+      .col-md-12
+        %a{ href: "/#!/movies/#{movie.id}" }
+          = movie.title
 
 .col-md-12
   .col-md-1

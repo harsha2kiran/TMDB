@@ -5,7 +5,7 @@
         = name.alternative_name
       - if current_user && current_user.user_type == "admin"
         .col-md-2
-          %input.js-alternative-name-remove{ type: "button", value: "Remove", data: { id: name.id } }
+          %input.js-alternative-name-remove.btn{ type: "button", value: "Remove", data: { id: name.id } }
   .col-md-12
     .col-md-3.input-label
       Add new alternative name

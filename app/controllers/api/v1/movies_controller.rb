@@ -110,23 +110,6 @@ class Api::V1::MoviesController < Api::V1::BaseController
     end
   end
 
-
-#   def show
-#     if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type) && params[:moderate]
-#       @movie = Movie.find_and_include_by_id(params[:id])
-#       @movie = @movie.first
-#       @original_movie = @movie
-#       @all = true
-#     else
-#       movies = Movie.find_and_include_all_approved
-#       @movie = movies.find_by_id(params[:id])
-#       @all = false
-#     end
-#     add_default_values(@movie)
-#     load_additional_values(@movie, "show")
-#     @current_api_user = current_api_user
-#   end
-
   def my_movie
     if current_api_user
       movies = Movie.my_movie_by_user(current_api_user.id)

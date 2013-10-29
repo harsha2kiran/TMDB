@@ -1,15 +1,22 @@
 .tags.col-md-12.box
   - $.each @tags, (i, tag) ->
-    - if tag.movie && tag.person
+
+    - if tag.movie
       .col-md-12
         .col-md-4.input-label
-          - if window.movie_id || window.image_id || window.video_id
-            = tag.person.name
-          - else if window.person_id
-            = tag.movie.title
+          = tag.movie.title
         - if current_user && current_user.user_type == "admin"
           .col-md-2
             %input.js-tag-remove.btn{ type: "button", value: "Remove", data: { id: tag.id } }
+
+    - if tag.person
+      .col-md-12
+        .col-md-4.input-label
+          = tag.person.name
+        - if current_user && current_user.user_type == "admin"
+          .col-md-2
+            %input.js-tag-remove.btn{ type: "button", value: "Remove", data: { id: tag.id } }
+
   .col-md-12
     - if window.movie_id
       .col-md-2.input-label

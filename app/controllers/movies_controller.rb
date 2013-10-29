@@ -10,7 +10,7 @@ class MoviesController < ActionController::Base
   end
 
   def show
-    @movie = Movie.where(approved: true).find(params[:id])
+    @movie = Movie.where(approved: true).find(params[:id], :include => [:alternative_titles, :casts, :crews, :movie_genres, :movie_keywords, :revenue_countries, :production_companies, :releases, :images, :videos, :views, :follows, :tags, :movie_languages, :movie_metadatas])
     @meta_title = @movie.meta_title
     @meta_description = @movie.meta_description
     @meta_keywords = @movie.meta_keywords

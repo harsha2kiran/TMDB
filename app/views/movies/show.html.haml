@@ -1,3 +1,9 @@
+.col-md-12
+  .col-md-1
+    = link_to "List of all movies", movies_path
+  .col-md-1
+    = link_to "List of all people", people_path
+
 %a{ href: "/#!/movies/#{@movie.id}" }
   %h1.col-md-12
     = @movie.title
@@ -11,6 +17,152 @@
     Overview
   .col-md-10
     = @movie.overview
+
+.col-md-12
+  %h6
+    Alternative Titles
+  - @movie.alternative_titles.each do |alt_title|
+    - if alt_title.approved
+      .col-md-12
+        .col-md-3
+          = alt_title.alternative_title
+        .col-md-3
+          = alt_title.language.language
+
+.col-md-12
+  %h6
+    Metadata
+  - @movie.movie_metadatas.each do |metadata|
+    - if metadata.approved
+      .col-md-12
+        = metadata.budget
+      .col-md-12
+        = metadata.homepage
+      .col-md-12
+        = metadata.imdb_id
+      .col-md-12
+        = metadata.runtime
+      .col-md-12
+        = metadata.status.status
+
+.col-md-12
+  %h6
+    Videos
+  - @movie.videos.each do |item|
+    - if item.approved
+      .col-md-12
+        .col-md-3
+          %a{ href: item.link, target: "_blank" }
+            %img{ src: item.thumbnail, alt: "" }
+        .col-md-3
+          = item.title
+        .col-md-3
+          = item.description
+
+.col-md-12
+  %h6
+    Image
+  - @movie.images.each do |item|
+    - if item.approved
+      .col-md-12
+        .col-md-3
+          %a{ href: item.image_file.watermarked.url, target: "_blank" }
+            %img{ src: item.image_file.small.url, alt: "" }
+        .col-md-3
+          = item.title
+        .col-md-3
+          = item.description
+
+.col-md-12
+  %h6
+    Genres
+  - @movie.movie_genres.each do |item|
+    - if item.approved
+      .col-md-12
+        = item.genre.genre
+
+.col-md-12
+  %h6
+    Cast
+  - @movie.casts.each do |item|
+    - person = item.person
+    - if item.approved && person.approved
+      .col-md-12
+        .col-md-3
+          = item.character
+        .col-md-3
+          %a{ href: "/#!/people/#{person.id}" }
+            = person.name
+
+.col-md-12
+  %h6
+    Crew
+  - @movie.crews.each do |item|
+    - person = item.person
+    - if item.approved && person.approved
+      .col-md-12
+        .col-md-3
+          = item.job
+        .col-md-3
+          %a{ href: "/#!/people/#{person.id}" }
+            = person.name
+
+.col-md-12
+  %h6
+    Keywords
+  - @movie.movie_keywords.each do |item|
+    - if item.approved
+      .col-md-12
+        = item.keyword.keyword
+
+.col-md-12
+  %h6
+    Languages
+  - @movie.movie_languages.each do |item|
+    - if item.approved
+      .col-md-12
+        = item.language.language
+
+.col-md-12
+  %h6
+    Tagged people
+  - @movie.tags.each do |item|
+    - person = item.person
+    - if item.approved && person.approved
+      .col-md-12
+        %a{ href: "/#!/people/#{person.id}" }
+          = person.name
+
+.col-md-12
+  %h6
+    Releases
+  - @movie.releases.each do |release|
+    - if release.approved
+      .col-md-12
+        = release.release_date
+      .col-md-12
+        = release.country.country
+      .col-md-12
+        = release.confirmed
+
+.col-md-12
+  %h6
+    Production companies
+  - @movie.production_companies.each do |item|
+    - if item.approved
+      .col-md-12
+        = item.company.company
+
+.col-md-12
+  %h6
+    Revenue countries
+  - @movie.revenue_countries.each do |revenue|
+    - if revenue.approved
+      .col-md-12
+        .col-md-3
+          = revenue.country.country
+        .col-md-3
+          = revenue.revenue
 
 .col-md-12
   .col-md-1
