@@ -106,10 +106,6 @@ class MoviesApp.ListsShow extends Backbone.View
           $(self.el).find(tags_list_el + " .tag-tag").each ->
             if $.trim($(@).html()) == ui.item.label
               found = true
-          # tags_list.each ->
-          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-          #   tag_ids.push parseInt($(@).attr("data-id"))
-          # if $.inArray(parseInt(ui.item.id), tag_ids) == -1
           if found
             $(".notifications").html("Tag already added.").show().fadeOut(window.hide_delay)
             $(@).val("")
@@ -191,10 +187,6 @@ class MoviesApp.ListsShow extends Backbone.View
           $(self.el).find(".js-new-list-keyword-id").val("")
           keywords = []
           keyword_ids = []
-          # self.show.find(".keyword").each ->
-          #   keywords.push [$(@).attr("data-id"), $.trim($(@).find(".keyword-keyword").html())]
-          #   keyword_ids.push $(@).attr("data-id")
-          # if $.inArray(model.id, keyword_ids) == -1
           keyword_ids.push model.id
           keywords.push [model.id, model.get("keyword")]
           @keywords_view = new MoviesApp.Keywords(keywords: keywords)
@@ -240,17 +232,9 @@ class MoviesApp.ListsShow extends Backbone.View
           else if type == "Company"
             tags_list_el = ".js-tags-companies-list"
             value = model.get("company")
-
           tags_list = $(".list-tags").find(tags_list_el).find(".tag")
-
-          # tags_list.each ->
-          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-          #   tag_ids.push parseInt($(@).attr("data-id"))
-
-          # if $.inArray(parseInt(model.id), tag_ids) == -1
           tag_ids.push model.id
           tags.push [model.id, type, value]
-
           @tags_view = new MoviesApp.Tags(tags: tags)
           self.show.find(tags_list_el).append @tags_view.render().el
 

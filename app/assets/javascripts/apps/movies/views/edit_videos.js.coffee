@@ -44,17 +44,10 @@ class MoviesApp.EditVideos extends Backbone.View
           video = new MoviesApp.Video()
           video.save ({ video: { title: title, description: description, comments: comments, duration: duration, link: link, category: category, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true, temp_user_id: localStorage.temp_user_id } }),
             success: ->
-              $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
+              if window.list_id
+                self.add_video_to_list(video.id)
               self.reload_items()
-              if self.options.channel
-                $.ajax api_version + "approvals/mark",
-                  method: "post"
-                  data:
-                    approved_id: video.id
-                    type: "Video"
-                    mark: true
-                  success: ->
-                    self.add_video_to_list(video.id)
+              $(".notifications").html("Video added. It will be active after moderation.").show().fadeOut(window.hide_delay)
             error: ->
               console.log "error"
               $(".notifications").html("This video already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
@@ -84,6 +77,7 @@ class MoviesApp.EditVideos extends Backbone.View
           $(input).removeClass("error")
 
   reload_items: ->
+    console.log "reload_items"
     if window.movie_id
       movie = new MoviesApp.Movie()
       movie.url = "/api/v1/movies/#{window.movie_id}/my_movie"
@@ -156,6 +150,7 @@ class MoviesApp.EditVideos extends Backbone.View
     s
 
   add_video_to_list: (id) ->
+    console.log "add_video_to_list"
     self = @
     if window.list_id
       listable_id = id
@@ -167,16 +162,20 @@ class MoviesApp.EditVideos extends Backbone.View
           self.reload_list()
 
   reload_list: ->
+    console.log "reload_list"
     list = new MoviesApp.List()
-    list.url = "/api/v1/lists/#{window.list_id}"
+    list.url = "/api/v1/lists/#{window.list_id}?temp_user_id=" + localStorage.temp_user_id
     list.fetch
       success: ->
-        @show_view = new MoviesApp.ListsShow(list: list)
-        $(".js-content").html @show_view.render().el
+        # @show_view = new MoviesApp.ListsShow(list: list)
+        # $(".js-content").html @show_view.render().el
+        #
 
         if list.get("list").list_type == "channel"
-          @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
-          $(".add-videos-form").append @edit_videos_view.render().el
+          @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
+          $(".list_items").html @show_list_items_view.render().el
+          $(".video-info").addClass "hide"
+          $(".js-new-video-link, .js-new-video-quality").val ""
 
 
 

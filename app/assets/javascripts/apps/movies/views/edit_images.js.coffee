@@ -79,7 +79,9 @@ class MoviesApp.EditImages extends Backbone.View
       $(@el).find(".js-new-image-title").addClass("error").focus()
 
   reload_items: ->
+    console.log "reload_items"
     if window.movie_id
+      console.log "window.movie_id"
       movie = new MoviesApp.Movie()
       movie.url = api_version + "movies/#{window.movie_id}/my_movie"
       movie.fetch
@@ -92,6 +94,7 @@ class MoviesApp.EditImages extends Backbone.View
           @edit_images_view = new MoviesApp.EditImages(images: movie.images)
           $(".images").html @edit_images_view.render().el
     else if window.person_id
+      console.log "window.person_id"
       person = new PeopleApp.Person()
       person.url = api_version + "people/#{window.person_id}/my_person"
       person.fetch
@@ -114,6 +117,7 @@ class MoviesApp.EditImages extends Backbone.View
         $(".notifications").html("Image removed.").show().fadeOut(window.hide_delay)
 
   add_image_to_list: (image_id) ->
+    console.log "add_image_to_list"
     self = @
     if window.list_id
       listable_id = image_id
@@ -125,6 +129,7 @@ class MoviesApp.EditImages extends Backbone.View
           self.reload_list()
 
   reload_list: ->
+    console.log "reload_list"
     list = new MoviesApp.List()
     list.url = "/api/v1/lists/#{window.list_id}"
     list.fetch
@@ -135,5 +140,3 @@ class MoviesApp.EditImages extends Backbone.View
         if list.get("list").list_type == "gallery"
           @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
           $(".add-images-form").append @edit_images_view.render().el
-
-        # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })

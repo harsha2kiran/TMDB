@@ -78,21 +78,17 @@
 
           - if item.list_item.listable_type == "Video"
             - $.each item.list_item.videos, (i, video) ->
+
+              - is_owner = false
+              - if current_users_item(video) || current_temp_users_item(video)
+                - is_owner = true
+
               .col-md-12.js-edit-gallery-video{ "data-id" => video.id }
                 %a{ href: video.link, target: "_blank" }
-
-                  - is_owner = false
-                  - if current_users_item(video) || current_temp_users_item(video)
-                    - is_owner = true
-
                   - if is_owner || video.approved || is_admin_or_mod()
                     %img{ src: video.thumbnail, alt: "no thumb", height: "140px" }
                     .col-md-12
                       = video.title
-                    .col-md-12
-                      = video.description
-                    .col-md-12
-                      = video.duration
 
                 - if is_owner || is_admin_or_mod()
                   %input.js-edit-gallery-video-title.form-control.flat.col-md-12{ type: "text", value: video.title, placeholder: "Title" }
@@ -101,6 +97,13 @@
                   %input.js-edit-gallery-video-quality.form-control.flat.col-md-12{ type: "text", value: video.quality, placeholder: "Quality" }
                   %input.js-edit-gallery-video-duration.form-control.flat.col-md-12{ type: "text", value: video.duration, placeholder: "Duration" }
                   %button.js-edit-gallery-video-update.btn.btn-primary.flat.col-md-12= "Update"
+                - else
+                  .col-md-12
+                    = video.description
+                  .col-md-12
+                    = video.quality
+                  .col-md-12
+                    = video.duration
 
           - if item.list_item.listable_type != "Image"
             -# if is owner, admin or mod can remove items
