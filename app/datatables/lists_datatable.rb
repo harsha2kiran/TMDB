@@ -1,7 +1,8 @@
 class ListsDatatable
   delegate :params, :h, :link_to, :number_to_currency, to: :@view
 
-  def initialize(view)
+  def initialize(view, type)
+    @type = type
     @view = view
   end
 
@@ -33,7 +34,7 @@ private
   end
 
   def fetch_lists
-    lists = List.where("list_type = 'gallery'").order("#{sort_column} #{sort_direction}")
+    lists = List.where("list_type = ?", @type.downcase).order("#{sort_column} #{sort_direction}")
     lists = lists.page(page).per(per_page)
     if params[:sSearch].present?
       lists = lists.where("title like :search", search: "%#{params[:sSearch]}%")

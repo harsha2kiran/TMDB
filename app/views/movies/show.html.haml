@@ -19,9 +19,7 @@
     = @movie.overview
 
 .col-md-12
-  -# %h6.col-md-12.load-page{ "data-link" => "/?_escaped_fragment_=!/movies/#{@movie.id}/edit/my_movie" }
-  -#   Add Alternative Titles
-  %h6.col-md-12{ onclick: "test()" }
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "alternative-titles" }
     Add Alternative Titles
   - @movie.alternative_titles.each do |alt_title|
     - if alt_title.approved
@@ -37,7 +35,7 @@
           = language.language
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "movie-metadata" }
     Metadata
   - @movie.movie_metadatas.each do |metadata|
     - if metadata.approved
@@ -58,7 +56,7 @@
         = status.status
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "videos" }
     Videos
   - @movie.videos.each do |item|
     - if item.approved
@@ -72,7 +70,7 @@
           = item.description
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "images" }
     Image
   - @movie.images.each do |item|
     - if item.approved
@@ -86,7 +84,7 @@
           = item.description
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "genres" }
     Genres
   - @movie.movie_genres.each do |item|
     - if item.approved
@@ -99,7 +97,7 @@
         = genre.genre
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "cast" }
     Cast
   - @movie.casts.each do |item|
     - begin
@@ -116,7 +114,7 @@
             = person.name
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "crew" }
     Crew
   - @movie.crews.each do |item|
     - begin
@@ -133,7 +131,7 @@
             = person.name
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "keywords" }
     Keywords
   - @movie.movie_keywords.each do |item|
     - if item.approved
@@ -146,7 +144,7 @@
         = keyword.keyword
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "languages" }
     Languages
   - @movie.movie_languages.each do |item|
     - if item.approved
@@ -159,7 +157,7 @@
         = language.language
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "tags" }
     Tagged people
   - @movie.tags.each do |item|
     - begin
@@ -173,7 +171,7 @@
           = person.name
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "releases" }
     Releases
   - @movie.releases.each do |release|
     - if release.approved
@@ -190,7 +188,7 @@
         = release.confirmed
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "production-companies" }
     Production companies
   - @movie.production_companies.each do |item|
     - if item.approved
@@ -203,7 +201,7 @@
         = company.company
 
 .col-md-12
-  %h6
+  %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "revenue-countries" }
     Revenue countries
   - @movie.revenue_countries.each do |revenue|
     - if revenue.approved

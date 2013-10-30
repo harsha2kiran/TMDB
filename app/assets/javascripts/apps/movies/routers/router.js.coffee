@@ -182,11 +182,8 @@ class MoviesApp.Router extends Backbone.Router
         temp_user_id: localStorage.temp_user_id
       success: ->
         movie = movie.get("movie")
-
         @edit_view = new MoviesApp.Edit(movie: movie, my_movie: my_movie)
         $(".js-content").html @edit_view.render().el
-
-        # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
   new: ->
     console.log "add new movie"

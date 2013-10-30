@@ -169,7 +169,9 @@ class Api::V1::ApprovalsController < Api::V1::BaseController
     elsif @type == "Person"
       value = PeopleDatatable.new(view_context)
     elsif @type == "Gallery"
-      value = ListsDatatable.new(view_context)
+      value = ListsDatatable.new(view_context, @type)
+    elsif @type == "Channel"
+      value = ListsDatatable.new(view_context, @type)
     elsif @type == "User"
       value = UsersDatatable.new(view_context)
     end

@@ -31,6 +31,7 @@ class Api::V1::ListsController < Api::V1::BaseController
     begin
       @list = @cache.get "list/#{params[:id]}"
       @images = @cache.get "list/#{params[:id]}/images"
+      @videos = @cache.get "list/#{params[:id]}/videos"
       @keywords = @cache.get "list/#{params[:id]}/keywords"
       @tags =  @cache.get "list/#{params[:id]}/tags"
     rescue
@@ -46,17 +47,21 @@ class Api::V1::ListsController < Api::V1::BaseController
       @list = @list.first
       if @list
         image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
+        video_ids = @list.list_items.where(listable_type: "Video").map(&:listable_id)
         @images = Image.where("id IN (?)", image_ids).order("priority ASC")
+        @videos = Video.where("id IN (?)", video_ids).order("priority ASC")
         @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
         @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
       else
         @images = []
+        @videos = []
         @keywords = []
         @tags = []
       end
       if Rails.env.to_s == "production"
         @cache.set "list/#{params[:id]}", @list
         @cache.set "list/#{params[:id]}/images", @images
+        @cache.set "list/#{params[:id]}/videos", @videos
         @cache.set "list/#{params[:id]}/keywords", @keywords
         @cache.set "list/#{params[:id]}/tags", @tags
       end
@@ -128,15 +133,29 @@ class Api::V1::ListsController < Api::V1::BaseController
   end
 
   def channels
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-      @lists = List.where(list_type: "channel").includes(:list_items, :user)
-    elsif current_api_user && current_api_user.user_type == "user"
-      @lists = List.where("(list_type = 'channel') AND (approved = true OR user_id = ?)", current_api_user.id).includes(:list_items, :user)
-    elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
-      @lists = List.where("(list_type = 'channel') AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
-    else
-      @lists = List.where(list_type: "channel", approved: true).includes(:list_items, :user, :follows)
+    page = params[:page] ? params[:page] : 1
+    begin
+      cached_content = @cache.get "channels?page=#{page}"
+      if cached_content
+        @lists = cached_content
+      end
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        @lists = List.where(list_type: "channel").includes(:list_items, :user)
+      elsif current_api_user && current_api_user.user_type == "user"
+        @lists = List.where("(list_type = 'channel') AND (approved = true OR user_id = ?)", current_api_user.id).includes(:list_items, :user)
+      elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+        @lists = List.where("(list_type = 'channel') AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
+      else
+        @lists = List.where(list_type: "channel", approved: true).includes(:list_items, :user, :follows)
+      end
+      @lists = @lists.page(page).per(20)
+      if Rails.env.to_s == "production"
+        @cache.set "channels?page=#{page}", @lists.all
+      end
     end
+    @image_ids = @lists.map(&:list_items).flatten.map(&:listable_id)
+    @images = Image.find_all_by_id(@image_ids)
     @current_api_user = current_api_user
     render 'index'
   end

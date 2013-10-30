@@ -59,6 +59,15 @@ class AdminApp.MainItemsIndex extends Backbone.View
           else
             $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"
           $('td:eq(3)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='lists'>Delete</button>"
+        else if type == "Channel"
+          $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
+          $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
+          $('td:eq(2)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='/#!/lists/" + aData[0] + "'>Moderate</a>"
+          if aData[3] == "false"
+            $('td:eq(2)', nRow).append "(Pending)"
+          else
+            $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"
+          $('td:eq(3)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='lists'>Delete</button>"
         else if type == "User"
           $('td:eq(0)', nRow).attr("data-id", "first_name").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "last_name").addClass("jeditable").html(aData[2])
@@ -70,6 +79,9 @@ class AdminApp.MainItemsIndex extends Backbone.View
           $(nRow).attr("data-id", aData[0])
           $(nRow).attr("data-model", type)
         else if type == "Gallery"
+          $(nRow).attr("data-id", aData[0])
+          $(nRow).attr("data-model", "List")
+        else if type == "Channel"
           $(nRow).attr("data-id", aData[0])
           $(nRow).attr("data-model", "List")
         else if type == "User"

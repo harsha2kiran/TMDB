@@ -23,6 +23,25 @@ if @list
       end
     }
 
+    node(:videos){ |item|
+      if item.listable_type != "Video"
+        r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+        if r.length > 0
+          r.first.videos
+        end
+      else
+        if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+          @videos.select{ |image| image.id == item.listable_id }
+        elsif @current_api_user && @current_api_user.user_type == "user"
+          @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
+        elsif params[:temp_user_id]
+          @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
+        else
+          @videos.select{ |image| image.id == item.listable_id && image.approved == true }
+        end
+      end
+    }
+
     node(:listable_item){ |item|
       if item.listable_type != "Image"
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)

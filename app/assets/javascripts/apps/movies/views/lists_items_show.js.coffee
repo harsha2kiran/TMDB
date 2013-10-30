@@ -8,7 +8,8 @@ class MoviesApp.ListItemsShow extends Backbone.View
   events:
     "click .js-remove" : "destroy"
     "click .js-approve" : "approve"
-    "click .js-edit-gallery-image-update" : "update"
+    "click .js-edit-gallery-image-update" : "image_update"
+    "click .js-edit-gallery-video-update" : "video_update"
 
   render: ->
     show = $(@el)
@@ -16,7 +17,7 @@ class MoviesApp.ListItemsShow extends Backbone.View
     show.html @template(list: list)
     this
 
-  update: (e) ->
+  image_update: (e) ->
     parent = $(e.target).parents(".js-edit-gallery-image").first()
     id = parent.attr("data-id")
     title = parent.find(".js-edit-gallery-image-title").val()
@@ -33,6 +34,24 @@ class MoviesApp.ListItemsShow extends Backbone.View
     else
       parent.find(".js-edit-gallery-image-title").addClass("error")
 
+  video_update: (e) ->
+    parent = $(e.target).parents(".js-edit-gallery-video").first()
+    id = parent.attr("data-id")
+    title = parent.find(".js-edit-gallery-video-title").val()
+    description = parent.find(".js-edit-gallery-video-description").val()
+    priority = parent.find(".js-edit-gallery-video-priority").val()
+    quality = parent.find(".js-edit-gallery-video-quality").val()
+    duration = parent.find(".js-edit-gallery-video-duration").val()
+    if title != ""
+      parent.find(".js-edit-gallery-video-title").removeClass("error")
+      video = new MoviesApp.Video()
+      video.url = api_version + "videos/" + id
+      video.set({ title: title, description: description, priority: priority, id: id })
+      video.save null,
+        success: ->
+          $(".notifications").html("Successfully updated.").show().fadeOut(window.hide_delay)
+    else
+      parent.find(".js-edit-gallery-video-title").addClass("error")
 
   destroy: (e) ->
     if $(e.target).hasClass("js-remove")

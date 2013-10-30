@@ -12,5 +12,7 @@
     Lists
   %a.col-md-2{ href: "/#!/galleries" }
     Galleries
+  %a.col-md-2{ href: "/#!/channels" }
+    Channels
 
 

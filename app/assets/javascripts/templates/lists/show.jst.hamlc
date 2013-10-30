@@ -202,8 +202,6 @@
   - if list.list_type == "channel"
     .add-videos-form
 
-  -# .list_items
-
 - else
   .col-md-12
     List doesn't exist

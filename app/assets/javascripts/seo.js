@@ -1,35 +1,8 @@
-// $(document).ready(function(){
-//   $(".load-page").click(function(){
-//     var link = $(this).attr("data-link");
-//     window.skip = true;
-//     if(link){
-//       $.ajax({
-//         url: link,
-//         success: function(data) {
-//           $("#js-popup").html(data);
-//         }
-//       });
-//     }
-//   });
-// });
-
-function test(){
-  var xmlhttp;
-  if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-    }
-  else
-    {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-  xmlhttp.onreadystatechange=function()
-    {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-      {
-      document.getElementById("js-popup").innerHTML=xmlhttp.responseText;
-      }
-    }
-  xmlhttp.open("GET","/?_escaped_fragment_=!/movies/3521/edit/my_movie",true);
-  xmlhttp.send();
-}
+$(document).ready(function(){
+  $(".load-page").click(function(){
+    var link = $(this).attr("data-link");
+    var tab = $(this).attr("data-tab");
+    localStorage.tab = tab;
+    window.location = link;
+  });
+});

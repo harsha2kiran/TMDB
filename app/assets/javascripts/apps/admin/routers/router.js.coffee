@@ -5,6 +5,7 @@ class AdminApp.Router extends Backbone.Router
     "admin/movies" : "movies"
     "admin/people" : "people"
     "admin/galleries" : "galleries"
+    "admin/channels" : "channels"
     "admin/users" : "users"
     "admin/movies/:id" : "movie"
     "admin/people/:id" : "person"
@@ -30,6 +31,15 @@ class AdminApp.Router extends Backbone.Router
     type = "Gallery"
     if current_user && current_user.user_type == "admin"
       console.log "admin galleries index"
+      @clear_values()
+      @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
+      $(".js-content").html @index_view.render().el
+
+  channels: ->
+    window.list_type = "channel"
+    type = "Channel"
+    if current_user && current_user.user_type == "admin"
+      console.log "admin channels index"
       @clear_values()
       @index_view = new AdminApp.MainItemsIndex(items: [], type: type)
       $(".js-content").html @index_view.render().el

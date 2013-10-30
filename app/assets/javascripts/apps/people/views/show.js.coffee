@@ -46,4 +46,5 @@ class PeopleApp.Show extends Backbone.View
     id = $(e.target).parent().attr("id")
     tab = id.replace("add-", "")
     localStorage.tab = tab
+    console.log localStorage.tab
     window.PeopleApp.router.navigate("/#!/people/#{window.person_id}/edit/my_person", true)
