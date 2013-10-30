@@ -71,7 +71,11 @@
   %h6
     Cast
   - @person.casts.each do |item|
-    - movie = item.movie
+    - begin
+      - movie = @cache.get "movie_#{item.movie_id}"
+    - rescue
+      - movie = item.movie
+      - @cache.set "movie_#{movie.id}", movie if Rails.env.to_s == "production"
     - if item.approved && movie.approved
       .col-md-12
         .col-md-3
@@ -84,7 +88,11 @@
   %h6
     Crew
   - @person.crews.each do |item|
-    - movie = item.movie
+    - begin
+      - movie = @cache.get "movie_#{item.movie_id}"
+    - rescue
+      - movie = item.movie
+      - @cache.set "movie_#{movie.id}", movie if Rails.env.to_s == "production"
     - if item.approved && movie.approved
       .col-md-12
         .col-md-3
@@ -108,7 +116,12 @@
     - if item.approved
       .col-md-12
         .col-md-3
-          = item.social_app.social_app
+          - begin
+            - social_app = @cache.get "social_app_#{item.social_app_id}"
+          - rescue
+            - social_app = item.social_app
+            - @cache.set "social_app_#{social_app.id}", social_app if Rails.env.to_s == "production"
+          = social_app.social_app
         .col-md-3
           %a{ href: item.profile_link, target: "_blank" }
             = item.profile_link
@@ -117,7 +130,11 @@
   %h6
     Tagged movies
   - @person.tags.each do |item|
-    - movie = item.taggable
+    - begin
+      - movie = @cache.get "movie_#{item.taggable_id}"
+    - rescue
+      - movie = item.taggable
+      - @cache.set "movie_#{movie.id}", movie if Rails.env.to_s == "production"
     - if item.approved && movie.approved
       .col-md-12
         %a{ href: "/#!/movies/#{movie.id}" }

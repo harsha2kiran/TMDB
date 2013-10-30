@@ -7,18 +7,20 @@ class DashboardApp.Router extends Backbone.Router
   initialize: ->
 
   index: ->
-    console.log "router index"
-    @search_form = new DashboardApp.SearchForm()
-    $(".js-content").html @search_form.render().el
+    unless window.skip
+      window.skip = false
+      console.log "router index"
+      @search_form = new DashboardApp.SearchForm()
+      $(".js-content").html @search_form.render().el
 
-    # @menu = new DashboardApp.Menu()
-    # $(".js-content").append @menu.render().el
+      # @menu = new DashboardApp.Menu()
+      # $(".js-content").append @menu.render().el
 
-    gallery = new DashboardApp.GalleryCollection()
-    gallery.fetch
-      success: ->
-        @gallery = new DashboardApp.Gallery(collection: gallery)
-        $(".js-content").append @gallery.render().el
+      gallery = new DashboardApp.GalleryCollection()
+      gallery.fetch
+        success: ->
+          @gallery = new DashboardApp.Gallery(collection: gallery)
+          $(".js-content").append @gallery.render().el
 
   edit_popular: ->
     console.log "edit pop"

@@ -99,12 +99,14 @@ class MoviesApp.Edit extends Backbone.View
       $container.find(".js-title").addClass("error")
 
   goto_tab_from_show: ->
+    console.log "goto_tab_from_show"
     $(".movie").hide().addClass("hide")
     $(@el).find(".tab").hide().addClass("hide")
     $(@el).find("." + localStorage.tab).show().removeClass("hide")
     localStorage.tab = ""
 
   goto: (e) ->
+    console.log "goto"
     id = $(e.target).attr("id")
     tab = id.replace("goto-", "")
     $(".tab").hide().addClass("hide")

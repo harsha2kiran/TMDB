@@ -19,15 +19,22 @@
     = @movie.overview
 
 .col-md-12
-  %h6
-    Alternative Titles
+  -# %h6.col-md-12.load-page{ "data-link" => "/?_escaped_fragment_=!/movies/#{@movie.id}/edit/my_movie" }
+  -#   Add Alternative Titles
+  %h6.col-md-12{ onclick: "test()" }
+    Add Alternative Titles
   - @movie.alternative_titles.each do |alt_title|
     - if alt_title.approved
       .col-md-12
         .col-md-3
           = alt_title.alternative_title
         .col-md-3
-          = alt_title.language.language
+          - begin
+            - language = @cache.get "language_#{alt_title.language_id}"
+          - rescue
+            - language = alt_title.language
+            - @cache.set "language_#{language.id}", language if Rails.env.to_s == "production" if Rails.env.to_s == "production"
+          = language.language
 
 .col-md-12
   %h6
@@ -43,7 +50,12 @@
       .col-md-12
         = metadata.runtime
       .col-md-12
-        = metadata.status.status
+        - begin
+          - status = @cache.get "status_#{metadata.status_id}"
+        - rescue
+          - status = metadata.status
+          - @cache.set "status_#{status.id}", status if Rails.env.to_s == "production"
+        = status.status
 
 .col-md-12
   %h6
@@ -79,13 +91,22 @@
   - @movie.movie_genres.each do |item|
     - if item.approved
       .col-md-12
-        = item.genre.genre
+        - begin
+          - genre = @cache.get "genre_#{item.genre_id}"
+        - rescue
+          - genre = item.genre
+          - @cache.set "genre_#{genre.id}", genre if Rails.env.to_s == "production"
+        = genre.genre
 
 .col-md-12
   %h6
     Cast
   - @movie.casts.each do |item|
-    - person = item.person
+    - begin
+      - person = @cache.get "person_#{item.person_id}"
+    - rescue
+      - person = item.person
+      - @cache.set "person_#{person.id}", person if Rails.env.to_s == "production"
     - if item.approved && person.approved
       .col-md-12
         .col-md-3
@@ -98,7 +119,11 @@
   %h6
     Crew
   - @movie.crews.each do |item|
-    - person = item.person
+    - begin
+      - person = @cache.get "person_#{item.person_id}"
+    - rescue
+      - person = item.person
+      - @cache.set "person_#{person.id}", person if Rails.env.to_s == "production"
     - if item.approved && person.approved
       .col-md-12
         .col-md-3
@@ -113,7 +138,12 @@
   - @movie.movie_keywords.each do |item|
     - if item.approved
       .col-md-12
-        = item.keyword.keyword
+        - begin
+          - keyword = @cache.get "keyword_#{item.keyword_id}"
+        - rescue
+          - keyword = item.keyword
+          - @cache.set "keyword_#{keyword.id}", keyword if Rails.env.to_s == "production"
+        = keyword.keyword
 
 .col-md-12
   %h6
@@ -121,13 +151,22 @@
   - @movie.movie_languages.each do |item|
     - if item.approved
       .col-md-12
-        = item.language.language
+        - begin
+          - language = @cache.get "language_#{item.language_id}"
+        - rescue
+          - language = item.language
+          - @cache.set "language_#{language.id}", language if Rails.env.to_s == "production"
+        = language.language
 
 .col-md-12
   %h6
     Tagged people
   - @movie.tags.each do |item|
-    - person = item.person
+    - begin
+      - person = @cache.get "person_#{item.person_id}"
+    - rescue
+      - person = item.person
+      - @cache.set "person_#{person.id}", person if Rails.env.to_s == "production"
     - if item.approved && person.approved
       .col-md-12
         %a{ href: "/#!/people/#{person.id}" }
@@ -141,7 +180,12 @@
       .col-md-12
         = release.release_date
       .col-md-12
-        = release.country.country
+        - begin
+          - country = @cache.get "country_#{release.country_id}"
+        - rescue
+          - country = release.country
+          - @cache.set "country_#{country.id}", country if Rails.env.to_s == "production"
+        = country.country
       .col-md-12
         = release.confirmed
 
@@ -151,7 +195,12 @@
   - @movie.production_companies.each do |item|
     - if item.approved
       .col-md-12
-        = item.company.company
+        - begin
+          - company = @cache.get "company_#{item.company_id}"
+        - rescue
+          - company = item.company
+          - @cache.set "company_#{company.id}", company if Rails.env.to_s == "production"
+        = company.company
 
 .col-md-12
   %h6
@@ -160,7 +209,12 @@
     - if revenue.approved
       .col-md-12
         .col-md-3
-          = revenue.country.country
+          - begin
+            - country = @cache.get "country_#{revenue.country_id}"
+          - rescue
+            - country = revenue.country
+            - @cache.set "country_#{country.id}", country if Rails.env.to_s == "production"
+          = country.country
         .col-md-3
           = revenue.revenue
 
