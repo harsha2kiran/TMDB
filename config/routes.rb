@@ -111,6 +111,7 @@ Movies::Application.routes.draw do
       collection do
         get "validate_links" => "videos#validate_links"
         post "check" => "videos#check"
+        post "fetch_username" => "videos#fetch_username"
       end
     end
 

@@ -65,4 +65,14 @@ class Api::V1::VideosController < Api::V1::BaseController
     render json: { title: title, description: description, duration: duration, comments: comments, category: category, thumbnail: thumbnail }
   end
 
+  def fetch_username
+    username = params[:username]
+    if username
+      client = YouTubeIt::Client.new
+      # videos = client.videos_by(user: username)
+      videos = client.get_all_videos(user: username)
+    end
+    render json: { videos: videos }
+  end
+
 end

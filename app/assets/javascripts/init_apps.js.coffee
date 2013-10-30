@@ -127,3 +127,19 @@ window.extract_words = (values) ->
         words.push word.replace(",", "")
   words
 
+window.set_duration = (seconds) ->
+  numdays = Math.floor(seconds / 86400)
+  numhours = Math.floor((seconds % 86400) / 3600)
+  numminutes = Math.floor(((seconds % 86400) % 3600) / 60)
+  numseconds = ((seconds % 86400) % 3600) % 60
+
+  if numminutes.toString().length == 1
+    numminutes = "0" + numminutes
+  if numhours.toString().length == 1
+    numhours = "0" + numhours
+  if numseconds.toString().length == 1
+    numseconds = "0" + numseconds
+  s = numhours + ":" + numminutes + ":" + numseconds
+  s
+
+

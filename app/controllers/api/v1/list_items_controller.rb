@@ -29,10 +29,11 @@ class Api::V1::ListItemsController < Api::V1::BaseController
       list_item = list.list_items.find params[:id]
       if list_item.update_attributes(params[:list_item])
         if params[:list_item][:approved]
-          if list_item.listable_type == "Image"
+          if ["Image", "Video"].include?(list_item.listable_type)
             item = list_item.listable_type.classify.constantize.find(list_item.listable_id)
             item.approved = true
-            pending = PendingItem.where(pendable_id: list.id, pendable_type: "List", approvable_id: item.id, approvable_type: "Image")
+            item.save
+            pending = PendingItem.where(pendable_id: list.id, pendable_type: "List", approvable_id: item.id, approvable_type: list_item.listable_type)
             pending.destroy_all
           end
         end

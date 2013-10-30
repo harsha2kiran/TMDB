@@ -9,6 +9,8 @@ class MoviesApp.EditVideos extends Backbone.View
     "click .js-new-video-save" : "create"
     "click .js-video-remove" : "destroy"
     "click .js-new-video-check" : "check"
+    "click .js-switch-video-tabs" : "tabs"
+    "click .js-new-youtube-username-check" : "fetch_username"
 
   render: ->
     edit = $(@el)
@@ -122,7 +124,7 @@ class MoviesApp.EditVideos extends Backbone.View
         data:
           link: link
         success: (data) ->
-          duration = s.set_duration(data.duration)
+          duration = window.set_duration(data.duration)
           $self.find(".js-new-video-title").val(data.title)
           $self.find(".js-new-video-description").val(data.description)
           $self.find(".js-new-video-comments").val(data.comments)
@@ -133,21 +135,6 @@ class MoviesApp.EditVideos extends Backbone.View
           $self.find(".video-info").removeClass("hide").show()
     else
       $self.find(".js-new-video-link").addClass("error")
-
-  set_duration: (seconds) ->
-    numdays = Math.floor(seconds / 86400)
-    numhours = Math.floor((seconds % 86400) / 3600)
-    numminutes = Math.floor(((seconds % 86400) % 3600) / 60)
-    numseconds = ((seconds % 86400) % 3600) % 60
-
-    if numminutes.toString().length == 1
-      numminutes = "0" + numminutes
-    if numhours.toString().length == 1
-      numhours = "0" + numhours
-    if numseconds.toString().length == 1
-      numseconds = "0" + numseconds
-    s = numhours + ":" + numminutes + ":" + numseconds
-    s
 
   add_video_to_list: (id) ->
     console.log "add_video_to_list"
@@ -167,15 +154,31 @@ class MoviesApp.EditVideos extends Backbone.View
     list.url = "/api/v1/lists/#{window.list_id}?temp_user_id=" + localStorage.temp_user_id
     list.fetch
       success: ->
-        # @show_view = new MoviesApp.ListsShow(list: list)
-        # $(".js-content").html @show_view.render().el
-        #
-
         if list.get("list").list_type == "channel"
           @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
           $(".list_items").html @show_list_items_view.render().el
           $(".video-info").addClass "hide"
           $(".js-new-video-link, .js-new-video-quality").val ""
+
+  tabs: (e) ->
+    id = $(e.target).attr("id")
+    $(".js-video-tabs").addClass "hide"
+    $(".#{id}").removeClass "hide"
+
+  fetch_username: (e) ->
+    console.log "fetch_username"
+    $username = $(@el).find(".js-new-youtube-username")
+    username = $.trim($username.val())
+    if username != ""
+      $.ajax api_version + "videos/fetch_username",
+        method: "POST"
+        data:
+          username: username
+        success: (videos) ->
+          @import_videos_view = new MoviesApp.ImportVideos(videos: videos)
+          $(".js-import-videos-list").html @import_videos_view.render().el
+
+
 
 
 

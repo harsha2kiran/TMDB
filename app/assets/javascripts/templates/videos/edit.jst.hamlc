@@ -14,7 +14,14 @@
       - if current_user && current_user.user_type == "admin"
         .col-md-2
           %input.js-video-remove.btn{ type: "button", value: "Remove", data: { id: video.id } }
-  .col-md-12
+  - if @channel
+    .col-md-12
+      #js-add-single-video.col-md-3.js-switch-video-tabs.btn.btn-primary
+        Add single video
+      #js-add-user-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
+        Import videos from youtube user
+
+  .col-md-12.js-add-single-video.js-video-tabs
     %p
       Add new video
     .col-md-12
@@ -51,3 +58,22 @@
           %input.js-new-video-duration.form-control.flat{ type: "text", placeholder: "Duration" }
       .col-md-6.text-right
         %input.js-new-video-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
+
+  - if @channel
+    .col-md-12.js-add-user-videos.hide.js-video-tabs
+      %p
+        Add videos from youtube user
+      .col-md-12
+        .col-md-2.input-label
+          Youtube username
+        %input.js-new-youtube-username.form-control.flat.col-md-6{ type: "text", placeholder: "Youtube username" }
+        .col-md-2
+          %input.js-new-youtube-username-check.btn{ type: "button", value: "Fetch" }
+
+      .col-md-12.js-import-videos-list
+
+
+
+
+
+

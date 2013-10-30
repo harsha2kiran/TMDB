@@ -15,7 +15,7 @@ class Video < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :link, :priority, :quality, :title
+  validates_presence_of :link, :priority, :title
   validates :link, url: true
   validates :link, :uniqueness => { :scope => [:videable_id, :videable_type] }
 
