@@ -36,7 +36,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "movie-metadata" }
-    Metadata
+    Add Metadata
   - @movie.movie_metadatas.each do |metadata|
     - if metadata.approved
       .col-md-12
@@ -57,7 +57,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "videos" }
-    Videos
+    Add Videos
   - @movie.videos.each do |item|
     - if item.approved
       .col-md-12
@@ -71,7 +71,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "images" }
-    Image
+    Add Image
   - @movie.images.each do |item|
     - if item.approved
       .col-md-12
@@ -85,7 +85,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "genres" }
-    Genres
+    Add Genres
   - @movie.movie_genres.each do |item|
     - if item.approved
       .col-md-12
@@ -98,7 +98,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "cast" }
-    Cast
+    Add Cast
   - @movie.casts.each do |item|
     - begin
       - person = @cache.get "person_#{item.person_id}"
@@ -115,7 +115,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "crew" }
-    Crew
+    Add Crew
   - @movie.crews.each do |item|
     - begin
       - person = @cache.get "person_#{item.person_id}"
@@ -132,7 +132,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "keywords" }
-    Keywords
+    Add Keywords
   - @movie.movie_keywords.each do |item|
     - if item.approved
       .col-md-12
@@ -145,7 +145,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "languages" }
-    Languages
+    Add Languages
   - @movie.movie_languages.each do |item|
     - if item.approved
       .col-md-12
@@ -158,7 +158,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "tags" }
-    Tagged people
+    Add Tagged people
   - @movie.tags.each do |item|
     - begin
       - person = @cache.get "person_#{item.person_id}"
@@ -172,7 +172,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "releases" }
-    Releases
+    Add Releases
   - @movie.releases.each do |release|
     - if release.approved
       .col-md-12
@@ -189,7 +189,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "production-companies" }
-    Production companies
+    Add Production companies
   - @movie.production_companies.each do |item|
     - if item.approved
       .col-md-12
@@ -202,7 +202,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/movies/#{@movie.id}/edit/my_movie", "data-tab" => "revenue-countries" }
-    Revenue countries
+    Add Revenue countries
   - @movie.revenue_countries.each do |revenue|
     - if revenue.approved
       .col-md-12

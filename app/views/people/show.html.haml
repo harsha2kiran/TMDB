@@ -41,7 +41,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "videos" }
-    Videos
+    Add Videos
   - @person.videos.each do |item|
     - if item.approved
       .col-md-12
@@ -55,7 +55,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "images" }
-    Image
+    Add Image
   - @person.images.each do |item|
     - if item.approved
       .col-md-12
@@ -69,7 +69,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "cast" }
-    Cast
+    Add Cast
   - @person.casts.each do |item|
     - begin
       - movie = @cache.get "movie_#{item.movie_id}"
@@ -86,7 +86,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "crew" }
-    Crew
+    Add Crew
   - @person.crews.each do |item|
     - begin
       - movie = @cache.get "movie_#{item.movie_id}"
@@ -103,7 +103,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "alternative-names" }
-    Alternative Names
+    Add Alternative Names
   - @person.alternative_names.each do |alt_name|
     - if alt_name.approved
       .col-md-12
@@ -111,7 +111,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "person-social-apps" }
-    Social Apps
+    Add Social Apps
   - @person.person_social_apps.each do |item|
     - if item.approved
       .col-md-12
@@ -128,7 +128,7 @@
 
 .col-md-12
   %h6.col-md-12.load-page{ "data-link" => "/#!/people/#{@person.id}/edit/my_person", "data-tab" => "tags" }
-    Tagged movies
+    Add Tagged movies
   - @person.tags.each do |item|
     - begin
       - movie = @cache.get "movie_#{item.taggable_id}"
