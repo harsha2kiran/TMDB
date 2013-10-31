@@ -69,9 +69,61 @@ class MoviesApp.ImportVideos extends Backbone.View
   import_all: (e) ->
     console.log "import_all"
     self = @
+    $(e.target).html("Please wait").attr({ "disabled" : "disabled" })
+    videos = self.collect_videos()
+    self.insert_all_videos(videos)
+
+  remove_saved_videos: (links) ->
     parents = $(".import-video")
+    removed = false
     parents.each (i, parent) ->
-      self.insert_video(self, $(parent))
+      parent = $(parent)
+      link = $.trim(parent.find(".js-link").val())
+      if $.inArray(link, links) > -1
+        removed = true
+        parent.remove()
+    if $(".import-video").length == 0
+      $(".notifications").html("Successfully added to videos.").show().fadeOut(window.hide_delay)
+      $(".js-import-videos-list").html ""
+    else if $(".import-video").length > 0 && removed = true
+      $(".notifications").html("Successfully added to videos. The rest already exist.").show().fadeOut(window.hide_delay)
+    if links.length == 0
+      $(".notifications").html("Videos already exist.").show().fadeOut(window.hide_delay)
+
+  collect_videos: (e) ->
+    console.log "collect_videos"
+    parents = $(".import-video")
+    videos = []
+    parents.each (i, parent) ->
+      parent = $(parent)
+      title = parent.find(".js-title").val()
+      description = parent.find(".js-description").val()
+      quality = parent.find(".js-quality").val()
+      priority = parent.find(".js-priority").val()
+      duration = parent.find(".js-duration").val()
+      link = parent.find(".js-link").val()
+      thumbnail = parent.find("img").attr("src")
+      video = { title: title, description: description, quality: quality, priority: priority, duration: duration, link: link, thumbnail: thumbnail }
+      videos.push video
+    videos
+
+  insert_all_videos: (videos) ->
+    self = @
+    console.log "insert_all_videos"
+    $.ajax api_version + "videos/import_all",
+      method: "POST"
+      data:
+        videos: videos
+        videable_id: window.list_id
+        videable_type: "List"
+        list_id: window.list_id
+        temp_user_id: localStorage.temp_user_id
+      success: (data) ->
+        success_links = data.success_links
+        self.remove_saved_videos(success_links)
+        self.reload_list_items()
+        $(".js-new-youtube-username").val ""
+        $(".js-import-all").html("Import all").removeAttr("disabled")
 
   add_video_to_list: (video_id) ->
     self = @

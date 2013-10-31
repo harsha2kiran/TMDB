@@ -169,6 +169,8 @@ class MoviesApp.EditVideos extends Backbone.View
     console.log "fetch_username"
     $username = $(@el).find(".js-new-youtube-username")
     username = $.trim($username.val())
+    self = @
+    $(e.target).val("Please wait").attr({ "disabled" : "disabled" })
     if username != ""
       $.ajax api_version + "videos/fetch_username",
         method: "POST"
@@ -177,6 +179,7 @@ class MoviesApp.EditVideos extends Backbone.View
         success: (videos) ->
           @import_videos_view = new MoviesApp.ImportVideos(videos: videos)
           $(".js-import-videos-list").html @import_videos_view.render().el
+          $(e.target).val("Fetch").removeAttr("disabled")
 
 
 

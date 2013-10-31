@@ -75,4 +75,27 @@ class Api::V1::VideosController < Api::V1::BaseController
     render json: { videos: videos }
   end
 
+  def import_all
+    videos = params[:videos]
+    success_links = []
+    videos.each do |video|
+      new_video = Video.new(video[1])
+      new_video.videable_id = params[:videable_id]
+      new_video.videable_type = params[:videable_type]
+      if new_video.save
+        success_links << new_video.link
+        if params[:videable_type] == "List"
+          list_item = ListItem.new
+          list_item.listable_id = new_video.id
+          list_item.listable_type = "Video"
+          list_item.user_id = current_api_user.id if current_api_user
+          list_item.temp_user_id = params[:temp_user_id]
+          list_item.list_id = params[:list_id]
+          list_item.save!
+        end
+      end
+    end
+    render json: { success_links: success_links }
+  end
+
 end
