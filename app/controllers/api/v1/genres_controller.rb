@@ -18,7 +18,9 @@ class Api::V1::GenresController < Api::V1::BaseController
         end
         genre.movies = movies.flatten
       end
-      @cache.set "genres", @genres.all
+      if Rails.env.to_s == "production"
+        @cache.set "genres", @genres.all
+      end
     end
   end
 
@@ -38,7 +40,9 @@ class Api::V1::GenresController < Api::V1::BaseController
         end
         @genre.movies = movies.flatten
       end
-      @cache.set "genre_#{params[:id]}", @genre
+      if Rails.env.to_s == "production"
+        @cache.set "genre_#{params[:id]}", @genre
+      end
     end
   end
 
