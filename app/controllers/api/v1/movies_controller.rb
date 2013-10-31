@@ -41,7 +41,14 @@ class Api::V1::MoviesController < Api::V1::BaseController
   end
 
   def get_popular
-    @items = fetch_popular
+    begin
+      @movies = @cache.get "popular"
+    rescue
+      @items = fetch_popular
+      if Rails.env.to_s == "production"
+        @cache.set "popular", @movies
+      end
+    end
     render 'popular'
   end
 
