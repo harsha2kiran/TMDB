@@ -112,6 +112,7 @@ Movies::Application.routes.draw do
         get "validate_links" => "videos#validate_links"
         post "check" => "videos#check"
         post "fetch_username" => "videos#fetch_username"
+        post "fetch_search" => "videos#fetch_search"
         post "import_all" => "videos#import_all"
       end
     end

@@ -20,6 +20,8 @@
         Add single video
       #js-add-user-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
         Import videos from youtube user
+      #js-add-search-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
+        Search youtube videos
 
   .col-md-12.js-add-single-video.js-video-tabs
     %p
@@ -70,7 +72,17 @@
         .col-md-2
           %input.js-new-youtube-username-check.btn{ type: "button", value: "Fetch" }
 
-      .col-md-12.js-import-videos-list
+    .col-md-12.js-add-search-videos.hide.js-video-tabs
+      %p
+        Add videos from youtube search
+      .col-md-12
+        .col-md-2.input-label
+          Search
+        %input.js-new-youtube-search.form-control.flat.col-md-6{ type: "text", placeholder: "Search" }
+        .col-md-2
+          %input.js-new-youtube-search-check.btn{ type: "button", value: "Fetch" }
+
+    .col-md-12.js-import-videos-list
 
 
 

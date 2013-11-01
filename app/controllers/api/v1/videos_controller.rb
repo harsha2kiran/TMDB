@@ -69,8 +69,16 @@ class Api::V1::VideosController < Api::V1::BaseController
     username = params[:username]
     if username
       client = YouTubeIt::Client.new
-      # videos = client.videos_by(user: username)
       videos = client.get_all_videos(user: username)
+    end
+    render json: { videos: videos }
+  end
+
+  def fetch_search
+    search = params[:search]
+    if search
+      client = YouTubeIt::Client.new
+      videos = client.videos_by(query: search)
     end
     render json: { videos: videos }
   end

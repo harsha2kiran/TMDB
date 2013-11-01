@@ -1,4 +1,4 @@
-- videos = @videos.videos
+- videos = @videos
 .col-md-12
   - $.each videos, (i, video) ->
     .col-md-4.import-video
