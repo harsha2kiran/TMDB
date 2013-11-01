@@ -18,6 +18,11 @@ private
 
   def data
     people.map do |person|
+      if (person.pending_items.length > 0) || person.approved == false
+        pending = true
+      else
+        pending = false
+      end
       [
         h(person.id),
         h(person.name),
@@ -25,7 +30,7 @@ private
         h(person.place_of_birth),
         h(person.imdb_id),
         "",
-        ( (person.pending_items.length > 0) ? true : false ),
+        pending,
         h(person.approved)
       ]
     end

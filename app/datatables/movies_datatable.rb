@@ -18,6 +18,11 @@ private
 
   def data
     movies.map do |movie|
+      if (movie.pending_items.length > 0) || movie.approved == false
+        pending = true
+      else
+        pending = false
+      end
       [
         h(movie.id),
         h(movie.title),
@@ -25,7 +30,7 @@ private
         h(movie.tagline),
         h(movie.content_score),
         "",
-        ( (movie.pending_items.length > 0) ? true : false ),
+        pending,
         h(movie.approved)
       ]
     end
