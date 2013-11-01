@@ -13,9 +13,6 @@ class MoviesApp.ImportVideos extends Backbone.View
     self = @
     @container = $(@el)
     videos = @options.videos
-    console.log "render"
-    console.log videos
-    console.log videos.length
     @container.html @template(videos: videos)
     this
 

@@ -131,3 +131,9 @@ class AdminApp.Router extends Backbone.Router
       delete window.list_id
     catch e
       window.list_id = undefined
+    try
+      delete window.list_type
+    catch e
+      window.list_type = undefined
+
+

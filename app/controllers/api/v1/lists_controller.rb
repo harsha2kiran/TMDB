@@ -30,6 +30,8 @@ class Api::V1::ListsController < Api::V1::BaseController
   def show
     begin
       @list = @cache.get "list/#{params[:id]}"
+      @movies = @cache.get "list/#{params[:id]}/movies"
+      @people = @cache.get "list/#{params[:id]}/people"
       @images = @cache.get "list/#{params[:id]}/images"
       @videos = @cache.get "list/#{params[:id]}/videos"
       @keywords = @cache.get "list/#{params[:id]}/keywords"
@@ -46,13 +48,19 @@ class Api::V1::ListsController < Api::V1::BaseController
       end
       @list = @list.first
       if @list
+        movie_ids = @list.list_items.where(listable_type: "Movie").map(&:listable_id)
+        person_ids = @list.list_items.where(listable_type: "Person").map(&:listable_id)
         image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
         video_ids = @list.list_items.where(listable_type: "Video").map(&:listable_id)
+        @movies = Movie.where("id IN (?)", movie_ids)
+        @people = Person.where("id IN (?)", person_ids)
         @images = Image.where("id IN (?)", image_ids).order("priority ASC")
         @videos = Video.where("id IN (?)", video_ids).order("priority ASC")
         @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)
         @tags = ListTag.where(listable_id: @list.id, listable_type: @list.list_type)
       else
+        @movies = []
+        @people = []
         @images = []
         @videos = []
         @keywords = []
@@ -60,6 +68,8 @@ class Api::V1::ListsController < Api::V1::BaseController
       end
       if Rails.env.to_s == "production"
         @cache.set "list/#{params[:id]}", @list
+        @cache.set "list/#{params[:id]}/movies", @movies
+        @cache.set "list/#{params[:id]}/people", @people
         @cache.set "list/#{params[:id]}/images", @images
         @cache.set "list/#{params[:id]}/videos", @videos
         @cache.set "list/#{params[:id]}/keywords", @keywords

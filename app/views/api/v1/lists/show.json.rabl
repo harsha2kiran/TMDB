@@ -6,10 +6,10 @@ if @list
     attributes :id, :approved, :list_id, :listable_id, :listable_type, :created_at, :updated_at, :approved, :user_id, :temp_user_id
     node(:images){ |item|
       if item.listable_type != "Image"
-        r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
-        if r.length > 0
-          r.first.images
-        end
+        # r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+        # if r.length > 0
+        #   r.first.images
+        # end
       else
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
           @images.select{ |image| image.id == item.listable_id }
@@ -25,10 +25,10 @@ if @list
 
     node(:videos){ |item|
       if item.listable_type != "Video"
-        r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
-        if r.length > 0
-          r.first.videos
-        end
+        # r = item.listable_type.classify.constantize.where(approved: true).find_all_by_id(item.listable_id)
+        # if r.length > 0
+        #   r.first.videos
+        # end
       else
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
           @videos.select{ |image| image.id == item.listable_id }
@@ -43,20 +43,18 @@ if @list
     }
 
     node(:listable_item){ |item|
-      if item.listable_type != "Image"
+      if item.listable_type == "Video"
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
-          r = item.listable_type.classify.constantize.where(id: item.listable_id)
+          videos = @videos.select{ |image| image.id == item.listable_id }
         elsif @current_api_user && @current_api_user.user_type == "user"
-          r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
+          videos = @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
         elsif params[:temp_user_id]
-          r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
+          videos = @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
         else
-          r = item.listable_type.classify.constantize.where("approved = true").find_all_by_id(item.listable_id)
+          videos = @videos.select{ |image| image.id == item.listable_id && image.approved == true }
         end
-        if r.length > 0
-          r.first
-        end
-      else
+        videos[0]
+      elsif item.listable_type == "Image"
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
           images = @images.select{ |image| image.id == item.listable_id }
         elsif @current_api_user && @current_api_user.user_type == "user"
@@ -67,6 +65,40 @@ if @list
           images = @images.select{ |image| image.id == item.listable_id && image.approved == true }
         end
         images[0]
+      elsif item.listable_type == "Movie"
+        if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+          movies = @movies.select{ |image| image.id == item.listable_id }
+        elsif @current_api_user && @current_api_user.user_type == "user"
+          movies = @movies.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
+        elsif params[:temp_user_id]
+          movies = @movies.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
+        else
+          movies = @movies.select{ |image| image.id == item.listable_id && image.approved == true }
+        end
+        movies[0]
+      elsif item.listable_type == "Person"
+        if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+          people = @people.select{ |image| image.id == item.listable_id }
+        elsif @current_api_user && @current_api_user.user_type == "user"
+          people = @people.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
+        elsif params[:temp_user_id]
+          people = @people.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
+        else
+          people = @people.select{ |image| image.id == item.listable_id && image.approved == true }
+        end
+        people[0]
+        # if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
+        #   r = item.listable_type.classify.constantize.where(id: item.listable_id)
+        # elsif @current_api_user && @current_api_user.user_type == "user"
+        #   r = item.listable_type.classify.constantize.where("approved = true OR user_id = ?", @current_api_user.id).find_all_by_id(item.listable_id)
+        # elsif params[:temp_user_id]
+        #   r = item.listable_type.classify.constantize.where("approved = true OR temp_user_id = ?", params[:temp_user_id]).find_all_by_id(item.listable_id)
+        # else
+        #   r = item.listable_type.classify.constantize.where("approved = true").find_all_by_id(item.listable_id)
+        # end
+        # if r.length > 0
+        #   r.first
+        # end
       end
     }
   end
