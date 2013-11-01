@@ -12,6 +12,7 @@ class MoviesApp.EditVideos extends Backbone.View
     "click .js-switch-video-tabs" : "tabs"
     "click .js-new-youtube-username-check" : "fetch_username"
     "click .js-new-youtube-search-check" : "fetch_search"
+    "click .js-new-youtube-playlist-check" : "fetch_playlist"
 
   render: ->
     edit = $(@el)
@@ -200,7 +201,22 @@ class MoviesApp.EditVideos extends Backbone.View
           $(".js-import-videos-list").html @import_videos_view.render().el
           $(e.target).val("Fetch").removeAttr("disabled")
 
-
+  fetch_playlist: (e) ->
+    console.log "fetch_playlist"
+    $playlist = $(@el).find(".js-new-youtube-playlist")
+    playlist = $.trim($playlist.val())
+    self = @
+    $(e.target).val("Please wait").attr({ "disabled" : "disabled" })
+    if playlist != ""
+      $.ajax api_version + "videos/fetch_playlist",
+        method: "POST"
+        data:
+          playlist: playlist
+        success: (videos) ->
+          videos = videos.videos
+          @import_videos_view = new MoviesApp.ImportVideos(videos: videos)
+          $(".js-import-videos-list").html @import_videos_view.render().el
+          $(e.target).val("Fetch").removeAttr("disabled")
 
 
 

@@ -83,6 +83,16 @@ class Api::V1::VideosController < Api::V1::BaseController
     render json: { videos: videos }
   end
 
+  def fetch_playlist
+    playlist = params[:playlist]
+    if playlist
+      client = YouTubeIt::Client.new
+      videos = client.playlist(playlist)
+      videos = videos.videos
+    end
+    render json: { videos: videos }
+  end
+
   def import_all
     videos = params[:videos]
     success_links = []

@@ -113,6 +113,7 @@ Movies::Application.routes.draw do
         post "check" => "videos#check"
         post "fetch_username" => "videos#fetch_username"
         post "fetch_search" => "videos#fetch_search"
+        post "fetch_playlist" => "videos#fetch_playlist"
         post "import_all" => "videos#import_all"
       end
     end

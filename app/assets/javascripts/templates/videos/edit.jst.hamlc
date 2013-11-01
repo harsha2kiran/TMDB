@@ -16,12 +16,14 @@
           %input.js-video-remove.btn{ type: "button", value: "Remove", data: { id: video.id } }
   - if @channel
     .col-md-12
-      #js-add-single-video.col-md-3.js-switch-video-tabs.btn.btn-primary
+      #js-add-single-video.col-md-2.js-switch-video-tabs.btn.btn-primary
         Add single video
       #js-add-user-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
-        Import videos from youtube user
+        Import from youtube user
       #js-add-search-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
         Search youtube videos
+      #js-add-playlist-videos.col-md-3.js-switch-video-tabs.btn.btn-primary
+        Import from youtube playlist
 
   .col-md-12.js-add-single-video.js-video-tabs
     %p
@@ -81,6 +83,16 @@
         %input.js-new-youtube-search.form-control.flat.col-md-6{ type: "text", placeholder: "Search" }
         .col-md-2
           %input.js-new-youtube-search-check.btn{ type: "button", value: "Fetch" }
+
+    .col-md-12.js-add-playlist-videos.hide.js-video-tabs
+      %p
+        Add videos from youtube playlist
+      .col-md-12
+        .col-md-2.input-label
+          Playlist
+        %input.js-new-youtube-playlist.form-control.flat.col-md-6{ type: "text", placeholder: "Playlist" }
+        .col-md-2
+          %input.js-new-youtube-playlist-check.btn{ type: "button", value: "Fetch" }
 
     .col-md-12.js-import-videos-list
 
