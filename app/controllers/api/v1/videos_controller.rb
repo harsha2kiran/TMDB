@@ -51,18 +51,16 @@ class Api::V1::VideosController < Api::V1::BaseController
     client = YouTubeIt::Client.new
     response = client.video_by(url)
     if response
-      if response.thumbnails.count > 1
-        thumbnail = response.thumbnails[1].url
-      else
-        thumbnail = response.thumbnails.first.url
-      end
+      thumbnail = response.thumbnails[1] ? response.thumbnails[1].url : ""
+      thumbnail2 = response.thumbnails[0] ? response.thumbnails[0].url : ""
+      thumbnail3 = response.thumbnails[2] ? response.thumbnails[2].url : ""
       title = response.title
       description = response.description
       duration = response.media_content.first.duration
       comments = response.access_control["comment"]
       category = response.categories.first.label
     end
-    render json: { title: title, description: description, duration: duration, comments: comments, category: category, thumbnail: thumbnail }
+    render json: { title: title, description: description, duration: duration, comments: comments, category: category, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3 }
   end
 
   def fetch_username

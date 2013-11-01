@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  attr_accessible :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :user_id, :title, :description, :category, :comments, :duration, :thumbnail, :temp_user_id
+  attr_accessible :approved, :link, :link_active, :priority, :quality, :videable_id, :videable_type, :video_type, :user_id, :title, :description, :category, :comments, :duration, :thumbnail, :thumbnail2, :thumbnail3, :temp_user_id
   belongs_to :videable, polymorphic: true
 
   has_many :media_tags, :as => :taggable, :dependent => :destroy

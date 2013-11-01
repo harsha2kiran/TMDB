@@ -30,15 +30,17 @@ class MoviesApp.ImportVideos extends Backbone.View
     duration = parent.find(".js-duration").val()
     link = parent.find(".js-link").val()
     thumbnail = parent.find("img").attr("src")
+    thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
+    thumbnail3 = parent.find(".js-new-video-thumbnail3").val()
 
     videable_id = window.list_id
     videable_type = "List"
 
-    if link != "" && description != "" && priority != "" && title != "" && duration != "" && thumbnail != ""
+    if link != "" && priority != "" && title != "" && thumbnail != ""
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         if !isNaN(priority)
           video = new MoviesApp.Video()
-          video.save ({ video: { title: title, description: description, duration: duration, link: link, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, link_active: true, temp_user_id: localStorage.temp_user_id } }),
+          video.save ({ video: { title: title, description: description, duration: duration, link: link, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               if window.list_id
                 self.add_video_to_list(video.id)
@@ -60,7 +62,7 @@ class MoviesApp.ImportVideos extends Backbone.View
       self.validate(parent)
 
   validate: (parent) ->
-    $(parent).find("input, textarea").each (i, input) ->
+    $(parent).find(".import-video input, .import-video textarea").each (i, input) ->
       if $.trim($(input).val()) == ""
         $(input).addClass("error")
       else
@@ -103,7 +105,9 @@ class MoviesApp.ImportVideos extends Backbone.View
       duration = parent.find(".js-duration").val()
       link = parent.find(".js-link").val()
       thumbnail = parent.find("img").attr("src")
-      video = { title: title, description: description, quality: quality, priority: priority, duration: duration, link: link, thumbnail: thumbnail }
+      thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
+      thumbnail3 = parent.find(".js-new-video-thumbnail3").val()
+      video = { title: title, description: description, quality: quality, priority: priority, duration: duration, link: link, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3 }
       videos.push video
     videos
 

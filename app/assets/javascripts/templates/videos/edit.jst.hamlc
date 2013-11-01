@@ -47,6 +47,8 @@
         .col-md-2.input-label
           Thumbnail
         %img.js-new-video-thumbnail.hide.col-md-6{ src: "" }
+        %input.js-new-video-thumbnail2{ type: "hidden" }
+        %input.js-new-video-thumbnail3{ type: "hidden" }
       .col-md-12
         .col-md-2.input-label
           Priority

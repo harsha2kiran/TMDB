@@ -5,15 +5,18 @@
       %input.js-link.hide{ value: "http://www.youtube.com/watch?v=#{video.unique_id}" }
       .col-md-12
         %img{ src: video.thumbnails[1].url, alt: "" }
+        %input.js-new-video-thumbnail2{ type: "hidden", value: video.thumbnails[0].url }
+        %input.js-new-video-thumbnail3{ type: "hidden", value: video.thumbnails[2].url }
       .col-md-12
         %input.js-title.form-control.flat{ value: video.title, placeholder: "Title" }
       .col-md-12
-        %textarea.js-description.form-control.flat{ placeholder: "Description" }= video.description
+        %textarea.js-description.form-control.flat{ placeholder: "Description" }
+        -# = video.description
       .col-md-12
         %input.js-priority.form-control.flat{ value: "0.0", placeholder: "Priority" }
       .col-md-12
-        - duration = window.set_duration(video.duration)
-        %input.js-duration.form-control.flat{ value: duration, placeholder: "Duration" }
+        -# - duration = window.set_duration(video.duration)
+        %input.js-duration.form-control.flat{ placeholder: "Duration" }
       .col-md-12
         %input.js-quality.form-control.flat{ placeholder: "Quality" }
       .col-md-12
