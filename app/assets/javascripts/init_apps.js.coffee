@@ -99,8 +99,10 @@ window.current_temp_users_item = (item) ->
     false
 
 window.sort_priority = (a, b) ->
-  return -1  if a.list_item.images[0].priority < b.list_item.images[0].priority
-  return 1  if a.list_item.images[0].priority > b.list_item.images[0].priority
+  if a.list_item.images
+    return a.list_item.images[0].priority - b.list_item.images[0].priority
+  else if a.list_item.videos
+    return a.list_item.videos[0].priority - b.list_item.videos[0].priority
   0
 
 window.generate_meta_tags = (type, values) ->
