@@ -107,11 +107,18 @@ if @list
   }
 
   node(:tags){
-    r = []
-    @tags.each do |tag|
-      r << tag.taggable_type.classify.constantize.find_all_by_id(tag.taggable_id).first
+    begin
+      r = @cache.get "list_#{params[:id]}_tags"
+    rescue
+      r = []
+      @tags.each do |tag|
+        r << tag.taggable_type.classify.constantize.find_all_by_id(tag.taggable_id).first
+      end
+      if Rails.env.to_s == "production"
+        @cache.set "list_#{params[:id]}_tags", r
+      end
+      r
     end
-    r
   }
 
   node(:list_tags){
