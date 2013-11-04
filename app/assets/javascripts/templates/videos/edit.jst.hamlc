@@ -7,8 +7,6 @@
           = video.title
       .col-md-2
         = video.priority
-      .col-md-2
-        = video.quality
       -# .col-md-2
       -#   = video.video_type
       - if current_user && current_user.user_type == "admin"
@@ -53,15 +51,6 @@
         .col-md-2.input-label
           Priority
         %input.js-new-video-priority.form-control.flat.col-md-6{ type: "text", placeholder: "Priority", value: "0.0" }
-      .col-md-12
-        .col-md-2.input-label
-          Quality
-        %input.js-new-video-quality.form-control.flat.col-md-6{ type: "text", placeholder: "Quality" }
-      .col-md-12.hide
-        .col-md-2
-          Duration
-        .col-md-3
-          %input.js-new-video-duration.form-control.flat{ type: "text", placeholder: "Duration" }
       .col-md-6.text-right
         %input.js-new-video-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 

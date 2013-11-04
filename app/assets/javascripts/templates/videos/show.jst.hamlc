@@ -5,12 +5,6 @@
     .col-md-12
       = @video.title
   .col-md-12
-    = "Quality: " + @video.quality
-  .col-md-12.hide
-    = "Duration: " + @video.duration
-  -# .col-md-12
-  -#   = "Category: " + @video.category
-  .col-md-12
     = "Description: " + @video.description
 
   .views.col-md-12

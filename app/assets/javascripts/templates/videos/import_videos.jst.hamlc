@@ -15,11 +15,6 @@
       .col-md-12
         %input.js-priority.form-control.flat{ value: "0.0", placeholder: "Priority" }
       .col-md-12
-        -# - duration = window.set_duration(video.duration)
-        %input.js-duration.form-control.flat{ placeholder: "Duration" }
-      .col-md-12
-        %input.js-quality.form-control.flat{ placeholder: "Quality" }
-      .col-md-12
         %button.js-import.btn.btn-primary.flat= "Import"
 
 .col-md-12

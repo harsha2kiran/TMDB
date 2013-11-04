@@ -98,7 +98,7 @@ class Api::V1::VideosController < Api::V1::BaseController
       new_video = Video.new(video[1])
       new_video.videable_id = params[:videable_id]
       new_video.videable_type = params[:videable_type]
-      if new_video.save
+      if new_video.save!
         success_links << new_video.link
         if params[:videable_type] == "List"
           list_item = ListItem.new

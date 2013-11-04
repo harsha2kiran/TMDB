@@ -144,4 +144,12 @@ window.set_duration = (seconds) ->
   s = numhours + ":" + numminutes + ":" + numseconds
   s
 
+window.get_url_param = (url, name) ->
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]")
+  regex = new RegExp("[\\?&]" + name + "=([^&#]*)")
+  results = regex.exec(url)
+  if results == null ? 
+    ""
+  else
+    decodeURIComponent(results[1].replace(/\+/g, " "))
 

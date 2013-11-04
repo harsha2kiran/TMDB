@@ -25,9 +25,7 @@ class MoviesApp.ImportVideos extends Backbone.View
   insert_video: (self, parent) ->
     title = parent.find(".js-title").val()
     description = parent.find(".js-description").val()
-    quality = parent.find(".js-quality").val()
     priority = parent.find(".js-priority").val()
-    duration = parent.find(".js-duration").val()
     link = parent.find(".js-link").val()
     thumbnail = parent.find("img").attr("src")
     thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
@@ -40,7 +38,7 @@ class MoviesApp.ImportVideos extends Backbone.View
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         if !isNaN(priority)
           video = new MoviesApp.Video()
-          video.save ({ video: { title: title, description: description, duration: duration, link: link, quality: quality, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id } }),
+          video.save ({ video: { title: title, description: description, link: link, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               if window.list_id
                 self.add_video_to_list(video.id)
@@ -100,14 +98,12 @@ class MoviesApp.ImportVideos extends Backbone.View
       parent = $(parent)
       title = parent.find(".js-title").val()
       description = parent.find(".js-description").val()
-      quality = parent.find(".js-quality").val()
       priority = parent.find(".js-priority").val()
-      duration = parent.find(".js-duration").val()
       link = parent.find(".js-link").val()
       thumbnail = parent.find("img").attr("src")
       thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
       thumbnail3 = parent.find(".js-new-video-thumbnail3").val()
-      video = { title: title, description: description, quality: quality, priority: priority, duration: duration, link: link, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3 }
+      video = { title: title, description: description, priority: priority, link: link, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3 }
       videos.push video
     videos
 
