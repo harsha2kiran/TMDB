@@ -1,0 +1,7 @@
+.js-keywords-list
+.col-md-12
+  .col-md-2.input-label
+    Add keywords
+  %input.js-new-keyword.form-control.flat.col-md-4{ type: "text", placeholder: "Keywords"}
+  %input.js-new-keyword-id{ type: "hidden" }
+  %input.js-new-keyword-ids{ type: "hidden", value: "[]" }

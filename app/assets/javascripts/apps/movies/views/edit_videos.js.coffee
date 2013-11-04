@@ -35,6 +35,12 @@ class MoviesApp.EditVideos extends Backbone.View
     thumbnail = $(@el).find(".js-new-video-thumbnail").attr("src")
     thumbnail2 = $(@el).find(".js-new-video-thumbnail2").val()
     thumbnail3 = $(@el).find(".js-new-video-thumbnail3").val()
+    keywords = []
+    $.each $(self.el).find(".keyword"), (i, item) ->
+      keywords.push $(item).attr("data-id")
+    tags = []
+    $.each $(self.el).find(".tag"), (i, item) ->
+      tags.push [$(item).attr("data-id"), $(item).attr("data-type")]
 
     if link != "" && priority != "" && title != "" && thumbnail != ""
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
@@ -46,7 +52,8 @@ class MoviesApp.EditVideos extends Backbone.View
             videable_id = window.person_id
             videable_type = "Person"
           video = new MoviesApp.Video()
-          video.save ({ video: { title: title, description: description, comments: comments, link: link, category: category, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id } }),
+          video.url = api_version + "videos?temp_user_id=" + localStorage.temp_user_id
+          video.save ({ video: { title: title, description: description, comments: comments, link: link, category: category, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id }, keywords: keywords, tags: tags }),
             success: ->
               if window.list_id
                 self.add_video_to_list(video.id)
@@ -57,11 +64,9 @@ class MoviesApp.EditVideos extends Backbone.View
               $(".notifications").html("This video already exist or it's waiting for moderation.").show().fadeOut(window.hide_delay)
               $(self.el).find(".js-new-video-title").val("").removeClass("error")
               $(self.el).find(".js-new-video-description").val("").removeClass("error")
-              $(self.el).find(".js-new-video-comments").val("").removeClass("error")
               $(self.el).find(".js-new-video-link").val("").removeClass("error")
               $(self.el).find(".js-new-video-type").val("").removeClass("error")
               $(self.el).find(".js-new-video-priority").val("").removeClass("error")
-              $(self.el).find(".js-new-video-category").val("").removeClass("error")
               $(self.el).find(".video-info").hide()
         else
           $(@el).find(".video-info input").each (i, input) ->
@@ -130,6 +135,10 @@ class MoviesApp.EditVideos extends Backbone.View
           $self.find(".js-new-video-thumbnail3").val(data.thumbnail3)
           $self.find(".js-new-video-link").removeClass("error")
           $self.find(".video-info").removeClass("hide").show()
+          @single_video_keywords = new MoviesApp.SingleVideoKeywords()
+          $(".single-video-keywords").html @single_video_keywords.render().el
+          @single_video_tags = new MoviesApp.SingleVideoTags()
+          $(".single-video-tags").html @single_video_tags.render().el
     else
       $self.find(".js-new-video-link").addClass("error")
 

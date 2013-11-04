@@ -7,8 +7,6 @@
           = video.title
       .col-md-2
         = video.priority
-      -# .col-md-2
-      -#   = video.video_type
       - if current_user && current_user.user_type == "admin"
         .col-md-2
           %input.js-video-remove.btn{ type: "button", value: "Remove", data: { id: video.id } }
@@ -51,6 +49,8 @@
         .col-md-2.input-label
           Priority
         %input.js-new-video-priority.form-control.flat.col-md-6{ type: "text", placeholder: "Priority", value: "0.0" }
+      .col-md-12.single-video-keywords
+      .col-md-12.single-video-tags
       .col-md-6.text-right
         %input.js-new-video-save.btn.btn-embossed.btn-primary.update-btn{ type: "button", value: "Save" }
 
@@ -86,9 +86,5 @@
           %input.js-new-youtube-playlist-check.btn{ type: "button", value: "Fetch" }
 
     .col-md-12.js-import-videos-list
-
-
-
-
 
 

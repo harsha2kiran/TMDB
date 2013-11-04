@@ -22,6 +22,21 @@ class Api::V1::VideosController < Api::V1::BaseController
     end
   end
 
+  def create
+    @video = Video.new params["video"]
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      @video.approved = true
+    end
+    @video.save!
+    if params[:keywords]
+      add_media_keywords(@video, params[:keywords])
+    end
+    if params[:tags]
+      add_media_tags(@video, params[:tags])
+    end
+    render json: @video
+  end
+
   def validate_links
     @videos = Video.where(approved: true)
     @videos.each do |video|
@@ -95,10 +110,20 @@ class Api::V1::VideosController < Api::V1::BaseController
     videos = params[:videos]
     success_links = []
     videos.each do |video|
+      keywords = video[1][:keywords]
+      video[1].except!(:keywords)
+      tags = video[1][:tags]
+      video[1].except!(:tags)
       new_video = Video.new(video[1])
       new_video.videable_id = params[:videable_id]
       new_video.videable_type = params[:videable_type]
       if new_video.save!
+        if keywords
+          add_media_keywords(new_video, keywords)
+        end
+        if tags
+          add_media_tags(new_video, tags)
+        end
         success_links << new_video.link
         if params[:videable_type] == "List"
           list_item = ListItem.new
@@ -112,6 +137,36 @@ class Api::V1::VideosController < Api::V1::BaseController
       end
     end
     render json: { success_links: success_links }
+  end
+
+  def add_media_keywords(video, keywords)
+    keywords.each do |keyword_id|
+      media_keyword = MediaKeyword.new
+      media_keyword.mediable = video
+      media_keyword.keyword_id = keyword_id.to_i
+      media_keyword.user_id = current_api_user.id if current_api_user
+      media_keyword.temp_user_id = params[:temp_user_id]
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        media_keyword.approved = true
+      end
+      media_keyword.save!
+    end
+  end
+
+  def add_media_tags(video, tags)
+    tags.each do |tag|
+      media_tag = MediaTag.new
+      media_tag.mediable_id = tag[0].to_i
+      media_tag.mediable_type = tag[1]
+      media_tag.taggable_id = video.id
+      media_tag.taggable_type = "Video"
+      media_tag.user_id = current_api_user.id if current_api_user
+      media_tag.temp_user_id = params[:temp_user_id]
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        media_tag.approved = true
+      end
+      media_tag.save!
+    end
   end
 
 end

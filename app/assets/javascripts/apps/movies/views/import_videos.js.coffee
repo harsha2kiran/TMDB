@@ -14,6 +14,11 @@ class MoviesApp.ImportVideos extends Backbone.View
     @container = $(@el)
     videos = @options.videos
     @container.html @template(videos: videos)
+    $.each $(self.el).find(".import-video"), (i, item) ->
+      @single_video_keywords = new MoviesApp.SingleVideoKeywords()
+      $(item).find(".single-video-keywords").append @single_video_keywords.render().el
+      @single_video_tags = new MoviesApp.SingleVideoTags()
+      $(item).find(".single-video-tags").append @single_video_tags.render().el
     this
 
   import: (e) ->
@@ -30,6 +35,12 @@ class MoviesApp.ImportVideos extends Backbone.View
     thumbnail = parent.find("img").attr("src")
     thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
     thumbnail3 = parent.find(".js-new-video-thumbnail3").val()
+    keywords = []
+    $.each $(self.el).find(".keyword"), (i, item) ->
+      keywords.push $(item).attr("data-id")
+    tags = []
+    $.each $(self.el).find(".tag"), (i, item) ->
+      tags.push [$(item).attr("data-id"), $(item).attr("data-type")]
 
     videable_id = window.list_id
     videable_type = "List"
@@ -38,7 +49,8 @@ class MoviesApp.ImportVideos extends Backbone.View
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         if !isNaN(priority)
           video = new MoviesApp.Video()
-          video.save ({ video: { title: title, description: description, link: link, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id } }),
+          video.url = api_version + "videos?temp_user_id=" + localStorage.temp_user_id
+          video.save ({ video: { title: title, description: description, link: link, priority: priority, videable_type: videable_type, videable_id: videable_id, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3, link_active: true, temp_user_id: localStorage.temp_user_id }, keywords: keywords, tags: tags }),
             success: ->
               if window.list_id
                 self.add_video_to_list(video.id)
@@ -69,7 +81,7 @@ class MoviesApp.ImportVideos extends Backbone.View
   import_all: (e) ->
     console.log "import_all"
     self = @
-    $(e.target).html("Please wait").attr({ "disabled" : "disabled" })
+    # $(e.target).html("Please wait").attr({ "disabled" : "disabled" })
     videos = self.collect_videos()
     self.insert_all_videos(videos)
 
@@ -104,6 +116,12 @@ class MoviesApp.ImportVideos extends Backbone.View
       thumbnail2 = parent.find(".js-new-video-thumbnail2").val()
       thumbnail3 = parent.find(".js-new-video-thumbnail3").val()
       video = { title: title, description: description, priority: priority, link: link, thumbnail: thumbnail, thumbnail2: thumbnail2, thumbnail3: thumbnail3 }
+      video.keywords = []
+      $.each parent.find(".keyword"), (i, item) ->
+        video.keywords.push $(item).attr("data-id")
+      video.tags = []
+      $.each parent.find(".tag"), (i, item) ->
+        video.tags.push $(item).attr("data-id")
       videos.push video
     videos
 
@@ -131,7 +149,7 @@ class MoviesApp.ImportVideos extends Backbone.View
       listable_id = video_id
       listable_type = "Video"
       list_item = new MoviesApp.ListItem()
-      list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
+      list_item.save ({ temp_user_id: localStorage.temp_user_id, list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
 

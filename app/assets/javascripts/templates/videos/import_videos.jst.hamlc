@@ -1,7 +1,7 @@
 - videos = @videos
 .col-md-12
   - $.each videos, (i, video) ->
-    .col-md-4.import-video
+    .col-md-12.import-video
       %input.js-link.hide{ value: "http://www.youtube.com/watch?v=#{video.unique_id}" }
       .col-md-12
         %img{ src: video.thumbnails[1].url, alt: "" }
@@ -11,9 +11,10 @@
         %input.js-title.form-control.flat{ value: video.title, placeholder: "Title" }
       .col-md-12
         %textarea.js-description.form-control.flat{ placeholder: "Description" }
-        -# = video.description
       .col-md-12
         %input.js-priority.form-control.flat{ value: "0.0", placeholder: "Priority" }
+      .col-md-12.single-video-keywords
+      .col-md-12.single-video-tags
       .col-md-12
         %button.js-import.btn.btn-primary.flat= "Import"
 
