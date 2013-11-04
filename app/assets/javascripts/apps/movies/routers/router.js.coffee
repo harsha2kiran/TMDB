@@ -64,20 +64,58 @@ class MoviesApp.Router extends Backbone.Router
           @show_view = new MoviesApp.NotFound(type: "image")
           $(".js-content").html @show_view.render().el
 
+  # videos_show: (id) ->
+  #   console.log "videos show #{id}"
+  #   @clear_values()
+  #   window.video_id = id
+  #   video = new MoviesApp.Video()
+  #   video.url = api_version + "videos/#{id}?temp_user_id=" + localStorage.temp_user_id
+  #   video.fetch
+  #     success: ->
+  #       if video.get("video")
+  #         @show_view = new MoviesApp.VideosShow(video: video)
+  #         $(".js-content").html @show_view.render().el
+
+  #         @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
+  #         $(".tags").append @edit_tags_view.render().el
+
+  #         type = "Video"
+  #         id = window.video_id
+  #         view = new MoviesApp.View()
+  #         view.save ({ view: { viewable_id: id, viewable_type: type, temp_user_id: localStorage.temp_user_id } }),
+  #           success: ->
+  #             console.log view
+  #       else
+  #         @show_view = new MoviesApp.NotFound(type: "video")
+  #         $(".js-content").html @show_view.render().el
+
+
   videos_show: (id) ->
     console.log "videos show #{id}"
     @clear_values()
     window.video_id = id
-    video = new MoviesApp.Video()
-    video.url = api_version + "videos/#{id}?temp_user_id=" + localStorage.temp_user_id
+    video = new MoviesApp.Image()
+    video.url = "/api/v1/videos/#{id}?temp_user_id=" + localStorage.temp_user_id
     video.fetch
       success: ->
         if video.get("video")
           @show_view = new MoviesApp.VideosShow(video: video)
           $(".js-content").html @show_view.render().el
 
-          @edit_tags_view = new MoviesApp.EditTags(tags: video.get("video").tags)
-          $(".tags").append @edit_tags_view.render().el
+          if current_user
+            @likes_view = new MoviesApp.LikesShow(item: video.get("video"))
+            $(".likes").html @likes_view.render().el
+
+          # videos = new MoviesApp.Videos()
+          # videos.url = "/api/v1/videos/0/related_images?temp_user_id=" + localStorage.temp_user_id
+          # images.fetch
+          #   data:
+          #     image_ids: "[488,489]"
+          #   success: ->
+          #     @related_images = new MoviesApp.RelatedImages(images: images)
+          #     $(".related-images").html @related_images.render().el
+
+          # $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
 
           type = "Video"
           id = window.video_id
@@ -86,8 +124,11 @@ class MoviesApp.Router extends Backbone.Router
             success: ->
               console.log view
         else
-          @show_view = new MoviesApp.NotFound(type: "video")
+          @show_view = new MoviesApp.NotFound(type: "Video")
           $(".js-content").html @show_view.render().el
+
+
+
 
   galleries_index: ->
     console.log "galleries index"

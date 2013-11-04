@@ -14,11 +14,33 @@ class Api::V1::VideosController < Api::V1::BaseController
   end
 
   def show
-    @video = Video.where(approved: true).find_all_by_id(params[:id])
-    if @video != []
-      @video = @video.first
-      # @movies = Movie.find_all_by_id @video.tags.map(&:taggable_id)
-      # @people = Person.find_all_by_id @video.tags.map(&:person_id)
+    begin
+      @video = @cache.get "videos/#{params[:id]}"
+      @media_tags = @cache.get "videos/#{params[:id]}/media_tags"
+      @media_keywords = @cache.get "videos/#{params[:id]}/media_keywords"
+    rescue
+      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+        @video = Video.where(id: params[:id])
+      elsif current_api_user && current_api_user.user_type == "user"
+        @video = Video.where("id = ? AND (approved = true OR user_id = ?)", params[:id], current_api_user.id)
+      elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
+        @video = Video.where("id = ? AND (approved = true OR temp_user_id = ?)", params[:id], params[:temp_user_id])
+      else
+        @video = Video.where(id: params[:id], approved: true)
+      end
+      if @video != []
+        @video = @video.first
+        @media_tags = @video.media_tags
+        @media_keywords = @video.media_keywords
+      end
+      if Rails.env.to_s == "production"
+        @cache.set "videos/#{params[:id]}", @video
+        @cache.set "videos/#{params[:id]}/media_tags", @media_tags
+        @cache.set "videos/#{params[:id]}/media_keywords", @media_keywords
+      end
+    end
+    if current_api_user
+      @current_api_user = current_api_user
     end
   end
 
@@ -156,10 +178,9 @@ class Api::V1::VideosController < Api::V1::BaseController
   def add_media_tags(video, tags)
     tags.each do |tag|
       media_tag = MediaTag.new
-      media_tag.mediable_id = tag[0].to_i
-      media_tag.mediable_type = tag[1]
-      media_tag.taggable_id = video.id
-      media_tag.taggable_type = "Video"
+      media_tag.mediable = video
+      media_tag.taggable_id = tag[0].to_i
+      media_tag.taggable_type = tag[1]
       media_tag.user_id = current_api_user.id if current_api_user
       media_tag.temp_user_id = params[:temp_user_id]
       if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)

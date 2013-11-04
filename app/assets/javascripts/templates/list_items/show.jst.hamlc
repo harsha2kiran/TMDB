@@ -84,7 +84,7 @@
                 - is_owner = true
 
               .col-md-12.js-edit-gallery-video{ "data-id" => video.id }
-                %a{ href: video.link, target: "_blank" }
+                %a{ href: "/#!/videos/#{video.id}" }
                   - if is_owner || video.approved || is_admin_or_mod()
                     %img{ src: video.thumbnail, alt: "no thumb", height: "140px" }
                     .col-md-12
@@ -94,16 +94,10 @@
                   %input.js-edit-gallery-video-title.form-control.flat.col-md-12{ type: "text", value: video.title, placeholder: "Title" }
                   %input.js-edit-gallery-video-description.form-control.flat.col-md-12{ type: "text", value: video.description, placeholder: "Description" }
                   %input.js-edit-gallery-video-priority.form-control.flat.col-md-12{ type: "text", value: video.priority, placeholder: "Priority" }
-                  %input.js-edit-gallery-video-duration.form-control.flat.col-md-12{ type: "text", value: video.duration, placeholder: "Duration" }
-                  %input.js-edit-gallery-video-quality.form-control.flat.col-md-12{ type: "text", value: video.quality, placeholder: "Quality" }
                   %button.js-edit-gallery-video-update.btn.btn-primary.flat.col-md-12= "Update"
                 - else
                   .col-md-12
                     = video.description
-                  .col-md-12
-                    = video.duration
-                  .col-md-12
-                    = video.quality
 
           - if item.list_item.listable_type != "Image"
             -# if is owner, admin or mod can remove items

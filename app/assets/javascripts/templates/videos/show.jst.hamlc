@@ -1,16 +1,39 @@
-.col-md-12.video
-  %a{ href: @video.link, target: "_blank" }
-    .col-md-12
-      %img{ src: @video.thumbnail, alt: "no image" }
-    .col-md-12
-      = @video.title
-  .col-md-12
-    = "Description: " + @video.description
+- video = @video
+.col-md-12
+  %a{ href: video.link, target: "_blank" }
+    %img{ src: video.thumbnail, alt: "no video"}
+  .title
+    - is_owner = false
+    - if current_users_item(video) || current_temp_users_item(video)
+      - is_owner = true
 
-  .views.col-md-12
-    %span= "Views: "
-      - if @video.views
-        = @video.views + 1
-      - else
-        1
-.tags
+    - if is_owner || is_admin_or_mod()
+      %input.js-video-title.form-control.flat{ type: "text", value: video.title }
+      -# - if video.description && video.description != ""
+      %textarea.js-video-description.form-control.flat= video.description
+      %button.js-video-update-main.btn.btn-primary.flat= "Update"
+    - else
+      = video.title
+
+      - if video.description && video.description != ""
+        .col-md-12
+          = video.description
+
+.views.col-md-12.input-label
+  %span= "Views: "
+    - if video.views
+      = video.views + 1
+    - else
+      1
+
+- if current_user
+  %strong.col-md-12
+    Likes
+  .col-md-12.likes
+.col-md-12.single-video-keywords
+.col-md-12.single-video-tags
+
+.col-md-12
+  %input.js-video-update.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
+
+.col-md-12.related-videos

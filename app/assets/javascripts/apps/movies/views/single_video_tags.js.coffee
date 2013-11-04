@@ -114,11 +114,6 @@ class MoviesApp.SingleVideoTags extends Backbone.View
 
           tags_list = $(".list-tags").find(tags_list_el).find(".tag")
 
-          # tags_list.each ->
-          #   tags.push [$(@).attr("data-id"), $(@).attr("data-type"), $.trim($(@).find(".tag-tag").html())]
-          #   tag_ids.push parseInt($(@).attr("data-id"))
-
-          # if $.inArray(parseInt(model.id), tag_ids) == -1
           tag_ids.push model.id
           tags.push [model.id, type, value]
 
@@ -139,8 +134,8 @@ class MoviesApp.SingleVideoTags extends Backbone.View
     $.ajax api_version + "media_tags/test",
       method: "DELETE"
       data:
-        mediable_id: window.image_id
-        mediable_type: "Image"
+        mediable_id: window.video_id
+        mediable_type: "Video"
         taggable_id: id
         taggable_type: type
       success: ->
@@ -152,7 +147,7 @@ class MoviesApp.SingleVideoTags extends Backbone.View
     id = parent.attr("data-id")
     type = parent.attr("data-type")
     list_tag = new MoviesApp.MediaTag()
-    list_tag.save ({ id: "0", media_tag: { mediable_id: window.image_id, mediable_type: "Image", taggable_id: id, taggable_type: type, approved: true } }),
+    list_tag.save ({ id: "0", media_tag: { mediable_id: window.video_id, mediable_type: "Video", taggable_id: id, taggable_type: type, approved: true } }),
       success: ->
         parent.find(".js-approve-tag").remove()
         $(".notifications").html("Tag successfully approved.").show().fadeOut(window.hide_delay)

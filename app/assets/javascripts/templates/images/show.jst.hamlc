@@ -10,8 +10,8 @@
 
     - if is_owner || is_admin_or_mod()
       %input.js-image-title.form-control.flat{ type: "text", value: image.title }
-      - if image.description && image.description != ""
-        %textarea.js-image-description.form-control.flat= image.description
+      -# - if image.description && image.description != ""
+      %textarea.js-image-description.form-control.flat= image.description
       %button.js-image-update-main.btn.btn-primary.flat= "Update"
     - else
       = image.title

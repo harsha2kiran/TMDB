@@ -81,7 +81,7 @@ class MoviesApp.ImportVideos extends Backbone.View
   import_all: (e) ->
     console.log "import_all"
     self = @
-    # $(e.target).html("Please wait").attr({ "disabled" : "disabled" })
+    $(e.target).html("Please wait").attr({ "disabled" : "disabled" })
     videos = self.collect_videos()
     self.insert_all_videos(videos)
 

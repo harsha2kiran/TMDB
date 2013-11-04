@@ -1,4 +1,35 @@
-.js-keywords-list
+- if @item
+  - item = @item
+  .col-md-12.input-label
+    %strong= "List of keywords: "
+  .col-md-12.js-keywords-list
+    - if item.keywords
+      - $.each item.keywords, (i, keyword) ->
+
+        - approved = false
+        - is_owner = false
+        - $.each item.media_keywords, (ii, media_keyword) ->
+
+          - if media_keyword.keyword_id == keyword.id && media_keyword.approved == true
+            - approved = true
+
+          - if (current_users_item(media_keyword) || current_temp_users_item(media_keyword)) && media_keyword.keyword_id == keyword.id
+            - is_owner = true
+
+        - if approved || is_admin_or_mod() || is_owner
+          .col-md-3.keyword{ "data-id" => keyword.id }
+            .col-md-5.keyword-keyword.input-label
+              = keyword.keyword
+
+            - if is_admin_or_mod()
+              .col-md-2.js-remove-keyword.btn
+                X
+              - unless approved
+                .col-md-4.js-approve-keyword.btn.btn-primary.flat
+                  Approve
+- else
+  .js-keywords-list
+
 .col-md-12
   .col-md-2.input-label
     Add keywords

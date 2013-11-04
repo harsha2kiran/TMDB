@@ -87,8 +87,8 @@ class MoviesApp.SingleVideoKeywords extends Backbone.View
     $.ajax api_version + "media_keywords/test",
       method: "DELETE"
       data:
-        mediable_id: window.image_id
-        mediable_type: "Image"
+        mediable_id: window.video_id
+        mediable_type: "Video"
         keyword_id: id
       success: ->
         parent.remove()
@@ -98,7 +98,7 @@ class MoviesApp.SingleVideoKeywords extends Backbone.View
     parent = $(e.target).parents(".keyword").first()
     id = parent.attr("data-id")
     list_keyword = new MoviesApp.MediaKeyword()
-    list_keyword.save ({ id: "0", media_keyword: {  mediable_id: window.image_id, mediable_type: "Image", keyword_id: id, approved: true } }),
+    list_keyword.save ({ id: "0", media_keyword: {  mediable_id: window.video_id, mediable_type: "Video", keyword_id: id, approved: true } }),
       success: ->
         parent.find(".js-approve-keyword").remove()
         $(".notifications").html("Keyword successfully approved.").show().fadeOut(window.hide_delay)
