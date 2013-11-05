@@ -151,6 +151,7 @@ class Api::V1::VideosController < Api::V1::BaseController
         add_media_tags(new_video, tags) if tags
         if params[:videable_type] == "List"
           add_list_item(new_video)
+          add_pending_item(new_video)
         end
         success_links << new_video.link
       end
@@ -199,15 +200,15 @@ class Api::V1::VideosController < Api::V1::BaseController
     list_item.save!
   end
 
-  # def add_pending_item(video)
-  #   p = PendingItem.new
-  #   p.pendable_id = params[:list_id]
-  #   p.pendable_type = "List"
-  #   p.user_id = current_api_user.id if current_api_user
-  #   p.temp_user_id = params[:temp_user_id]
-  #   p.approvable_id = video.id
-  #   p.approvable_type = "Video"
-  #   p.save!
-  # end
+  def add_pending_item(video)
+    p = PendingItem.new
+    p.pendable_id = params[:list_id]
+    p.pendable_type = "List"
+    p.user_id = current_api_user.id if current_api_user
+    p.temp_user_id = params[:temp_user_id]
+    p.approvable_id = video.id
+    p.approvable_type = "Video"
+    p.save!
+  end
 
 end
