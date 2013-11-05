@@ -25,13 +25,13 @@ class Api::V1::ListTagsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-        list_tag = ListTag.where(taggable_id: params[:taggable_id], taggable_type: params[:taggable_type], listable_id: params[:listable_id], listable_type: params[:listable_type])
-        if list_tag.destroy_all
-          format.json { render json: { status: "success" } }
-        else
-          format.json { render json: { status: "error" } }
-        end
+      user_id = current_api_user ? current_api_user.id : "-1"
+      list_tag = ListTag.where("(taggable_id = ? AND taggable_type = ? AND listable_id = ? AND listable_type = ?) AND (user_id = ? OR temp_user_id = ?)",
+                               params[:taggable_id], params[:taggable_type], params[:listable_id], params[:listable_type], user_id, params[:temp_user_id])
+      if list_tag.destroy_all
+        format.json { render json: { status: "success" } }
+      else
+        format.json { render json: { status: "error" } }
       end
     end
   end

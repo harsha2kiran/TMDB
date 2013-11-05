@@ -3,10 +3,8 @@
   .col-md-3.tag{ "data-id" => tag[0], "data-type" => tag[1] }
     .col-md-7.tag-tag.input-label
       = tag[2]
-    - if is_admin_or_mod()
+    - if is_admin_or_mod() 
+      - console.log is_admin_or_mod()
       .col-md-3.js-remove.btn
         X
 
-      -# - unless approved && is_admin_or_mod()
-      -#   .col-md-3.js-approve-keyword
-      -#     Approve

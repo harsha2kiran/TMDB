@@ -84,7 +84,7 @@ class MoviesApp.SingleVideoKeywords extends Backbone.View
   remove_keyword: (e) ->
     parent = $(e.target).parents(".keyword").first()
     id = parent.attr("data-id")
-    $.ajax api_version + "media_keywords/test",
+    $.ajax api_version + "media_keywords/test?temp_user_id=" + localStorage.temp_user_id,
       method: "DELETE"
       data:
         mediable_id: window.video_id

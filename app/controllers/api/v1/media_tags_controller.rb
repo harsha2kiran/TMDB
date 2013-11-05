@@ -25,13 +25,13 @@ class Api::V1::MediaTagsController < Api::V1::BaseController
 
   def destroy
     respond_to do |format|
-      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-        media_tag = MediaTag.where(mediable_id: params[:mediable_id], mediable_type: params[:mediable_type], taggable_type: params[:taggable_type], taggable_id: params[:taggable_id])
-        if media_tag.destroy_all
-          format.json { render json: { status: "success" } }
-        else
-          format.json { render json: { status: "error" } }
-        end
+      user_id = current_api_user ? current_api_user.id : "-1"
+      media_tag = MediaTag.where("(mediable_id = ? AND mediable_type = ? AND taggable_type = ? AND taggable_id = ?) AND (user_id = ? OR temp_user_id = ?)",
+                                 params[:mediable_id], params[:mediable_type], params[:taggable_type], params[:taggable_id], user_id, params[:temp_user_id])
+      if media_tag.destroy_all
+        format.json { render json: { status: "success" } }
+      else
+        format.json { render json: { status: "error" } }
       end
     end
   end

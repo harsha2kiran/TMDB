@@ -21,12 +21,12 @@
             .col-md-5.keyword-keyword.input-label
               = keyword.keyword
 
-            - if is_admin_or_mod()
+            - if is_admin_or_mod() || is_owner
               .col-md-2.js-remove-keyword.btn
                 X
-              - unless approved
-                .col-md-4.js-approve-keyword.btn.btn-primary.flat
-                  Approve
+            - if is_admin_or_mod() && !approved
+              .col-md-4.js-approve-keyword.btn.btn-primary.flat
+                Approve
 - else
   .js-keywords-list
 

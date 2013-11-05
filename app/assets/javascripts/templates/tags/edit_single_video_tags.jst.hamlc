@@ -25,12 +25,12 @@
               .col-md-5.tag-tag.input-label
                 = tag.title
 
-              - if is_admin_or_mod()
+              - if is_admin_or_mod() || is_owner
                 .col-md-2.js-remove-tag.btn
                   X
-                - unless approved
-                  .col-md-3.js-approve-tag.btn-primary.btn.flat
-                    Approve
+              - if is_admin_or_mod() && !approved
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
+                  Approve
   .col-md-12.js-tags-people-list
     .col-md-12.input-label
       People:
@@ -54,12 +54,12 @@
               .col-md-5.tag-tag.input-label
                 = tag.name
 
-              - if is_admin_or_mod()
+              - if is_admin_or_mod() || is_owner
                 .col-md-2.js-remove-tag.btn
                   X
-                - unless approved
-                  .col-md-3.js-approve-tag.btn-primary.btn.flat
-                    Approve
+              - if is_admin_or_mod() && !approved
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
+                  Approve
 
   .col-md-12.js-tags-companies-list
     .col-md-12.input-label
@@ -84,12 +84,12 @@
               .col-md-5.tag-tag.input-label
                 = tag.company
 
-              - if is_admin_or_mod()
+              - if is_admin_or_mod() || is_owner
                 .col-md-2.js-remove-tag.btn
                   X
-                - unless approved
-                  .col-md-3.js-approve-tag.btn-primary.btn.flat
-                    Approve
+              - if is_admin_or_mod() && !approved
+                .col-md-3.js-approve-tag.btn-primary.btn.flat
+                  Approve
 - else
   .js-tags-movies-list
   .js-tags-people-list

@@ -289,11 +289,15 @@ class MoviesApp.ListsShow extends Backbone.View
             @edit_images_view = new MoviesApp.EditImagesGallery(images: [])
             $(".add-images-form").append @edit_images_view.render().el
             $(".slimbox").slimbox({ maxHeight: 700, maxWidth: 1000 })
+          if list.get("list").list_type == "channel"
+            window.list_type = "channel"
+            @edit_videos_view = new MoviesApp.EditVideos(videos: [], channel: true)
+            $(".add-videos-form").append @edit_videos_view.render().el
 
   remove_keyword: (e) ->
     parent = $(e.target).parents(".keyword").first()
     id = parent.attr("data-id")
-    $.ajax api_version + "list_keywords/test",
+    $.ajax api_version + "list_keywords/test?temp_user_id=" + localStorage.temp_user_id,
       method: "DELETE"
       data:
         listable_id: window.list_id
@@ -307,7 +311,7 @@ class MoviesApp.ListsShow extends Backbone.View
     parent = $(e.target).parents(".tag").first()
     id = parent.attr("data-id")
     type = parent.attr("data-type")
-    $.ajax api_version + "list_tags/test",
+    $.ajax api_version + "list_tags/test?temp_user_id=" + localStorage.temp_user_id,
       method: "DELETE"
       data:
         listable_id: window.list_id

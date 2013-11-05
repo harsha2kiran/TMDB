@@ -131,7 +131,7 @@ class MoviesApp.SingleVideoTags extends Backbone.View
     parent = $(e.target).parents(".tag").first()
     id = parent.attr("data-id")
     type = parent.attr("data-type")
-    $.ajax api_version + "media_tags/test",
+    $.ajax api_version + "media_tags/test?temp_user_id=" + localStorage.temp_user_id,
       method: "DELETE"
       data:
         mediable_id: window.video_id

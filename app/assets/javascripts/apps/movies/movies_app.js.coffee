@@ -84,6 +84,17 @@ window.MoviesApp = {
             $(".single-image-tags").html @tags_view.render().el
             @keywords_view = new MoviesApp.SingleImageKeywords(item: item)
             $(".single-image-keywords").html @keywords_view.render().el
+    if media_type == "Video"
+      item = new MoviesApp.Video()
+      item.url = "/api/v1/videos/#{media_id}?temp_user_id=" + localStorage.temp_user_id
+      item.fetch
+        success: ->
+          if item.get("video")
+            item = item.get("video")
+            @tags_view = new MoviesApp.SingleVideoTags(item: item)
+            $(".single-video-tags").html @tags_view.render().el
+            @keywords_view = new MoviesApp.SingleVideoKeywords(item: item)
+            $(".single-video-keywords").html @keywords_view.render().el
 
 }
 

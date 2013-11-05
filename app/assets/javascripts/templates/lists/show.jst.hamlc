@@ -25,7 +25,6 @@
 
     - if list.list_type == "gallery" || list.list_type == "channel"
 
-
       -# approve and unapprove buttons
       - if is_admin_or_mod()
         .col-md-12.approve-unapprove-btn
@@ -36,12 +35,11 @@
             %button.js-approve-list.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
             %button.js-unapprove-list.hide.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
 
-
-
       .col-md-12.list-keywords
         .col-md-12
           %strong= "Keywords"
         .col-md-12.js-keywords-list
+
           - $.each list.keywords, (i, keyword) ->
 
             - approved = false
@@ -60,13 +58,13 @@
                 .col-md-5.keyword-keyword.input-label
                   = keyword.keyword
 
-                - if is_admin_or_mod()
+                - if is_admin_or_mod() || is_owner
                   .col-md-2.js-remove-keyword.btn
                     X
 
-                  - unless approved
-                    .col-md-3.js-approve-keyword.btn.btn-primary.flat
-                      Approve
+                - if is_admin_or_mod() && !approved
+                  .col-md-3.js-approve-keyword.btn.btn-primary.flat
+                    Approve
         .col-md-12
           .col-md-2.input-label
             Add keywords
@@ -86,25 +84,26 @@
               - is_owner = false
 
               - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Movie"
 
-                - if list_tag.taggable_type == "Movie" && list_tag.taggable_id == tag.id && list_tag.approved == true
-                  - approved = true
+                  - if list_tag.taggable_id == tag.id && list_tag.approved == true
+                    - approved = true
 
-                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
-                  - is_owner = true
+                  - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
+                    - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
                 .col-md-4.tag{ "data-type" => "Movie", "data-id" => tag.id }
                   .col-md-5.tag-tag.input-label
                     = tag.title
 
-                  - if is_admin_or_mod()
+                  - if is_admin_or_mod() || is_owner
                     .col-md-2.js-remove-tag.btn
                       X
 
-                    - unless approved
-                      .col-md-3.js-approve-tag.btn.btn-primary.flag
-                        Approve
+                  - if is_admin_or_mod() && !approved
+                    .col-md-3.js-approve-tag.btn.btn-primary.flag
+                      Approve
         .col-md-11
           People:
         .col-md-12.js-tags-people-list
@@ -115,25 +114,26 @@
               - is_owner = false
 
               - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Person"
 
-                - if list_tag.taggable_type == "Person" && list_tag.taggable_id == tag.id && list_tag.approved == true
-                  - approved = true
+                  - if list_tag.taggable_id == tag.id && list_tag.approved == true
+                    - approved = true
 
-                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
-                  - is_owner = true
+                  - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
+                    - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
                 .col-md-4.tag{ "data-type" => "Person", "data-id" => tag.id }
                   .col-md-5.tag-tag.input-label
                     = tag.name
 
-                  - if is_admin_or_mod()
+                  - if is_admin_or_mod() || is_owner
                     .col-md-2.js-remove-tag.btn
                       X
 
-                    - unless approved
-                      .col-md-3.js-approve-tag.btn.btn-primary.flag
-                        Approve
+                  - if is_admin_or_mod() && !approved
+                    .col-md-3.js-approve-tag.btn.btn-primary.flag
+                      Approve
         .col-md-11
           Companies:
         .col-md-12.js-tags-companies-list
@@ -144,25 +144,26 @@
               - is_owner = false
 
               - $.each list.list_tags, (ii, list_tag) ->
+                - if list_tag.taggable_type == "Company"
 
-                - if list_tag.taggable_type == "Company" && list_tag.taggable_id == tag.id && list_tag.approved == true
-                  - approved = true
+                  - if list_tag.taggable_id == tag.id && list_tag.approved == true
+                    - approved = true
 
-                - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
-                  - is_owner = true
+                  - if (current_users_item(list_tag) || current_temp_users_item(list_tag)) && list_tag.taggable_id == tag.id
+                    - is_owner = true
 
               - if is_owner || approved || is_admin_or_mod()
                 .col-md-4.tag{ "data-type" => "Company", "data-id" => tag.id }
                   .col-md-5.tag-tag.input-label
                     = tag.company
 
-                  - if is_admin_or_mod()
+                  - if is_admin_or_mod() || is_owner
                     .col-md-2.js-remove-tag.btn
                       X
 
-                    - unless approved
-                      .col-md-3.js-approve-tag.btn.btn-primary.flag
-                        Approve
+                  - if is_admin_or_mod() && !approved
+                    .col-md-3.js-approve-tag.btn.btn-primary.flag
+                      Approve
 
         .col-md-12
           .col-md-2.input-label
