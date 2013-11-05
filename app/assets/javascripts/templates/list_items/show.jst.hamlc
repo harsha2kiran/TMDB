@@ -109,8 +109,8 @@
                 %input{ type: "hidden", value: item.list_item.id }
                 Remove
 
-            -# if is owner, admin or mod can approve items
-            - if (current_user && list.user_id == current_user.id) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
+            -# if is admin or mod can approve items
+            - if (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator"))
               - unless item.list_item.approved
                 .span.js-approve.btn.btn-primary.flat
                   %input{ type: "hidden", value: item.list_item.id }

@@ -17,7 +17,7 @@ class Api::V1::ListsController < Api::V1::BaseController
       elsif params[:temp_user_id] && params[:temp_user_id] != "undefined"
         @lists = List.where("(list_type = '' OR list_type IS NULL) AND (approved = true OR temp_user_id = ?)", params[:temp_user_id]).includes(:list_items, :user)
       else
-        @lists = List.where(approved: true).includes(:list_items, :user, :follows)
+        @lists = List.where("list_type = '' OR list_type IS NULL AND approved = true").includes(:list_items, :user, :follows)
       end
       @lists = @lists.page(page).per(20)
       if Rails.env.to_s == "production"
