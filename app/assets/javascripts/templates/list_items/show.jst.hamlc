@@ -67,14 +67,17 @@
 
                   - if is_owner || image.approved || is_admin_or_mod()
                     %img{ src: image.image_file.small.url, alt: "no image", height: "88px" }
-                    .col-md-12
-                      = image.title
 
                 - if is_owner || is_admin_or_mod()
                   %input.js-edit-gallery-image-title.form-control.flat.col-md-12{ type: "text", value: image.title, placeholder: "Title" }
                   %input.js-edit-gallery-image-description.form-control.flat.col-md-12{ type: "text", value: image.description, placeholder: "Description" }
                   %input.js-edit-gallery-image-priority.form-control.flat.col-md-12{ type: "text", value: image.priority, placeholder: "Priority" }
                   %button.js-edit-gallery-image-update.btn.btn-primary.flat.col-md-12= "Update"
+                - else
+                  .col-md-12
+                    = image.title
+                  .col-md-12
+                    = image.description
 
           - if item.list_item.listable_type == "Video"
             - $.each item.list_item.videos, (i, video) ->

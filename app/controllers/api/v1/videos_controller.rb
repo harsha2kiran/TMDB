@@ -146,6 +146,8 @@ class Api::V1::VideosController < Api::V1::BaseController
       new_video = Video.new(video[1])
       new_video.videable_id = params[:videable_id]
       new_video.videable_type = params[:videable_type]
+      new_video.user_id = current_api_user.id if current_api_user
+      new_video.temp_user_id = params[:temp_user_id]
       if new_video.save!
         add_media_keywords(new_video, keywords) if keywords
         add_media_tags(new_video, tags) if tags

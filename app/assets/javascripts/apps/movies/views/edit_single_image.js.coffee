@@ -33,6 +33,7 @@ class MoviesApp.EditSingleImage extends Backbone.View
       image = new MoviesApp.Image()
       imageable_id = window.list_id
       imageable_type = "List"
+      image.url = api_version + "images/" + @image.id + "?temp_user_id=" + localStorage.temp_user_id
       image.save ({ id: @image.id, image: { id: @image.id, description: description, title: title, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
         success: ->
           if window.list_id
