@@ -21,13 +21,13 @@ if @list
     node(:videos){ |item|
       if item.listable_type == "Video"
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
-          @videos.select{ |image| image.id == item.listable_id }
+          videos = @videos.select{ |image| image.id == item.listable_id }
         elsif @current_api_user && @current_api_user.user_type == "user"
-          @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
+          videos = @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.user_id == @current_api_user.id) }
         elsif params[:temp_user_id]
-          @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
+          videos = @videos.select{ |image| image.id == item.listable_id && (image.approved == true || image.temp_user_id == params[:temp_user_id]) }
         else
-          @videos.select{ |image| image.id == item.listable_id && image.approved == true }
+          videos = @videos.select{ |image| image.id == item.listable_id && image.approved == true }
         end
       end
     }

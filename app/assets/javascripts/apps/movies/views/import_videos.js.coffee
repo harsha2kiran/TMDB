@@ -128,7 +128,7 @@ class MoviesApp.ImportVideos extends Backbone.View
   insert_all_videos: (videos) ->
     self = @
     console.log "insert_all_videos"
-    $.ajax api_version + "videos/import_all",
+    $.ajax api_version + "videos/import_all?temp_user_id=" + localStorage.temp_user_id,
       method: "POST"
       data:
         videos: videos

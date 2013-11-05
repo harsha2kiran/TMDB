@@ -3,5 +3,6 @@ class List < ActiveRecord::Base
   belongs_to :user
   has_many :list_items, :dependent => :destroy
   has_many :follows, :as => :followable
+  has_many :pending_items, :as => :pendable, :dependent => :destroy
 
 end

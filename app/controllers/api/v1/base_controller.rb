@@ -200,39 +200,40 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def check_if_destroy
-    if params[:action] == "destroy"
-      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-      else
-        if current_api_user &&
-          (
-            (@controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i) ) ||
-            (@controller == "lists" && current_api_user.lists.map(&:id).include?(params[:id].to_i) ) ||
-            (@controller == "follows" &&
-             current_api_user.follows.where(followable_id: params[:followable_id].to_i, followable_type: params[:followable_type]).count > 0)
-          )
-
-        elsif params[:temp_user_id] &&
-          (@controller == "list_items" && ListItem.where(list_id: params[:list_item][:list_id]).map(&:temp_user_id).include?(params[:temp_user_id]))
-        else
-          redirect_to root_path, alert: "You must have admin privileges to remove record."
-        end
-      end
-    else
+    if params[:action] == "destroy" && ["list_items", "videos", "images","lists", "follows"].include?(@controller)
+      validate_action
     end
   end
 
   def check_if_update
-    if params[:action] == "update"
-      if current_api_user
-        if ["admin", "moderator"].include?(current_api_user.user_type) || @controller == "images"
-        elsif @controller == "users" && params[:id].to_s == current_api_user.id.to_s
-        else
-          redirect_to root_path, alert: "You must have admin or moderator privileges to update record."
-        end
-      elsif params[:temp_user_id] && !current_api_user && (@controller == "movies" || @controller == "people")
+    if params[:action] == "update" && ["list_items", "videos", "images","lists", "follows"].include?(@controller)
+      validate_action
+    end
+  end
 
-      end
+  def validate_action
+    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
     else
+      if current_api_user &&
+        (
+          (@controller == "list_items" && current_api_user.lists.map(&:id).include?(params[:list_item][:list_id].to_i) ) ||
+          (@controller == "list_items" && current_api_user.list_items.map(&:id).include?(params[:id].to_i) ) ||
+          (@controller == "videos" && current_api_user.videos.map(&:id).include?(params[:id].to_i) ) ||
+          (@controller == "images" && current_api_user.images.map(&:id).include?(params[:id].to_i) ) ||
+          (@controller == "lists" && current_api_user.lists.map(&:id).include?(params[:id].to_i) ) ||
+          (@controller == "follows" &&
+           current_api_user.follows.where(followable_id: params[:followable_id].to_i, followable_type: params[:followable_type]).count > 0)
+        )
+
+      elsif params[:temp_user_id] &&
+        (
+          (@controller == "list_items" && ListItem.where(list_id: params[:list_item][:list_id]).map(&:temp_user_id).include?(params[:temp_user_id])) ||
+          (@controller == "videos" && Video.find(params[:id]).temp_user_id == params[:temp_user_id]) ||
+          (@controller == "images" && Image.find(params[:id]).temp_user_id == params[:temp_user_id])
+        )
+      else
+        redirect_to root_path, alert: "You must have admin privileges to remove record."
+      end
     end
   end
 

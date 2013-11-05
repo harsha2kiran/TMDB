@@ -99,9 +99,9 @@ window.current_temp_users_item = (item) ->
     false
 
 window.sort_priority = (a, b) ->
-  if a.list_item.images
+  if a.list_item.images && a.list_item.images[0] && b.list_item.images[0]
     return a.list_item.images[0].priority - b.list_item.images[0].priority
-  else if a.list_item.videos
+  else if a.list_item.videos && a.list_item.videos[0] && b.list_item.videos[0]
     return a.list_item.videos[0].priority - b.list_item.videos[0].priority
   0
 

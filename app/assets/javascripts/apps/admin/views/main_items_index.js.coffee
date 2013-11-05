@@ -54,7 +54,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
           $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
           $('td:eq(2)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='/#!/lists/" + aData[0] + "'>Moderate</a>"
-          if aData[3] == "false"
+          if aData[4]
             $('td:eq(2)', nRow).append "(Pending)"
           else
             $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"
@@ -63,7 +63,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
           $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
           $('td:eq(2)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='/#!/lists/" + aData[0] + "'>Moderate</a>"
-          if aData[3] == "false"
+          if aData[4]
             $('td:eq(2)', nRow).append "(Pending)"
           else
             $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"

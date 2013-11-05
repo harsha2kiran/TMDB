@@ -26,7 +26,7 @@ class MoviesApp.ListItemsShow extends Backbone.View
     if title != ""
       parent.find(".js-edit-gallery-image-title").removeClass("error")
       image = new MoviesApp.Image()
-      image.url = api_version + "images/" + id
+      image.url = api_version + "images/" + id + "?temp_user_id=" + localStorage.temp_user_id
       image.set({ title: title, description: description, priority: priority, id: id })
       image.save null,
         success: ->
@@ -45,7 +45,7 @@ class MoviesApp.ListItemsShow extends Backbone.View
     if title != ""
       parent.find(".js-edit-gallery-video-title").removeClass("error")
       video = new MoviesApp.Video()
-      video.url = api_version + "videos/" + id
+      video.url = api_version + "videos/" + id + "?temp_user_id=" + localStorage.temp_user_id
       video.set({ title: title, description: description, priority: priority, id: id })
       video.save null,
         success: ->

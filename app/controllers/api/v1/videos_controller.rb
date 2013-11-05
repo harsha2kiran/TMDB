@@ -46,15 +46,22 @@ class Api::V1::VideosController < Api::V1::BaseController
 
   def create
     @video = Video.new params["video"]
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-      @video.approved = true
-    end
+    # if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+    #   @video.approved = true
+    # end
     @video.save!
     if params[:keywords]
       add_media_keywords(@video, params[:keywords])
     end
     if params[:tags]
       add_media_tags(@video, params[:tags])
+    end
+
+    if params[:videable_type] == "List"
+      add_list_item(@video)
+      # unless current_api_user && ["admin", "moderator"].include?(current_api_user)
+      #   add_pending_item(@video)
+      # end
     end
     render json: @video
   end
@@ -140,26 +147,18 @@ class Api::V1::VideosController < Api::V1::BaseController
       new_video.videable_id = params[:videable_id]
       new_video.videable_type = params[:videable_type]
       if new_video.save!
-        if keywords
-          add_media_keywords(new_video, keywords)
-        end
-        if tags
-          add_media_tags(new_video, tags)
+        add_media_keywords(new_video, keywords) if keywords
+        add_media_tags(new_video, tags) if tags
+        if params[:videable_type] == "List"
+          add_list_item(new_video)
         end
         success_links << new_video.link
-        if params[:videable_type] == "List"
-          list_item = ListItem.new
-          list_item.listable_id = new_video.id
-          list_item.listable_type = "Video"
-          list_item.user_id = current_api_user.id if current_api_user
-          list_item.temp_user_id = params[:temp_user_id]
-          list_item.list_id = params[:list_id]
-          list_item.save!
-        end
       end
     end
     render json: { success_links: success_links }
   end
+
+  private
 
   def add_media_keywords(video, keywords)
     keywords.each do |keyword_id|
@@ -168,9 +167,9 @@ class Api::V1::VideosController < Api::V1::BaseController
       media_keyword.keyword_id = keyword_id.to_i
       media_keyword.user_id = current_api_user.id if current_api_user
       media_keyword.temp_user_id = params[:temp_user_id]
-      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-        media_keyword.approved = true
-      end
+      # if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      #   media_keyword.approved = true
+      # end
       media_keyword.save!
     end
   end
@@ -183,11 +182,32 @@ class Api::V1::VideosController < Api::V1::BaseController
       media_tag.taggable_type = tag[1]
       media_tag.user_id = current_api_user.id if current_api_user
       media_tag.temp_user_id = params[:temp_user_id]
-      if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-        media_tag.approved = true
-      end
+      # if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+      #   media_tag.approved = true
+      # end
       media_tag.save!
     end
   end
+
+  def add_list_item(video)
+    list_item = ListItem.new
+    list_item.listable_id = video.id
+    list_item.listable_type = "Video"
+    list_item.user_id = current_api_user.id if current_api_user
+    list_item.temp_user_id = params[:temp_user_id]
+    list_item.list_id = params[:list_id]
+    list_item.save!
+  end
+
+  # def add_pending_item(video)
+  #   p = PendingItem.new
+  #   p.pendable_id = params[:list_id]
+  #   p.pendable_type = "List"
+  #   p.user_id = current_api_user.id if current_api_user
+  #   p.temp_user_id = params[:temp_user_id]
+  #   p.approvable_id = video.id
+  #   p.approvable_type = "Video"
+  #   p.save!
+  # end
 
 end

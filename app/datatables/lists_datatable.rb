@@ -19,12 +19,17 @@ private
 
   def data
     lists.map do |list|
+      if (list.pending_items.length > 0) || list.approved == false
+        pending = true
+      else
+        pending = false
+      end
       [
         h(list.id),
         h(list.title),
         h(list.description),
-        # ( (list.pending_items.length > 0) ? true : false ),
-        h(list.approved)
+        h(list.approved),
+        pending
       ]
     end
   end
