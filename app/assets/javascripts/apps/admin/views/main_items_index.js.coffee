@@ -50,16 +50,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
             $('td:eq(4)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='people'>Unapprove</button>"
           $('td:eq(5)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='people'>Delete</button>"
           $('td:eq(6)', nRow).html "<button class='js-clear-cache btn' data-key='people/#{aData[0]}'>Clear cache</button>"
-        else if type == "Gallery"
-          $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
-          $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
-          $('td:eq(2)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='/#!/lists/" + aData[0] + "'>Moderate</a>"
-          if aData[4]
-            $('td:eq(2)', nRow).append "(Pending)"
-          else
-            $('td:eq(2)', nRow).append "<button class='js-unapprove btn' data-id='" + aData[0] + "' data-controller='lists'>Unapprove</button>"
-          $('td:eq(3)', nRow).html "<button class='js-remove btn' data-id='" + aData[0] + "' data-controller='lists'>Delete</button>"
-        else if type == "Channel"
+        else if type == "List" || type == "Gallery" || type == "Channel"
           $('td:eq(0)', nRow).attr("data-id", "title").addClass("jeditable").html(aData[1])
           $('td:eq(1)', nRow).attr("data-id", "description").addClass("jeditable").html(aData[2])
           $('td:eq(2)', nRow).html "<a class='col-md-6 btn btn-primary flat' href='/#!/lists/" + aData[0] + "'>Moderate</a>"
@@ -78,10 +69,7 @@ class AdminApp.MainItemsIndex extends Backbone.View
         if type == "Movie" || type == "Person"
           $(nRow).attr("data-id", aData[0])
           $(nRow).attr("data-model", type)
-        else if type == "Gallery"
-          $(nRow).attr("data-id", aData[0])
-          $(nRow).attr("data-model", "List")
-        else if type == "Channel"
+        else if type == "Gallery" || type == "List" || type == "Gallery"
           $(nRow).attr("data-id", aData[0])
           $(nRow).attr("data-model", "List")
         else if type == "User"

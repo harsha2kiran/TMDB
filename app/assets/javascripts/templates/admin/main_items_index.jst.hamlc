@@ -34,7 +34,7 @@
           Delete
         %th
           Cache
-  - else if type == "Gallery" || type == "Channel"
+  - else if type == "Gallery" || type == "Channel" || type == "List"
     %thead
       %tr
         %th

@@ -23,17 +23,12 @@
         - desc = ""
       = type + " '#{list.title}', #{desc} from #{list.user}"
 
-    - if list.list_type == "gallery" || list.list_type == "channel"
 
-      -# approve and unapprove buttons
-      - if is_admin_or_mod()
-        .col-md-12.approve-unapprove-btn
-          - if list.approved == true
-            %button.js-approve-list.hide.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove-list.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
-          - else
-            %button.js-approve-list.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Approve #{list.list_type}"
-            %button.js-unapprove-list.hide.btn.btn-primary.flat{ "data-id" => list.id, "data-model" => "List" }= "Unapprove #{list.list_type}"
+    -# approve and unapprove buttons
+    - if is_admin_or_mod()
+      != JST['templates/lists/approve_list'](list: list)
+
+    - if list.list_type == "gallery" || list.list_type == "channel"
 
       .col-md-12.list-keywords
         .col-md-12
