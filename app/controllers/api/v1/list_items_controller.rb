@@ -35,6 +35,8 @@ class Api::V1::ListItemsController < Api::V1::BaseController
             item.save
             pending = PendingItem.where(pendable_id: list.id, pendable_type: "List", approvable_id: item.id, approvable_type: list_item.listable_type)
             pending.destroy_all
+            pending = PendingItem.where(approvable_id: list_item.listable_id, approvable_type: list_item.listable_type)
+            pending.destroy_all
           end
         end
         format.json { respond_with list_item }
@@ -52,6 +54,10 @@ class Api::V1::ListItemsController < Api::V1::BaseController
         list_item = ListItem.where(user_id: current_api_user.id).find(params[:id])
       elsif params[:temp_user_id]
         list_item = ListItem.where(temp_user_id: params[:temp_user_id]).find(params[:id])
+      end
+      if list_item.listable_type == "Video"
+        video = Video.find(list_item.listable_id)
+        video.destroy
       end
       if list_item.destroy
         format.json { respond_with list_item }
