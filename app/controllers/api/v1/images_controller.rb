@@ -44,13 +44,13 @@ class Api::V1::ImagesController < Api::V1::BaseController
     end
   end
 
-  def create
-    @image = Image.new params["image"]
-    if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
-      @image.approved = true
-    end
-    create!
-  end
+  # def create
+  #   @image = Image.new params["image"]
+  #   if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+  #     @image.approved = true
+  #   end
+  #   create!
+  # end
 
   def related_images
     # by single image
