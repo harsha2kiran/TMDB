@@ -35,18 +35,18 @@ class Api::V1::MoviesController < Api::V1::BaseController
     if current_api_user && current_api_user.user_type == "admin"
       @items = fetch_popular
     else
-      @movies = []
+      @items = []
     end
     render 'popular'
   end
 
   def get_popular
     begin
-      @movies = @cache.get "popular"
+      @items = @cache.get "popular"
     rescue
       @items = fetch_popular
       if Rails.env.to_s == "production"
-        @cache.set "popular", @movies
+        @cache.set "popular", @items
       end
     end
     render 'popular'

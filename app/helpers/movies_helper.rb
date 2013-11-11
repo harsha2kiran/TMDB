@@ -3,10 +3,10 @@ module MoviesHelper
   def collect_popular(movies, people)
     items = []
     movies.each do |item|
-      items << { id: item.id, title: item.title, popular: item.popular, images: item.images, type: "Movie" }
+      items << { item_id: item.id, title: item.title, popular: item.popular, images: item.images, type: "Movie" }
     end
     people.each do |item|
-      items << { id: item.id, title: item.name, popular: item.popular, images: item.images, type: "Person" }
+      items << { item_id: item.id, title: item.name, popular: item.popular, images: item.images, type: "Person" }
     end
     items.sort! { |a,b| a[:popular] <=> b[:popular] }
     items
