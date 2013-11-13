@@ -60,6 +60,7 @@ class MoviesApp.EditImages extends Backbone.View
           else if window.list_id
             imageable_id = window.list_id
             imageable_type = "List"
+          image.url = api_version + "images/#{@image_id}?temp_user_id=" + localStorage.temp_user_id
           image.save ({ id: @image_id, image: { id: @image_id, priority: priority, title: title, is_main_image: is_main_image, imageable_id: imageable_id, imageable_type: imageable_type, temp_user_id: localStorage.temp_user_id } }),
             success: ->
               if window.list_id
@@ -110,7 +111,7 @@ class MoviesApp.EditImages extends Backbone.View
   destroy: (e) ->
     container = $(e.target).parents(".image").first()
     id = $(e.target).attr("data-id")
-    $.ajax api_version + "images/" + id,
+    $.ajax api_version + "images/" + id + "?temp_user_id=" + localStorage.temp_user_id,
       method: "DELETE"
       success: =>
         container.remove()
@@ -123,6 +124,7 @@ class MoviesApp.EditImages extends Backbone.View
       listable_id = image_id
       listable_type = "Image"
       list_item = new MoviesApp.ListItem()
+      list_item.url = api_version + "list_items?temp_user_id=" + localStorage.temp_user_id
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)

@@ -41,6 +41,7 @@ class PeopleApp.New extends Backbone.View
       values = [name, biography, homepage]
       meta_tags = window.generate_meta_tags("Person", values)
       person = new PeopleApp.Person()
+      person.url = api_version + "people?temp_user_id=" + localStorage.temp_user_id
       person.save ({ person: { name: name, biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id, temp_user_id: localStorage.temp_user_id, meta_title: meta_tags.meta_title, meta_keywords: meta_tags.meta_keywords, meta_description: meta_tags.meta_description } }),
         error: ->
           $(".notifications").html("Person already exist.").show().fadeOut(window.hide_delay)

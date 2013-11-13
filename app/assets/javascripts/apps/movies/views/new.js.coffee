@@ -35,6 +35,7 @@ class MoviesApp.New extends Backbone.View
       values = [title, tagline, overview]
       meta_tags = window.generate_meta_tags("Movie", values)
       movie = new MoviesApp.Movie()
+      movie.url = api_version + "movies?temp_user_id=" + localStorage.temp_user_id
       movie.save ({ movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, temp_user_id: localStorage.temp_user_id, meta_title: meta_tags.meta_title, meta_keywords: meta_tags.meta_keywords, meta_description: meta_tags.meta_description } }),
         error: ->
           $(".notifications").html("Movie already exist.").show().fadeOut(window.hide_delay)
