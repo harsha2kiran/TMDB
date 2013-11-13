@@ -8,6 +8,7 @@ class MoviesApp.ImportVideos extends Backbone.View
   events:
     "click .js-import" : "import"
     "click .js-import-all" : "import_all"
+    "click .js-pick-import-thumbnail" : "pick_thumbnail"
 
   render: ->
     self = @
@@ -161,3 +162,13 @@ class MoviesApp.ImportVideos extends Backbone.View
         if list.get("list")
           @show_list_items_view = new MoviesApp.ListItemsShow(list: list)
           $(".list_items").html @show_list_items_view.render().el
+
+  pick_thumbnail: (e) ->
+    console.log "pick_thumbnail"
+    id = $(e.target).attr("data-id")
+    cont = $(e.target).parent().prev()
+    current_thumb = $(cont).find(".js-new-video-thumbnail").attr("src")
+    picked_thumb = $(cont).find(".js-new-video-thumbnail#{id}").val()
+    $(cont).find(".js-new-video-thumbnail").attr({ "src" : picked_thumb })
+    $(cont).find(".js-new-video-thumbnail#{id}").val(current_thumb)
+

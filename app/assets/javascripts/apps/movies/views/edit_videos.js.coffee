@@ -13,6 +13,7 @@ class MoviesApp.EditVideos extends Backbone.View
     "click .js-new-youtube-username-check" : "fetch_username"
     "click .js-new-youtube-search-check" : "fetch_search"
     "click .js-new-youtube-playlist-check" : "fetch_playlist"
+    "click .js-pick-thumbnail" : "pick_thumbnail"
 
   render: ->
     edit = $(@el)
@@ -149,6 +150,7 @@ class MoviesApp.EditVideos extends Backbone.View
       listable_id = id
       listable_type = "Video"
       list_item = new MoviesApp.ListItem()
+      list_item.url = api_version + "list_items?temp_user_id=" + localStorage.temp_user_id
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type } }),
         success: ->
           $(".notifications").html("Successfully added to list.").show().fadeOut(window.hide_delay)
@@ -227,6 +229,13 @@ class MoviesApp.EditVideos extends Backbone.View
           $(".js-import-videos-list").html @import_videos_view.render().el
           $(e.target).val("Fetch").removeAttr("disabled")
 
+  pick_thumbnail: (e) ->
+    console.log "pick_thumbnail"
+    id = $(e.target).attr("data-id")
+    current_thumb = $(".js-new-video-thumbnail").attr("src")
+    picked_thumb = $(".js-new-video-thumbnail#{id}").val()
+    $(".js-new-video-thumbnail").attr({ "src" : picked_thumb })
+    $(".js-new-video-thumbnail#{id}").val(current_thumb)
 
 
 

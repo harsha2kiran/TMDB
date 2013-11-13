@@ -133,6 +133,7 @@ class MoviesApp.ListsShow extends Backbone.View
       listable_id = item_id
       listable_type = item_type
       list_item = new MoviesApp.ListItem()
+      list_item.url = api_version + "list_items?temp_user_id=" + localStorage.temp_user_id
       list_item.save ({ list_item: { list_id: window.list_id, listable_id: listable_id, listable_type: listable_type, temp_user_id: localStorage.temp_user_id } }),
         error: ->
           $(".notifications").html("Cannot add this item to list.").show().fadeOut(window.hide_delay)
@@ -213,7 +214,7 @@ class MoviesApp.ListsShow extends Backbone.View
         model.set({ person: { name: value } })
       else if type == "Company"
         model = new MoviesApp.Company()
-        model.url = "/api/v1/companies"
+        model.url = "/api/v1/companies?temp_user_id=" + localStorage.temp_user_id
         model.set({ company: { company: value } })
       model.save null,
         success: ->
