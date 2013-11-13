@@ -12,7 +12,7 @@
       - $.each @person.images, (i, image) ->
         - if image.is_main_image == true
           .col-md-4
-            %a.slimbox{ href: image.image_file.watermarked.url }
+            %a{ href: "/#!/images/#{image.id}", title: image.title }
               %img{ src: image.image_file.medium.url }
               = image.title
     - else
@@ -125,7 +125,7 @@
     - $.each @person.images, (i, image) ->
       - if image.is_main_image == false
         .col-md-12.image
-          %a.slimbox{ href: image.image_file.watermarked.url }
+          %a{ href: "/#!/images/#{image.id}", title: image.title }
             %img{ src: image.image_file.small.url }
             = image.title
 

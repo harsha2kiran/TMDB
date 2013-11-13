@@ -150,7 +150,7 @@
       - $.each @movie.images, (i, image) ->
         - if image.is_main_image == false
           .col-md-12.image
-            %a.slimbox{ href: image.image_file.watermarked.url, title: image.title }
+            %a.slimbox{ href: "/#!/images/#{image.id}", title: image.title }
               %img{ src: image.image_file.small.url }
               = image.title
 

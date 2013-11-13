@@ -10,8 +10,8 @@ Movies::Application.configure do
      :address              => "smtp.gmail.com",
      :port                 => 587,
      :domain               => 'gmail.com',
-     :user_name            => 'vogsmedia@gmail.com',
-     :password             => 'Google66',
+     :user_name            => 'moviedatabase33@gmail.com',
+     :password             => "0jYrfFOF3E8NZB3",
      :authentication       => :plain,
      :enable_starttls_auto => true
   }

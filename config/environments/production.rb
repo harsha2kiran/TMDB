@@ -56,6 +56,18 @@ Movies::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.smtp_settings = {
+     :address              => "smtp.gmail.com",
+     :port                 => 587,
+     :domain               => 'gmail.com',
+     :user_name            => 'moviedatabase33@gmail.com',
+     :password             => "0jYrfFOF3E8NZB3",
+     :authentication       => :plain,
+     :enable_starttls_auto => true
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # Enable threaded mode
   # config.threadsafe!
 
