@@ -5,7 +5,7 @@
     .edit-gallery-item
       - if item.get("image")
         - link = if item.get("type") == "Movie" then "movies" else "people"
-        %a{ href: "/#!/#{link}/#{item.get('id')}" }
+        %a{ href: "/#!/#{link}/#{item.get('item_id')}" }
           %img{ src: item.get("image").image_file.small.url, width: 150 }
       - else
         %img{ src: "", alt: "missing img", width: 150 }
@@ -20,7 +20,7 @@
           %label= "Position in gallery:"
           %input.js-popular.form-control.flat{ type: "text", value: item.get("popular") }
         .save
-          %input.js-popular-id{ type: "hidden", value: item.get("id"), "data-type" => item.get("type") }
+          %input.js-popular-id{ type: "hidden", value: item.get("item_id"), "data-type" => item.get("type") }
           %input.js-popular-save.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
 %a.js-close-edit-gallery.link{ href: "#" }
   Back
