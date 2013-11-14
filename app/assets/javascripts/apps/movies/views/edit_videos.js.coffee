@@ -13,7 +13,7 @@ class MoviesApp.EditVideos extends Backbone.View
     "click .js-new-youtube-username-check" : "fetch_username"
     "click .js-new-youtube-search-check" : "fetch_search"
     "click .js-new-youtube-playlist-check" : "fetch_playlist"
-    "click .js-pick-thumbnail" : "pick_thumbnail"
+    "click .js-add-single-video .js-pick-thumbnail" : "pick_thumbnail"
 
   render: ->
     edit = $(@el)
@@ -132,6 +132,8 @@ class MoviesApp.EditVideos extends Backbone.View
         success: (data) ->
           $self.find(".js-new-video-title").val(data.title)
           $self.find(".js-new-video-thumbnail").attr("src", data.thumbnail).removeClass("hide").show()
+          $self.find(".js-thumbnail-preview2").attr("src", data.thumbnail2)
+          $self.find(".js-thumbnail-preview3").attr("src", data.thumbnail3)
           $self.find(".js-new-video-thumbnail2").val(data.thumbnail2)
           $self.find(".js-new-video-thumbnail3").val(data.thumbnail3)
           $self.find(".js-new-video-link").removeClass("error")
@@ -236,7 +238,7 @@ class MoviesApp.EditVideos extends Backbone.View
     picked_thumb = $(".js-new-video-thumbnail#{id}").val()
     $(".js-new-video-thumbnail").attr({ "src" : picked_thumb })
     $(".js-new-video-thumbnail#{id}").val(current_thumb)
-
+    $(".js-thumbnail-preview#{id}").attr({ "src" : current_thumb })
 
 
 

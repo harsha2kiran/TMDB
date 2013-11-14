@@ -47,10 +47,9 @@
         %input.js-new-video-thumbnail3{ type: "hidden" }
       .col-md-12.input-label
         .col-md-2
-          Pick thumbnail
-        .col-md-1.js-pick-thumbnail{ "data-id" => "1" }= "1"
-        .col-md-1.js-pick-thumbnail{ "data-id" => "2" }= "2"
-        .col-md-1.js-pick-thumbnail{ "data-id" => "3" }= "3"
+          Select another thumbnail
+        %img.col-md-2.js-pick-thumbnail.js-thumbnail-preview2{ "data-id" => "2", src: "" }
+        %img.col-md-2.js-pick-thumbnail.js-thumbnail-preview3{ "data-id" => "3", src: "" }
       .col-md-12
         .col-md-2.input-label
           Priority

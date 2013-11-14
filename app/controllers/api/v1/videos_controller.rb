@@ -96,8 +96,8 @@ class Api::V1::VideosController < Api::V1::BaseController
     response = client.video_by(url)
     if response
       thumbnail = response.thumbnails[1] ? response.thumbnails[1].url : ""
-      thumbnail2 = response.thumbnails[0] ? response.thumbnails[0].url : ""
-      thumbnail3 = response.thumbnails[2] ? response.thumbnails[2].url : ""
+      thumbnail2 = response.thumbnails[0] ? response.thumbnails[4].url : ""
+      thumbnail3 = response.thumbnails[2] ? response.thumbnails[5].url : ""
       title = response.title
       description = response.description
       duration = response.media_content.first.duration
