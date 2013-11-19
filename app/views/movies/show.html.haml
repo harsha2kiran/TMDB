@@ -1,8 +1,16 @@
 .col-md-12
-  .col-md-1
+  %h4.col-md-1
     = link_to "List of all movies", movies_path
-  .col-md-1
+  %h4.col-md-1
     = link_to "List of all people", people_path
+  %h4.col-md-2
+    = link_to "List of all genres", genres_path
+  %h4.col-md-2
+    = link_to "Lists", lists_path
+  %h4.col-md-2
+    = link_to "Galleries", galleries_lists_path
+  %h4.col-md-2
+    = link_to "Channels", channels_lists_path
 
 %a{ href: "/#!/movies/#{@movie.id}" }
   %h1.col-md-12

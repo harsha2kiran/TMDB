@@ -150,6 +150,7 @@ Movies::Application.routes.draw do
   root :to => 'application#index'
   resources :movies
   resources :people
+  resources :genres
   resources :lists do
     collection do
       get "galleries" => "lists#galleries"
