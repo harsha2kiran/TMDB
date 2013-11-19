@@ -1,0 +1,13 @@
+.col-md-12
+  - list_items = @list.list_items
+  - list_items.each do |list_item|
+    - if list_item.approved
+      - item = list_item.listable_type.classify.constantize.where(approved: true, id: list_item.listable_id)
+      - if item.length > 0
+        - item = item.first
+        .col-md-3
+          %a{ href: "/#!/videos/#{item.id}" }
+            .col-md-12
+              %img{ src: item.thumbnail, alt: "" }
+            .col-md-12
+              = item.title

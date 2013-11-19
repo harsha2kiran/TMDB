@@ -3,6 +3,12 @@
     = link_to "List of all movies", movies_path
   %h4.col-md-2
     List of all people
+  %h4.col-md-2
+    = link_to "Lists", lists_path
+  %h4.col-md-2
+    = link_to "Galleries", galleries_lists_path
+  %h4.col-md-2
+    = link_to "Channels", channels_lists_path
 - @people.each do |person|
   .col-md-12
     = link_to person.name, person_path(person.id)

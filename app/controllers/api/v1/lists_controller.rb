@@ -52,8 +52,14 @@ class Api::V1::ListsController < Api::V1::BaseController
         person_ids = @list.list_items.where(listable_type: "Person").map(&:listable_id)
         image_ids = @list.list_items.where(listable_type: "Image").map(&:listable_id)
         video_ids = @list.list_items.where(listable_type: "Video").map(&:listable_id)
+
         @movies = Movie.where("id IN (?)", movie_ids)
         @people = Person.where("id IN (?)", person_ids)
+
+        movie_image_ids = Image.where("imageable_id IN (?) AND imageable_type = 'Movie'", movie_ids).map(&:id)
+        person_image_ids = Image.where("imageable_id IN (?) AND imageable_type = 'Person'", person_ids).map(&:id)
+        image_ids = image_ids + movie_image_ids + person_image_ids
+
         @images = Image.where("id IN (?)", image_ids).order("priority ASC")
         @videos = Video.where("id IN (?)", video_ids).order("priority ASC")
         @keywords = ListKeyword.where(listable_id: @list.id, listable_type: @list.list_type)

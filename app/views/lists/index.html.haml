@@ -1,0 +1,30 @@
+.col-md-12
+  %h4.col-md-2
+    = link_to "List of all movies", movies_path
+  %h4.col-md-2
+    = link_to "List of all people", people_path
+
+
+  %h4.col-md-2
+    - if @index_title == "Lists"
+      Lists
+    - else
+      = link_to "Lists", lists_path
+  %h4.col-md-2
+    - if @index_title == "Galleries"
+      Galleries
+    - else
+      = link_to "Galleries", galleries_lists_path
+  %h4.col-md-2
+    - if @index_title == "Channels"
+      Channels
+    - else
+      = link_to "Channels", channels_lists_path
+
+%h4.col-md-12
+  = @index_title
+- @lists.each do |list|
+  - if list.list_items.length > 0
+    .col-md-12
+      = link_to list.title, list_path(list.id)
+

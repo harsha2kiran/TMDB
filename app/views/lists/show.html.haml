@@ -1,0 +1,37 @@
+.col-md-12
+  %h4.col-md-2
+    = link_to "List of all movies", movies_path
+  %h4.col-md-2
+    = link_to "List of all people", people_path
+  %h4.col-md-2
+    = link_to "Lists", lists_path
+  %h4.col-md-2
+    = link_to "Galleries", galleries_lists_path
+  %h4.col-md-2
+    = link_to "Channels", channels_lists_path
+
+%a{ href: "/#!/lists/#{@list.id}" }
+  %h1.col-md-12
+    = @list.title
+- if @list.description && @list.description != ""
+  .col-md-12
+    .col-md-2
+      Description
+    .col-md-10
+      = @list.description
+.col-md-12
+  .col-md-2
+    By
+  .col-md-10
+    - user = @list.user
+    - if user && user.first_name && user.last_name
+      = user.first_name + " " + user.last_name
+    - else
+      = user.email
+
+- if @list.list_type == "gallery"
+  = render "lists/gallery"
+- elsif @list.list_type == "channel"
+  = render "lists/channel"
+- else
+  = render "lists/list"

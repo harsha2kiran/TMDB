@@ -65,6 +65,9 @@ if @list
         else
           movies = @movies.select{ |image| image.id == item.listable_id && image.approved == true }
         end
+        node(:listable_item_image){
+          @images.select{ |image| image.imageable_type == "Movie" && image.imageable_id == item.listable_id && image.is_main_image == true && image.approved == true }[0]
+        }
         movies[0]
       elsif item.listable_type == "Person"
         if @current_api_user && ["admin", "moderator"].include?(@current_api_user.user_type)
@@ -76,6 +79,9 @@ if @list
         else
           people = @people.select{ |image| image.id == item.listable_id && image.approved == true }
         end
+        node(:listable_item_image){
+          @images.select{ |image| image.imageable_type == "Person" && image.imageable_id == item.listable_id && image.is_main_image == true && image.approved == true }[0]
+        }
         people[0]
       end
     }
