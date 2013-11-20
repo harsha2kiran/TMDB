@@ -1,16 +1,20 @@
 .col-md-12
   %h4.col-md-2
-    = link_to "List of all movies", movies_path
+    = link_to "Movies", movies_path
   %h4.col-md-2
-    = link_to "List of all people", people_path
+    = link_to "People", people_path
   %h4.col-md-2
-    = link_to "List of all genres", genres_path
+    = link_to "Genres", genres_path
   %h4.col-md-2
     = link_to "Lists", lists_path
   %h4.col-md-2
     = link_to "Galleries", galleries_lists_path
   %h4.col-md-2
     = link_to "Channels", channels_lists_path
+
+%a{ href: "/#!/genres/#{@genre.id}" }
+  %h1.col-md-12
+    = @genre.genre
 
 - @genre.movies.each do |movie|
   .movie.col-md-2
