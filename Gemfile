@@ -53,7 +53,7 @@ gem "erb2haml"
 gem 'country-select'
 gem 'kaminari'
 gem "youtube_it"
-# gem 'rack-mini-profiler'
+gem 'rack-mini-profiler'
 gem 'momentjs-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'puma'
