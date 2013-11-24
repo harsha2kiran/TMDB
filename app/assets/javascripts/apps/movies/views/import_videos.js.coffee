@@ -47,6 +47,8 @@ class MoviesApp.ImportVideos extends Backbone.View
     videable_type = "List"
 
     if link != "" && priority != "" && title != "" && thumbnail != ""
+      if link.indexOf("http") < 0
+        link = "http://" + link
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         if !isNaN(priority)
           video = new MoviesApp.Video()

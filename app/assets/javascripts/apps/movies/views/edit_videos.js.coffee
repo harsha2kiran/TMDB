@@ -44,6 +44,8 @@ class MoviesApp.EditVideos extends Backbone.View
       tags.push [$(item).attr("data-id"), $(item).attr("data-type")]
 
     if link != "" && priority != "" && title != "" && thumbnail != ""
+      if link.indexOf("http") < 0
+        link = "http://" + link
       if link.match(/^(ht|f)tps?:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/)
         if !isNaN(priority)
           if window.movie_id
