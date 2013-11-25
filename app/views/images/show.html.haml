@@ -1,0 +1,54 @@
+.col-md-12
+  %h4.col-md-2
+    = link_to "Movies", movies_path
+  %h4.col-md-2
+    = link_to "People", people_path
+  %h4.col-md-2
+    = link_to "Lists", lists_path
+  %h4.col-md-2
+    = link_to "Genres", genres_path
+  %h4.col-md-2
+    = link_to "Galleries", galleries_lists_path
+  %h4.col-md-2
+    = link_to "Channels", channels_lists_path
+
+%a.col-md-12{ href: @image.image_file.watermarked.url, target: "_blank" }
+  %h2.col-md-12
+    = @image.title
+  .col-md-12
+    %img{ src: @image.image_file.small.url }
+- if @image.description
+  .col-md-12
+    = @image.description
+
+.col-md-12
+  .col-md-12
+    Keywords
+  - @keywords.each do |keyword|
+    .col-md-2
+      = keyword.keyword
+.col-md-12
+  %br
+
+.col-md-12
+  .col-md-4
+    .col-md-12
+      Movies 
+    .col-md-12
+      - @movies.each do |content|
+        %a.col-md-12{ href: "/movies/#{content.id}" }
+          = content.title
+  .col-md-4
+    .col-md-12
+      People
+    .col-md-12
+      - @people.each do |content|
+        %a.col-md-12{ href: "/people/#{content.id}" }
+          = content.name
+  .col-md-4
+    .col-md-12
+      Companies
+    .col-md-12
+      - @companies.each do |content|
+        .col-md-12
+          = content.company

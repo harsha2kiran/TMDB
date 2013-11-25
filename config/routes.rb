@@ -148,13 +148,15 @@ Movies::Application.routes.draw do
     end
   end
   root :to => 'application#index'
-  resources :movies
-  resources :people
-  resources :genres
+  resources :movies, only: [:show, :index]
+  resources :people, only: [:show, :index]
+  resources :genres, only: [:show, :index]
   resources :lists do
     collection do
       get "galleries" => "lists#galleries"
       get "channels" => "lists#channels"
     end
   end
+  resources :images, only: [:show]
+  resources :videos, only: [:show]
 end

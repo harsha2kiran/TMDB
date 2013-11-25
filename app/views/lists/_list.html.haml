@@ -6,7 +6,7 @@
       - if item.length > 0
         - item = item.first
         .col-md-3
-          - link = list_item.listable_type == "Movie" ? "/#!/movies/#{item.id}" : "/#!/people/#{item.id}"
+          - link = list_item.listable_type == "Movie" ? "/movies/#{item.id}" : "/people/#{item.id}"
           %a{ href: link }
             .col-md-12
               - main_image = item.images.where(is_main_image: true)

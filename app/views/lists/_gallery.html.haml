@@ -6,7 +6,7 @@
       - if item.length > 0
         - item = item.first
         .col-md-3
-          %a{ href: "/#!/images/#{item.id}" }
+          %a{ href: "/images/#{item.id}" }
             .col-md-12
               %img{ src: item.image_file.small.url, alt: "" }
             .col-md-12
