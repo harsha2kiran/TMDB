@@ -1,20 +1,44 @@
 .images.col-md-12.box
   - $.each @images, (i, image) ->
-    .col-md-12.image
-      .col-md-2
-        %a{ href: "/#!/images/#{image.id}" }
-          -# %a.slimbox{ href: image.image_file.watermarked.url }
+    - is_owner = false
+    - if (current_users_item(image) || current_temp_users_item(image))
+      - is_owner = true
+    - if is_admin_or_mod() || is_owner
+      - console.log image
+      .col-md-12.image
+        %a.col-md-2{ href: "/#!/images/#{image.id}" }
           %img{ src: image.image_file.small.url, width: 100 }
-      .col-md-2.input-label
-        = image.title
-      .col-md-2.input-label
-        = image.priority
-      .col-md-2.input-label
-        - if image.is_main_image
-          = "Main image"
-      - if current_user && current_user.user_type == "admin"
+        %input.form-control.col-md-2.js-edit-saved-title{ value: image.title }
+        %input.form-control.col-md-1.js-edit-saved-priority{ value: image.priority }
+        %select.col-md-1.js-edit-saved-main.flat.btn.form-control{ name: "image[is_main_image]" }
+          %option{ value: "" }= "Main image?"
+          - if image.is_main_image
+            %option{ value: "1", selected: "selected" }= "Yes"
+            %option{ value: "0" }= "No"
+          - else
+            %option{ value: "1" }= "Yes"
+            %option{ value: "0", selected: "selected" }= "No"
+        .col-md-1
+          %input.js-edit-saved.btn{ type: "button", value: "Update", data: { id: image.id } }
+        - if is_admin_or_mod()
+          .col-md-1
+            %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
+    - else
+      .col-md-12.image
         .col-md-2
-          %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
+          %a{ href: "/#!/images/#{image.id}" }
+            -# %a.slimbox{ href: image.image_file.watermarked.url }
+            %img{ src: image.image_file.small.url, width: 100 }
+        .col-md-2.input-label
+          = image.title
+        .col-md-2.input-label
+          = image.priority
+        .col-md-2.input-label
+          - if image.is_main_image
+            = "Main image"
+        - if current_user && current_user.user_type == "admin"
+          .col-md-2
+            %input.js-image-remove.btn{ type: "button", value: "Remove", data: { id: image.id } }
   %br
   .col-md-12
     %form{ action: api_version + "images?temp_user_id=#{localStorage.temp_user_id}", class: "js-new-image-form", method: "post" }

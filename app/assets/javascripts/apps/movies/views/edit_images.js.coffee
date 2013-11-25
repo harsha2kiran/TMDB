@@ -8,6 +8,7 @@ class MoviesApp.EditImages extends Backbone.View
   events:
     "click .js-new-image-update" : "update"
     "click .js-image-remove" : "destroy"
+    "click .js-edit-saved" : "update_top"
 
   render: ->
     edit = $(@el)
@@ -142,3 +143,30 @@ class MoviesApp.EditImages extends Backbone.View
         if list.get("list").list_type == "gallery"
           @edit_images_view = new MoviesApp.EditImages(images: [], gallery: true)
           $(".add-images-form").append @edit_images_view.render().el
+
+  update_top: (e) ->
+    console.log "update_top"
+    container = $(e.target).parents(".image").first()
+    title = container.find(".js-edit-saved-title").val()
+    priority = container.find(".js-edit-saved-priority").val()
+    is_main_image = container.find(".js-edit-saved-main").val()
+    id = $(e.target).attr("data-id")
+    if title != "" && is_main_image != "" && priority != ""
+      if !isNaN(priority)
+          image = new MoviesApp.Image()
+          image.url = api_version + "images/#{id}?temp_user_id=" + localStorage.temp_user_id
+          image.save ({ id: id, image: { id: id, priority: priority, title: title, is_main_image: is_main_image, temp_user_id: localStorage.temp_user_id, approved: false } }),
+            success: ->
+              $(".notifications").html("Image updated.").show().fadeOut(window.hide_delay)
+              container.find(".js-edit-saved-title").removeClass "error"
+              container.find(".js-edit-saved-priority").removeClass "error"
+              container.find(".js-edit-saved-main").removeClass "error"
+      else
+        container.find(".js-edit-saved-priority").addClass "error"
+    else
+      container.find("input, select").each (i, input) ->
+        if $(input).val() == ""
+          $(input).addClass("error")
+        else
+          $(input).removeClass("error")
+
