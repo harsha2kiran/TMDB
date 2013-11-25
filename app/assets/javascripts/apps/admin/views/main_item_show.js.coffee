@@ -7,16 +7,50 @@ class AdminApp.MainItemShow extends Backbone.View
 
   events:
     "click .js-approve" : "approve"
+    "click .js-update" : "update"
     "click .js-add-popular" : "popular"
 
   render: ->
-    show = $(@el)
+    @show = $(@el)
     type = @options.type
     @id = @options.id
     @type = type
     items = @options.items
-    show.html @template(items: items, type: type)
+    @show.html @template(items: items, type: type)
+    $(@show).find(".js-birthday, .js-day-of-death").datepicker(
+      dateFormat: "yy-mm-dd"
+    )
     this
+
+  update: (e) ->
+    console.log "update"
+    self = @
+    id = @id
+    type = @type
+    approved_id = $(e.target).parents(".box").find(".item-id").val()
+    cont = $(e.target).parents(".box")
+    if type == "Movie"
+      title = cont.find(".js-title").val()
+      overview = cont.find(".js-overview").val()
+      tagline = cont.find(".js-tagline").val()
+      content_score = cont.find(".js-content-score").val()
+      data = { id: approved_id, movie: { title: title, overview: overview, tagline: tagline, content_score: content_score } }
+      controller = "movies"
+    else if type == "Person"
+      biography = cont.find(".js-biography").val()
+      homepage = cont.find(".js-homepage").val()
+      birthday = cont.find(".js-birthday").val()
+      place_of_birth = cont.find(".js-place-of-birth").val()
+      day_of_death = cont.find(".js-day-of-death").val()
+      imdb_id = cont.find(".js-imdb-id").val()
+      data = { id: approved_id, person: { biography: biography, homepage: homepage, birthday: birthday, place_of_birth: place_of_birth, day_of_death: day_of_death, imdb_id: imdb_id } }
+      controller = "people"
+    if data
+      $.ajax "#{api_version}#{controller}/#{approved_id}?temp_user_id=#{localStorage.temp_user_id}",
+        method: "put"
+        data: data
+        success: ->
+          $(".notifications").html("Item updated.").show().fadeOut(window.hide_delay)
 
   approve: (e) ->
     type = @type
@@ -29,6 +63,7 @@ class AdminApp.MainItemShow extends Backbone.View
     if !original_id
       original_id = approved_id
     if approved_id && original_id
+
       $.ajax api_version + "approvals/mark",
         method: "post"
         data:

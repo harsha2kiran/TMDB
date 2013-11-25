@@ -6,71 +6,71 @@
     .col-md-12.box
       - if type == "Movie"
         - item = item.get("movie")
-        %p.title.col-md-12
-          = item.title
+        .col-md-2.input-label
           - if item.approved
             = " (Approved) "
           - else
             = " (Pending) "
-        - if item.tagline != ""
-          %p.tagline.col-md-12
-            = item.tagline
-        - if item.overview != ""
-          %p.overview.col-md-12
-            %span= "Overview"
-            = item.overview
-        - if item.content_score
-          %p.content-score.col-md-12
-            %span= "Content Score: "
-            = item.content_score
+        %p.title.col-md-12
+          %span.input-label.col-md-2= "Title"
+          %input.js-title.form-control.col-md-2{ value: item.title }
+        %p.tagline.col-md-12
+          %span.input-label.col-md-2= "Tagline"
+          %input.js-tagline.form-control.col-md-2{ value: item.tagline }
+        %p.overview.col-md-12
+          %span.input-label.col-md-2= "Overview"
+          %input.js-overview.form-control.col-md-2{ value: item.overview }
+        %p.content-score.col-md-12
+          %span.input-label.col-md-2= "Content Score: "
+          %input.js-content-score.form-control.col-md-2{ value: item.content_score }
 
       - else if type == "Person"
         - item = item.get("person")
         %p.name.col-md-12
-          = item.name
-          - if item.approved
-            = " (Approved) "
-          - else
-            = " (Pending) "
-        - if item.biography
-          .biography.col-md-12
-            %span= "Biography: "
-            = item.biography
-        - if item.homepage
-          .homepage.col-md-12
-            %span= "Homepage: "
-            %a{ href: item.homepage, target: "_blank" }
-              = item.homepage
-        - if item.birthday
-          .birthday.col-md-12
-            %span= "Birthday: "
-            = item.birthday
-        - if item.place_of_birth
-          .place-of-birth.col-md-12
-            %span= "Place of birth: "
-            = item.place_of_birth
-        - if item.day_of_death
-          .day-of-death.col-md-12
-            %span= "Day of death: "
-            = item.day_of_death
-        - if item.imdb_id
-          .imdb-id.col-md-12
-            %span= "IMDB ID: "
-            = item.imdb_id
+          .col-md-2.input-label
+            - if item.approved
+              = " (Approved) "
+            - else
+              = " (Pending) "
+        .name.col-md-12
+          %span.input-label.col-md-2= "Name: "
+          %input.js-name.form-control.col-md-2{ value: item.name }
+        .biography.col-md-12
+          %span.input-label.col-md-2= "Biography: "
+          %input.js-biography.form-control.col-md-2{ value: item.biography }
+        .homepage.col-md-12
+          %span.input-label.col-md-2= "Homepage: "
+          %input.js-homepage.form-control.col-md-2{ value: item.homepage }
+        .birthday.col-md-12
+          %span.input-label.col-md-2= "Birthday: "
+          - if item.birthday then birthday = item.birthday.split("T")[0] else birthday = ""
+          %input.js-birthday.form-control.col-md-2{ value: birthday }
+        .place-of-birth.col-md-12
+          %span.input-label.col-md-2= "Place of birth: "
+          %input.js-place-of-birth.form-control.col-md-2{ value: item.place_of_birth }
+        .day-of-death.col-md-12
+          %span.input-label.col-md-2= "Day of death: "
+          - if item.day_of_death then day_of_death = item.day_of_death.split("T")[0] else day_of_death = ""
+          %input.js-day-of-death.form-control.col-md-2{ value: day_of_death }
+        .imdb-id.col-md-12
+          %span.input-label.col-md-2= "IMDB ID: "
+          %input.js-imdb-id.form-control.col-md-2{ value: item.imdb_id } 
 
       .col-md-12
         %input.item-id{ type: "hidden", value: item.id }
         %input.approved{ type: "hidden", value: item.approved.toString() }
         - if item.approved
+          %input.js-update.btn.btn-primary.flat{ type: "button", value: "Update", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
           %input.js-approve.btn{ type: "button", value: "Unapprove", "data-value" => "false", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
+          .col-md-12.popular
+            .col-md-12.input-label
+              Mark as popular or remove from main gallery (set position to 0)
+            .col-md-12
+              %input.js-popular.form-control.col-md-2{ type: "text", placeholder: "Position", value: item.popular }
+              %input.js-add-popular.btn.btn-primary.flat.col-md-2{ type: "button", value: "Set position", "data-id" => item.id, "data-type" => type }
         - else
+          %input.js-update.btn.btn-primary.flat{ type: "button", value: "Update", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
           %input.js-approve.btn.btn-primary.flat{ type: "button", value: "Approve", "data-value" => "true", "data-user-id" => item.user_id, "data-temp-user-id" => item.temp_user_id }
-      .col-md-12.popular
-        .col-md-12.input-label
-          Mark as popular or remove from main gallery (set position to 0)
-        .col-md-12
-          %input.js-popular.form-control.col-md-2{ type: "text", placeholder: "Position", value: item.popular }
-          %input.js-add-popular.btn.btn-primary.flat.col-md-2{ type: "button", value: "Set position", "data-id" => item.id, "data-type" => type }
 
 %h5
   Details
