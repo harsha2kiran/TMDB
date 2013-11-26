@@ -89,9 +89,9 @@ class MoviesApp.EditAlternativeTitles extends Backbone.View
     if value != ""
       model = new MoviesApp.Language()
       model.save ({ language: { language: value } }),
-        success: ->
+        success: (data) ->
           $(".notifications").html("Language added. It will be active after moderation.").show().fadeOut(window.hide_delay)
-          $(self.el).find(".js-new-alternative-title-language.js-new-language").val(value).removeClass "error"
+          $(self.el).find(".js-new-alternative-title-language").val(value).removeClass "error"
           $(self.el).find(".js-new-alternative-title-language-id").val(model.id)
           self.create()
           self.cancel()
