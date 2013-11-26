@@ -73,28 +73,26 @@ class MoviesApp.Edit extends Backbone.View
     tagline = $container.find(".js-tagline").val()
     overview = $container.find(".js-overview").val()
     content_score = $container.find(".js-content-score").val()
-    content_score = content_score.replace(/\D/g,'')
+    if content_score
+      content_score = content_score.replace(/\D/g,'')
     original_id = $container.find(".js-original-id").val()
     approved = $container.find(".js-approved").val()
     if title != ""
-      if (content_score == "" || !isNaN(content_score))
-        movie = new MoviesApp.Movie()
-        if approved == "true"
-          movie.save ({ edit_page: true, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
-            success: ->
-              $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
-              $container.find(".js-title, .js-content-score").removeClass("error")
-              $(".show-movie").attr("href", "#/movies/#{movie.id}")
-        else
-          movie.url = api_version + "movies/" + movie_id
-          movie.save ({ id: movie_id, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
-            success: ->
-              $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
-              $container.find(".js-title, .js-content-score").removeClass("error")
-              $container.find(".js-content-score").val(content_score)
-              $(".show-movie").attr("href", "#/movies/#{movie.id}")
+      movie = new MoviesApp.Movie()
+      if approved == "true"
+        movie.save ({ edit_page: true, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
+          success: ->
+            $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
+            $container.find(".js-title, .js-content-score").removeClass("error")
+            $(".show-movie").attr("href", "#/movies/#{movie.id}")
       else
-        $container.find(".js-content-score").addClass("error")
+        movie.url = api_version + "movies/" + movie_id
+        movie.save ({ id: movie_id, movie: { title: title, tagline: tagline, overview: overview, content_score: content_score, original_id: original_id, temp_user_id: localStorage.temp_user_id } }),
+          success: ->
+            $(".notifications").html("Successfully updated movie. Changes will be active after moderation.").show().fadeOut(window.hide_delay)
+            $container.find(".js-title, .js-content-score").removeClass("error")
+            $container.find(".js-content-score").val(content_score)
+            $(".show-movie").attr("href", "#/movies/#{movie.id}")
     else
       $container.find(".js-title").addClass("error")
 

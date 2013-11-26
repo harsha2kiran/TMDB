@@ -83,19 +83,20 @@
           - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
             %span.lock.btn{ data: { controller: "movies", field: "overview", action: "mark" } }
               Lock
-      .content-score.col-md-12
-        .col-md-2.input-label
-          Content Score
-        - if $.inArray("content_score", @locked) > -1
-          %input.js-content-score.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
-          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-            %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "unmark" } }
-              Unlock
-        - else
-          %input.js-content-score.form-control.flat.col-md-6{ type: "text", value: @movie.content_score, placeholder: "Content score", pattern: "\\d*" }
-          - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
-            %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "mark" } }
-              Lock
+      - if is_admin_or_mod()
+        .content-score.col-md-12
+          .col-md-2.input-label
+            Content Score
+          - if $.inArray("content_score", @locked) > -1
+            %input.js-content-score.form-control.flat.col-md-6{ readonly: "readonly", type: "text", value: @movie.content_score, placeholder: "Content score" }
+            - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+              %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "unmark" } }
+                Unlock
+          - else
+            %input.js-content-score.form-control.flat.col-md-6{ type: "text", value: @movie.content_score, placeholder: "Content score", pattern: "\\d*" }
+            - if current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator")
+              %span.lock.btn{ data: { controller: "movies", field: "content_score", action: "mark" } }
+                Lock
       .col-md-6.text-right
         %input.js-original-id{ type: "hidden", value: @movie.original_id }
         %input.js-approved{ type: "hidden", value: @movie.approved.toString() }

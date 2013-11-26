@@ -15,10 +15,11 @@
     .overview.col-md-2.input-label
       Overview
     %input.js-overview.form-control.flat.col-md-4{ type: "text", placeholder: "Overview" }
-  .col-md-12
-    .content-score.col-md-2.input-label
-      Content Score
-    %input.js-content-score.form-control.flat.col-md-4{ type: "text", placeholder: "Content score" }
+  - if is_admin_or_mod()
+    .col-md-12
+      .content-score.col-md-2.input-label
+        Content Score
+      %input.js-content-score.form-control.flat.col-md-4{ type: "text", placeholder: "Content score" }
   .col-md-12
     .col-md-6.text-right
       %input.js-create.btn.btn-embossed.btn-primary{ type: "button", value: "Save" }
