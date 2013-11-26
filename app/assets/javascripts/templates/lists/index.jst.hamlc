@@ -1,18 +1,19 @@
 - @lists.each (list) ->
   - list = list.get("list")
-
+  - console.log list.my_list
   - is_empty = true
-  - if list && list.list_items
+  - if list && list.list_items && !list.my_list
+    - console.log "check"
     - $.each list.list_items, (i, item) ->
       - if item.list_item.approved
         - is_empty = false
-  - if is_admin_or_mod() || current_users_item(list)
+  - if is_admin_or_mod() || current_users_item(list) && !list.my_list
     - is_empty = false
 
-  - if !current_user && list.approved != true
+  - if !current_user && list.approved != true && !list.my_list
     - is_empty = true
 
-  - if !is_empty && ((list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator") || list.approved == true))
+  - if (!is_empty || list.my_list) && ((list.list_items && list.list_items.length > 0) || (current_user && (list.user_id == current_user.id)) || (current_user && (current_user.user_type == "admin" || current_user.user_type == "moderator") || list.approved == true))
     .col-md-12.box
       .col-md-8
         %a{ href: "/#!/lists/#{list.id}" }

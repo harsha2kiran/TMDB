@@ -67,6 +67,12 @@
             %a{:href => "/#!/my_movies"} My movies
           %li
             %a{:href => "/#!/my_people"} My people
+          %li
+            %a{:href => "/#!/lists/my_lists"} My lists
+          %li
+            %a{:href => "/#!/lists/my_galleries"} My galleries
+          %li
+            %a{:href => "/#!/lists/my_channels"} My channels
           - if user_signed_in?
             %li
               %a{ href: "/#!/following" }

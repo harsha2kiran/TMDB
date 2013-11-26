@@ -72,3 +72,7 @@ node(:pending){ |list|
 
   pending
 }
+
+node(:my_list){
+  @my_list
+}

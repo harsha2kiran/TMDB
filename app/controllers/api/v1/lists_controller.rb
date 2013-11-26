@@ -25,6 +25,7 @@ class Api::V1::ListsController < Api::V1::BaseController
       end
     end
     @current_api_user = current_api_user
+    @my_list = false
   end
 
   def show
@@ -174,6 +175,35 @@ class Api::V1::ListsController < Api::V1::BaseController
     @images = Image.find_all_by_id(@image_ids)
     @current_api_user = current_api_user
     render 'index'
+  end
+
+  def my_lists
+    condition = "lists.list_type = '' OR lists.list_type IS NULL"
+    filter_lists(condition)
+    render "index"
+  end
+
+  def my_galleries
+    condition = "lists.list_type = 'gallery'"
+    filter_lists(condition)
+    render "index"
+  end
+
+  def my_channels
+    condition = "lists.list_type = 'channel'"
+    filter_lists(condition)
+    render "index"
+  end
+
+  def filter_lists(condition)
+    # if current_api_user && ["admin", "moderator"].include?(current_api_user.user_type)
+    if current_api_user
+      @lists = List.where("(#{condition}) AND (lists.user_id = ? OR list_items.user_id = ?)", current_api_user.id, current_api_user.id).includes(:list_items, :user)
+    else
+      @lists = List.where("(#{condition}) AND (lists.temp_user_id = ? OR list_items.temp_user_id = ?)", params[:temp_user_id], params[:temp_user_id]).includes(:list_items, :user)
+    end
+    @current_api_user = current_api_user
+    @my_list = true
   end
 
 end

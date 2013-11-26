@@ -27,6 +27,7 @@ class Api::V1::ListItemsController < Api::V1::BaseController
         list = current_api_user.lists.find params[:list_item][:list_id]
       end
       list_item = list.list_items.find params[:id]
+      params[:list_item].delete :user_id
       if list_item.update_attributes(params[:list_item])
         if params[:list_item][:approved]
           if ["Image", "Video"].include?(list_item.listable_type)
