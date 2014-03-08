@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 # gem "google_ajax_crawler"
 gem "nokogiri"
+gem 'railroady'
+
 gem 'pg'
 gem 'pg_search'
 group :assets do
