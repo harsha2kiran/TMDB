@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.3'
 # gem "google_ajax_crawler"
 gem "nokogiri"
 gem 'railroady'
@@ -34,7 +34,6 @@ gem 'inherited_resources'
 gem 'has_scope'
 gem 'rabl'
 gem 'yajl-ruby'
-gem 'jquery-fileupload-rails'
 gem 'oauth2'
 gem 'gon'
 gem 'bcrypt-ruby', '~> 3.1.5'
@@ -48,12 +47,11 @@ group :development do
   gem 'sextant'
 end
 gem 'activerecord-postgres-hstore'
-gem "rmagick"
+gem "rmagick", require:false
 gem "carrierwave"
 
 gem "erb2haml"
 gem 'country-select'
-gem 'kaminari'
 gem "youtube_it"
 gem 'rack-mini-profiler'
 gem 'momentjs-rails'
