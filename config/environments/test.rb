@@ -34,4 +34,7 @@ Movies::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # rails 4.0
+  config.eager_load = true
 end

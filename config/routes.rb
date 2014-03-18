@@ -1,14 +1,15 @@
 Movies::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
 
   # devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
 
-  mount Doorkeeper::Engine => '/oauth'
+  # mount Doorkeeper::Engine => '/oauth'
+  use_doorkeeper
 
-  api_version(:module => "Api::V1", :path => "api/v1", :defaults => {:format => :json}) do
+  api_version(:module => "Api::v2", :path => "api/v2", :defaults => {:format => :json}) do
     resources :alternative_names
     resources :alternative_titles
     resources :badges
