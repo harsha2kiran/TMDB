@@ -37,3 +37,4 @@ __Routes__
 .ruby-version
 
 Procfile.dev
+.DS_Store
