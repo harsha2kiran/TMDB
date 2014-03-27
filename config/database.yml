@@ -49,6 +49,10 @@ production:
   encoding: unicode
   database: movies
   pool: 5
+  username: gabriel
+  password: gabriel   ### password you have specified within psql
+  host: localhost
+  port: 5432
 
   # adapter: postgresql
   # encoding: unicode
