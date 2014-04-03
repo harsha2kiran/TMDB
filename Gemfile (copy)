@@ -1,0 +1,130 @@
+source 'https://rubygems.org'
+gem 'rails', '4.0.3'
+# gem "google_ajax_crawler"
+gem "nokogiri"
+gem 'railroady'
+
+# rails 4.0
+#gem 'railties', '4.0.0'
+gem 'pg', '~>0.17.1'
+gem 'pg_search'
+#group :assets do
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'compass-rails'
+  gem 'compass-h5bp'
+  gem 'therubyracer', :platforms => :ruby
+  gem 'uglifier', '>= 1.3.0'
+  gem 'jquery-fileupload-rails'
+  gem 'turbo-sprockets-rails3'
+#end
+gem 'haml_coffee_assets'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-timepicker-rails'
+gem 'haml-rails'
+gem 'html5-rails'
+gem 'coffee-script-source'
+gem 'versionist', git: 'https://github.com/bploetz/versionist.git'
+gem 'devise'
+gem 'devise_invitable'
+gem 'devise_security_extension'
+gem 'ejs'
+gem 'doorkeeper'
+#gem 'activeadmin', '~>0.6.3'
+gem 'inherited_resources', '~>1.3.0'
+gem 'has_scope', '~>0.5.1'
+gem 'rabl'
+gem 'yajl-ruby'
+gem 'oauth2'
+gem 'gon'
+gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'kaminari'
+gem 'activerecord-postgres-hstore'
+gem "rmagick", "~>2.13.2"
+gem "carrierwave"
+
+gem "erb2haml"
+gem 'country-select'
+gem "youtube_it"
+gem 'momentjs-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'puma'
+# gem "dalli"
+gem "memcached", '~>1.7.2'
+
+gem 'capistrano'
+gem 'capistrano-ext'
+gem 'rvm-capistrano'
+
+# rails 4
+gem 'protected_attributes'
+gem 'rb-readline', '~> 0.4.2'
+
+gem 'responders', '0.6.0'
+gem 'ransack'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'formtastic'
+
+gem 'paper_trail'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+gem 'activerecord-deprecated_finders'
+gem 'jbuilder', '~> 1.2'
+
+group :development do
+  gem 'rspec-rails', '~> 2.14.2' #required in both dev and test groups
+  gem 'thin'
+  gem 'ruby_parser'
+  gem 'bullet'
+  gem 'rails_best_practices'
+  gem 'binding_of_caller'
+  gem "better_errors"
+  gem 'hpricot'
+  #gem 'proxylocal'
+  gem "awesome_print"
+  gem "nifty-generators"
+  gem 'pry'
+  gem "version"  #provides a nice way to version application, see https://github.com/stouset/version
+
+  # Deployment related gems  
+  # commented out because they may not be appropriate anymore for Capistrano 3.x for Rails 4.x
+  #gem "capistrano-deploytags", :require => false
+  #gem 'capistrano-unicorn', :require => false
+  #gem 'capistrano-detect-migrations', :require => false
+  
+  # Security scanning
+  gem 'codesake-dawn', :require=>false #Scans codebase for security vulnerabilities.  See: https://github.com/codesake/codesake-dawn
+  gem 'tarantula', :require => 'tarantula-rails3' #Attempts to break application with bad data. see: https://github.com/relevance/tarantula
+  # On 2014-Mar-23 brakeman gems commented out due to "tilt" conflict
+  #gem 'brakeman', :require => false #Security scanner which checks application for security vulnerabilities. see: https://github.com/presidentbeef/brakeman
+  #gem 'guard-brakeman', :require => false #used with brakeman for continuous scanning. see: https://github.com/guard/guard-brakeman
+ 
+  # Profiling
+  # Its defaulted to hideen, to turn on use Hotkey in browser to toggle visibility is Alt-P
+  gem 'rack-mini-profiler' #Provides a small profiler during requests, see: https://github.com/MiniProfiler/rack-mini-profiler
+  gem 'rack-livereload'
+  gem 'guard-livereload'
+  gem 'quiet_assets'
+  gem 'meta_request', '0.2.0'
+  gem 'mailcatcher'
+  gem 'sextant'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 2.14.2' #required in both dev and test groups
+  gem 'capybara' #simulates how a real-user would interact with the app.
+  gem 'poltergeist' #provides headless brower-based testing for Capybara, see: https://github.com/jonleighton/poltergeist
+  gem 'guard-rspec' #allows to automatically & intelligently launch specs when files are modified
+  gem 'factory_girl', "~> 4.0" #a replacement for standard fixtures for testing, can be used with faker, see: http://viccode.blogspot.com/2010/12/using-factorygirl-and-faker.html
+  gem 'factory_girl_rails',  "~> 4.0" #a fixtures replacement with a straightforward definition syntax, support for multiple build strategies. see https://github.com/thoughtbot/factory_girl_rails
+  gem 'faker' #makes it easy to provide fake data for testing, see: https://github.com/stympy/faker
+  gem "database_cleaner" #provides database manipulation services for tests, see: https://github.com/bmabey/database_cleaner
+  gem 'fuubar' # RSpec formatter
+end
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
